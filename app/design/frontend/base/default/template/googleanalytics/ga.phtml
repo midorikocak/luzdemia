@@ -27,45 +27,19 @@
 <?php if (!Mage::helper('core/cookie')->isUserNotAllowSaveCookie()): ?>
 <?php $accountId = Mage::getStoreConfig(Mage_GoogleAnalytics_Helper_Data::XML_PATH_ACCOUNT) ?>
 <!-- BEGIN GOOGLE ANALYTICS CODEs -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+<script type="text/javascript">
+//<![CDATA[
+    var _gaq = _gaq || [];
+    <?php echo $this->_getPageTrackingCode($accountId) ?>
+    <?php echo $this->_getOrdersTrackingCode() ?>
 
-  ga('create', 'UA-46592405-1', 'auto');
-  ga('require', 'displayfeatures');
-  ga('require', 'ec');
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
 
-    <?php
-    if (Mage::getSingleton('customer/session')->isLoggedIn()) {
-        $customerData = Mage::getSingleton('customer/session')->getCustomer();
-        $userId = $customerData->getId();
-        if (isset($userId)) {
-            $gacode = "ga('set', '&uid', '%s');";
-            echo sprintf($gacode, $userId);
-        }
-    }
-    ?>
+//]]>
 </script>
-
 <!-- END GOOGLE ANALYTICS CODE -->
-<!-- BEGIN FACEBOOK REMARKETING CODE -->
-<script>(function() {
-  var _fbq = window._fbq || (window._fbq = []);
-  if (!_fbq.loaded) {
-    var fbds = document.createElement('script');
-    fbds.async = true;
-    fbds.src = '//connect.facebook.net/en_US/fbds.js';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(fbds, s);
-    _fbq.loaded = true;
-  }
-  _fbq.push(['addPixelId', '1463831073884473']);
-})();
-window._fbq = window._fbq || [];
-window._fbq.push(['track', 'PixelInitialized', {}]);
-</script>
-<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=1463831073884473&amp;ev=PixelInitialized" /></noscript>
-<!-- END FACEBOOK REMARKETING CODE -->
 <?php endif; ?>
