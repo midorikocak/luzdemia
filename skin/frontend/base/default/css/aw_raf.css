@@ -1,0 +1,197 @@
+#referafriend{
+    display:none;
+    position: absolute;
+    top:50%;
+    left:50%;
+    z-index:9999;
+    width:350px;
+    margin:-300px 0 0 -150px;
+    /*background-color: #fff;*/
+}
+#referafriend[id]{ /* IE6 and below Can't See This */
+    position:fixed;
+}
+/*#referafriend h3 {margin-bottom: 20px;}*/
+#referafriend h4 {padding: 4px 0;}
+#referafriend .group-select {margin: 0;}
+
+#referafriend-overlay{
+    display:none;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:5000;
+    background-color:#000;
+    -moz-opacity: 0.3;
+    opacity:.30;
+    filter: alpha(opacity=30);
+}
+
+#referafriend-overlay[id]{ /* IE6 and below Can't See This */
+    position:fixed;
+}
+
+#referafriend.done #rafLoadMessage{
+    display:none;
+}
+#referafriend.done #rafContent{
+    display:block;
+}
+#referafriend.loading #rafContent{
+    display:none;
+}
+#referafriend.loading #rafLoadMessage{
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #000;
+    display:block;
+    background-color: #fff;
+    width: 100px;
+    padding: 10px;
+    margin: 250px 0 0 120px;
+}
+
+.awraf-email-heading {
+    font-weight:bold;
+    margin-top:10px;
+    display:block;
+}
+
+.referafriend-please-wait {
+    padding-right:7px;
+}
+/*
+#referafriend.done img{
+    width:100%;
+    height:100%;
+}
+*/
+#raf-invite .group-select {
+    border:1px solid #bbafa0;
+    padding:22px 25px 12px 25px;
+    background:#fbfaf6;
+}
+
+#raf-invite .group-select li .input-box .input-text,#raf-invite .group-select li .input-box textarea {
+    width:275px;
+}
+
+#raf-invite .button-set{
+    border-top:1px solid #E4E4E4;
+    clear:both;
+    margin-top:4em;
+    padding-top:8px;
+    text-align:right;
+}
+
+.form-button-alt#referafriend-button {
+    background-color: #618499;
+    border: 1px solid #406A83;
+    padding:0 10px;
+}
+
+.form-button-alt#referafriend-button span {
+    background: none;
+    border: none;
+}
+
+#referafriend-form span.required {
+    color: #EB340A;
+}
+
+.aw-raf-broadcastlink {
+    width:100%;
+    border:none;
+    font-size:13px;
+}
+
+.aw-raf-broadcastlink-label {
+
+    display:block;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.aw-raf-manual-share-block {
+    margin-top:15px;
+    width:90%;
+}
+
+#widget {
+    width: 100px!important;
+    height:100px!important;
+}
+
+.awraf-social-share {
+    height:30px;
+}
+
+.awraf-social-share a {
+    display:block;
+    width:40px;
+    height:40px;
+    float:left;
+    border:none;
+}
+
+.raf-twitter-share {
+    background: url('../images/aw_raf/share.jpg') no-repeat -146px -32px;
+}
+
+.raf-facebook-share {
+    background: url('../images/aw_raf/share.jpg') no-repeat -266px -72px;
+}
+
+.raf-delicious-share {
+    background: url('../images/aw_raf/share.jpg') no-repeat -264px -32px;
+}
+
+.raf-myspace-share {
+    background:url('../images/aw_raf/share.jpg') no-repeat -145px -72px;
+}
+
+.awraf-balance-item {
+    font-size:13px;
+}
+
+.aw-raf-table-wrapper {
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+#referred-friends-table {
+    font-size:13px;
+}
+
+/* field set specific styles */
+.aw-raf-statistics .fieldset { border:1px solid #bbafa0; background:#fbfaf6; padding:22px 25px 12px 33px; margin:28px 0; }
+.aw-raf-statistics .fieldset h2.legend { float:left; font-weight:bold; font-size:13px; border:1px solid #f19900; background:#f9f3e3; color:#e76200; margin:-33px 0 0 -10px; padding:0 8px; position:relative; }
+.aw-raf-statistics .fieldset .addresses-list li.item { background:#fff url(../images/bkg_account_box.gif) 0 0 repeat-x; border:1px solid #ccc; padding:10px 13px; margin:0 0 10px; }
+.aw-raf-statistics .fieldset .addresses-list h2 { font-weight:bold; font-size:13px; color:#e26703; text-transform:uppercase; }
+
+.awraf-send-form textarea.validation-failed { background:#fff7f5 url(../images/bkg_input-failed.gif) 0 0 repeat-x !important; }
+.awraf-send-form span.validation-passed,
+.awraf-send-form div.validation-passed { background:url(../images/icon_ok.gif) 100% 14px no-repeat; padding-right:20px; }
+.awraf-send-form span.validation-error,
+.awraf-send-form div.validation-error { background:url(../images/icon_error.gif) 100% 14px no-repeat; padding-right:20px; }
+
+.awraf-discount-coupon-form-100 .button {
+    float:none!important;
+    margin:5px 0 0 0!important;
+}
+
+
+.awraf-discount-coupon-form-100 .raf-maximum-discount {
+
+    display:block;
+    clear:both;
+    margin-bottom:2px!important;
+
+}
+
+.awraf-discount-coupon-form-100 .buttons-set {
+
+    margin-top:0!important;
+}

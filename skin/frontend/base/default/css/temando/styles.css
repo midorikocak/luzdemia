@@ -1,0 +1,43 @@
+table.insurance {
+    border-spacing: 10px;
+}
+
+table.insurance td.c1 {
+    background: none repeat scroll 0 0 #F9F3E3;
+    border: 1px solid #BBAFA0;
+    margin: 10px;
+    padding: 10px;
+}
+
+table.insurance td.c2 {
+    font-size: 11px;
+    font-style: italic;
+    padding-right: 8px;
+}
+
+table.insurance td label {
+    color: #F18200;
+}
+
+div.customer-instructions, div.customer-comment {
+    background: none repeat scroll 0 0 #F9F3E3;
+    border: 1px solid #BBAFA0;
+    margin: 10px;
+    padding: 15px;
+    width: 92%;
+}
+
+.note {
+    float: right;
+    clear: both;
+    font-style: italic;
+    font-size: x-small;
+}
+
+textarea.comment {
+    width: 100%;
+}
+
+input.instructions {
+    width: 100%;
+}

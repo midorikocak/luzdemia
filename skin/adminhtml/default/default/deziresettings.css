@@ -1,0 +1,7 @@
+#deziresettings_deziresettings_appearance {}
+#deziresettings_deziresettings_appearance table{border-spacing:0 6px;}
+#deziresettings_deziresettings_appearance  td { border-top:1px solid #EADFE3 !important; border-bottom:1px solid #EADFE3 !important; border-right:1px solid #EADFE3 !important; background-color:#f5f5f5 !important; padding:28px !important;}
+#deziresettings_deziresettings_appearance  td.label { border-left:1px solid #EADFE3 !important; border-right:none !important; font-weight:800; font-size:14px;}
+#deziresettings_deziresettings_appearance  td.value { border-left:none !important; border-right:none !important;}
+#deziresettings_deziresettings_appearance  td.use-default { border-left:none !important; border-right:none !important;}
+#deziresettings_deziresettings_appearance  td.scope-label { border-left:none !important; border-right:none !important;}

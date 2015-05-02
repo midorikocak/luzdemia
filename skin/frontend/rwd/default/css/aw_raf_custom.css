@@ -1,0 +1,16 @@
+.aw-raf-statistics .pager {
+    float: none !important;
+}
+
+.aw-raf-statistics .pager  .count-container {
+    float: none;
+}
+
+.aw-raf-statistics .pager  .count-container .limiter {
+    float: right;
+}
+
+.aw-raf-table-wrapper {
+    display: inline-block;
+    width: 100%;
+}

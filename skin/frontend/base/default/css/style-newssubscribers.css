@@ -1,0 +1,201 @@
+#esns_background_layer {
+    position: absolute;
+    z-index: 9998;
+    background: url(../images/newssubscribers/esns_dark2.png);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: block;
+    text-align: center;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+#esns_box_layer {
+    z-index: 9999;
+    background-color: #ffffff;
+    width: 470px;
+    height: auto;
+    overflow: hidden;
+    top: 0;
+    text-align: center;
+    display: inline-block;
+    padding: 10px;
+}
+
+#esns_box_title {
+    width: 440px;
+    height: auto;
+    overflow: hidden;
+    background: url(../images/newssubscribers/esns_box_block1.png) no-repeat right top;
+}
+
+#esns_box_block_1 {
+    width: 350px;
+    font: 20px/34px "CenturyGothicRegular",Century Gothic,Verdana,sans-serif;
+    text-align: left;
+}
+#esns_box_block_2 {
+    font: 29px/34px "CenturyGothicRegular",Century Gothic,Verdana,sans-serif;
+    height: auto;
+    text-align: left;
+    margin: 0  0 10px 0 ;
+    width: 350px;
+}
+#esns_box_block_3 {
+    text-align: justify;
+}
+
+#esns_box_close {
+    height: 22px;
+    width: 22px;
+    background: url(../images/newssubscribers/esns_box_close.png) no-repeat;
+    cursor: pointer;
+    float: right;
+}
+.esns_box_lines {
+    background: url("../images/newssubscribers/esns_box_lines.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    height: 1px;
+    width: 100%;
+    clear: both;
+    margin: 5px 0;
+ }
+#esns_box_subscribe {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    margin: 0 0 20px 0;
+}
+#esns_box_subscribe_input {
+    width: 340px;
+    float: left;
+    clear: both;
+}
+#esns_box_subscribe_input input {
+    width: 290px;
+    margin: 5px 0 0 20px;
+    border: 1px solid #acacac;
+    height: 25px;
+    padding-left: 10px;
+}
+#esns_box_subscribe_submit {
+    width: 80px;
+    float: left;
+}
+
+#esns_box_subscribe_submit a {
+    background-image: url('../images/newssubscribers/esns_box_button.png');
+    width: 117px;
+    height: 34px;
+    display: block;
+    line-height: 34px;
+    font-size: 12px;
+    color: #000000;
+    margin: 1px 0 0 0;
+}
+
+#esns_box_subscribe_response {
+    text-align: left;
+    margin: 10px 0 0 30px;
+    height: 15px;
+}
+
+#esns_box_subscribe_response_success {
+    display: none;
+}
+
+#esns_box_subscribe_response_error {
+    color: #ea6868;
+    text-align: left;
+    margin: 0 0 0 30px;
+    height: auto;
+    overflow: hidden;
+}
+
+#esns_box_subscribe_response_success {
+    color: #35ea49;
+    font: 20px/34px "CenturyGothicRegular",Century Gothic,Verdana,sans-serif;
+}
+
+
+/*** LABEL THEME ***/
+.tl#esns_box_layer {
+    height: 263px;
+    width: 504px;
+    background: url('../images/newssubscribers/esns_label.png') no-repeat transparent;
+    position: relative;
+}
+.tl #esns_box_block_1, .tl #esns_box_block_2 {
+    color: #ffffff;
+    text-align: right;
+    float: right;
+    line-height: normal;
+
+}
+.tl #esns_box_block_1 {
+    margin: 20px 55px 0 0 ;
+}
+
+.tl #esns_box_block_2 {
+    margin: 0px 55px 0 0 ;
+}
+
+.tl #esns_box_block_3 {
+    color: #000000;
+    clear: both;
+    text-align: justify;
+    float: right;
+    margin: 10px 55px 5px 0 ;
+    width: 340px;
+    height: 70px;
+    overflow: hidden;
+ }
+
+.tl #esns_box_close {
+    position: absolute;
+}
+
+.tl #esns_box_subscribe_response_error {
+    height: 15px;
+    color: #ffffff;
+    float: right;
+    text-align: left;
+    width: 325px;
+    margin: 0 50px 0 0;
+    overflow: hidden;
+}
+
+.tl #esns_box_subscribe_input input {
+    margin: 0 0 0 132px;
+    background: none;
+    height: 29px;
+    width: 216px;
+    border: 0;
+}
+
+.tl #esns_box_subscribe_submit a {
+    background: none;
+    color: #ffffff;
+    height: 29px;
+    line-height: 25px;
+    background: url('../images/newssubscribers/esns_input.png') no-repeat -212px 0px;
+}
+.tl #esns_box_subscribe_response_success {
+    color: #FFFFFF;
+    float: right;
+    margin: 0 50px 0 0;
+    width: 340px;
+}
+.tl #esns_box_subscribe_input {
+    background: url('../images/newssubscribers/esns_input.png') no-repeat 125px 0px;
+}
+
+.tl #esns_box_close {
+    height: 36px;
+    width: 36px;
+    background: url(../images/newssubscribers/esns_box_close2.png) no-repeat;
+    right: 10px;
+    top:-5px;
+}

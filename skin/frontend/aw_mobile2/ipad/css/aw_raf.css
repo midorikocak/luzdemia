@@ -1,0 +1,41 @@
+.raf-balance, #referafriend-form {
+    padding: 15px;
+}
+.input-comment {
+    font-size: 10px;
+    width:100%;
+    display:block;
+}
+.awraf-social-share {
+    height:30px;
+}
+.awraf-social-share a {
+    display:block;
+    width:40px;
+    height:40px;
+    float:left;
+    border:none;
+}
+.raf-twitter-share {
+    background: url('../images/aw_raf/share.jpg') no-repeat -146px -32px;
+}
+.raf-facebook-share {
+    background: url('../images/aw_raf/share.jpg') no-repeat -266px -72px;
+}
+.raf-delicious-share {
+    background: url('../images/aw_raf/share.jpg') no-repeat -264px -32px;
+}
+.raf-myspace-share {
+    background:url('../images/aw_raf/share.jpg') no-repeat -145px -72px;
+}
+.raf-invite {
+    left: 50%;
+    margin-left: -250px;
+    width: 500px;
+    z-index: 101;
+    margin-top: 44px;
+    display: none;
+}
+.raf-invite header{
+    position: relative;
+}
