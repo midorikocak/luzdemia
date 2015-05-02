@@ -1,0 +1,53 @@
+<?php if (Mage::getStoreConfig('carriers/temando/active') && Mage::helper('temando')->getConfigData('options/show_product_estimate')): ?>
+<div class="block block-shipping">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Estimate Shipping') ?></span></strong>
+    </div>
+    <div class="block-content">
+        <div class='estimate-form'>
+            <form action="" name="estimate_form" method="post" onsubmit="javascript: return false;">
+		<ul>
+		    <li class="fields">
+			<div class="city-container">
+			    <label for="city"><?php echo $this->__('Suburb/City'); ?></label>
+			    <input type='text' name='city' id='city' value='<?php echo $this->getCity(); ?>' class="input-text" />
+			</div>
+		    </li>
+		    <li class="fields">
+			<div class="postcode-container">
+			    <label for="postcode"><?php echo $this->__('Postal Code'); ?></label>
+			    <input type='text' name='postcode' id='postcode' value='<?php echo $this->getPostcode(); ?>' class="input-text" />
+			</div>
+		    </li>
+		    <li class="fields">
+			<label for="country_id"><?php echo $this->__('Country'); ?></label>
+		<select id="country_id" name="country_id">
+		    <?php foreach($this->getCountryOptions() as $code => $name): ?>
+			<option value="<?php echo $code ?>"><?php echo $name ?></option>
+		    <?php endforeach; ?>
+		</select>
+		    </li>
+		</ul>
+                <input type='hidden' name='product_id' id='product_id' value='<?php echo $this->getProductId(); ?>' />
+                <input type='hidden' name='options' id='options' value='<?php echo $this->getOptions(); ?>' />	
+                <div class='estimate-button'>
+                    <button type="button" title="<?php echo $this->__('Get a Quote'); ?>" class="button" onclick="getShippingRates()">
+                        <span>
+                            <span><?php echo $this->__('Get a Quote'); ?></span>
+                        </span>
+                    </button>
+                </div>
+                <div id='estimate_items'>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+var shipping_estimator_url = '<?php echo $this->getUrl('etemando/pcs/product', array('_secure' => Mage::app()->getStore()->isCurrentlySecure())); ?>';
+var avs_url = '<?php echo $this->getUrl('etemando/pcs/autocompletecart', array('_secure' => Mage::app()->getStore()->isCurrentlySecure())); ?>';
+var avs = new Avs( avs_url, 'postcode', 'city', 'country_id');
+//]]>
+</script>
+<?php endif; ?>

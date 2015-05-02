@@ -1,0 +1,118 @@
+<?php $_helper = Mage::helper('catalog/category');?>      
+<?php $_categories = $_helper->getStoreCategories();?>
+
+<!-- BEGIN SIDE-NAV-CATEGORY -->  
+<div class="side-nav-categories">
+	<div class="block-title">
+		<?php echo $this->__('Categories');?>
+	</div><!--block-title-->
+	<?php if (count($_categories) > 0):  ?>
+<!-- BEGIN BOX-CATEGORY -->  
+	<div class="box-content box-category">
+		<ul>
+
+		<?php $i=0; foreach($_categories as $_category): ?>
+			<li class="<?php if( ++$i == $_categories->count() ): ?> last<?php endif; ?>" >
+			<?php $_category = Mage::getModel('catalog/category')->load($_category->getId()) ?>
+
+			<?php $_subcategories = $_category->getChildrenCategories() ?>
+
+			<?php if($this->getCurrentCategory()->getId()==$_category->getId()) { ?>
+			<a class="active" href="<?php echo $_helper->getCategoryUrl($_category) ?>"><?php echo $_category->getName() ?></a>
+			<?php if (count($_subcategories) > 0): ?><span class="subDropdown minus"></span> <?php endif; ?>
+			<?php } else { ?>
+			<a href="<?php echo $_helper->getCategoryUrl($_category) ?>"><?php echo $_category->getName() ?></a>
+			<?php if (count($_subcategories) > 0): ?><span class="subDropdown plus"></span> <?php endif; ?>
+			<?php } ?>
+
+			<?php if (count($_subcategories) > 0): ?>
+				<ul class="level0_<?php echo $_category->getId();?>"
+				<?php if($this->getCurrentCategory()->getId()==$_category->getId()){?>
+				style="display:block"
+				<?php } else {?>
+				style="display:none"
+				<?php } ?>>
+				<?php foreach($_subcategories as $_subcategory): ?>
+					<li>
+					<?php $_category1 = Mage::getModel('catalog/category')->load($_subcategory->getId())?>
+					<?php $_subcategories_l1 = $_category1->getChildrenCategories() ?>
+
+					<?php if($this->getCurrentCategory()->getId()==$_subcategory->getId()) { ?>
+					<a class="active" href="<?php echo $_helper->getCategoryUrl($_subcategory) ?>" >
+					<?php echo $_subcategory->getName() ?>
+					<?php if($_subcategory->getParentId()==$this->getCurrentCategory()->getParentId()) { ?>
+					<script type="text/javascript">
+					var root_id = <?php echo $_subcategory->getParentId()?>;
+					jQuery('.level0_'+root_id).css("display","block!important");
+
+					</script>
+					<?php } ?>
+					</a>
+					<?php if (count($_subcategories_l1) > 0): ?><span class="subDropdown plus"></span><?php endif; ?>
+					<?php } else {?>
+					<a href="<?php echo $_helper->getCategoryUrl($_subcategory) ?>" >
+					<?php echo $_subcategory->getName() ?>
+					</a>
+					<?php if (count($_subcategories_l1) > 0): ?><span class="subDropdown plus"></span><?php endif; ?>
+					<?php } ?>
+
+					<?php if (count($_subcategories_l1) > 0) { ?>
+						<ul class="level1"
+						<?php if($this->getCurrentCategory()->getId()==$_category1->getId())  {?>
+						style="display:block;"
+						<?php }else {?>
+						style="display:none"
+						<?php } ?>>
+						<?php foreach($_subcategories_l1 as $_subcategories_l1_l1){ ?>
+							<li>
+							<?php if($this->getCurrentCategory()->getId()==$_subcategories_l1_l1->getId()) { ?>
+							<a class="active" href="<?php echo $_helper->getCategoryUrl($_subcategories_l1_l1) ?>" >
+								 <?php echo $_subcategories_l1_l1->getName() ?>
+							</a>
+							<?php } else { ?>
+							<a href="<?php echo $_helper->getCategoryUrl($_subcategories_l1_l1) ?>" >
+								<?php echo $_subcategories_l1_l1->getName() ?>
+							</a>
+							<?php } ?>
+							</li>
+						<?php } ?><!--end for-each -->
+						</ul> <!--level1-->
+					<?php } ?>
+					</li><!--level1-->
+				<?php endforeach; ?>
+				</ul><!--level0-->
+			<?php endif; ?>
+			</li><!--level 0-->
+		<?php endforeach; ?>
+		</ul>
+	</div><!--box-content box-category-->
+	<?php endif; ?>
+</div><!--side-nav-categories-->
+
+<!-- ZB Extra Scripts START-->
+<script>
+	activateParentItem(jQuery('a.active'));
+
+	function activateParentItem(item)
+	{
+		var currentActive = item.parent().parent().parent();
+		if (currentActive.prop("tagName") != "LI")
+		{
+			return false;
+		}
+		jQuery('a:first',currentActive).addClass('active');
+		jQuery('ul:first',currentActive).show();
+		jQuery('span.subDropdown:first',currentActive).removeClass('plus').addClass('minus');
+
+		parentItem = jQuery('a:first',currentActive);
+		isContinued = ( parentItem.parent().parent().parent().prop("tagName") == "LI");
+
+		if (isContinued == true)
+		{
+			activateParentItem(parentItem);
+		} else {
+			return true;
+		}
+	}
+</script>
+<!-- ZB Extra Scripts END-->

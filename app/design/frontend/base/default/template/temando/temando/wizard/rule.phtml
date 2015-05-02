@@ -1,0 +1,55 @@
+<div class="page-head">
+    <h3><?php echo $this->__('Shipping Rule') ?></h3>
+</div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<h4><?php echo $this->__('Create a shipping rule to customise the quotes displayed to your customers.'); ?></h4>
+<form action="<?php echo $this->getUrl('*/*/save', array('_current' => true)) ?>" method="post" id="form-validate">
+    <fieldset class="group-select wide">
+        <legend><?php echo $this->__('Type') ?></legend>
+        <h4 class="legend"><?php echo $this->__('Type') ?></h4>
+        <ul>
+            <li>
+                <div class="input-box">
+                    <label for="pricing_method"><?php echo $this->__('Shipping Rate Type') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <?php echo $this->getHtmlSelect('ruleType'); ?>
+                    <p style="margin-top:4px; line-height:1.3em; color:#666;">
+                        <small>
+                            <?php echo $this->__('Free Shipping - no charge to customer.') ?><br/>
+                            <?php echo $this->__('Fixed Price / Flat Rate - customer always pays the amount set in "Shipping Price" below.') ?><br/>
+                            <?php echo $this->__('Dynamic Pricing') ?><br/>
+                            <?php echo $this->__('- All: All quotes from carriers in "allowed carriers" above are shown for the customer to choose from.') ?><br/>
+                            <?php echo $this->__('- Cheapest: Only the cheapest quote is shown.') ?><br/>
+                            <?php echo $this->__('- Fastest: Only the fastest quote is shown.') ?><br/>
+                            <?php echo $this->__('- Cheapest and Fastest: The customer can choose between the cheapest or the fastest quote.') ?><br/>
+                        </small>
+                    </p> 
+                </div>
+
+            </li>
+        </ul>
+    </fieldset>
+    <fieldset class="group-select wide" id="static">
+        <legend><?php echo $this->__('Static Rule Configuration') ?></legend>
+        <h4 class="legend"><?php echo $this->__('Static Rule Configuration') ?></h4>
+        <ul>
+            <li>
+                <div class="input-box">
+                    <label for="pricing_shipping_fee"><?php echo $this->__('Shipping Price') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="pricing_shipping_fee" id="pricing_shipping_fee" value="<?php echo Mage::helper('temando')->getConfigData('pricing/shipping_fee'); ?>" class="required-entry input-text">
+                </div>
+
+            </li>
+        </ul>
+    </fieldset>
+    <div class="button-set">
+        <p class="required">* <?php echo $this->__('Required Fields') ?></p>
+        <button class="form-button" type="button" onclick="setLocation('<?php echo $this->getCancelUrl(); ?>');"><span><?php echo $this->__('Cancel') ?></span></button>
+        <button class="form-button" type="button" onclick="setLocation('<?php echo $this->getUrl('*/*/back', array('_current' => true)) ?>');"><span><?php echo $this->__('Back') ?></span></button>
+        <button class="form-button" type="button" onclick="setLocation('<?php echo $this->getUrl('*/*/skip', array('_current' => true)) ?>');"><span><?php echo $this->__('Skip') ?></span></button>
+        <button class="form-button" type="submit"><span><?php echo $this->__('Finish') ?></span></button>
+    </div>
+</form>

@@ -1,0 +1,30 @@
+<?php
+/* @var $this Temando_Temando_Block_Adminhtml_Shipment_Edit_Tab_Form_Origin */
+?>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4><?php echo $this->__('Origin Location'); ?></h4>
+        <div class="form-buttons">
+            <table>
+                <tr>
+                    <td class="filter-actions a-right last">
+                        <button title="Available on higher plans" id="disabled_add_warehouse_button" class="scalable add disabled" onclick="return false;"><span><?php echo $this->__('Add additional Warehouses'); ?></span></button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="fieldset">
+        <table cellspacing="0" class="form-list">
+            <tr>
+                <td class="label"><label><?php echo $this->__('Warehouse'); ?></label></td>
+                <td class="value">
+                    <select style="width: 100%" name="warehouse_id" id="warehouse_id">
+                        <option value=""> -- </option>
+                        <option selected="selected" value="1"><?php echo $this->getWarehouse()->getName(); ?> (<?php echo $this->getWarehouse()->getStreet(); ?>, <?php echo $this->getWarehouse()->getCity(); ?>, <?php echo $this->getWarehouse()->getCountry(); ?>)</option>
+                    </select>
+                </td>
+            </tr>
+        </table>     
+    </div>
+</div>

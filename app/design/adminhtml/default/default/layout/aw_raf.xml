@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">     
+    <awraf_admin_adminhtml_rules_index>
+        <reference name="content">
+            <block type="awraf/adminhtml_rules" name="awraf.rules" />
+        </reference>
+    </awraf_admin_adminhtml_rules_index>
+    <awraf_admin_adminhtml_stats_index>
+        <reference name="content">
+            <block type="awraf/adminhtml_stats" name="awraf.stats" />
+        </reference>
+    </awraf_admin_adminhtml_stats_index>  
+     <awraf_admin_adminhtml_discounts_index>
+        <reference name="content">
+            <block type="awraf/adminhtml_bonus" name="awraf.bonus" />
+        </reference>
+    </awraf_admin_adminhtml_discounts_index> 
+     <awraf_admin_adminhtml_transactions_index>
+        <reference name="content">
+            <block type="awraf/adminhtml_transaction" name="awraf.transaction" />
+        </reference>
+    </awraf_admin_adminhtml_transactions_index>
+    <awraf_admin_adminhtml_discounts_edit>
+        <reference name="content">
+            <block type="awraf/adminhtml_bonus_edit" name="awraf.bonus.edit" />
+        </reference>
+    </awraf_admin_adminhtml_discounts_edit>
+    <awraf_admin_adminhtml_transactions_new>
+        <reference name="content">
+            <block type="awraf/adminhtml_transaction_new" name="awraf.transaction.new" />
+        </reference>
+    </awraf_admin_adminhtml_transactions_new>
+    <adminhtml_sales_order_view>
+        <reference name="order_totals">
+            <block type="awraf/sales_order_totals" name="awraf.sales.order.totals"/>
+        </reference>
+    </adminhtml_sales_order_view>
+    <adminhtml_sales_order_invoice_new>
+        <reference name="invoice_totals">
+            <block type="awraf/sales_order_invoice_totals" name="awraf.sales.order.invoice.totals"/>
+        </reference>
+    </adminhtml_sales_order_invoice_new>
+    <adminhtml_sales_order_invoice_view>
+        <reference name="invoice_totals">
+            <block type="awraf/sales_order_invoice_totals" name="awraf.sales.order.invoice.totals"/>
+        </reference>
+    </adminhtml_sales_order_invoice_view>
+    <adminhtml_sales_order_creditmemo_new>
+        <reference name="creditmemo_totals">
+            <block type="awraf/sales_order_creditmemo_totals" name="awraf.sales.order.creditmemo.totals"/>
+        </reference>
+    </adminhtml_sales_order_creditmemo_new>
+    <adminhtml_sales_order_creditmemo_view>
+        <reference name="creditmemo_totals">
+            <block type="awraf/sales_order_creditmemo_totals" name="awraf.sales.order.creditmemo.totals"/>
+        </reference>
+    </adminhtml_sales_order_creditmemo_view>
+    <awraf_admin_adminhtml_rules_edit>
+        <reference name="content">
+            <block type="awraf/adminhtml_rules_edit" name="awraf.rules.edit"/>
+        </reference>
+        <reference name="left">
+            <block type="awraf/adminhtml_rules_edit_tabs" name="awraf.rules.edit.tabs"/>
+        </reference>
+    </awraf_admin_adminhtml_rules_edit>
+    <awraf_admin_adminhtml_transactions_customersgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="awraf/adminhtml_customer_grid" name="awraf.transactions.customers.grid"/>
+        </block>
+    </awraf_admin_adminhtml_transactions_customersgrid>
+    <awraf_admin_adminhtml_discounts_customersgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="awraf/adminhtml_customer_grid" name="awraf.discounts.customers.grid"/>
+        </block>
+    </awraf_admin_adminhtml_discounts_customersgrid>
+</layout>

@@ -1,0 +1,52 @@
+<div id="hideShow1" style="text-align:left;display:none">
+  <div class="right-side-content hidden1">
+
+  <div class="slider-email active">
+
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+
+<form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post">
+
+
+  <div class="column sixty">
+      <h2><?php echo Mage::helper('contacts')->__('TALK TO US') ?></h2>
+
+        <ul>
+            <li>
+                    <label for="name"><?php echo Mage::helper('contacts')->__('Name') ?><em class="required">*</em></label>
+                    <input name="name" id="name" title="<?php echo Mage::helper('contacts')->__('Name') ?>" value="<?php echo $this->htmlEscape($this->helper('contacts')->getUserName()) ?>" class="input-text required-entry" type="text" />
+            </li>
+            <li>
+                    <label for="email"><?php echo Mage::helper('contacts')->__('Email') ?><em class="required">*</em></label>
+                    <input name="email" id="email" title="<?php echo Mage::helper('contacts')->__('Email') ?>" value="<?php echo $this->htmlEscape($this->helper('contacts')->getUserEmail()) ?>" class="input-text required-entry validate-email" type="text" />
+            </li>
+            <li>
+                    <label for="telephone"><?php echo Mage::helper('contacts')->__('Telephone') ?></label>
+                    <input name="telephone" id="telephone" title="<?php echo Mage::helper('contacts')->__('Telephone') ?>" value="" class="input-text" type="text" />
+            </li><p class="required"><?php echo Mage::helper('contacts')->__('* Required Fields') ?></p>
+        </ul>
+  </div> <!--column sixty-->
+  <div class="column fourty last">
+     <div class="padding">
+              <label for="comment"><?php echo Mage::helper('contacts')->__('Comment') ?><em class="required">*</em></label>
+              <textarea name="comment" id="comment" title="<?php echo Mage::helper('contacts')->__('Comment') ?>" class="required-entry input-text" cols="5" rows="3"></textarea>
+              <div class="textright">
+                 
+                 <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+                 <button type="submit" title="<?php echo Mage::helper('contacts')->__('Submit') ?>" class="button btn-sent"><span><?php echo Mage::helper('contacts')->__('Submit') ?></span></button>
+              </div> <!--textright-->
+     </div> <!--padding-->
+  </div> <!--column fourty last-->
+       
+
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var contactForm = new VarienForm('contactForm', true);
+//]]>
+</script>
+
+<a href="javascript:void(0)" id="hideDiv1" class="slider-close"></a>
+   </div> <!--slider-email active-->
+ </div> <!--right-side-content hidden1-->
+</div> <!--#hideShow1-->

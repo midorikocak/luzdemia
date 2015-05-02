@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<config>
+ <modules>
+  <Lema21_CustomExport>
+   <version>0.9</version>
+</Lema21_CustomExport>
+</modules>
+<global>
+    <models>
+        <custom_export>
+            <class>Lema21_CustomExport_Model</class>
+        </custom_export>
+    </models>
+    <helpers>
+        <custom_export>
+            <class>Lema21_CustomExport_Helper</class>
+        </custom_export>
+    </helpers>
+</global>
+<admin>
+    <routers>
+        <Lema21_CustomExport>
+            <use>admin</use>
+            <args>
+                <module>Lema21_CustomExport</module>
+                <frontName>lema21_custom_export</frontName>
+            </args>
+        </Lema21_CustomExport>
+    </routers>
+</admin>
+<adminhtml>
+    <events>
+        <adminhtml_block_html_before>
+            <observers>
+                <option_in_custom_export>
+                    <class>custom_export/Observer</class>
+                    <method>includeOption</method>
+                </option_in_custom_export>
+            </observers>
+        </adminhtml_block_html_before>          
+    </events>
+
+    <translate>
+        <modules>
+            <qualquer_id_unico_aqui>
+                <files>
+                    <default>Lema21_CustomExport.csv</default>
+                </files>
+            </qualquer_id_unico_aqui>
+        </modules>
+    </translate>
+</adminhtml>
+</config>

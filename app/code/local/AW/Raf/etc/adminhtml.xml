@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <menu>
+        <awraf translate="title" module="awraf">
+            <title>Refer a Friend</title>
+            <sort_order>50</sort_order>
+            <children>
+                <rules translate="title">
+                    <title>Manage Rules</title>
+                    <sort_order>1</sort_order>
+                    <action>awraf_admin/adminhtml_rules</action>
+                </rules>
+                <discounts translate="title">
+                    <title>Manage Discounts</title>
+                    <sort_order>5</sort_order>
+                    <action>awraf_admin/adminhtml_discounts</action>
+                </discounts>
+                <transactions>
+                    <title translate="title">Manage Transactions</title>
+                    <sort_order>7</sort_order>
+                    <action>awraf_admin/adminhtml_transactions</action>
+                </transactions>
+                <stats translate="title">
+                    <title>Statistics</title>
+                    <sort_order>10</sort_order>
+                    <action>awraf_admin/adminhtml_stats</action>
+                </stats>
+                <config translate="title">
+                    <title>Configuration</title>
+                    <sort_order>15</sort_order>
+                    <action>adminhtml/system_config/edit/section/awraf</action>
+                </config>
+            </children>
+        </awraf>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <awraf translate="title" module="awraf">
+                        <title>Refer a Friend</title>
+                        <sort_order>50</sort_order>
+                        <children>
+                            <rules translate="title">
+                                <title>Manage Rules</title>
+                                <sort_order>1</sort_order>
+                                <action>awraf_admin/adminhtml_rules</action>
+                            </rules>
+                            <discounts translate="title">
+                                <title>Manage Discounts</title>
+                                <sort_order>5</sort_order>
+                                <action>awraf_admin/adminhtml_discounts</action>
+                            </discounts>
+                            <transactions>
+                                <title translate="title">Manage Transactions</title>
+                                <sort_order>7</sort_order>
+                                <action>awraf_admin/adminhtml_transactions</action>
+                            </transactions>
+                            <stats translate="title">
+                                <title>Statistics</title>
+                                <sort_order>10</sort_order>
+                                <action>awraf_admin/adminhtml_stats</action>
+                            </stats>
+                            <config translate="title">
+                                <title>Configuration</title>
+                                <sort_order>15</sort_order>
+                                <action>adminhtml/system_config/edit/section/awraf</action>
+                                <actions translate="title">
+                                    <title>Actions</title>
+                                    <children>
+                                        <resetall translate="title"><title>Reset all rule activities</title></resetall>
+                                    </children>
+                                </actions>
+                            </config>
+                        </children>
+                    </awraf>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <awraf translate="title" module="awraf">
+                                        <title>aheadWorks - Refer a Friend Section</title>
+                                    </awraf>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

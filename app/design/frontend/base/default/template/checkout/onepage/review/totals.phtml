@@ -1,0 +1,92 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * @see Mage_Checkout_Block_Cart_Totals
+ */
+
+?>
+
+<?php
+        $postData = $this->getRequest()->getPost();
+        $cc_installment = $postData["payment"]["cc_installment"];
+            ?>
+
+<?php if ($this->getTotals()): ?>
+<tfoot>
+    <?php $_colspan = $this->helper('tax')->displayCartBothPrices() ? 5 : 3; ?>
+    <?php echo $this->renderTotals(null, $_colspan); ?>
+    <?php $installment_calc = 0; ?>
+    <?php if(isset($cc_installment) ):?>
+    <?php
+    $quote = Mage::getModel('checkout/session')->getQuote();
+            $quoteData= $quote->getData();
+            $grandTotal=$quoteData['grand_total'];
+            
+    if($cc_installment>0):
+            $Total = $this->helper('checkout/cart')->getQuote()->getGrandTotal();
+            $installment_calc = Mage::getModel('payu/paymentMethod')->installment_rate($cc_installment, $Total);
+            $instalment_text = $cc_installment . " Taksit";
+    else:
+            $instalment_text = "Tek Çekim";
+    endif;
+        ?>
+    <tr class="last">
+        <td style="" class="a-left" colspan="3">Taksit</td>
+        <td style="" class="a-right last">
+            <strong><span class="price"><?php echo $instalment_text;?></span></strong>
+        </td>
+    </tr>
+    <?php  if($cc_installment>0):?>
+    <tr class="last">
+        <td style="" class="a-left" colspan="3">Taksit Komisyonu</td>
+        <td style="" class="a-right last">
+            <strong><span class="price"><?php echo $installment_calc;?> &nbsp;TL</span></strong>
+        </td>
+    </tr>
+    <?php endif; ?>
+    <tr class="last">
+        <td style="" class="a-left" colspan="3"><strong>Genel Toplam</strong></td>
+        <td style="" class="a-right last">
+            <strong><span class="price"><?php  echo ($grandTotal+$installment_calc);?>&nbsp;TL</span></strong>
+        </td>
+    </tr>
+    <?php else: ?>
+    <?php echo $this->renderTotals('footer', $_colspan); ?>
+    <?php endif; ?>
+  
+    <?php if ($this->needDisplayBaseGrandtotal()):?>
+    <tr>
+        <td class="a-right" colspan="<?php echo $_colspan; ?>">
+            <small><?php echo $this->helper('sales')->__('Your credit card will be charged for') ?></small>
+        </td>
+        <td class="a-right">
+            <small><?php echo $this->displayBaseGrandtotal() ?></small>
+        </td>
+    </tr>
+    <?php endif?>
+</tfoot>
+<?php endif; ?>

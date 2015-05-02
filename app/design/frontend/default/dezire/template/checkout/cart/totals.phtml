@@ -1,0 +1,90 @@
+
+<?php
+/**
+ * Shopping cart totals template
+ *
+ * @see Mage_Checkout_Block_Cart_Totals
+ * @var $this Mage_Checkout_Block_Cart_Totals
+ */
+?>
+<?php
+$total = Mage::getSingleton('checkout/cart')->getQuote()->getSubtotal();
+$minimum = Mage::getStoreConfig("carriers/freeshipping/free_shipping_subtotal");
+$flatrate_price = Mage::getStoreConfig("carriers/flatrate/price");
+$symbol = Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol();
+
+//Set users first adress default shipping and billing adress for calculate shipment price
+$collection = Mage::getModel('customer/customer')->getCollection()->addAttributeToSelect('*');
+
+foreach ($collection as $customer) {
+
+    $customerObj = Mage::getModel('customer/customer')->load($customer->getId());
+
+    if (!$customerObj->getDefaultBillingAddress()) {
+        foreach ($customerObj->getAddresses() as $address) {
+            $address->setIsDefaultBilling(true);
+            continue; // we only want to set first address of the customer as default billing address
+        }
+    }
+
+    if (!$customerObj->getDefaultShippingAddress()) {
+        foreach ($customerObj->getAddresses() as $address) {
+            $address->setIsDefaultShipping(true);
+            continue; // we only want to set first address of the customer as default shipping address
+        }
+    }
+    break;
+}
+//
+
+if ($total >= $minimum):
+    $method = "freeshipping_freeshipping";
+else:
+    $method = "flatrate_flatrate";
+endif;
+$cart = Mage::getSingleton('checkout/cart');
+$quote = $cart->getQuote();
+
+$shippingAddress = $quote->getShippingAddress();
+$shippingAddress->setCollectShippingRates(true)
+        ->collectShippingRates()
+        ->setShippingMethod($method);
+
+$customer = Mage::getSingleton('customer/session')->getCustomer();
+    $quoteCouponCode = $quote->getCouponCode();
+
+$orders = Mage::getResourceModel('sales/order_collection')
+        ->addFieldToSelect('*')
+        ->addFieldToFilter('customer_id', $customer->getId());
+
+if (!$orders->getSize() && $quoteCouponCode=='') {
+    $quote->setCouponCode("YeniUye")
+            ->collectTotals()
+            ->save();
+} else {
+//    $quoteCouponCode = $quote->getCouponCode();
+//    if ($quoteCouponCode == "YeniUye") {
+//        $quote->setCouponCode("")
+//                ->collectTotals()
+//                ->save();
+//    }
+}
+
+
+
+$quote->setTotalsCollectedFlag(false)->collectTotals()->save();
+?>
+<?php if ($this->canApplyMsrp()): ?>
+    <div class="cart-msrp-totals"><?php echo $this->__('ORDER TOTAL WILL BE DISPLAYED BEFORE YOU SUBMIT THE ORDER'); ?></div>
+<?php else: ?>
+    <table id="shopping-cart-totals-table" class="table shopping-cart-table-total">
+        <col />
+        <col width="1" />
+        <tfoot>
+            <?php echo $this->renderTotals('footer'); ?>
+        </tfoot>
+        <tbody> 
+            <?php echo $this->renderTotals(); ?>
+        </tbody>
+    </table>
+<?php endif; ?>

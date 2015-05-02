@@ -1,0 +1,54 @@
+<?php
+
+/* @var $this Temando_Temando_Block_Adminhtml_Shipment_Edit_Tab_Form_Insurance */
+
+$_shipment = $this->getShipment();
+$insurance_option = '';
+foreach ($_shipment->getOptionsArray() as $k => $v) {
+    if ("insurance" == $k) {
+        $insurance_option = $v;
+        break;
+    }
+}
+
+$total_goods_value = $this->getTotalGoodsValue();
+
+?>
+
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4><?php echo $this->__('Insurance'); ?></h4>
+    </div>
+    <div class="fieldset">
+<?php switch ($this->getTemandoHelper()->getConfigData('insurance/status')) {
+        case Temando_Temando_Model_System_Config_Source_Insurance::OPTIONAL:
+            if ('Y' == $insurance_option) {
+                echo $this->__('The Buyer has indicated that they would like their shipment insured.');
+                echo "<br />";
+                echo "<span class='label'>Total Goods Value: &nbsp;&nbsp;&nbsp;<b>" . $this->formatCurrency($this->getTotalGoodsValue()) . "</b></span>";
+                echo "<div class='confirm-insurance'><table><tr><td class='c1'><input type='checkbox' name='insurance' value='N' " . ($this->isAdminSelect()?"checked='checked'":"") . " /></td><td class='c2'>I understand that the buyer has requested insurance and may have paid for it already, however, the buyer and I have since mutually agreed to send without insurance.</td></tr></table></div>";
+            } else {
+                echo $this->__('The Buyer indicated that they would not like their shipment insured.');
+            }
+
+            break;
+        case Temando_Temando_Model_System_Config_Source_Insurance::MANDATORY:
+            if ('N' == $insurance_option) {
+                echo $this->__('The Buyer indicated that they would not like their shipment insured.');
+            } else {
+                echo "For your convenience, you have nominated to include insurance for the transport of your sold items for a nominal fee of 1.1% of the purchase price (inclusive of GST).";
+            }
+
+            break;
+        case Temando_Temando_Model_System_Config_Source_Insurance::DISABLED:
+            if ('Y' == $insurance_option) {
+                echo $this->__('The Buyer has indicated that they would like their shipment insured.');
+            } else {
+                echo "<div class='confirm-insurance'><table><tr><td class='c1'><input type='checkbox' name='insurance' value='Y' " . ($this->isAdminSelect()?"checked='checked'":"") . " /></td><td class='c2'>I want to add insurance to this shipment.</td></tr></table></div>";
+            }
+
+            break;
+}
+?>
+    </div>
+</div>

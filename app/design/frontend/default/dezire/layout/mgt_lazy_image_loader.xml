@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <catalog_category_default translate="label">
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/mgt_lazy_image_loader/lazy-image-loader.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/mgt_lazy_image_loader/common.js</name></action>
+        </reference>
+    </catalog_category_default>
+    <catalog_category_layered translate="label">
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/mgt_lazy_image_loader/lazy-image-loader.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/mgt_lazy_image_loader/common.js</name></action>
+        </reference>
+    </catalog_category_layered>
+    <catalogsearch_result_index translate="label">
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/mgt_lazy_image_loader/lazy-image-loader.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/mgt_lazy_image_loader/common.js</name></action>
+        </reference>
+    </catalogsearch_result_index>
+</layout>

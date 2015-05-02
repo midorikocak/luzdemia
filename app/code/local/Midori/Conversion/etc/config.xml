@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config>
+   <modules>
+      <Midori_Conversion>
+         <version>1.0.0</version>
+      </Midori_Conversion>
+   </modules>
+   <frontend>
+      <layout>
+         <updates>
+            <conversion  module="Midori_Conversion">
+               <file>Midori_Conversion.xml</file>
+            </conversion>
+         </updates>
+      </layout>
+   </frontend>
+   <global>
+      <models>
+         <midori_conversion>
+            <class>Midori_Conversion_Model</class>
+         </midori_conversion>
+      </models>
+      <events>
+         <customer_login>
+            <observers>
+               <midori_conversion_addjs>
+                  <type>singleton</type>
+                  <class>midori_conversion/observer</class>
+                  <method>userLogin</method>
+               </midori_conversion_addjs>
+            </observers>
+         </customer_login>
+      </events>
+   </global>
+</config>

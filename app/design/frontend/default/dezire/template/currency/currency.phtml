@@ -1,0 +1,30 @@
+<?php //echo ">>".$this->getCurrencyCount();
+if($this->getCurrencyCount() > 1): ?>
+<div class="currency-box">
+  <div class="currency-switcher">      
+    <div style="display: none;" class="currency_detail">
+        <?php foreach ($this->getCurrencies() as $_code => $_name): ?> 
+            <div class="currency-inner">
+                <a href="<?php echo $this->getSwitchCurrencyUrl($_code) . '?___store='.$_code;?>" title="<?php echo $this->htmlEscape($_code) ?>"> <?php echo Mage::app()->getLocale()->currency($_code)->getSymbol(); ?> - <?php echo $_code; ?></a>
+            </div>
+        <?php endforeach; ?>
+    </div>  <!--currency_detail-->
+    <div class="select_curr"> 
+       <span><?php echo Mage::app()->getStore()->getCurrentCurrencyCode(); ?></span> <span class="caret"></span>
+    </div> <!--select_curr-->
+  </div> <!--currency-switcher-->
+</div> <!--currency-box-->
+<script type="text/javascript">
+        jQuery(function() {
+                jQuery(".currency-switcher").hover(function() {
+                        jQuery('.select_curr').addClass('active');
+                        jQuery(".currency_detail").stop(true, true).slideDown(200, "easeInSine");
+                        },  
+                        function() {
+                        jQuery('.select_curr').removeClass('active');
+                        jQuery(".currency_detail").stop(true, true).fadeOut(100, "easeInCubic");
+                        });
+
+        });
+</script>
+<?php endif; ?> 

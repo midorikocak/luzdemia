@@ -1,0 +1,11 @@
+<script type="text/javascript">
+//<![CDATA[
+    var address_validation_url = '<?php echo $this->getUrl('etemando/pcs/autocompletecart', array('_secure' => Mage::app()->getStore()->isCurrentlySecure())); ?>';
+    var originAvs = new Avs(
+	address_validation_url,
+	'temando_origin_postcode',
+	'temando_origin_city',
+	'temando_origin_country'
+    );
+//]]
+</script>

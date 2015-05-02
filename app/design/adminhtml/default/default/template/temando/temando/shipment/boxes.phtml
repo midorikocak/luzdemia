@@ -1,0 +1,166 @@
+<?php
+
+/* @var $this Temando_Temando_Block_Adminhtml_Shipment_Edit_Tab_Form_Boxes */
+?>
+
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4><?php echo $this->__('Boxes to Ship'); ?></h4>
+        <div class="form-buttons">
+            <table>
+                <tr>
+                    <td class="filter-actions a-right last">
+                        <button title="Dispatch a single order over multiple shipments" id="disabled_partial_shipment_button" class="scalable disabled" onclick="return false;"><span><?php echo $this->__('Partial Shipment'); ?></span></button>
+                        <button id="box_add_button" class="scalable add" onclick="javascript:box_add(); return false;"><span><?php echo $this->__('Add Box'); ?></span></button>
+                        <button id="box_clear_button" class="scalable delete" onclick="box_clear(); return false;"><span><?php echo $this->__('Clear'); ?></span></button>
+                        <button id="box_import_button" class="scalable" onclick="box_import(); return false;"><span><?php echo $this->__('Import from Above'); ?></span></button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="grid np">
+    <div class="hor-scroll">
+        <table cellspacing="0" class="box np" id="boxes">
+            <col />
+            <col style="width: 150px;" />
+            <col style="width: 70px;" />
+            <col style="width: 50px;" />
+            <col style="width: 70px;" />
+            <col style="width: 120px;" />
+            <col style="width: 90px;" />
+            <col style="width: 90px;" />
+            <col style="width: 90px;" />
+            <col style="width: 60px;" />
+            <col style="width: 100px;" />
+            <thead>
+                <tr class="headings">
+                    <td colspan="5" style="visibility:hidden;">
+                        <input type="hidden" id="boxes_deleted" name="boxes_deleted" value="" />
+                    </td>
+                    <th colspan="4" class="a-center"><?php echo $this->__('Dimensions'); ?></th>
+                </tr>
+                <tr class="headings">
+                    <th><?php echo $this->__('Comment'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Packaging'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Fragile'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Qty'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Value'); ?> ($)</th>
+                    <th class="a-center"><?php echo $this->__('Weight'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Length'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Width'); ?></th>
+		    <th class="a-center"><?php echo $this->__('Height'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Unit'); ?></th>
+                    <th class="a-center last"><?php echo $this->__('Action'); ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $_i = 0; foreach ($this->getShipment()->getBoxes() as $_box): /* @var $_box Temando_Temando_Model_Box */ ?>
+                    <tr class="<?php echo ++$_i % 2 ? 'odd' : 'even'; ?> existing_box" id="box_row_<?php echo $_i; ?>">
+                        
+                        <td>
+                            <input type="hidden" id="box_<?php echo $_i; ?>_id" name="box[<?php echo $_i; ?>][id]" value="<?php echo $_box->getId(); ?>" />
+                            <input type="text" id="box_<?php echo $_i; ?>_comment" name="box[<?php echo $_i; ?>][comment]" value="<?php echo $_box->getComment(); ?>" class="input-text" />
+                        </td>
+                        <td>
+                            <select id="box_<?php echo $_i; ?>_packaging" name="box[<?php echo $_i; ?>][packaging]" class="select select-box-packaging">
+                                <?php foreach ($this->getPackagingTypes() as $_option): ?>
+                                    <option value="<?php echo $_option['value']; ?>"<?php if ($_option['value'] == $_box->getPackaging()): ?> selected="selected"<?php endif; ?>><?php echo $_option['label']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
+                        <td class="a-center">
+                            <select id="box_<?php echo $_i; ?>_fragile" name="box[<?php echo $_i; ?>][fragile]" class="select">
+                                <?php foreach (Mage::getModel('adminhtml/system_config_source_yesno')->toOptionArray() as $_option): ?>
+                                    <option value="<?php echo $_option['value']; ?>"<?php if ($_option['value'] == $_box->getFragile()): ?> selected="selected"<?php endif; ?>><?php echo $_option['label']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
+                        <td><input type="text" id="box_<?php echo $_i; ?>_qty" name="box[<?php echo $_i; ?>][qty]" value="<?php echo (int)$_box->getQty(); ?>" class="input-text" /></td>
+                        <td><input type="text" id="box_<?php echo $_i; ?>_value" name="box[<?php echo $_i; ?>][value]" value="<?php echo sprintf("%01.2f", $_box->getValue()); ?>" class="input-text" /></td>
+                        <td>
+                            <input type="text" id="box_<?php echo $_i; ?>_weight" name="box[<?php echo $_i; ?>][weight]" value="<?php echo (float) $_box->getWeight(); ?>" class="input-text" style="width: 40px;" />
+                            <select id="box_<?php echo $_i; ?>_weight_unit" name="box[<?php echo $_i; ?>][weight_unit]" class="select">
+                                <?php foreach (Mage::getModel('temando/system_config_source_unit_weight')->toBriefOptionArray() as $_option): ?>
+                                    <option value="<?php echo $_option['value']; ?>"<?php if ($_option['value'] == $_box->getWeightUnit()): ?> selected="selected"<?php endif; ?>><?php echo $_option['label']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" id="box_<?php echo $_i; ?>_length" name="box[<?php echo $_i; ?>][length]" value="<?php echo (float) $_box->getLength(); ?>" class="input-text" style="width: 30px;" />
+                            <span class="box_<?php echo $_i; ?>_measure_unit"><?php echo $this->getMeasureUnitText($_box->getMeasureUnit()); ?></span>
+                        </td>
+                        <td>
+                            <input type="text" id="box_<?php echo $_i; ?>_width" name="box[<?php echo $_i; ?>][width]" value="<?php echo (float) $_box->getWidth(); ?>" class="input-text" style="width: 30px;" />
+                            <span class="box_<?php echo $_i; ?>_measure_unit"><?php echo $this->getMeasureUnitText($_box->getMeasureUnit()); ?></span>
+                        </td>
+			<td>
+                            <input type="text" id="box_<?php echo $_i; ?>_height" name="box[<?php echo $_i; ?>][height]" value="<?php echo (float) $_box->getHeight(); ?>" class="input-text" style="width: 30px;" />
+                            <span class="box_<?php echo $_i; ?>_measure_unit"><?php echo $this->getMeasureUnitText($_box->getMeasureUnit()); ?></span>
+                        </td>
+                        <td class="last">
+                            <select id="box_<?php echo $_i; ?>_measure_unit" name="box[<?php echo $_i; ?>][measure_unit]" onchange="$$('.box_<?php echo $_i; ?>_measure_unit').each(function(field) {field.innerHTML = $$('#box_<?php echo $_i; ?>_measure_unit option[value=' + $('box_<?php echo $_i; ?>_measure_unit').value + ']')[0].innerHTML;});" class="select">
+                                <?php foreach (Mage::getModel('temando/system_config_source_unit_measure')->toBriefOptionArray() as $_option): ?>
+                                    <option value="<?php echo $_option['value']; ?>"<?php if ($_option['value'] == $_box->getMeasureUnit()): ?> selected="selected"<?php endif; ?>><?php echo $_option['label']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
+                        <td>
+                            <button id="box_<?php echo $_i; ?>_remove" class="scalable delete" onclick="box_remove(<?php echo $_i; ?>); return false;"><span><?php echo $this->__('Remove'); ?></span></button>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                <tr id="blank_box_row" style="display: none;">
+                    <td><input type="text" id="box_blank_@@id@@_comment" name="box_blank[@@id@@][comment]" class="input-text" /></td>
+                    <td>
+                        <select id="box_blank_@@id@@_packaging" name="box_blank[@@id@@][packaging]" class="select select-box-packaging">
+                            <?php foreach ($this->getPackagingTypes() as $_option): ?>
+                                <option value="<?php echo $_option['value']; ?>"><?php echo $_option['label']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td class="a-center">
+                        <select id="box_blank_@@id@@_fragile" name="box_blank[@@id@@][fragile]" class="select">
+                            <?php foreach (Mage::getModel('adminhtml/system_config_source_yesno')->toOptionArray() as $_option): ?>
+                                <option value="<?php echo $_option['value']; ?>"><?php echo $_option['label']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td><input type="text" id="box_blank_@@id@@_qty" name="box_blank[@@id@@][qty]" class="input-text" /></td>
+                    <td><input type="text" id="box_blank_@@id@@_value" name="box_blank[@@id@@][value]" class="input-text" /></td>
+                    <td>
+                        <input type="text" id="box_blank_@@id@@_weight" name="box_blank[@@id@@][weight]" class="input-text" style="width: 40px;" />
+                        <select id="box_blank_@@id@@_weight_unit" name="box_blank[@@id@@][weight_unit]" class="select">
+                            <?php foreach (Mage::getModel('temando/system_config_source_unit_weight')->toBriefOptionArray() as $_option): ?>
+                                <option value="<?php echo $_option['value']; ?>"<?php if ($_option['value'] == Mage::helper('temando')->getConfigData('weight_unit')): ?> selected="selected"<?php endif; ?>><?php echo $_option['label']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" id="box_blank_@@id@@_length" name="box_blank[@@id@@][length]" class="input-text" style="width: 30px;" />
+                        <span class="box_blank_@@id@@_measure_unit"><?php echo $this->getMeasureUnitText(Mage::helper('temando')->getConfigData('measure_unit')); ?></span>
+                    </td>
+                    <td>
+                        <input type="text" id="box_blank_@@id@@_width" name="box_blank[@@id@@][width]" class="input-text" style="width: 30px;" />
+                        <span class="box_blank_@@id@@_measure_unit"><?php echo $this->getMeasureUnitText(Mage::helper('temando')->getConfigData('measure_unit')); ?></span>
+                    </td>
+		    <td>
+                        <input type="text" id="box_blank_@@id@@_height" name="box_blank[@@id@@][height]" class="input-text" style="width: 30px;" />
+                        <span class="box_blank_@@id@@_measure_unit"><?php echo $this->getMeasureUnitText(Mage::helper('temando')->getConfigData('measure_unit')); ?></span>
+                    </td>
+                    <td class="last">
+                        <select id="box_blank_@@id@@_measure_unit" name="box_blank[@@id@@][measure_unit]" onchange="$$('.box_blank_@@id@@_measure_unit').each(function(field) {field.innerHTML = $$('#box_blank_@@id@@_measure_unit option[value=' + $('box_blank_@@id@@_measure_unit').value + ']')[0].innerHTML;});" class="select">
+                            <?php foreach (Mage::getModel('temando/system_config_source_unit_measure')->toBriefOptionArray() as $_option): ?>
+                                <option value="<?php echo $_option['value']; ?>"<?php if ($_option['value'] == Mage::helper('temando')->getConfigData('measure_unit')): ?> selected="selected"<?php endif; ?>><?php echo $_option['label']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <button id="box_@@id@@_remove" class="scalable delete" onclick="box_remove(@@id@@); return false;"><span><?php echo $this->__('Remove'); ?></span></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

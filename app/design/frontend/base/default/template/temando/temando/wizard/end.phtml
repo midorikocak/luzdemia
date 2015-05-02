@@ -1,0 +1,19 @@
+<div class="page-head">
+    <h3><?php echo $this->__('Configuration Complete') ?></h3>
+</div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+Congratulations, you’ve just correctly configured Temando!<br/>
+We have produced a selection of great guides and <a href="https://www.temando.com/education-centre/faq/magento" target="_new">FAQ’s</a> to help get you up and running.<br/>
+If you have any further questions please contact our <a href="https://dashboard.temando.com/support" target="_new">customer support team</a>.<br/><br/>
+
+Interested in exploring the full functionality of Temando? Contact our sales team
+<form action="<?php echo $this->getPostUrl() ?>" method="get" id="form-validate">
+    <div class="button-set">
+        <button class="form-button" type="button" onclick="setLocation('<?php echo $this->getUrl('*/*/back', array('_current'=>true)) ?>');"><span><?php echo $this->__('Back') ?></span></button>
+        <button class="form-button" type="button" onclick="setLocation('<?php echo $this->getCancelUrl();  ?>');"><span><?php echo $this->__('Exit') ?></span></button>
+    </div>
+</form>
+<script type="text/javascript">
+    var dataForm = new VarienForm('form-validate');
+</script>
+

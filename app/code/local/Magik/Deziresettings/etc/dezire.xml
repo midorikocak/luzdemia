@@ -1,0 +1,390 @@
+<?xml version="1.0"?>
+<dezire>
+<cms>
+<pages>
+<item>
+<title>Dezire Home page</title>
+<identifier>dezire_home</identifier>
+<content><![CDATA[
+<div>{{block type="catalog/product_list" num_products="8" name="bestsellerproduct" as="bestsellerproduct" template="catalog/product/bestseller.phtml" }}</div>
+]]></content>
+<is_active>1</is_active>
+<sort_order>0</sort_order>
+<stores>
+    <item>0</item>
+</stores>
+<root_template>one_column</root_template>
+</item>
+<item>
+<title>Dezire 404 No Route page</title>
+<identifier>dezire_no_route</identifier>
+<content><![CDATA[<div class="login_page">
+<div class="page-title">
+<h3>Whoops, our bad...</h3>
+</div>
+<dl><dt>The page you requested was not found, and we have a fine guess why.</dt><dd>
+<ul class="disc">
+<li>If you typed the URL directly, please make sure the spelling is correct.</li>
+<li>If you clicked on a link to get here, the link is outdated.</li>
+</ul>
+</dd></dl>
+<p>&nbsp;</p>
+<dl><dt>What can you do?</dt><dd>Have no fear, help is near! There are many ways you can get back on track with Magento Demo Store.</dd><dd>
+<ul class="buttons">
+<li><button class="button" onclick="history.go(-1);"><span><span>Go back</span></span></button></li>
+<li><button class="button" onclick="location.href='{{store url=''}}'"><span><span>Store Home</span></span></button></li>
+<li><button class="button" onclick="location.href='{{store url='customer/account'}}'"><span><span>My Account</span></span></button></li>
+</ul>
+</dd></dl></div>]]></content>
+<is_active>1</is_active>
+<sort_order>0</sort_order>
+<stores>
+    <item>0</item>
+</stores>
+<root_template>one_column</root_template>
+</item>
+</pages>
+<blocks>                        
+<item>
+<title>Dezire Footer links</title>
+<identifier>dezire_footer_links</identifier>
+<content><![CDATA[<div class="footer-bottom">
+<div class="inner">
+<div class="coppyright">Copyright &copy; 2014. All Rights Reserved. Designed by <a href="http://www.magikcommerce.com">magikcommerce.com</a></div>
+<div class="bottom_links">
+<ul class="links">
+<li><a title="Magento Themes" href="http://www.magikcommerce.com/magento-themes-templates">Magento Themes</a></li>
+<li><a title="Responsive Themes" href="http://www.magikcommerce.com/magento-themes-templates/responsive-themes">Responsive Themes</a></li>
+<li class="last"><a title="Magento Extensions" href="http://www.magikcommerce.com/magento-extensions">Magento Extensions</a></li>
+</ul>
+</div>
+</div>
+</div>
+]]></content>
+<is_active>1</is_active>
+<stores>
+    <item>0</item>
+</stores>
+</item>
+<item>
+<title>Custom Tab1</title>
+<identifier>dezire_custom_tab1</identifier>
+<content><![CDATA[<p><strong>Lorem Ipsum</strong><span>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></p>]]></content>
+<is_active>1</is_active>
+<stores>
+    <item>0</item>
+</stores>
+</item>
+<item>
+<title>Custom Tab2</title>
+<identifier>dezire_custom_tab2</identifier>
+<content><![CDATA[<p><strong>Lorem Ipsum</strong><span>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></p>]]></content>
+<is_active>1</is_active>
+<stores>
+    <item>0</item>
+</stores>
+</item>         
+<item>
+<title>Empty Category</title>
+<identifier>dezire_empty_category</identifier>
+<content><![CDATA[<p>There are no products matching the selection.<br /> This is a static CMS block displayed if category is empty. You can put your own content here.</p>]]></content>
+<is_active>1</is_active>
+<stores>
+    <item>0</item>
+</stores>
+</item>
+<item>
+<title>Dezire Logo Brand block</title>
+<identifier>dezire_logo_brand_block</identifier>
+<content><![CDATA[<div class="brand-logo"><div class="jcarousel-skin-tango">
+<div id="mycarousel3" class="jcarousel-container jcarousel-container-horizontal" style="position: relative; display: block;">
+<div class="jcarousel-clip jcarousel-clip-horizontal" style="overflow: hidden; position: relative;">
+<ul class="jcarousel-list jcarousel-list-horizontal" style="overflow: hidden; position: relative; top: 0px; margin: 0px; padding: 0px; left: 0px; width: 1940px;">
+<li class="jcarousel-item jcarousel-item-horizontal jcarousel-item-1 jcarousel-item-1-horizontal" style="float: left; list-style: none outside none;"><img src="{{skin url="images/b-logo1.png"}}" alt="brand-logo" /></li>
+<li class="jcarousel-item jcarousel-item-horizontal jcarousel-item-2 jcarousel-item-2-horizontal" style="float: left; list-style: none outside none;"><img src="{{skin url="images/b-logo2.png"}}" alt="brand-logo" /></li>
+<li class="jcarousel-item jcarousel-item-horizontal jcarousel-item-3 jcarousel-item-3-horizontal" style="float: left; list-style: none outside none;"><img src="{{skin url="images/b-logo3.png"}}" alt="brand-logo" /></li>
+<li class="jcarousel-item jcarousel-item-horizontal jcarousel-item-4 jcarousel-item-4-horizontal" style="float: left; list-style: none outside none;"><img src="{{skin url="images/b-logo4.png"}}" alt="brand-logo" /></li>
+<li class="jcarousel-item jcarousel-item-horizontal jcarousel-item-5 jcarousel-item-5-horizontal" style="float: left; list-style: none outside none;"><img src="{{skin url="images/b-logo5.png"}}" alt="brand-logo" /></li>
+<li class="jcarousel-item jcarousel-item-horizontal jcarousel-item-6 jcarousel-item-6-horizontal" style="float: left; list-style: none outside none;"><img src="{{skin url="images/b-logo6.png"}}" alt="brand-logo" /></li>
+<li class="jcarousel-item jcarousel-item-horizontal jcarousel-item-7 jcarousel-item-7-horizontal" style="float: left; list-style: none outside none;"><img src="{{skin url="images/b-logo3.png"}}" alt="brand-logo" /></li>
+<li class="jcarousel-item jcarousel-item-horizontal jcarousel-item-8 jcarousel-item-8-horizontal" style="float: left; list-style: none outside none;"><img src="{{skin url="images/b-logo2.png"}}" alt="brand-logo" /></li>
+<li class="jcarousel-item jcarousel-item-horizontal jcarousel-item-9 jcarousel-item-9-horizontal" style="float: left; list-style: none outside none;"><img src="{{skin url="images/b-logo5.png"}}" alt="brand-logo" /></li>
+<li class="jcarousel-item jcarousel-item-horizontal jcarousel-item-10 jcarousel-item-10-horizontal" style="float: left; list-style: none outside none;"><img src="{{skin url="images/b-logo4.png"}}" alt="brand-logo" /></li>
+</ul>
+</div>
+<div class="jcarousel-prev jcarousel-prev-horizontal" style="display: block;">&nbsp;</div>
+<div class="jcarousel-next jcarousel-next-horizontal" style="display: block;">&nbsp;</div>
+</div>
+</div></div>]]></content>
+<is_active>1</is_active>
+<stores>
+    <item>0</item>
+</stores>
+</item>
+<item>
+<title>Dezire Store Logo</title>
+<identifier>dezire_logo</identifier>
+<content><![CDATA[<p><img src="{{skin url="images/logo.png"}}" alt="Dezire Store" /></p>]]></content>
+<is_active>1</is_active>
+<stores>
+    <item>0</item>
+</stores>
+</item> 
+<item>
+<title>Custom</title>
+<identifier>dezire_navigation_block</identifier>
+<content><![CDATA[<div class="grid12-5">
+<h4 class="heading">HTML5 + CSS3</h4>
+<div class="ccs3-html5-box"><em class="icon-html5">&nbsp;</em> <em class="icon-css3">&nbsp;</em></div>
+<p>Our designed to deliver almost everything you want to do online without requiring additional plugins.CSS3 has been split into "modules".</p>
+</div>
+<div class="grid12-5">
+<h4 class="heading">Responsive Design</h4>
+<div class="icon-custom-reponsive">&nbsp;</div>
+<p>Responsive design is a Web design to provide an optimal navigation with a minimum of resizing, and scrolling across a wide range of devices.</p>
+</div>
+<div class="grid12-5">
+<h4 class="heading">Google Fonts</h4>
+<div class="icon-custom-google-font">&nbsp;</div>
+<p>Our font delivery service is built upon a reliable, global network of servers. Our flexible solution provides multiple implementation options.</p>
+</div>
+<div class="grid12-5">
+<h4 class="heading">Smart Product Grid</h4>
+<div class="icon-custom-grid">&nbsp;</div>
+<p>Smart Product Grid is uses maximum available width of the screen to display content. It can be displayed on any screen or any devices.</p>
+</div>]]></content>
+<is_active>1</is_active>
+<stores>
+    <item>0</item>
+</stores>
+</item>     
+
+
+<item>
+<title>Dezire Home Offer Banner Block</title>
+<identifier>dezire_home_offer_banner_block</identifier>
+<content><![CDATA[<div class="offer-banner"><div class="offer-banner-section">
+<div class="col"><img src="{{skin url="images/offer_banner1.png"}}" alt="Offer Banner" /></div>
+<div class="col-last">
+<div class="add-banner"><img src="{{skin url="images/offer_banner2.png"}}" alt="Offer Banner" /></div>
+<div class="add-banner1">
+<div class="add-banner2"><img src="{{skin url="images/offer_banner3.png"}}" alt="Offer Banner" /></div>
+<div class="add-banner3"><img src="{{skin url="images/offer_banner4.png"}}" alt="Offer Banner" /></div>
+</div>
+</div>
+</div></div>]]></content>
+<is_active>1</is_active>
+<stores>
+    <item>0</item>
+</stores>
+</item> 
+
+<item>
+<title>Dezire Header Block</title>
+<identifier>dezire_header_block</identifier>
+<content><![CDATA[<div class="service-section"><div id="store-messages" class="messages-3">
+<div class="message"><em class="icon-refresh">&nbsp;</em> <span><strong>Return &amp; Exchange</strong> in 3 working days </span></div>
+<div class="message"><em class="icon-truck">&nbsp;</em><span><strong>FREE SHIPPING</strong> order over $99</span></div>
+<div class="message"><em class="icon-discount">&nbsp;</em><span><strong>50% OFF</strong> on all products</span></div>
+<div class="phone"><em class="icon-phone">&nbsp;</em><span><strong>Need help?</strong> +1 800 123 1234</span></div>
+</div></div>]]></content>
+<is_active>1</is_active>
+<stores>
+    <item>0</item>
+</stores>
+</item> 
+
+<item>
+<title>Dezire Footer About Us</title>
+<identifier>dezire_footer_about_us</identifier>
+<content><![CDATA[<div class="footer-column-1">
+<div class="footer-logo"><a title="Logo" href="#"><img src="{{skin url="images/logo.png"}}" alt="" /></a></div>
+<address>123 Main Street, Anytown,<br /> CA 12345 USA</address>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>]]></content>
+<is_active>1</is_active>
+<stores>
+    <item>0</item>
+</stores>
+</item> 
+
+
+<item>
+<title>Dezire Static Banner Block</title>
+<identifier>dezire_static_banner_block</identifier>
+<content><![CDATA[<div class="our-features-box"><div class="store-img-box">
+<ul>
+<li>
+<div class="feature-box">
+<div class="icon-reponsive">&nbsp;</div>
+<div class="content">Responsive Theme<span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </span></div>
+</div>
+</li>
+<li>
+<div class="feature-box">
+<div class="icon-admin">&nbsp;</div>
+<div class="content">Powerful Admin Panel <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </span></div>
+</div>
+</li>
+<li class="last">
+<div class="feature-box">
+<div class="icon-support">&nbsp;</div>
+<div class="content">Premium Support <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></div>
+</div>
+</li>
+</ul>
+</div></div>]]></content>
+<is_active>1</is_active>
+<stores>
+    <item>0</item>
+</stores>
+</item> 
+
+
+
+
+<item>
+<title>Dezire Home Shipping Banner Block</title>
+<identifier>dezire_home_shipping_banner_block</identifier>
+<content><![CDATA[<div class="shipping-banner"><img src="{{skin url="images/promotion-banner.png"}}" alt="promotion banner" /></div>]]></content>
+<is_active>1</is_active>
+<stores>
+    <item>0</item>
+</stores>
+</item>
+
+
+
+<item>
+<title>Dezire Footer Information Links Block</title>
+<identifier>dezire_footer_information_links_block</identifier>
+<content><![CDATA[<div class="footer-column">
+<h4>Shopping Guide</h4>
+<ul class="links">
+<li class="first"><a title="How to buy" href="#">How to buy</a></li>
+<li><a title="FAQs" href="#">FAQs</a></li>
+<li><a title="Payment" href="#">Payment</a></li>
+<li><a title="Shipment" href="#">Shipment</a></li>
+<li><a title="Where is my order?" href="#">Where is my order?</a></li>
+<li class="last"><a title="Return policy" href="#">Return policy</a></li>
+</ul>
+</div>
+<div class="footer-column">
+<h4>Style Advisor</h4>
+<ul class="links">
+<li class="first"><a title="Your Account" href="{{store_url=customer/account/}}">Your Account</a></li>
+<li><a title="Information" href="#">Information</a></li>
+<li><a title="Addresses" href="#">Addresses</a></li>
+<li><a title="Addresses" href="#">Discount</a></li>
+<li><a title="Orders History" href="#">Orders History</a></li>
+<li class="last"><a title=" Additional Information" href="#"> Additional Information</a></li>
+</ul>
+</div>
+<div class="footer-column">
+<h4>Information</h4>
+<ul class="links">
+<li class="first"><a title="Site Map" href="{{store_url=catalog/seo_sitemap/category/}}">Site Map</a></li>
+<li><a title="Search Terms" href="{{store_url=catalogsearch/term/popular/}}">Search Terms</a></li>
+<li><a title="Advanced Search" href="{{store_url=catalogsearch/advanced/}}">Advanced Search</a></li>
+<li><a title="History" href="# ">History</a></li>
+<li><a title="Suppliers" href="#">Suppliers</a></li>
+<li class=" last"><a class="link-rss" title="Our stores" href="#">Our stores</a></li>
+</ul>
+</div>
+]]></content>
+<is_active>1</is_active>
+<stores>
+    <item>0</item>
+</stores>
+</item>
+
+
+
+<item>
+<title>Dezire Listing Page Block</title>
+<identifier>dezire_listing_page_block</identifier>
+<content><![CDATA[<div class="block block-banner"><a href="#"><img src="{{skin url="images/block-banner.png"}}" alt="" /></a></div>
+]]></content>
+<is_active>1</is_active>
+<stores>
+    <item>0</item>
+</stores>
+</item>
+
+<item>
+<title>Dezire RHS Contact Form Block</title>
+<identifier>dezire_rhs_contact_form_block</identifier>
+<content><![CDATA[<div class="slider-phone active">
+<h2>TALK TO US</h2>
+<h3>AVAILABLE 24/7</h3>
+<p class="textcenter">Want to speak to someone? We're here 24/7 to answer any questions. Just call!<br /> <br /> <span class="phone-number"> +1 800 123 1234</span></p>
+</div>
+]]></content>
+<is_active>1</is_active>
+<stores>
+    <item>0</item>
+</stores>
+</item>
+
+<item>
+<title>Dezire Navigation Featured Product Block</title>
+<identifier>dezire_navigation_featured_product_block</identifier>
+<content><![CDATA[<p>{{block type="catalog/product_new"  products_count="1" name="home.catalog.product.new" as="newproduct" template="catalog/product/new.phtml" }}</p>
+]]></content>
+<is_active>1</is_active>
+<stores>
+    <item>0</item>
+</stores>
+</item>
+
+
+<item>
+<title>Dezire Home Slider Banner Block</title>
+<identifier>dezire_home_slider_banner_block</identifier>
+<content><![CDATA[<div class="slider_wrapper">
+<div id="sequence-theme">
+<div id="sequence">
+<ul class="controls">
+<li><a class="sequence-prev" style="display: inline;">Prev</a></li>
+<li><a class="sequence-next" style="display: inline;">Next</a></li>
+</ul>
+<ul class="sequence-canvas">
+<li class="animate-out" style="display: list-item; opacity: 1; z-index: 1;"><img class="model" src="{{skin url="images/banner-img.jpg"}}" alt="Image" /></li>
+<li class="animate-out" style="display: list-item; opacity: 1; z-index: 1;"><img class="model-slider2" src="{{skin url="images/banner-img1.jpg"}}" alt="Image" /></li>
+<li class="animate-in" style="display: list-item; opacity: 1; z-index: 3;"><img class="model-slider3" src="{{skin url="images/banner-img2.jpg"}}" alt="Image" /></li>
+</ul>
+</div>
+</div>
+<script type="text/javascript">
+    $jq(document).ready(function(){       
+        var options = {
+            autoPlay: true,
+            autoPlayDelay: 6000,
+            pauseOnHover: false, 
+            hidePreloaderDelay: 500,
+            nextButton: true,
+            prevButton: true,
+            pauseButton: true,
+            preloader: true,
+            pagination:true,
+            hidePreloaderUsingCSS: false,                   
+            animateStartingFrameIn: true,    
+            navigationSkipThreshold: 750,
+            preventDelayWhenReversingAnimations: true,
+            customKeyEvents: {
+                80: "pause"
+            }
+        };
+        var sequence = $jq("#sequence").sequence(options).data("sequence");           
+    });
+</script>
+</div>
+]]></content>
+<is_active>1</is_active>
+<stores>
+    <item>0</item>
+</stores>
+</item>
+
+
+</blocks>
+</cms>
+</dezire>

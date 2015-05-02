@@ -1,0 +1,60 @@
+<?php
+              // some helpers
+              $_helper = $this->helper('catalog/output');
+              $storeId = Mage::app()->getStore()->getId();
+              $catalog = $this->getLayout()->createBlock('catalog/product_list')->setStoreId($storeId);
+              $productCount = $this->getData('num_products');
+
+$visibility = array( 
+                    Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH, 
+                    Mage_Catalog_Model_Product_Visibility::VISIBILITY_IN_CATALOG
+                );
+$attributeInfo = Mage::getResourceModel('eav/entity_attribute_collection')
+              ->setCodeFilter('featured')
+              ->getFirstItem();
+  $attribute_info = $attributeInfo->getData();
+ 
+  if($attribute_info['attribute_code'] == 'featured'){
+$collection = Mage::getResourceModel('reports/product_collection') 
+                      ->addAttributeToSelect('*')     
+                      ->setStoreId($storeId) 
+                      ->addStoreFilter($storeId)     
+                      ->addAttributeToFilter('visibility', $visibility)
+                      ->addAttributeToFilter('featured', true) 
+                      ->setOrder('updated_at', 'desc')
+                      ->addAttributeToSelect('status') 
+                      ->setPageSize(1);
+/*  To display product by category id */
+if($categoryId=$this->getData('category_id')){
+      $category = Mage::getModel('catalog/category')->load($categoryId);
+      $collection->addCategoryFilter($category);
+    } 
+            // if no products are currently featured, display some text
+              if (!$collection->count()) :
+?>
+      <p class="note-msg"><?php echo $this->__('There are no featured products at the moment.') ?></p>
+      <?php else : ?>
+        <?php
+                $_collectionSize = $collection->count();
+                $_columnCount = 1;
+                $i = 0;
+               
+                foreach ($collection as $_product) :
+                        $_product = Mage::getModel('catalog/product')->setStoreId($storeId)->load($_product->getId());
+
+        ?>
+        <?php if ($i++%$_columnCount==0): ?>            
+        <?php endif ?>  
+      <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(150,150) ?>" width="150" height="150" alt="<?php echo $this->htmlEscape($_product->getName()) ?>" /></a>     
+          <div class="item-title">
+             <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>">
+                  <?php $prod_name = $this->htmlEscape($_product->getName()) ; 
+                  if(strlen($prod_name) > 20) {echo substr($prod_name,0,20)."...";}else {echo $prod_name;}?>
+             </a>
+          </div> <!--item-title-->
+          <?php echo $this->getPriceHtml($_product, true) ?>   
+            <?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>            
+            <?php endif ?>      
+                <?php endforeach ?> 
+      <?php endif ?>  <!--Endif !$collection->count() -->
+<?php } ?> <!-- chk attribute_code -->

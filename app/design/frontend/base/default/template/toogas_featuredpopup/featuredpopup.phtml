@@ -1,0 +1,82 @@
+<?php
+/**
+ * Toogas Lda.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA (End-User License Agreement)
+ * that is bundled with this package in the file toogas_license-free.txt.
+ * It is also available at this URL:
+ * http://www.toogas.com/licences/toogas_license-free.txt
+ *
+ * @category   Toogas
+ * @package    Toogas_Featuredpopup
+ * @copyright  Copyright (c) 2011 Toogas Lda. (http://www.toogas.com)
+ * @license    http://www.toogas.com/licences/toogas_license-free.txt
+ */
+	if ( $this->okShowPopup ) : 
+	$width = $this->obtainWidthImage(); $height = $this->obtainHeightImage(); $src_img = $this->obtainImage(); $href_link = $this->obtainUrl(); $opacity = $this->obtainOpacity(); $open_timer = $this->obtainDelayStart(); $close_timer = $this->obtainDelayClose() ?>
+	<div id="toogas_pop_up" onclick="closePopUp();"></div>
+	<img id="img_pop_up" src='<?php echo $src_img ?>' style="display:none">
+	<script type="text/javascript">
+	<?php if (is_numeric($width) && $width > 0 && is_numeric($height) && $height > 0) : ?>
+		var width_img = <?php echo $width ?> ;
+		var height_img = <?php echo $height ?>;
+	<?php  else : ?>
+		var width_img = $('img_pop_up').getWidth();
+		var height_img = $('img_pop_up').getHeight();	
+	<?php endif ?>	
+		var win = new Window({className: "mac_os_x",  width: width_img, height: height_img, zIndex: 10000, resizable: true, title: "", showEffect:Effect.Grow, hideEffect: Effect.SwitchOff, draggable:false, wiredDrag:true});
+	<?php if (is_numeric($open_timer) && $open_timer > 0) : ?>
+		setTimeout("initialParams(win);",<? echo $open_timer * 1000; ?>);
+	<?php else : ?>
+		initialParams(win);
+	<?php endif ?>
+		function initialParams(win)
+		{
+		  $('toogas_pop_up').style.width = '100%';
+		  $('toogas_pop_up').style.height = '100%';
+		  <?php if (is_numeric($opacity) && $opacity > 0) : ?>
+			browserDetectSetOpacity(toogas_pop_up,<?php echo $opacity ?>);
+		  <?php else : ?>
+		  	browserDetectSetOpacity(toogas_pop_up,0.4);
+		  <?php endif ?>
+		  $('toogas_pop_up').style.position = 'fixed';
+		  $('toogas_pop_up').style.top = '0px';
+		  $('toogas_pop_up').style.zIndex = '5000';
+		  $('toogas_pop_up').style.backgroundColor = '#000000';
+		  <?php if (is_numeric($width) && $width > 0 && is_numeric($height) && $height > 0) : ?>
+		  win.getContent().innerHTML= "<div id='toogas'><img id='close_pop_up' style='cursor:pointer;z-index:1000;position:absolute;top:0px;left:<?php echo ($width-10)?>px' alt='<?php echo $this->__('Close Window') ?>' src='<?php echo $this->getSkinUrl('images/Toogas/Featuredpopup/close_button.png') ?>' border='0' width='26' height='27'/><?php if ($href_link) : ?><a href='<?php echo $href_link ?>'><img src='<?php echo $src_img ?>' style='width:<?php echo $width?>px;height:<?php echo $height?>px'></a><?php else : ?><img src='<?php echo $src_img ?>' style='width:<?php echo $width?>px;height:<?php echo $height?>px;'><?php endif ?></div>"
+		  <?php else : ?>
+		  win.getContent().innerHTML= "<div id='toogas'><img id='close_pop_up' style='cursor:pointer;z-index:1000;position:absolute;top:0px;left:<?php echo ($width-10)?>px' alt='<?php echo $this->__('Close Window') ?>' src='<?php echo $this->getSkinUrl('images/Toogas/Featuredpopup/close_button.png') ?>' border='0' width='26' height='27'/><?php if ($href_link) : ?><a href='<?php echo $href_link ?>'><img src='<?php echo $src_img ?>'></a><?php else : ?><img src='<?php echo $src_img ?>'><?php endif ?></div>"
+		  <?php endif ?>
+		  win.showCenter();
+		  Event.observe('toogas', 'click', closePopUp, false);
+		  <?php if (is_numeric($close_timer) && $close_timer > 0) { ?>
+		  self.setTimeout("closePopUp();", <? echo $close_timer * 1000; ?>);
+		  <?php } ?>
+		}
+		
+		function closePopUp()
+		{
+		  $('toogas_pop_up').style.width = '';
+		  $('toogas_pop_up').style.height = '';
+		  $('toogas_pop_up').setOpacity(1);
+		  $('toogas_pop_up').style.position = '';
+		  $('toogas_pop_up').style.top = '';
+		  $('toogas_pop_up').style.zIndex = '';
+		  $('toogas_pop_up').style.backgroundColor = '';
+		  win.close();
+		}
+		function browserDetectSetOpacity(el, value) {
+		   if (typeof el == 'string')
+		      el = document.getElementById(el);
+		   value = Math.min(1, Math.max(value, 0));
+		   if (navigator.userAgent.match(/\bMSIE\b/)
+			 && (!document.documentMode || document.documentMode < 9))
+		      el.style.filter = "alpha(opacity=" + (value * 100) + ")";
+		   else
+		      el.style.opacity = value;
+		}
+	</script>
+<?php endif ?>

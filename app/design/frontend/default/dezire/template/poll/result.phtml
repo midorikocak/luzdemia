@@ -1,0 +1,22 @@
+
+<?php if(isset($poll)) : ?>
+<div class="block block-poll">
+    <div class="block-title">
+        <?php echo $this->__('Community Poll') ?>
+    </div>
+    <div class="block-content">
+        <p class="block-subtitle"><?php echo $this->htmlEscape($poll->getPollTitle()); ?></p>
+        <?php if( $poll_answers ): ?>
+        <ol id="poll-answers">
+            <?php foreach( $poll_answers as $answer ): ?>
+                <li>
+                    <span class="votes"><?php echo $answer->getVotesCount() ?> (<?php echo $answer->getPercent() ?>%)</span>
+                    <span class="answer"><?php echo $this->htmlEscape($answer->getAnswerTitle()) ?>:</span>
+                </li>
+            <?php endforeach; ?>
+        </ol>
+        <script type="text/javascript">decorateList('poll-answers');</script>
+        <?php endif; ?>
+    </div>
+</div>
+<?php endif; ?>

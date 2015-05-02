@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category   Phoenix
+ * @package    Phoenix_CashOnDelivery
+ * @copyright  Copyright (c) 2008-2009 Andrej Sinicyn, Mik3e
+ * @copyright  Copyright (c) 2010 Phoenix Medien GmbH & Co. KG (http://www.phoenix-medien.de)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Phoenix_CashOnDelivery>
+            <version>1.0.8</version>
+        </Phoenix_CashOnDelivery>
+    </modules>
+
+    <global>
+        <models>
+            <phoenix_cashondelivery>
+                <class>Phoenix_CashOnDelivery_Model</class>
+            </phoenix_cashondelivery>
+        </models>
+        <resources>
+            <cashondelivery_setup>
+                <setup>
+                    <module>Phoenix_CashOnDelivery</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </cashondelivery_setup>
+            <cashondelivery_write>
+                <use>core_write</use>
+            </cashondelivery_write>
+            <cashondelivery_read>
+                <use>core_read</use>
+            </cashondelivery_read>
+        </resources>
+        <helpers>
+            <phoenix_cashondelivery>
+                <class>Phoenix_CashOnDelivery_Helper</class>
+            </phoenix_cashondelivery>
+        </helpers>
+        <blocks>
+            <phoenix_cashondelivery>
+                <class>Phoenix_CashOnDelivery_Block</class>
+            </phoenix_cashondelivery>
+        </blocks>
+        <sales>
+            <quote>
+                <totals>
+                    <phoenix_cashondelivery>
+                        <class>phoenix_cashondelivery/sales_quote_total</class>
+                        <after>subtotal,discount,shipping</after>
+                        <before>tax,grand_total</before>
+                        <renderer>phoenix_cashondelivery/checkout_cod</renderer>
+                        <admin_renderer>phoenix_cashondelivery/adminhtml_sales_order_create_totals_cod</admin_renderer>
+                    </phoenix_cashondelivery>
+                    <phoenix_cashondelivery_tax>
+                        <class>phoenix_cashondelivery/sales_quote_taxTotal</class>
+                        <after>subtotal,discount,shipping,tax</after>
+                        <before>grand_total</before>
+                    </phoenix_cashondelivery_tax>
+                </totals>
+            </quote>
+            <order_invoice>
+                <totals>
+                    <phoenix_cashondelivery>
+                        <class>phoenix_cashondelivery/sales_invoice_total</class>
+                        <after>subtotal,discount,shipping</after>
+                        <before>tax,grand_total</before>
+                    </phoenix_cashondelivery>
+                    <phoenix_cashondelivery_tax>
+                        <class>phoenix_cashondelivery/sales_invoice_tax</class>
+                        <after>subtotal,discount,shipping,tax</after>
+                        <before>grand_total</before>
+                    </phoenix_cashondelivery_tax>
+                </totals>
+            </order_invoice>
+            <order_creditmemo>
+                <totals>
+                    <phoenix_cashondelivery>
+                        <class>phoenix_cashondelivery/sales_creditmemo_total</class>
+                        <after>subtotal,discount,shipping</after>
+                        <before>tax,grand_total</before>
+                    </phoenix_cashondelivery>
+                    <phoenix_cashondelivery_tax>
+                        <class>phoenix_cashondelivery/sales_creditmemo_tax</class>
+                        <after>subtotal,discount,shipping,tax</after>
+                        <before>grand_total</before>
+                    </phoenix_cashondelivery_tax>
+                </totals>
+            </order_creditmemo>
+        </sales>
+        <events>
+            <sales_quote_collect_totals_after>
+                <observers>
+                    <phoenix_cashondelivery>
+                        <type>singleton</type>
+                        <class>phoenix_cashondelivery/observer</class>
+                        <method>sales_quote_collect_totals_after</method>
+                    </phoenix_cashondelivery>
+                </observers>
+            </sales_quote_collect_totals_after>
+            <sales_order_payment_place_end>
+                <observers>
+                    <phoenix_cashondelivery>
+                        <type>singleton</type>
+                        <class>phoenix_cashondelivery/observer</class>
+                        <method>sales_order_payment_place_end</method>
+                    </phoenix_cashondelivery>
+                </observers>
+            </sales_order_payment_place_end>
+            <order_cancel_after>
+                <observers>
+                    <phoenix_cashondelivery>
+                        <type>singleton</type>
+                        <class>phoenix_cashondelivery/observer</class>
+                        <method>order_cancel_after</method>
+                    </phoenix_cashondelivery>
+                </observers>
+            </order_cancel_after>
+        </events>
+        <pdf>
+            <totals>
+                <phoenix_cashondelivery translate="title">
+                    <title>Cash on Delivery fee</title>
+                    <source_field>cod_fee</source_field>
+                    <font_size>7</font_size>
+                    <display_zero>0</display_zero>
+                    <sort_order>450</sort_order>
+                    <model>phoenix_cashondelivery/sales_pdf_cod</model>
+                </phoenix_cashondelivery>
+            </totals>
+        </pdf>
+    </global>
+
+    <default>
+        <sales>
+            <totals_sort>
+                <phoenix_cashondelivery>35</phoenix_cashondelivery>
+            </totals_sort>
+        </sales>
+        <payment>
+            <phoenix_cashondelivery>
+                <active>0</active>
+                <model>phoenix_cashondelivery/cashOnDelivery</model>
+                <order_status>1</order_status>
+                <title>Cash on Delivery</title>
+                <allowspecific>0</allowspecific>
+                <shippingallowspecific>0</shippingallowspecific>
+                <disallowspecificshippingmethods>0</disallowspecificshippingmethods>
+                <display_zero_fee>0</display_zero_fee>
+            </phoenix_cashondelivery>
+        </payment>
+        <sales>
+            <totals_sort>
+                <phoenix_cashondelivery>15</phoenix_cashondelivery>
+                <phoenix_cashondelivery_tax>97</phoenix_cashondelivery_tax>
+            </totals_sort>
+        </sales>
+        <tax>
+            <classes>
+                <phoenix_cashondelivery_tax_class></phoenix_cashondelivery_tax_class>
+            </classes>
+            <calculation>
+                <phoenix_cashondelivery_includes_tax>0</phoenix_cashondelivery_includes_tax>
+            </calculation>
+            <display>
+                <phoenix_cashondelivery_fee>1</phoenix_cashondelivery_fee>
+            </display>
+        </tax>
+    </default>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <Phoenix_CashOnDelivery>
+                    <files>
+                        <default>Phoenix_CashOnDelivery.csv</default>
+                    </files>
+                </Phoenix_CashOnDelivery>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <phoenix_cashondelivery>
+                    <file>phoenix/cashondelivery.xml</file>
+                </phoenix_cashondelivery>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <frontend>
+        <layout>
+            <updates>
+                <phoenix_cashondelivery>
+                    <file>phoenix/cashondelivery.xml</file>
+                </phoenix_cashondelivery>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Phoenix_CashOnDelivery>
+                    <files>
+                        <default>Phoenix_CashOnDelivery.csv</default>
+                    </files>
+                </Phoenix_CashOnDelivery>
+            </modules>
+        </translate>
+    </frontend>
+</config>

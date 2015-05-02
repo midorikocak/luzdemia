@@ -1,0 +1,71 @@
+
+<?php
+/**
+ * Cart cross sell items template
+ *
+ * @see Mage_Checkout_Block_Cart_Crosssell
+ */
+?>
+<?php if($this->getItemCount()): ?>
+<div class="crosssel">
+  
+    <h2><?php echo $this->__('Based on your selection, you may be interested in the following items:') ?></h2>
+  <div class="category-products">
+
+    <ul id="crosssell-products-list" class="products-grid first odd">
+    <?php foreach ($this->getItems() as $_item): ?>
+        <li class="item">
+        <div class="item-inner">
+        <div class="item-img">
+        <div class="item-img-info">
+        <a class="product-image" href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_item->getName()) ?>">
+             <img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(238,238); ?>" class="small-image" width="238" height="238" alt="<?php echo $this->htmlEscape($_item->getName()) ?>" />             
+          </a>
+          <?php echo $this->helper('deziresettings')->getLabel($_item);  ?>
+
+        </div><!--item-img-info-->
+        </div><!--item-img-->
+        <div class="item-info">
+        <div class="info-inner">
+        <div class="item-title">
+        <a class="" href="<?php echo $_item->getProductUrl() ?>">
+               <?php $prod_name = $this->htmlEscape($_item->getName());  if(strlen($prod_name) > 20) {echo substr($prod_name,0,20)."...";}else {echo $prod_name;}?>
+            </a>
+        </div><!--item-title-->
+        <div class="item-content">
+        <div class="item-price">
+         <?php echo $this->getPriceHtml($_item, true) ?>
+        </div><!--item-price-->
+        </div><!--item-content-->
+        </div><!--info-inner-->
+        </div><!--item-info-->
+         <div class="actions">  
+           
+              <span class="add-to-links">
+                <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                    <a href="<?php echo $this->helper('wishlist')->getAddUrl($_item) ?>" class="link-wishlist" title="<?php echo $this->__('Add to wishlist');?>"><span><?php echo $this->__('Add to wishlist');?></span></a>
+                <?php endif; ?>
+                <?php if($_item->isSaleable()): ?>
+                      <button title="Add to Cart" type="button" class="button btn-cart" data-original-title="Add to Cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_item) ?>')"><span><?php echo $this->__('Add to Cart')?></span></button>
+                   <?php else: ?>
+                      <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                   <?php endif; ?>
+
+                <?php if($_compareUrl=$this->getAddToCompareUrl($_item)): ?>
+                    <span class="separator">|</span><a href="<?php echo $_compareUrl ?>" class="link-compare" title="<?php echo $this->__('Add to compare');?>"><span><?php echo $this->__('Add to compare');?></span></a>
+                <?php endif; ?>
+              </span> <!--add-to-links-->
+               
+                  
+              </div><!--actions-->
+
+
+        </div><!--item-inner-->
+                   
+        </li>
+    <?php endforeach; ?>
+    </ul>
+    <script type="text/javascript">decorateList('crosssell-products-list', 'none-recursive')</script>
+</div><!--category-products-->
+</div>  <!--crosssell-->
+<?php endif; ?>

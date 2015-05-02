@@ -1,0 +1,103 @@
+<?php
+/* @var $this Temando_Temando_Block_Adminhtml_Shipment_Edit_Tab_Form_Anywhere */
+$_shipment = $this->getShipment();
+?>
+
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4><?php echo $this->__('Destination'); ?></h4>
+    </div>
+    <div class="fieldset">
+        <table cellspacing="0" class="form-list">
+            <tr>
+                <td class="label"><label><?php echo $this->__('Contact Name'); ?></label></td>
+                <?php if ($_shipment->isStatusOpened()): ?>
+                    <td class="value"><input type="text" id="destination_contact_name" name="destination_contact_name" value="<?php echo $_shipment->getDestinationContactName(); ?>" class="input-text" /></td>
+                <?php else: ?>
+                    <td class="value"><?php echo $_shipment->getDestinationContactName(); ?></td>
+                <?php endif; ?>
+            </tr>
+            <tr>
+                <td class="label"><label><?php echo $this->__('Company Name'); ?></label></td>
+                <?php if ($_shipment->isStatusOpened()): ?>
+                    <td class="value"><input type="text" id="destination_company_name" name="destination_company_name" value="<?php echo $_shipment->getDestinationCompanyName(); ?>" class="input-text" /></td>
+                <?php else: ?>
+                    <td class="value"><?php echo $_shipment->getDestinationCompanyName(); ?></td>
+                <?php endif; ?>
+            </tr>
+            <tr>
+                <td class="label"><label><?php echo $this->__('Street'); ?></label></td>
+                <?php if ($_shipment->isStatusOpened()): ?>
+                    <td class="value"><input type="text" id="destination_street" name="destination_street" value="<?php echo htmlspecialchars($_shipment->getDestinationStreet(), ENT_QUOTES); ?>" class="input-text" /></td>
+                <?php else: ?>
+                    <td class="value"><?php echo $_shipment->getDestinationStreet(); ?></td>
+                <?php endif; ?>
+            </tr>
+            <tr>
+                <td class="label"><label><?php echo $this->__('Suburb'); ?></label></td>
+                <?php if ($_shipment->isStatusOpened()): ?>
+                    <td class="value"><input type="text" id="destination_city" name="destination_city" value="<?php echo $_shipment->getDestinationCity(); ?>" class="input-text" /></td>
+                <?php else: ?>
+                    <td class="value"><?php echo $_shipment->getDestinationCity(); ?></td>
+                <?php endif; ?>
+            </tr>
+            <tr>
+                <td class="label"><label><?php echo $this->__('Region'); ?></label></td>
+                <?php if ($_shipment->isStatusOpened()): ?>
+                    <td class="value"><input type="text" id="destination_region" name="destination_region" value="<?php echo $_shipment->getDestinationRegion(); ?>" class="input-text" /></td>
+                <?php else: ?>
+                    <td class="value"><?php echo $_shipment->getDestinationRegion(); ?></td>
+                <?php endif; ?>
+            </tr>
+            <tr>
+                <td class="label"><label><?php echo $this->__('Postcode'); ?></label></td>
+                <?php if ($_shipment->isStatusOpened()): ?>
+                    <td class="value"><input type="text" id="destination_postcode" name="destination_postcode" value="<?php echo $_shipment->getDestinationPostcode(); ?>" class="input-text" /></td>
+                <?php else: ?>
+                    <td class="value"><?php echo $_shipment->getDestinationPostcode(); ?></td>
+                <?php endif; ?>
+            </tr>
+            <tr>
+                <td class="label"><label><?php echo $this->__('Country'); ?></label></td>
+                <td class="value">
+                    <?php if ($_shipment->isStatusOpened()): ?>
+                        <select id="destination_country" name="destination_country" class="select temando-countries">
+                            <?php foreach (Mage::getModel('directory/country')->getCollection()->toOptionArray() as $_country): ?>
+                                <option value="<?php echo $_country['value']; ?>" <?php if ($_country['value'] == $_shipment->getDestinationCountry()): ?> selected="selected"<?php endif;?>><?php echo $_country['label']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    <?php else: ?>
+                        <?php echo Mage::getModel('directory/country')->load($_shipment->getDestinationCountry())->getName(); ?>
+                    <?php endif; ?>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><label><?php echo $this->__('Phone'); ?></label></td>
+                <?php if ($_shipment->isStatusOpened()): ?>
+                    <td class="value"><input type="text" id="destination_phone" name="destination_phone" value="<?php echo $_shipment->getDestinationPhone(); ?>" class="input-text" /></td>
+                <?php else: ?>
+                    <td class="value"><?php echo $_shipment->getDestinationPhone(); ?></td>
+                <?php endif; ?>
+            </tr>
+            <tr>
+                <td class="label"><label><?php echo $this->__('Email'); ?></label></td>
+                <?php if ($_shipment->isStatusOpened()): ?>
+                    <td class="value"><input type="text" id="destination_email" name="destination_email" value="<?php echo $_shipment->getDestinationEmail(); ?>" class="input-text" /></td>
+                <?php else: ?>
+                    <td class="value"><?php echo $_shipment->getDestinationEmail(); ?></td>
+                <?php endif; ?>
+            </tr>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+//<[CDATA[    
+var shipping_estimator_url = '<?php echo $this->getUrl('etemando/pcs/autocompletecart', array('_secure' => Mage::app()->getStore()->isCurrentlySecure())); ?>';
+var avs = new Avs(
+	shipping_estimator_url,
+	'destination_postcode',
+	'destination_city',
+	'destination_country'
+);
+//]]>
+</script>

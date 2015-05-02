@@ -1,0 +1,19 @@
+<script type="text/javascript">
+
+<?php if (Mage::getStoreConfig('carriers/temando/active')): ?>
+new Avs(
+	"<?php echo $this->getUrl('etemando/pcs/autocompletecart', array('_secure' => Mage::app()->getStore()->isCurrentlySecure())); ?>",
+	'billing:postcode',
+	'billing:city',
+	'billing:country_id'
+);
+
+new Avs(
+	"<?php echo $this->getUrl('etemando/pcs/autocompletecart', array('_secure' => Mage::app()->getStore()->isCurrentlySecure())); ?>",
+	'shipping:postcode',
+	'shipping:city',
+	'shipping:country_id'
+);
+<?php endif;?>
+    
+</script>

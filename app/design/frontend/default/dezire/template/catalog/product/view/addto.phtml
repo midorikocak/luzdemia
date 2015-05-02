@@ -1,0 +1,25 @@
+<div class="email-addto-box">
+<?php $_product = $this->getProduct(); ?>
+<?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>
+
+   <?php if ($this->canEmailToFriend()): ?>
+      <p class="email-friend"><a class="tooltip" href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"  title="<?php echo $this->__('Email to a Friend') ?>"><span><?php echo $this->__('Email to a Friend') ?></span></a></p>
+   <?php endif;  ?>
+
+
+
+
+   <ul class="add-to-links">
+     <li>
+        <?php if ($this->helper('wishlist')->isAllow()) : ?>
+          <a class="link-wishlist tooltip" style="line-height:40px;" href="<?php echo $_wishlistSubmitUrl ?>" onclick="productAddToCartForm.submitLight(this, this.href); return false;"><span><?php echo $this->__('Add To Wishlist') ?></span></a>
+        <?php endif; ?>
+     </li>
+     <li style="display:none !important;">
+       <?php $_compareUrl = $this->helper('catalog/product_compare')->getAddUrl($_product); ?>
+       <?php if($_compareUrl) : ?>   
+          <a class="link-compare tooltip" href="<?php echo $_compareUrl ?>" title="<?php echo $this->__('Add To Compare') ?>" ><span><?php echo $this->__('Add To Compare') ?></span></a>
+       <?php endif; ?>
+     </li>
+   </ul>  <!--add-to-links-->
+</div> <!--email-addto-box-->

@@ -1,0 +1,225 @@
+<?php
+                // some helpers
+                $_helper = $this->helper('catalog/output');
+                $storeId = Mage::app()->getStore()->getId();
+                $catalog = $this->getLayout()->createBlock('catalog/product_list')->setStoreId($storeId);
+                $productCount = $this->getData('num_products');
+
+$visibility = array(
+                      Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH,
+                      Mage_Catalog_Model_Product_Visibility::VISIBILITY_IN_CATALOG
+                  );
+$collection = Mage::getResourceModel('reports/product_collection')
+                        ->addAttributeToSelect('*')    
+                        ->setStoreId($storeId)
+                        ->addStoreFilter($storeId)    
+                        ->addAttributeToFilter('visibility', $visibility)             
+                        ->addOrderedQty()
+                        ->setOrder('ordered_qty', 'desc')
+                        ->setPageSize($productCount);
+/* To display product by category id */
+  if($categoryId=$this->getData('category_id')){
+        $category = Mage::getModel('catalog/category')->load($categoryId);
+        $collection->addCategoryFilter($category);
+      }
+                // if no products are currently sell, display some text
+                 if (!$collection->count()) :
+        ?>
+        <p class="note-msg"><?php echo $this->__('There are no products sell at the moment.') ?></p>
+        <?php else : ?>
+
+<div class="best-sales-slider">
+    <div class="new_title center">
+        <h2><span><?php echo $this->__('Best Sales') ?></span></h2>
+    </div> <!--new_title center-->
+<a href="#" class="jcarousel-prev-horizontal1" id="products_slider_prev1"></a>
+<a href="#" class="jcarousel-next-horizontal1" id="products_slider_next1"></a>
+<div class="jcarousel-skin-tango5">
+    <div style="position: relative; display: block;" class="jcarousel-container jcarousel-container-horizontal">
+      <div style="overflow: hidden; position: relative;" class="jcarousel-clip jcarousel-clip-horizontal">
+      <ul id="products_slider" class="products-grid jcarousel-list jcarousel-list-horizontal" style="overflow: hidden; position: relative; top: 0px; margin: 0px; padding: 0px; left: 0px; width: 2436px;">
+        <?php
+                $_collectionSize = $collection->count();
+                $_columnCount = 4;
+                $i = 0;
+                $v=1;
+                foreach ($collection as $_product) :
+                        $_product = Mage::getModel('catalog/product')->setStoreId($storeId)->load($_product->getId());
+
+        ?>
+        <?php if ($i++%$_columnCount==0): ?>            
+        <?php endif ?>
+<li class="item jcarousel-item jcarousel-item-horizontal jcarousel-item-1 jcarousel-item-1-horizontal <?php if(($i-1)%$_columnCount==0): ?>first1<?php elseif($i%$_columnCount==0): ?> last1<?php elseif($i%$_columnCount!==0): ?> odd1<?php endif; ?>">
+   <div class="item-inner">
+      <div class="item-img">
+        <div class="item-img-info">
+           <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(200,200) ?>" width="200" height="200" alt="<?php echo $this->htmlEscape($_product->getName()) ?>" /></a>
+           <?php echo $this->helper('deziresettings')->getLabel($_product);  ?>
+           <div class="item-box-hover">
+              <div class="box-inner">
+
+                 <div class="product-detail-bnt">
+					 <a href="//www.pinterest.com/pin/create/button/?url=<?php echo $_product->getProductUrl() ?>&media=<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>&description=<?php echo $this->htmlEscape($_product->getName()); ?>" data-pin-do="buttonPin" data-pin-config="none" data-pin-color="red"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" /></a>
+                    
+                 </div> <!--product-detail-bnt-->
+
+
+<!-- POP UP --><div style="display: none;"><div id="inline<?php echo $v; ?>" class="info-box">
+<div class="product-view">
+  <div class="product-essential">
+    <div class="product-img-box">
+       <div class="product-image">
+          <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class ="cloud-zoom" id="zoom1" rel="adjustX:10, adjustY:-2, zoomWidth:400, zoomHeight:400">
+            <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(230,230); ?>" width="230" height="230" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />                 
+          </a>
+       </div> <!--product-image-->
+       <div class="more-views">
+ <div class="jcarousel-container">
+  <div class="jcarousel-clip jcarousel-clip-horizontal">
+    <ul id="more<?php echo $v; ?>" class="more">
+     <?php $product = Mage::getModel('catalog/product')->load($_product->getId());
+          foreach ($product->getMediaGalleryImages() as $image) : ?>
+        <li class="jcarousel-item jcarousel-item-horizontal jcarousel-item-1 jcarousel-item-1-horizontal"  style="float: left; list-style: none outside none;">
+          <a href="<?php // echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $image->getFile()); ?>">
+            <img src="<?php // echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $image->getFile())->resize(70, 70); ?>" width="70" height="70" alt=""/>
+          </a>
+        </li>
+     <?php endforeach; ?>
+    </ul>
+  </div>  <!--jcarousel-clip jcarousel-clip-horizontal-->
+    <div style="display: block;" class="jcarousel-prev jcarousel-prev-horizontal"></div>
+    <div style="display: block;" class="jcarousel-next jcarousel-next-horizontal"></div>
+ </div> <!--jcarousel-container-->
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    jQuery('#more<?php echo $v; ?>').jcarousel({
+        wrap: 'circular',
+                scroll:1,
+itemFallbackDimension: 300
+    });
+});
+</script>
+       </div> <!--more-views-->
+    </div> <!--product-img-box-->
+    <div class="product-shop">
+      <div class="product-name">
+        <h1><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>">
+                    <?php echo $this->htmlEscape($_product->getName()); ?> 
+            </a>
+        </h1>
+      </div> <!--product-name-->
+      <div class="short-description"><?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?></div>
+      <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+      <?php echo $this->getPriceHtml($_product, true) ?>
+     <div class="add-to-box">
+<form action="<?php echo $this->getAddToCartUrl($_product) ?>" method="post" id="product_addtocart_form_<?php echo $_product->getId()?>"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+ <?php if(!$_product->isGrouped()): ?>
+<div class="add-to-cart">
+      <label for="qty"><?php echo $this->__('Qty:') ?></label> 
+
+ <span class="qty-input-text ">
+            <select  name="qty" id="qty" >
+                <?php
+                
+                for ($x=1; $x<=20; $x=$x+1) {
+                    echo '<option value="' . $x . '">' . $x . ' </option>';
+                }
+                ?>
+            </select> 
+       </span>
+     
+</div> <!--add-to-cart-->
+ <?php endif; ?>
+         <?php if($_product->isSaleable()): ?>
+               <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="this.form.submit()"><span><?php echo $this->__('Add to Cart') ?></span></button>
+         <?php else: ?>
+               <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+         <?php endif; ?>
+ </form>
+    </div> <!--add-to-box-->
+      <div class="email-addto-box">
+         <p class="email-friend"><a class="tooltip" href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>" title="<?php echo $this->__('Email to a Friend') ?>"><span><?php echo $this->__('Email to a Friend') ?></span></a></p>
+         <ul class="add-to-links">
+            <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                  <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist tooltip"><span><?php echo $this->__('Add wishlist');?></span></a></li>
+            <?php endif; ?>
+            <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                  <li><span class="separator">|</span><a href="<?php echo $_compareUrl ?>" class="link-compare tooltip"><span><?php echo $this->__('Add compare');?></span></a></li>
+            <?php endif; ?>
+         </ul>
+      </div> <!--email-addto-box-->
+    </div> <!--product-shop-->
+  </div> <!--product-essential-->
+</div> <!--product-view-->
+</div></div> <!-- End POP UP-->
+
+
+              </div> <!--box-inner-->
+           </div> <!--item-box-hover-->
+        </div> <!--item-img-info-->
+      </div> <!--item-img-->
+
+      <div class="item-info">
+        <div class="info-inner">
+          <div class="item-title">
+             <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>">
+                  <?php $prod_name = $this->htmlEscape($_product->getName()) ; 
+                  echo $prod_name;?>
+             </a>
+          </div> <!--item-title-->
+          <div class="item-content">
+            <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+            <div class="item-price"><?php echo $this->getPriceHtml($_product, true) ?></div>
+          </div> <!--item-content-->
+        </div> <!--info-inner-->
+        <div class="actions">
+         <span class="add-to-links">
+            <a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist" title="<?php echo $this->__('Add to Wishlist');?>"><span><?php echo $this->__('Add to Wishlist');?></span></a>
+            <?php if($_product->isSaleable()): ?>
+              <button type="button"  title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><?php echo $this->__('Add to Cart') ?></span></button>
+            <?php else: ?>
+              <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+            <?php endif; ?>
+            <?php /*<a href="<?php echo $_compareUrl ?>" class="link-compare" title="<?php echo $this->__('Add to Compare');?>"><span><?php echo $this->__('Add to Compare');?></span></a>*/?>
+         </span> <!--add-to-links-->
+        </div> <!--actions-->
+      </div> <!--item-info-->                                   
+   </div> <!--item-inner-->
+</li> <!--item jcarousel-item jcarousel-item-horizontal jcarousel-item-1 jcarousel-item-1-horizontal-->      
+            <?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>            
+            <?php endif ?>
+            <?php $v++; ?>
+                <?php endforeach ?>
+ 
+        </ul> <!--products-grid jcarousel-list jcarousel-list-horizontal-->
+      </div>  <!--jcarousel-clip jcarousel-clip-horizontal-->
+    </div> <!--jcarousel-container jcarousel-container-horizontal-->
+  </div> <!--jcarousel-skin-tango5-->
+</div> <!--best-sales-slider-->
+
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+
+        function mycarousel_initCallback(carousel) {
+            $('#products_slider_next1').bind('click', function() {
+                carousel.next();
+                return false;
+            });
+            $('#products_slider_prev1').bind('click', function() {
+                carousel.prev();
+                return false;
+            });
+        };
+
+    $('#products_slider').jcarousel({
+            scroll: 1,
+        initCallback: mycarousel_initCallback,
+            buttonNextHTML: null,
+            buttonPrevHTML: null
+    });
+});
+</script>
+
+
+        <?php endif ?>  <!--Endif !$collection->count() -->
+<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>

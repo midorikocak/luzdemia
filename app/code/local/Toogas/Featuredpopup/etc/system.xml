@@ -1,0 +1,51 @@
+﻿<?xml version="1.0"?>
+<!--
+/**
+ * Toogas Lda.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA (End-User License Agreement)
+ * that is bundled with this package in the file toogas_license-free.txt.
+ * It is also available at this URL:
+ * http://www.toogas.com/licences/toogas_license-free.txt
+ *
+ * @category   Toogas
+ * @package    Toogas_Featuredpopup
+ * @copyright  Copyright (c) 2011 Toogas Lda. (http://www.toogas.com)
+ * @license    http://www.toogas.com/licences/toogas_license-free.txt
+ */
+ -->
+<config>
+<sections>
+        <toogas_featuredpopup translate="label" module="featuredpopup">
+            <label>Featured Popup</label>
+            <tab>toogaslda</tab>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store> 
+            <groups>
+                <configfeaturedpopup translate="label">
+                    <label>Featured Popup Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<featured_popup_enabled translate="label">
+							<label>Status</label>
+							<frontend_type>select</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<source_model>adminhtml/system_config_source_enabledisable</source_model>
+						</featured_popup_enabled>
+                    </fields>
+                </configfeaturedpopup>
+            </groups>            
+        </toogas_featuredpopup>
+    </sections>
+</config>

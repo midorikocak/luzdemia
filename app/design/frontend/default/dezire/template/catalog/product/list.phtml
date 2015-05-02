@@ -1,0 +1,207 @@
+
+<?php
+/**
+ * Product list template
+ *
+ * @see Mage_Catalog_Block_Product_List
+ */
+?>
+<?php
+$_productCollection = $this->getLoadedProductCollection();
+$_helper = $this->helper('catalog/output');
+$this->setData('column_count', 3); // burası önceden değiştirilmiş
+?>
+
+
+<?php if (!$_productCollection->count()): ?>
+    <?php
+    $empty_category_block = Mage::getModel('cms/block')->load('dezire_empty_category');
+    if ($empty_category_block->getIsActive()) {
+        echo $this->getLayout()->createBlock('cms/block')->setBlockId('dezire_empty_category')->toHtml();
+    } else {
+        ?>
+        <p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
+    <?php } ?>
+<?php else: ?>
+
+    <?php echo $this->getToolbarHtml() ?>
+    <!-- BEGIN CATEGORY PRODUCTS -->
+    <div class="category-products">
+        <?php // List mode ?>
+        <?php if ($this->getMode() != 'grid'): ?>
+            <?php $_iterator = 0; ?>
+
+            <ol class="products-list" id="products-list">
+                <?php foreach ($_productCollection as $_product): ?>
+                    <li class="item<?php if (($i - 1) % $_columnCount == 0): ?> first<?php elseif ($i % $_columnCount == 0): ?> last<?php endif; ?>">
+                        <!-- BEGIN PRODUCT IMAGE -->
+                        <div class="product-image">
+                            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="">
+                                <img class="lazy small-image" src="getSkinUrl('images/mgt_lazy_image_loader/loader.gif'); ?>" data-src="helper('catalog/image')->init($_product, 'small_image')->resize(230,230); ?>" width="230" height="135" alt="stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                            </a>
+                        </div> <!--product-image-->
+                        <!-- BEGIN PRODUCT SHOP -->
+                        <div class="product-shop">
+                            <h2 class="product-name">
+                                <?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
+                                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped; ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name'); ?></a>
+                            </h2>
+
+                            <?php if ($_product->getRatingSummary()): ?>
+                                <?php echo $this->getReviewsSummaryHtml($_product) ?>
+                            <?php endif; ?>
+                            <?php echo $this->getPriceHtml($_product, true) ?>
+
+                            <div class="desc std">
+                                <p><?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?></p>
+                                <p><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped ?>" class="link-learn"><?php echo $this->__('Learn More') ?></a></p>
+                            </div> <!--desc std-->
+
+                            <!-- BEGIN ACTIONS -->
+                            <div class="actions"> 
+                                <?php if ($_product->isSaleable()): ?>
+                                    <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart ajx-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><?php echo $this->__('Add to Cart') ?></span></button>
+                                <?php else: ?>
+                                    <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                                <?php endif; ?>            
+                                <span class="add-to-links">
+                                    <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                                        <a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="button link-wishlist" title="<?php echo $this->__('Add to wishlist'); ?>"><span><?php echo $this->__('Add to wishlist'); ?></span></a>
+                                    <?php endif; ?>
+                                    <?php /* if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                                      <span class="separator">|</span><a href="<?php echo $_compareUrl ?>" class="button link-compare" title="<?php echo $this->__('Add to compare');?>"><span><?php echo $this->__('Add to compare');?></span></a>
+                                      <?php endif; */ ?>
+                                </span> <!--add-to-links-->
+                            </div> <!--actions-->
+                        </div> <!--product-shop-->
+                    </li>
+                <?php endforeach; ?>
+            </ol>
+
+            <script type="text/javascript">decorateList('products-list', 'none-recursive')</script>
+
+        <?php else: ?>
+
+            <?php // Grid Mode  ?>
+
+            <?php $_collectionSize = $_productCollection->count() ?>
+            <?php $_columnCount = $this->getColumnCount(); ?>
+
+
+            <ul class="products-grid">       
+                <?php
+                $i = 0;
+                $v = 1;
+                $counter = 0;
+                foreach ($_productCollection as $_product):
+                    ?>
+
+                    <?php if ($i++ % $_columnCount == 0): ?>
+
+                    <?php endif ?>
+
+                    <?php
+                    $counter++;
+                    $product_categories = array();
+                    $categoryIds = $_product->getCategoryIds();
+
+                    foreach ($categoryIds as $category_id) {
+                        $_cat = Mage::getModel('catalog/category')->load($category_id);
+                        $product_categories[] = $_cat->getName();
+                    }
+                    $product_val = Mage::getModel('catalog/product')->load($_product->getId());
+                    ?>
+
+                    <li class="item<?php
+                    // Yani ancak bu kadar cahil olunabilir. Column Count datasını kullanma, direk buraya 4 yaz. Sonra da developerim diye gez etrafta.
+                    // Üstelik o da css tarafında bozulmuş. Magento uzmanı cahil.
+                     if (($i - 1) % $_columnCount == 0): ?> first<?php elseif ($i % $_columnCount == 0): ?> last<?php endif; ?>">
+
+                        <div class="item-inner">
+                            <div class="item-img">
+                                <div class="item-img-info">
+
+                                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
+                                        <img class="lazy" src="<?php $this->getSkinUrl('images/mgt_lazy_image_loader/loader.gif'); ?>" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(230, 230); ?>" width="230" height="230" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                                    </a>
+                                    <?php echo $this->helper('deziresettings')->getLabel($_product); ?>
+                                    <!-- BEGIN PROD IMAGE DETAIL -->
+                                    <div class="item-box-hover">
+                                        <div class="box-inner">
+
+
+
+                                            <div class="product-detail-bnt">
+                                                <a href="//www.pinterest.com/pin/create/button/?url=<?php echo $_product->getProductUrl() ?>&media=<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>&description=<?php echo $this->htmlEscape($_product->getName()); ?>" data-pin-do="buttonPin" data-pin-config="none" data-pin-color="red"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" /></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!--item-img-info-->
+                            </div><!--item-img-->
+                            <div class="item-info">
+                                <div class="info-inner">
+                                    <div class="item-title">
+                                        <a class="" href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>">
+                                            <?php
+                                            $prod_name = $this->htmlEscape($_product->getName());
+                                            echo $prod_name;
+                                            ?>
+                                        </a> 
+                                        <?php
+                                        // if(strlen($prod_name)<38 && $_product->isSaleable()){
+                                        //    echo "<div style='border-bottom: 2px solid white '>&nbsp;</div>";
+                                        // }
+                                        ?>                 
+                                    </div><!--item-title-->
+                                    <div class="item-content">
+                                        <?php if ($_product->getRatingSummary()): ?>
+                                            <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                                        <?php endif; ?> 
+                                        <div class="item-price"> 
+                                            <?php echo $this->getPriceHtml($_product, true) ?>    
+                                        </div><!--item-price-->
+                                    </div><!--item-content-->           
+                                </div><!--info-inner-->
+                            </div> <!--item-info--> 
+                            <div class="actions">  
+
+                                <span class="add-to-links">
+                                    <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                                        <a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist" title="<?php echo $this->__('Add to wishlist'); ?>"><span><?php echo $this->__('Add to wishlist'); ?></span></a>
+                                    <?php endif; ?>
+                                    <?php if ($_product->isSaleable()): ?>
+                                        <button title="Add to Cart" type="button" class="button btn-cart" data-original-title="Add to Cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><?php echo $this->__('Add to Cart') ?></span></button>
+                                    <?php else: ?>
+                                        <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                                            <?php endif; ?>
+
+                                    <?php /* if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                                      <span class="separator">|</span><a href="<?php echo $_compareUrl ?>" class="link-compare" title="<?php echo $this->__('Add to compare');?>"><span><?php echo $this->__('Add to compare');?></span></a>
+                                      <?php //endif; */ ?>
+                                </span> <!--add-to-links-->
+
+
+                            </div><!--actions-->
+                        </div><!--item-inner-->
+
+
+
+                    </li>
+
+                    <?php if ($i % $_columnCount == 0 || $i == $_collectionSize): ?>
+
+                    <?php endif ?>
+                    <?php $v++; ?>
+                <?php endforeach ?>
+            </ul>        
+            <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd', 'even', 'first', 'last'])</script>
+        <?php endif; ?>
+    </div> <!--category-products-->
+
+    <div class="toolbar-bottom">
+    <?php echo $this->getToolbarHtml() ?>
+    </div>
+
+
+<?php endif; ?>
+<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>

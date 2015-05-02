@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <skuautogenerate_adminhtml_skuautogenerate_index>
+        <reference name="content">
+            <block type="skuautogenerate/adminhtml_skuautogenerate" name="skuautogenerate" />
+        </reference>
+    </skuautogenerate_adminhtml_skuautogenerate_index>
+</layout>

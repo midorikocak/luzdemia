@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<orders2csv_adminhtml_file_index>
+        <reference name="content">
+            <block type="orders2csv/adminhtml_file" name="filecvs" />
+        </reference>
+    </orders2csv_adminhtml_file_index>
+</layout>

@@ -1,0 +1,161 @@
+<?php
+/**
+ * $this->renderCategoriesMenuHtml() supports optional arguments:
+ * int Level number for list item class to start from
+ * string Extra class of outermost list items
+ * string If specified wraps children list in div with this class
+ */
+?>
+
+    <?php $_helper = Mage::helper('catalog/category') ?>
+    <?php $_categories = $_helper->getStoreCategories() ?>
+    <?php //$currentCategory = Mage::registry('current_category') ?>
+    <?php if (count($_categories) > 0): ?>
+             <!-- BEGIN NAV -->  
+            <ul id="nav">
+              <?php if (Mage::getStoreConfig('deziresettings/deziresettings_header/navigation_home')): ?>
+                <li id="nav-home" class="level0 level-top"><a class="level-top" href="<?php echo $this->getUrl('') ?>"><span><?php echo $this->__('Home'); ?></span></a></li>
+              <?php endif; ?>
+
+             <?php //$config = Mage::getStoreConfig('deziresettings/deziresettings_header/ecategory'); print_r($config); ?>
+
+            <?php foreach($_categories as $_category): ?>
+                    
+                  <?php if($this->getCurrentCategory()->getId()==$_category->getId()) { ?>
+                    <li class="level0 nav-5 level-top active">
+                  <?php } else { ?>                    
+                    <li class="level0 nav-5 level-top">                    
+                  <?php } ?>
+                    <a class="level-top" href="<?php echo $_helper->getCategoryUrl($_category) ?>"><span><?php echo $_category->getName() ?></span></a>
+                    <?php $_category = Mage::getModel('catalog/category')->load($_category->getId()) ?>
+                    <?php $_subcategories = $_category->getChildrenCategories() ?>
+                    <?php if (count($_subcategories) > 0): ?>
+                        <div class="level0-wrapper dropdown-6col" style="left: 0px; display: none;">
+                          <div class="level0-wrapper2">
+                           <?php if($_category->getThumbnail()) { ?> 
+                            <div class="nav-block nav-block-center grid12-8 itemgrid itemgrid-4col">  
+                           <?php } elseif($_category->getId() == Mage::getStoreConfig('deziresettings/deziresettings_header/ecategory')) { ?>
+                            <div class="nav-block nav-block-center grid13-8 itemgrid itemgrid-4col">
+                           <?php } else { ?>
+                            <div class="nav-block nav-block-center"> 
+                           <?php } ?>                            
+                                <ul class="level0">
+                        
+                         <?php foreach($_subcategories as $_subcategory): ?>
+                            <li class="level1 nav-6-1 parent item">
+                                                            
+                                <a href="<?php echo $_helper->getCategoryUrl($_subcategory) ?>"><span><?php echo $_subcategory->getName() ?></span></a>
+                                <!--sub sub category-->
+                                <?php $_subcategory = Mage::getModel('catalog/category')->load($_subcategory->getId()) ?>                             
+                                <?php $_subsubcategories = $_subcategory->getChildrenCategories() ?>
+                                <?php if (count($_subsubcategories) > 0): ?>
+                                 
+                                   <ul class="level1">
+                                    <?php /*foreach($_subsubcategories as $_subsubcategory): ?>
+                                       <li class="level2 nav-6-1-1">
+                                          <a href="<?php echo $_helper->getCategoryUrl($_subsubcategory) ?>"><span><?php echo $_subsubcategory->getName() ?></span></a>
+            
+                                          <?php $_subsubsubcategory = Mage::getModel('catalog/category')->load($_subsubcategory->getId()) ?>                             
+                                          <?php $_subsubsubcategories = $_subsubcategory->getChildrenCategories() ?>
+                                          <?php if (count($_subsubsubcategories) > 0): ?>
+                                             <div class="level2 sub-wrapper" style="height: auto;">
+                                                   <ul class="level2">
+                                                     <?php foreach($_subsubsubcategories as $_subsubsubcategory): ?>
+                                                       <li class="level3 nav-1-1-1-1">
+                                                         <a href="<?php echo $_helper->getCategoryUrl($_subsubsubcategory) ?>"><span><?php echo $_subsubsubcategory->getName() ?></span></a>
+                                                       </li> <!--level3 nav-1-1-1-1-->
+                                                     <?php endforeach; ?>
+                                                   </ul> <!--level2-->
+                                             </div> <!--level2 sub-wrapper-->
+                                          <?php endif; ?>
+
+                                       </li> <!--level2 nav-6-1-1-->
+                                    <?php endforeach;*/ ?>
+                                   </ul> <!--level1-->
+                                  
+                               <?php endif; ?>
+                                 <!--sub sub category-->  
+                                                                                        
+                            </li> <!--level1 nav-6-1 parent item-->
+                         <?php endforeach; ?>
+                                </ul> <!--level0-->
+                              
+                            </div> <!--nav-block nav-block-center-->  
+                               
+                                    <?php if($_category->getThumbnail()) { ?>
+                              <div class="nav-block nav-block-right std grid12-4">
+                                       <a href="<?php echo $_helper->getCategoryUrl($_category) ?>"><img src="<?php echo Mage::getBaseUrl('media').'catalog/category/'.$_category->getThumbnail()  ?>" align="absmiddle" /></a>
+                              </div> <!--nav-block nav-block-right std grid12-4-->
+                                    <?php } ?>
+
+                              <?php if($_category->getId() == Mage::getStoreConfig('deziresettings/deziresettings_header/ecategory')) { ?>
+                                  <div class="nav-block nav-block-right std grid12-3">
+                                       <?php //echo $this->getLayout()->createBlock('catalog/product_list')->setTemplate('catalog/product/featured.phtml')->toHtml() ; ?>
+                                      <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('dezire_navigation_featured_product_block')->toHtml(); ?>
+                                  </div> <!--nav-block nav-block-right std grid12-3-->
+                              <?php } ?>
+             
+                          </div> <!--level0-wrapper2-->
+			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('category-node-'.$_category->getId())->toHtml(); ?>
+                       </div> <!--level0-wrapper dropdown-6col-->
+                    <?php endif; ?>
+                    </li> 
+             <?php endforeach; ?> 
+
+          <?php  $custom_tab = Mage::getModel('cms/block')->load('dezire_navigation_block');
+            if($custom_tab->getIsActive()) {
+            echo '
+            <li class="nav-custom-link level0 level-top parent">
+                <a href="#" class="level-top">
+                    <span>'.$custom_tab->getTitle().'</span>
+                </a>
+                <div class="level0-wrapper" style="left: 0px; display: none;"><div class="header-nav-dropdown-wrapper clearer">'.$this->getLayout()->createBlock('cms/block')->setBlockId('dezire_navigation_block')->toHtml().'</div></div>
+            </li>';
+          }  ?>
+
+            </ul> <!--nav-->
+
+    <?php endif; ?>
+
+<script type="text/javascript">
+        //<![CDATA[
+
+            jQuery(function($) {
+                $("#nav > li").hover(function() {
+                    var el = $(this).find(".level0-wrapper");
+                    el.hide();
+                    el.css("left", "0");
+                    el.stop(true, true).delay(150).fadeIn(300, "easeOutCubic");
+                }, function() {
+                    $(this).find(".level0-wrapper").stop(true, true).delay(300).fadeOut(300, "easeInCubic");
+                });
+            });
+
+            var isTouchDevice = ('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0);
+            jQuery(window).on("load", function() {
+
+                if (isTouchDevice)
+                {
+                    jQuery('#nav a.level-top').click(function(e) {
+                        $t = jQuery(this);
+                        $parent = $t.parent();
+                        if ($parent.hasClass('parent'))
+                        {
+                            if ( !$t.hasClass('menu-ready'))
+                            {                    
+                                jQuery('#nav a.level-top').removeClass('menu-ready');
+                                $t.addClass('menu-ready');
+                                return false;
+                            }
+                            else
+                            {
+                                $t.removeClass('menu-ready');
+                            }
+                        }
+                    });
+                }
+
+            }); //end: on load
+
+        //]]>
+</script>

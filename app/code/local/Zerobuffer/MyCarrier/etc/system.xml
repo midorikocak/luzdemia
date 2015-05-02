@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <sections>
+        <carriers translate="label" module="shipping">
+            <groups>
+                <zerobuffer_mycarrier translate="label">
+                    <label>Kurye ile Teslimat</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <!--
+                            The following fields are available
+                            to modify in the admin panel.
+                            The values are saved in the
+                            database.
+
+                            This shipping carrier abstract checks
+                            this value to determine whether
+                            the carrier should be shown.
+                        -->
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </active>
+                        <!--
+                            This value can be used to specify a
+                            custom title for our method.
+                        -->
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+                        <!--
+                            The sort order is used in Magento
+                            to determine what order the carrier
+                            will appear in relative to the
+                            other carriers available.
+                        -->
+                        <sort_order translate="label">
+                            <label>Sort Order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sort_order>
+                        <!--
+                            This value is used to specify whether
+                            the carrier is available only for
+                            specific countries or all countries
+                            available in the current Magento
+                            installation.
+                        -->
+                        <sallowspecific translate="label">
+                            <label>Ship to Applicable Countries</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>90</sort_order>
+                            <frontend_class>shipping-applicable-country</frontend_class>
+                            <source_model>adminhtml/system_config_source_shipping_allspecificcountries</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sallowspecific>
+                        <!--
+                            If 'specific countries' is chosen
+                            in the previous option, then this field
+                            allows the administrator to specify
+                            which specific countries this carrier
+                            should be available for.
+                        -->                   
+                        <specificcountry translate="label">
+                            <label>Ship to Specific Countries</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>91</sort_order>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                        </specificcountry>
+                        <express_delivery_price translate="label">
+                            <label>Kurye Ücreti</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>92</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </express_delivery_price>
+                           <express_delivery_sunrise translate="label">
+                            <label>Saat Aralığı (Başlangıç)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>93</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </express_delivery_sunrise>
+                        
+                        <express_delivery_sunset translate="label">
+                            <label>Saat Aralığı (Bitiş)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>94</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </express_delivery_sunset>
+                        
+                        <express_delivery_cities translate="label">
+                            <label>İzin Verilen Şehiler (virgül ile ayırın)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>95</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </express_delivery_cities>
+
+                    </fields>
+                </zerobuffer_mycarrier>
+            </groups>
+        </carriers>
+    </sections>
+</config>

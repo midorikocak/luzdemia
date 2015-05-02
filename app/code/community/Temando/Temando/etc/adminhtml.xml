@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <temando translate="title" module="temando">
+            <title>Temando</title>
+            <sort_order>71</sort_order>
+            <children>
+                <shipment translate="title" module="temando">
+                    <title>Manage Shipments</title>
+                    <sort_order>10</sort_order>
+                    <action>temando/adminhtml_shipment</action>
+                </shipment>
+                <manifest translate="title" module="temando">
+                    <title>Manage Manifests</title>
+                    <sort_order>20</sort_order>
+                    <action>temando/adminhtml_manifest</action>
+                </manifest>
+                <configuration translate="title" module="temando">
+                    <title>Configuration Settings</title>
+                    <sort_order>30</sort_order>
+                    <children>
+                        <temando_settings translate="title" module="temando">
+                            <title>Temando Settings</title>
+                            <sort_order>10</sort_order>
+                            <action>adminhtml/system_config/edit/section/temando</action>
+                        </temando_settings>
+                        <shipping_methods>
+                            <title>Shipping Methods</title>
+                            <sort_order>20</sort_order>
+                            <action>adminhtml/system_config/edit/section/carriers</action>
+                        </shipping_methods>
+                        <wizard>
+			    <title>Configuration Wizard</title>
+			    <sort_order>30</sort_order>
+			    <action>temando/adminhtml_wizard</action>
+			</wizard>
+                    </children>
+                </configuration>
+                <multiwarehouse translate="title" module="temando">
+                    <title>Multi Warehouse - Professional plan</title>
+                    <sort_order>40</sort_order>
+                </multiwarehouse>
+                <advancedrule translate="title" module="temando">
+                    <title>Advance Shipping Rules - Professional plan</title>
+                    <sort_order>50</sort_order>
+                </advancedrule>
+                <partialshipments translate="title" module="temando">
+                    <title>Partial Shipments - Business plan</title>
+                    <sort_order>60</sort_order>
+                </partialshipments>
+            </children>
+        </temando>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <temando>
+                        <title>Temando</title>
+                        <sort_order>10</sort_order>
+                        <children>
+                            <shipment>
+                                <title>Manage Shipments</title>
+                            </shipment>
+                            <manifest>
+                                <title>Manage Manifests</title>
+                            </manifest>
+                            <configuration>
+                                <title>Configuration Settings</title>
+                                <children>
+                                    <temando_settings>
+                                        <title>Temando Settings</title>
+                                    </temando_settings>
+                                    <shipping_methods>
+                                        <title>Shipping Methods</title>
+                                    </shipping_methods>
+                                </children>
+                            </configuration>
+                            <multiwarehouse>
+                                <title>Multi Warehouse - Professional plan</title>
+                            </multiwarehouse>
+                            <advancedrule>
+                                <title>Advance Shipping Rules - Professional plan</title>
+                            </advancedrule>
+                            <partialshipments>
+                                <title>Partial Shipments - Business plan</title>
+                            </partialshipments>
+                        </children>
+                    </temando>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <temando>
+                                        <title>Temando Settings</title>
+                                    </temando>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,121 @@
+<div class="page-head">
+    <h3><?php echo $this->__('Allowed Carriers') ?></h3>
+</div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<h4><?php echo $this->__('Allows you to specify which carriers you will receive quotes from.'); ?></h4>
+<p style="font-size: 11px;">Please note you can only select carriers with (Bulk) next to the name if you have organised a permanent pickup through Temando.</p>
+<form action="<?php echo $this->getUrl('*/*/save', array('_current' => true)) ?>" method="post" id="form-validate">
+    <fieldset class="group-select wide">
+        <legend><?php echo $this->__('Allowed Carriers') ?></legend>
+        <h4 class="legend"><?php echo $this->__('Allowed Carriers') ?></h4>
+        <ul>
+            <li>
+                <div class="input-box">
+                    <label for="allowed_methods"><?php echo $this->__('Allowed Carriers') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <?php echo $this->getHtmlSelect('allowedCarriers'); ?>
+                    <p style="margin-top:4px; line-height:1.3em; color:#666;">
+                        <small><?php echo $this->__('Click the name of the carrier/s you want.') ?></small>
+                    </p> 
+                </div>
+
+            </li>
+
+        </ul>
+    </fieldset>
+    <fieldset class="group-select wide">
+        <legend><?php echo $this->__('Additional Carriers') ?></legend>
+        <h4 class="legend"><?php echo $this->__('Additional Carriers') ?></h4>
+        <h5><?php echo $this->__('Additional carriers are available with BYO rates'); ?></h5>
+        <ul>
+            <li>
+                <div class="input-box">
+                    <label for="checkbox"><?php echo $this->__('Contact me with additional info') ?></label><br/>
+                </div>
+                <div class="input-box">
+                    <input type="checkbox" id="email_checkbox" name="email_checkbox" value="<?php echo $this->getTmdSession('temando_wizard_carriers', 'email_checkbox') ? $this->getTmdSession('temando_wizard_carriers', 'email_checkbox') : 1; ?>" <?php
+                    if ($this->getTmdSession('temando_wizard_carriers', 'email_checkbox') == '1') {
+                        echo ' checked="checked"';
+                    }
+                    ?>class="input-text">
+                </div>
+            </li>
+            <li id="email_box_1">
+                <div class="input-box">
+                    <label for="email_full_name"><?php echo $this->__('Full Name') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="email_full_name" name="email_full_name" value="<?php echo $this->getTmdSession('temando_wizard_carriers', 'email_full_name'); ?>" class="input-text">
+                </div>
+            </li>
+            <li id="email_box_2">
+                <div class="input-box">
+                    <label for="email_email_address"><?php echo $this->__('Email Address') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="email_email_address" name="email_email_address" value="<?php echo $this->getTmdSession('temando_wizard_carriers', 'email_email_address'); ?>" class="input-text validate-email">
+                </div>
+            </li>
+            <li id="email_box_3">
+                <div class="input-box">
+                    <label for="email_phone"><?php echo $this->__('Phone') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="email_phone" name="email_phone" value="<?php echo $this->getTmdSession('temando_wizard_carriers', 'email_phone'); ?>" class="input-text">
+                </div>
+            </li>
+
+        </ul>
+    </fieldset>
+    <div class="button-set">
+        <p class="required">* <?php echo $this->__('Required Fields') ?></p>
+        <button class="form-button" type="button" onclick="setLocation('<?php echo $this->getCancelUrl(); ?>');"><span><?php echo $this->__('Cancel') ?></span></button>
+        <button class="form-button" type="button" onclick="setLocation('<?php echo $this->getUrl('*/*/back', array('_current' => true)) ?>');"><span><?php echo $this->__('Back') ?></span></button>
+        <button class="form-button" type="button" onclick="setLocation('<?php echo $this->getUrl('*/*/skip', array('_current' => true)) ?>');"><span><?php echo $this->__('Skip') ?></span></button>
+        <button class="form-button" type="submit"><span><?php echo $this->__('Continue') ?></span></button>
+    </div>
+</form>
+
+<script type="text/javascript">
+    var dataForm = new VarienForm('form-validate');
+    if ($('email_checkbox').checked) {
+        $('email_full_name').addClassName('required-entry');
+        $('email_email_address').addClassName('required-entry');
+        $('email_phone').addClassName('required-entry');
+        $('email_box_1').show();
+        $('email_box_2').show();
+        $('email_box_3').show();
+    } else {
+        $('email_full_name').removeClassName('required-entry');
+        $('email_email_address').removeClassName('required-entry');
+        $('email_phone').removeClassName('required-entry');
+        $('email_box_1').hide();
+        $('email_box_2').hide();
+        $('email_box_3').hide();
+    }
+</script>
+<script type="text/javascript">
+    //<![CDATA[  
+
+    Event.observe($('email_checkbox'), 'change', function() {
+        if ($('email_checkbox').checked) {
+            $('email_full_name').addClassName('required-entry');
+            $('email_email_address').addClassName('required-entry');
+            $('email_phone').addClassName('required-entry');
+            $('email_box_1').show();
+            $('email_box_2').show();
+            $('email_box_3').show();
+        } else {
+            $('email_full_name').removeClassName('required-entry');
+            $('email_email_address').removeClassName('required-entry');
+            $('email_phone').removeClassName('required-entry');
+            $('email_box_1').hide();
+            $('email_box_2').hide();
+            $('email_box_3').hide();
+        }
+    });
+    //]]>
+</script>
+
+

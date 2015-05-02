@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<layout>
+    
+    <default>
+        <reference name="head">
+            <action method="addJs">
+                <script>temando/menu.js</script>
+            </action>
+        </reference>
+    </default>
+    
+    <default>
+        <reference name="before_body_end">
+            <block type='core/template' name="tmdmenu" template='temando/temando/menu.phtml' />
+        </reference>
+    </default>
+
+    <adminhtml_system_config_edit>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>temando/styles.css</name>
+            </action>
+            <action method="addJs">
+                <script>temando/autocomplete.js</script>
+            </action>
+            <action method="addJs">
+                <script>temando/avs.js</script>
+            </action>
+            <block type="adminhtml/template" template="temando/temando/region.phtml" name="temando_region" output="toHtml" />
+            <block type="adminhtml/template" template="temando/temando/origin-avs.phtml" name="temando_origin_avs" output="toHtml" />
+        </reference>
+    </adminhtml_system_config_edit>
+
+    <temando_adminhtml_shipment_index>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>temando/styles.css</name>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="temando/adminhtml_shipment" name="temando_shipment">
+                <block type="temando/adminhtml_shipment_grid" name="temando_shipment_grid" />
+            </block>
+        </reference>
+    </temando_adminhtml_shipment_index>
+    
+    <temando_adminhtml_shipment_edit>
+        <reference name="head">
+            <block type="adminhtml/template" template="temando/temando/region.phtml" name="temando_region" output="toHtml" />
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>temando/styles.css</name>
+            </action>
+            <action method="addJs">
+                <script>temando/autocomplete.js</script>
+            </action>
+            <action method="addJs">
+                <script>temando/avs.js</script>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="temando/adminhtml_shipment_edit" name="temando_shipment_edit" />
+        </reference>
+        <reference name="left">
+            <block type="temando/adminhtml_shipment_edit_tabs" name="temando_shipment_edit_tabs">
+                <action method="addTab">
+                    <name>temando_shipment_edit_tab_form</name>
+                    <block>temando/adminhtml_shipment_edit_tab_form</block>
+                </action>
+            </block>
+        </reference>
+    </temando_adminhtml_shipment_edit>
+
+    <temando_adminhtml_manifest_index>
+        <reference name="content">
+            <block type="temando/adminhtml_manifest" template="temando/temando/manifest.phtml" name="temando_manifest">
+                <block type="temando/adminhtml_manifest_filter_form" name="grid.filter.form" />
+            </block>
+        </reference>
+    </temando_adminhtml_manifest_index>
+    
+</layout>

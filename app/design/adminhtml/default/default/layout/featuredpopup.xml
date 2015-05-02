@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Toogas Lda.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA (End-User License Agreement)
+ * that is bundled with this package in the file toogas_license-free.txt.
+ * It is also available at this URL:
+ * http://www.toogas.com/licences/toogas_license-free.txt
+ *
+ * @category   Toogas
+ * @package    Toogas_Featuredpopup
+ * @copyright  Copyright (c) 2011 Toogas Lda. (http://www.toogas.com)
+ * @license    http://www.toogas.com/licences/toogas_license-free.txt
+ */
+ -->
+<layout version="0.1.0">
+    <featuredpopup_adminhtml_featuredpopup_index>
+        <reference name="content">
+            <block type="featuredpopup/adminhtml_featuredpopup" name="featuredpopup" />
+        </reference>
+    </featuredpopup_adminhtml_featuredpopup_index>
+</layout>

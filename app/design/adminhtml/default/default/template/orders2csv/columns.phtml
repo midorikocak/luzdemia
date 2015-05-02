@@ -1,0 +1,16 @@
+<div class="entry-edit orders2csv-file-column custom-options">
+    <div class="entry-edit-head">
+        <h4><?php echo Mage::helper('orders2csv')->__('Columns') ?></h4>
+        <div class="right"><?php echo $this->getAddButtonHtml() ?></div>
+    </div>
+
+    <div id="file_column_container" class="box">
+        <div id="file_column_container_top"></div>
+        <?php echo $this->getColumnBoxHtml() ?>
+    </div>
+</div>
+
+<script type="text/javascript">
+// re-bind form elements onchange
+varienWindowOnload(true);
+</script>

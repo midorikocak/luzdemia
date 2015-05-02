@@ -1,0 +1,49 @@
+
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+<!DOCTYPE html>
+<html lang="<?php echo $this->getLang() ?>">
+<head>
+<?php echo $this->getChildHtml('head') ?>
+
+</head>
+  
+<body class="<?php echo Mage::getStoreConfig('deziresettings/deziresettings_appearance/width'); echo $this->getBodyClass()?' '.$this->getBodyClass().'':'' ?>">
+    <?php echo $this->getChildHtml('after_body_start') ?>
+    <?php echo $this->getChildHtml('global_notices') ?>      
+       <?php echo $this->getChildHtml('header') ?> 
+       <section class="slider-intro">
+           <!-- Home Shipping Banner Block -->
+           <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('dezire_home_shipping_banner_block')->toHtml() ?>
+           <!-- Home Slider Block --> 
+           <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('dezire_home_slider_banner_block')->toHtml() ?>
+		   <!-- Home Shipping Banner Block -->
+		   <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('dezire_home_shipping_banner_bottom_block')->toHtml() ?>
+       </section> 
+       <section><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('dezire_home_offer_banner_block')->toHtml() ?></section>
+       <section class="main-col">  
+          <article>             
+              <?php echo $this->getChildHtml('breadcrumbs') ?>               
+              <?php echo $this->getChildHtml('global_messages') ?>
+              <?php echo $this->getChildHtml('content') ?>
+          </article>
+      </section>
+      
+       <!--main-col-->
+<?php /*
+<!-- Static Banner Block -->
+      <section><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('dezire_static_banner_block')->toHtml() ?></section>
+      */
+      ?>
+<!-- Logo Brand Block -->
+<!-- Header block call -->
+       <section><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('dezire_header_block')->toHtml() ?></section>
+      <?php echo $this->getChildHtml('footer') ?>
+      <?php echo $this->getChildHtml('before_body_end') ?>
+      <?php echo $this->getAbsoluteFooter() ?> 
+
+</body>
+</html>

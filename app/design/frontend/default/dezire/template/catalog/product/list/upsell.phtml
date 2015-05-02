@@ -1,0 +1,116 @@
+
+<?php if (Mage::getStoreConfig('deziresettings/deziresettings_products/upsell_product')): ?>
+
+<?php if(count($this->getItemCollection()->getItems())): ?>
+
+
+ 
+ 
+ 
+   <ul id="upsell-products-list" class="products-grid first odd">
+
+    <?php // $this->setColumnCount(5); // uncomment this line if you want to have another number of columns. also can be changed in layout ?>
+    <?php $this->resetItemsIterator() ?>
+    <?php for($_i=0;$_i<$this->getRowCount();$_i++): ?>
+        <?php for($_j=0;$_j<$this->getColumnCount();$_j++): ?>
+            <?php if($_link=$this->getIterableItem()): ?>
+
+ <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+          <div class="item-inner">
+            <div class="item-img">
+            <div class="item-img-info">
+            
+              <a href="<?php echo $_link->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_link, 'small_image'), null, true) ?>" class="product-image">
+                 
+                  <img src="<?php echo $this->helper('catalog/image')->init($_link, 'small_image')->resize(200,200); ?>" width="200" height="200" alt="<?php echo $this->stripTags($this->getImageLabel($_link, 'small_image'), null, true) ?>" />                 
+              </a>
+               <?php echo $this->helper('deziresettings')->getLabel($_link);  ?>
+              <!-- BEGIN PROD IMAGE DETAIL -->
+             
+           
+               </div><!--item-img-info-->
+              </div><!--item-img-->
+              <div class="item-info">
+                <div class="info-inner">
+                <div class="item-title">
+                 <a class="" href="<?php echo $_link->getProductUrl() ?>" title="<?php echo $this->stripTags($_link->getName(), null, true) ?>">
+                    <?php $prod_name = $this->htmlEscape($_link->getName()) ; 
+                      if(strlen($prod_name) > 20) {echo substr($prod_name,0,20)."...";}else {echo $prod_name;}?>
+                 </a>                  
+                
+                 </div><!--item-title-->
+                 <div class="item-content">
+                 <?php if($_link->getRatingSummary()): ?>
+                    <?php echo $this->getReviewsSummaryHtml($_link, 'short') ?>
+                 <?php  endif;  ?>  
+                  
+                
+                 <div class="item-price"> 
+               <?php echo $this->getPriceHtml($_link, true) ?>    
+                 </div><!--item-price-->
+                 </div><!--item-content-->           
+                 </div><!--info-inner-->
+              </div> <!--item-info--> 
+              <div class="actions">  
+           
+              <span class="add-to-links">
+                <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                    <a href="<?php echo $this->helper('wishlist')->getAddUrl($_link) ?>" class="link-wishlist" title="<?php echo $this->__('Add to wishlist');?>"><span><?php echo $this->__('Add to wishlist');?></span></a>
+                <?php endif; ?>
+                <?php if($_link->isSaleable()): ?>
+                      <button title="Add to Cart" type="button" class="button btn-cart" data-original-title="Add to Cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_link) ?>')"><span><?php echo $this->__('Add to Cart')?></span></button>
+                   <?php else: ?>
+                      <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                   <?php endif; ?>
+
+                <?php if($_compareUrl=$this->getAddToCompareUrl($_link)): ?>
+                    <span class="separator">|</span><a href="<?php echo $_compareUrl ?>" class="link-compare" title="<?php echo $this->__('Add to compare');?>"><span><?php echo $this->__('Add to compare');?></span></a>
+                <?php endif; ?>
+              </span> <!--add-to-links-->
+               
+                  
+              </div><!--actions-->
+            </div><!--item-inner-->
+            </li>
+      
+    
+ 
+            <?php endif; ?>
+
+        <?php endfor; ?> 
+    <?php endfor; ?>
+
+  </ul>
+    <script type="text/javascript">decorateTable('upsell-product-table')</script>
+
+  
+    
+  
+
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+
+  function mycarousel_initCallback(carousel) {
+      $('#products_slider_next1').bind('click', function() {
+          carousel.next();
+          return false;
+      });
+      $('#products_slider_prev1').bind('click', function() {
+          carousel.prev();
+          return false;
+      });
+  };
+
+    $('#products_slider').jcarousel({
+      scroll: 1,
+      initCallback: mycarousel_initCallback,
+      buttonNextHTML: null,
+      buttonPrevHTML: null
+    });
+});
+</script>   
+
+
+<?php endif ?>
+
+<?php endif; ?> 

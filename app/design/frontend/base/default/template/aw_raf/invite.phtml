@@ -1,0 +1,65 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Raf
+ * @version    2.1.5
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><div id="raf-invite" class="a-left awraf-send-form">
+<div class="group-select"><form id="referafriend-form" method="post" action="<?php echo $this->getFormUrl() ?>">
+    <h3 class="a-center"><?php echo $this->__('Refer a Friend') ?></h3>
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <div class="input-box">
+    <ul>      
+        <li><div class="input-box">
+            <label for="invite:email" class="awraf-email-heading"><?php echo $this->__('Friend\'s email') ?> <span class="required">*</span></label>
+            <input type="text" id="invite:email" name="invite[email]" value="<?php echo $this->htmlEscape($this->getEmail()) ?>" title="<?php echo $this->__('Email') ?>" class="required-entry input-text" />
+            <label style="display:block">
+                <?php echo $this->__('Separate multiple emails by semicolons'); ?>
+            </label> 
+            <label style="display:block">
+               <?php echo $this->__('Maximum number of emails per launch is %d', AW_Raf_Helper_Config::MAX_EMAILS_PER_LAUNCH); ?>
+            </label>            
+        </div></li>
+        <li><div class="input-box">
+            <label for="invite:subject" class="awraf-email-heading"><?php echo $this->__('Message subject') ?> <span class="required">*</span></label>
+            <input type="text" id="invite:subject" name="invite[subject]" value="<?php echo $this->htmlEscape($this->getSubject()) ?>" title="<?php echo $this->__('Subject') ?>" class="required-entry input-text" />
+        </div></li>
+        <li><div class="input-box">
+            <label for="invite:message" class="awraf-email-heading"><?php echo $this->__('Message text') ?> <span class="required">*</span></label>
+            <textarea id="invite:message" name="invite[message]" title="<?php echo $this->__('Message') ?>" class="required-entry input-text" rows="5" style="height: 100px;"><?php echo $this->htmlEscape($this->getMessage()) ?></textarea>
+            <div><?php echo $this->__("You shouldn't insert any links in the text - they will be added automatically."); ?></div>
+        </div></li>        
+    </ul>
+    </div>
+    <div id="invite-button-container" class="button-set">
+        <span id="invite-please-wait" style="display:none;" class="referafriend-please-wait">
+            <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" class="v-middle" alt="" /> &nbsp; <?php echo $this->__('Sending...') ?> &nbsp;
+        </span>
+        <button class="form-button button btn-cart" id="referafriend-cancel" type="button" onclick="return false;"><span><span id="span-referafriend-cancel"><?php echo  $this->__('Close') ?></span></span></button>&nbsp;
+        <button class="form-button button btn-cart" type="submit"><span><span><?php echo  $this->__('Submit') ?></span></span></button>
+    </div>
+</form>
+</div>
+</div>
+<script type="text/javascript">
+    var referafriendForm = new ReferafriendForm('referafriend-form');
+</script>

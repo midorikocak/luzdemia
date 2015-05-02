@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Toogas Lda.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA (End-User License Agreement)
+ * that is bundled with this package in the file licence_toogas_community.txt.
+ * It is also available at this URL:
+ * http://www.toogas.com/licences/toogas_community.txt
+ *
+ * @category   Toogas
+ * @package    Toogas_Toogaslda
+ * @copyright  Copyright (c) 2010 Toogas Lda. (http://www.toogas.com)
+ * @license    http://www.toogas.com/licences/toogas_community.txt
+ */
+ -->
+<config>
+    <modules>
+        <Toogas_Toogaslda>
+            <version>1.0.0</version>
+        </Toogas_Toogaslda>
+    </modules>
+    <global>
+        <helpers>
+            <toogaslda>
+                <class>Toogas_Toogaslda_Helper</class>
+            </toogaslda>
+        </helpers>
+        <blocks>
+            <toogaslda>
+                <class>Toogas_Toogaslda_Block</class>
+            </toogaslda>
+        </blocks>        
+    </global>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Toogas_Toogaslda>
+                    <files>
+                        <default>Toogas_Toogaslda.csv</default>
+                    </files>
+                </Toogas_Toogaslda>
+            </modules>
+        </translate>    
+	    <acl>
+	        <resources>
+	            <all>
+	                <title>Allow Everything</title>
+	            </all>
+	            <admin>
+	                <children>
+	                    <system>
+	                        <children>
+	                            <config>
+	                                <children>
+	                                    <toogas_toogaslda>
+	                                        <title>Toogas Lda. (Base)</title>
+	                                    </toogas_toogaslda>
+	                                </children>
+	                            </config>
+	                        </children>
+	                    </system>
+	                </children>
+	            </admin>
+	        </resources>
+	    </acl>
+    </adminhtml>   
+</config>

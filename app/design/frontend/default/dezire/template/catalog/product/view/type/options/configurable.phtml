@@ -1,0 +1,65 @@
+
+
+<?php
+$_product    = $this->getProduct();
+$_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
+?>
+
+<div class="add-to-box">
+	<?php $_product = $this->getProduct(); ?>
+	<?php $buttonTitle = $this->__('Add to Cart'); ?>
+
+	<?php if($_product->isSaleable()): ?>
+		<?php if(!$_product->isGrouped()): ?>
+			<div class="add-to-cart">
+				<label for="qty"><?php echo $this->__('Qty:') ?></label>
+
+       <span class="qty-input-text ">
+            <select  name="qty" id="qty" >
+				<?php
+
+				for ($x=1; $x<=20; $x=$x+1) {
+					echo '<option value="' . $x . '">' . $x . ' </option>';
+				}
+				?>
+			</select>
+		   <?php if ($_product->isSaleable() && count($_attributes)):?>
+				   <?php foreach($_attributes as $_attribute): ?>
+							   <select name="super_attribute[<?php echo $_attribute->getAttributeId() ?>]" id="attribute<?php echo $_attribute->getAttributeId() ?>" class="required-entry super-attribute-select">
+								   <option><?php echo $this->__('Choose an Option...') ?></option>
+							   </select>
+				   <?php endforeach; ?>
+			   <script type="text/javascript">
+				   var spConfig = new Product.Config(<?php echo $this->getJsonConfig() ?>);
+			   </script>
+		   <?php endif;?>
+
+       </span>
+
+			</div> <!--add-to-cart-->
+		<?php endif; ?>
+		<button type="button" title="<?php echo $buttonTitle ?>" class="button btn-cart" onclick="productAddToCartForm.submit(this)"><span><?php echo $buttonTitle ?></span></button>
+		<?php echo $this->getChildHtml('', true, true) ?>
+	<?php endif; ?>
+
+
+</div> <!--add-to-box-->
+<div class="email-addto-box">
+	<?php $_product = $this->getProduct(); ?>
+	<?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>
+
+
+	<ul class="add-to-links">
+		<li>
+			<?php if ($this->helper('wishlist')->isAllow()) : ?>
+				<a class="link-wishlist tooltip" style="line-height:40px;" href="<?php echo $_wishlistSubmitUrl ?>" onclick="productAddToCartForm.submitLight(this, this.href); return false;"><span><?php echo $this->__('Add To Wishlist') ?></span></a>
+			<?php endif; ?>
+		</li>
+		<li style="display:none !important;">
+			<?php $_compareUrl = $this->helper('catalog/product_compare')->getAddUrl($_product); ?>
+			<?php if($_compareUrl) : ?>
+				<a class="link-compare tooltip" href="<?php echo $_compareUrl ?>" title="<?php echo $this->__('Add To Compare') ?>" ><span><?php echo $this->__('Add To Compare') ?></span></a>
+			<?php endif; ?>
+		</li>
+	</ul>  <!--add-to-links-->
+</div> <!--email-addto-box-->

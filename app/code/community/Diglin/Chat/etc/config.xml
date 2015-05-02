@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Diglin
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    Diglin
+ * @package     Diglin_Chat
+ * @copyright   Copyright (c) 2011-2014 Diglin (http://www.diglin.com)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Diglin_Chat>
+            <version>2.0.1</version>
+        </Diglin_Chat>
+    </modules>
+    
+    <default>
+        <chat>
+            <chatconfig>
+                <enabled>0</enabled>
+                <language>md</language>
+                <allow_name>1</allow_name>
+                <allow_email>1</allow_email>
+                <widget>classic</widget>
+                <disable_sound>0</disable_sound>
+                <debug>0</debug>
+                <!-- values used internally, keep it here as references -->
+                <use_ssl>1</use_ssl>
+                <salt></salt>
+                <key></key>
+                <username></username>
+            </chatconfig>
+
+            <widgetconfig>
+                <online_message>Click here to chat</online_message>
+                <offline_message>Leave a message</offline_message>
+
+                <theme_bubble_color>E59341</theme_bubble_color>
+                <theme_badge_color>E59341</theme_badge_color>
+                <theme_primary_color>CC0000</theme_primary_color>
+
+                <bubble_show>1</bubble_show>
+                <bubble_title>Questions?</bubble_title>
+                <bubble_text>Click here to chat with us!</bubble_text>
+
+                <button_show>1</button_show>
+                <button_position>bl</button_position>
+
+                <window_title>Support</window_title>
+
+                <concierge_name>Live Support</concierge_name>
+                <concierge_title>Ask us anything</concierge_title>
+
+                <badge_layout>image_left</badge_layout>
+                <badge_text>Chat with us</badge_text>
+            </widgetconfig>
+        </chat>
+    </default>
+
+    <global>
+        <blocks>
+            <chat>
+                <class>Diglin_Chat_Block</class>
+            </chat>
+        </blocks>
+        <helpers>
+            <chat>
+                <class>Diglin_Chat_Helper</class>
+            </chat>
+        </helpers>
+        <models>
+            <chat>
+                <class>Diglin_Chat_Model</class>
+            </chat>
+        </models>
+        <resources>
+            <diglinchat_setup>
+                <setup>
+                    <module>Diglin_Chat</module>
+                    <class>Diglin_Chat_Model_Resource_Setup</class>
+                </setup>
+            </diglinchat_setup>
+        </resources>
+    </global>
+
+    <frontend>
+        <layout>
+            <updates>
+                <chat>
+                    <file>chat.xml</file>
+                </chat>
+            </updates>
+        </layout>
+    </frontend>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <chat>
+                    <file>chat.xml</file>
+                </chat>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <admin>
+       <routers>
+            <chat>
+                <use>admin</use>
+                <args>
+                    <module>Diglin_Chat_Adminhtml</module>
+                    <frontName>chat</frontName>
+                </args>
+            </chat>
+       </routers>
+    </admin>    
+</config>

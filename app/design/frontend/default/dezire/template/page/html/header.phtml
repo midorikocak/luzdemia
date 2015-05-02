@@ -1,0 +1,63 @@
+<?php 
+/* Header */
+?>
+<header>
+<div class="top-links">
+<div class="inner">
+     <?php echo $this->getChildHtml('store_language') ?>     
+     <?php echo $this->getChildHtml('custom_currency_selector') ?>
+      <p class="welcome-msg"><?php echo $this->getWelcome() ?><?php echo $this->getAdditionalHtml() ?></p>
+   <div class="toplinks">
+     <ul class="links">
+      <?php /*<li class="check"><a href="<?php echo $this->getUrl('')?>checkout/onepage/" title="<?php echo $this->__('Checkout') ?>"><span><?php echo $this->__('Checkout') ?></span></a></li>
+      <li class="demo"><a href="#" title="<?php echo $this->__('Demo') ?>"><span><?php echo $this->__('Demo') ?></span></a></li>
+      <li class="company">
+        <div class="click-nav">
+          <ul class="no-js">
+            <li> <a class="clicker" title="<?php echo $this->__('Company') ?>"><?php echo $this->__('Company') ?> <span class="caret"></span> </a>
+                  <ul class="link">
+                    <li><a href="#" title="<?php echo $this->__('About Us') ?>"><?php echo $this->__('About Us') ?></a></li>
+                    <li><a href="#" title="<?php echo $this->__('Customer Service') ?>"><?php echo $this->__('Customer Service') ?></a></li>
+                    <li><a href="#" title="<?php echo $this->__('Privacy Policy') ?>"><?php echo $this->__('Privacy Policy') ?></a></li>
+                    <li><a href="<?php echo $this->getUrl('')?>catalog/seo_sitemap/category/" title="<?php echo $this->__('Site Map') ?>"><span><?php echo $this->__('Site Map') ?></span></a></li>
+                    <li><a href="<?php echo $this->getUrl('')?>catalogsearch/term/popular/" title="<?php echo $this->__('Search Terms') ?>"><span><?php echo $this->__('Search Terms') ?></span></a></li>
+                    <li class="last"><a href="<?php echo $this->getUrl('')?>catalogsearch/advanced/" title="<?php echo $this->__('Advanced Search') ?>"><span><?php echo $this->__('Advanced Search') ?></span></a></li>
+                  </ul>
+            </li>
+          </ul> <!--no-js-->
+        </div>  <!--click-nav-->
+      </li> <!--company-->*/?>
+      <?php if(!Mage::getSingleton( 'customer/session' )->isLoggedIn()) { ?>
+         <li class="login"><a href="<?php echo $this->getUrl('')."customer/account/login/"; ?>"><span><?php echo $this->__('Log In') ?></span></a></li>
+         <li class="login"><a href="<?php echo $this->getUrl('')."customer/account/login/"; ?>"><span><?php echo $this->__('Register') ?></span></a></li>
+      <?php } ?>
+      <?php if(Mage::getSingleton( 'customer/session' )->isLoggedIn()) { ?>
+      <li class="myaccount"><a href="<?php echo $this->getUrl('')?>customer/account/" title="<?php echo $this->__('My Account') ?>"><span><?php echo $this->__('My Account') ?></span></a></li>
+         <li class="logout"><a href="<?php echo $this->getUrl('')."customer/account/logout/"; ?>"><span><?php echo $this->__('Log Out') ?></span></a></li>
+      <?php } ?>
+      <li class="wishlist"><a href="<?php echo $this->getUrl('wishlist') ?>" title="<?php echo $this->__('My Wishlist') ?>"><span><?php echo $this->__('My Wishlist') ?></span></a></li>
+      <li>
+        <?php if (Mage::getStoreConfig('deziresettings/deziresettings_shoppingcart/shoppingcart_top')): ?>
+          <?php echo $this->getChildHtml('cartTop2') ?>
+        <?php endif; ?>
+      </li>
+     </ul> <!-- links -->
+   </div> <!--toplinks-->
+     </div><!--inner-->
+    </div> <!--top-links-->
+  <div class="header">
+     <?php echo $this->getChildHtml('topSearch') ?>
+    <?php if ($this->getIsHomePage()):?>
+       <div class="logo"><a class="logo" href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>"><?php echo $this->getChildHtml('dezireLogo', false) ?></a></div>
+    <?php else:?>
+       <div class="logo"><a class="logo" href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>"><?php echo $this->getChildHtml('dezireLogo', false) ?></a></div>
+    <?php endif?>  
+  </div> <!--header-->
+  <?php echo $this->getChildHtml('topContainer'); ?>
+</header>
+<nav>
+  <div class="nav-inner">
+    <?php echo $this->getChildHtml('topMenuMob'); ?>
+    <?php echo $this->getChildHtml('topMenu'); ?>
+  </div> <!--nav-inner-->
+</nav> <!--nav-->

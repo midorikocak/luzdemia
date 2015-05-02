@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Interactone_Pinit>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Interactone_Pinit>
+    </modules>
+</config>

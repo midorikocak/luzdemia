@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<config>
+
+ <global>
+
+  <page>
+
+   <layouts>
+
+    <custom_static_page_one>
+
+     <label>Custom static page 1</label>
+
+     <template>page/1column-view.phtml</template>
+
+    </custom_static_page_one>
+
+   </layouts>
+
+  </page>
+
+ </global>
+
+</config>

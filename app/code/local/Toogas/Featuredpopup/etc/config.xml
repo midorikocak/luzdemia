@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Toogas Lda.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA (End-User License Agreement)
+ * that is bundled with this package in the file toogas_license-free.txt.
+ * It is also available at this URL:
+ * http://www.toogas.com/licences/toogas_license-free.txt
+ *
+ * @category   Toogas
+ * @package    Toogas_Featuredpopup
+ * @copyright  Copyright (c) 2011 Toogas Lda. (http://www.toogas.com)
+ * @license    http://www.toogas.com/licences/toogas_license-free.txt
+ */
+ -->
+<config>
+    <modules>
+        <Toogas_Featuredpopup>
+            <version>0.1.0</version>
+        </Toogas_Featuredpopup>
+    </modules>
+    <admin>
+        <routers>
+			<featuredpopup>
+				<use>admin</use>
+				<args>
+					<module>Toogas_Featuredpopup</module>
+					<frontName>featuredpopup</frontName>
+				</args>
+			</featuredpopup>
+        </routers>
+    </admin>
+    <adminhtml> 
+        <translate>
+            <modules>
+                <Toogas_Featuredpopup>
+                    <files>
+                        <default>Toogas_Featuredpopup.csv</default>
+                    </files>
+                </Toogas_Featuredpopup>
+            </modules>
+        </translate>        
+        <menu>
+            <cms>
+                <children>
+                    <featuredpopup module="featuredpopup">
+                        <title>Featured Popup (Free)</title>
+                        <action>featuredpopup/adminhtml_featuredpopup</action>
+                        <sort_order>90</sort_order>
+                    </featuredpopup>
+                </children>   
+            </cms>
+        </menu>   
+   <acl>
+        <resources>
+	            <all>
+	                <title>Allow Everything</title>
+	            </all>              
+            <admin>              
+                <children>
+                    <cms translate="title" module="cms">
+                        <children>
+                    		<featuredpopup module="featuredpopup">
+                        		<title>Featured Popup (Free)</title>
+                        		<sort_order>90</sort_order>
+                    		</featuredpopup>
+                        </children>
+                    </cms>
+	                <system>
+	                    <children>
+	                        <config>
+	                            <children>
+	                                <toogas_featuredpopup>
+	                                    <title>Featured Popup (System)</title>
+	                                </toogas_featuredpopup>
+	                            </children>
+	                        </config>
+	                    </children>
+	                </system>
+	             </children>          
+            </admin>
+        </resources>
+    </acl>
+		<layout>
+			<updates>
+				<featuredpopup>
+					<file>featuredpopup.xml</file>
+				</featuredpopup>
+			</updates>
+		</layout>
+    </adminhtml>        
+    <frontend>
+          <layout>
+              <updates>
+                  <featuredpopup module="Toogas_Featuredpopup">
+                      <file>toogas_featuredpopup.xml</file>
+                  </featuredpopup>
+              </updates>
+          </layout>          
+    </frontend>           
+    <global>
+        <models>
+            <featuredpopup>
+                <class>Toogas_Featuredpopup_Model</class>
+                <resourceModel>featuredpopup_mysql4</resourceModel>
+            </featuredpopup>
+            <featuredpopup_mysql4>
+                <class>Toogas_Featuredpopup_Model_Mysql4</class>
+                <entities>                
+                    <featuredpopup>
+                        <table>toogas_featuredpopup</table>
+                    </featuredpopup>
+                    <featuredpopup_store>
+                        <table>toogas_featuredpopup_store</table>
+                    </featuredpopup_store>
+                    <toogas_featuredpopup_store>
+                        <table>toogas_featuredpopup_store</table>
+                    </toogas_featuredpopup_store>                                      
+                </entities>
+            </featuredpopup_mysql4>
+        </models>
+        <resources>
+            <featuredpopup_setup>
+                <setup>
+                    <module>Toogas_Featuredpopup</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </featuredpopup_setup>
+            <featuredpopup_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </featuredpopup_write>
+            <featuredpopup_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </featuredpopup_read>
+        </resources>
+        <blocks>
+            <featuredpopup>
+                <class>Toogas_Featuredpopup_Block</class>
+            </featuredpopup>
+        </blocks>
+        <helpers>
+            <featuredpopup>
+                <class>Toogas_Featuredpopup_Helper</class>
+            </featuredpopup>
+        </helpers>
+    </global>
+    <default>
+    	<toogas_featuredpopup>
+    		<configfeaturedpopup>
+    			<featured_popup_enabled>1</featured_popup_enabled>
+    		</configfeaturedpopup>
+    	</toogas_featuredpopup>
+    </default>
+</config>

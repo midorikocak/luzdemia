@@ -1,0 +1,11 @@
+<div style="border:1px solid #ccc; background:#f6f6f6;">
+    <h2 style="margin-bottom:0; border-bottom:1px solid #ccc; padding:4px 10px; color:#3c5974; font-size:1.4em;"><?php echo $this->__('Configuration'); ?></h2>
+    <ol style="padding:10px; border-top:1px solid #fff;">  
+        <?php $step = Mage::getSingleton('core/session')->getTemandoWizardStep(); ?>
+        <?php if ($step == Temando_Temando_Model_System_Config_Source_Wizard::ACCOUNT) { ?><li style="color:green; font-weight:bold; "><?php } else { ?><li><?php }; ?><?php echo $this->__('Account Details'); ?></li>
+        <?php if ($step == Temando_Temando_Model_System_Config_Source_Wizard::CARRIERS) { ?><li style="color:green; font-weight:bold; "><?php } else { ?><li><?php }; ?><?php echo $this->__('Allowed Carriers'); ?></li>
+        <?php if ($step == Temando_Temando_Model_System_Config_Source_Wizard::CATALOG_PRODUCT) { ?><li style="color:green; font-weight:bold; "><?php } else { ?><li><?php }; ?><?php echo $this->__('Catalog/Product'); ?></li>
+        <?php if ($step == Temando_Temando_Model_System_Config_Source_Wizard::ORIGIN) { ?><li style="color:green; font-weight:bold; "><?php } else { ?><li><?php }; ?><?php echo $this->__('Origin Location'); ?></li>
+        <?php if ($step == Temando_Temando_Model_System_Config_Source_Wizard::RULE) { ?><li style="color:green; font-weight:bold; "><?php } else { ?><li><?php }; ?><?php echo $this->__('Shipping Rule'); ?></li>
+    </ol>
+</div>

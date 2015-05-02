@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Interactone_Pinit>
+            <version>1.0</version>
+        </Interactone_Pinit>
+    </modules>
+
+    <global>
+      
+        <blocks>
+            <Pinit>
+                <class>Interactone_Pinit_Block</class>
+            </Pinit>
+        </blocks>
+        <helpers>
+            <pinit>
+                <class>Interactone_Pinit_Helper</class>
+            </pinit>
+        </helpers>
+    </global>
+
+    <default>
+        <pinit>
+            <general>
+                <enabled>0</enabled>
+                <layout>button_count</layout>
+                <showfaces>false</showfaces>
+                <width>450</width>
+                <height>30</height>
+                <verb>like</verb>
+                <font></font>
+                <color>light</color>
+            </general>
+            
+        </pinit>
+    </default>
+</config>

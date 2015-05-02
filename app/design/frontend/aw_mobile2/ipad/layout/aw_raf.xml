@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/aw_raf.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/aw_raf_custom.css</stylesheet></action>
+        </reference>
+        <reference name="before_body_end">
+            <block type="core/template" name="awraf.invite.wrapper" after="-" template="aw_raf/invite_wrapper.phtml">
+                <block type="awraf/invite" name="awraf.invite" template="aw_raf/invite.phtml" />
+            </block>
+        </reference>
+    </default>
+    <customer_logged_in>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label">
+                <name>raf</name>
+                <path>awraf/index/stats</path>
+                <label>Referred Friends</label>
+                <urlParams><_secure>true</_secure></urlParams>
+            </action>
+        </reference>
+    </customer_logged_in>
+    <awraf_index_stats>
+        <update handle="customer_account"/>
+        <reference name="after_body_start">
+            <block type="core/template" name="customer.account.top" template="customer/account/top.phtml">
+                <action method="setTitle"><title>Referred Friends</title></action>
+            </block>
+        </reference>
+        <reference name="my.account.wrapper">
+            <block type="awraf/stats" name="awraf.stats" as="awraf.stats" template="aw_raf/stats.phtml">
+                <block type="page/html_pager" name="awraf.stats.pager" as="awraf.stats.pager" />
+                <block type="core/template" name="awraf.invite_button" as="awraf.invite_button" template="aw_raf/invite_button.phtml" />
+                <block type="awraf/broadcastlink" name="awraf.broad.cast.link" as="awraf.broad.cast.link" template="aw_raf/broadcastlink.phtml">
+                    <block type="awraf/share" name="awraf.share">
+                        <action method="setLinkType"><link_type>1</link_type></action>
+                    </block>
+                </block>
+            </block>
+        </reference>
+    </awraf_index_stats>
+    <sales_order_view>
+        <reference name="order_totals">
+            <block type="awraf/sales_order_totals" name="awraf.sales.order.totals"/>
+        </reference>
+    </sales_order_view>
+    <sales_email_order_items>
+        <reference name="order_totals">
+            <block type="awraf/sales_order_totals" name="awraf.order.totals"/>
+        </reference>
+    </sales_email_order_items>
+    <sales_order_invoice>
+        <reference name="invoice_totals">
+            <block type="awraf/sales_order_invoice_totals" name="awraf.sales.order.invoice.totals"/>
+        </reference>
+    </sales_order_invoice>
+    <sales_email_order_invoice_items>
+        <reference name="invoice_totals">
+            <block type="awraf/sales_order_invoice_totals" name="awraf.order.totals"/>
+        </reference>
+    </sales_email_order_invoice_items>
+    <sales_order_creditmemo>
+        <reference name="creditmemo_totals">
+            <block type="awraf/sales_order_creditmemo_totals" name="awraf.sales.order.creditmemo.totals"/>
+        </reference>
+    </sales_order_creditmemo>
+    <sales_email_order_creditmemo_items>
+        <reference name="creditmemo_totals">
+            <block type="awraf/sales_order_creditmemo_totals" name="awraf.order.totals"/>
+        </reference>
+    </sales_email_order_creditmemo_items>
+</layout>

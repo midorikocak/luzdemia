@@ -1,0 +1,77 @@
+<?php
+if ($this->isActivePopUp()):
+?>
+<script type="text/javascript">
+    <?php if (is_numeric($this->getCookieLifeTime())): ?>
+    EsNewsSubscribers.setCookieLiveTime(<?php echo $this->getCookieLifeTime(); ?>);
+    <?php endif; ?>
+    <?php if ($this->getCookieName()): ?>
+    EsNewsSubscribers.setCookieName('<?php echo $this->getCookieName(); ?>');
+    <?php endif; ?>
+    EsNewsSubscribers.setBaseUrl('<?php echo $this->getBaseUrl(); ?>');
+</script>
+<div id="esns_background_layer">
+    <?php if ($this->getTheme() == 'default'): ?>
+    <div id="esns_box_layer">
+        <div id="esns_box_close"></div>
+        <div id="esns_box_title">
+            <?php if ($this->getFirstTitle()): ?>
+            <div id="esns_box_block_1">
+               <?php echo $this->getFirstTitle() ?>
+            </div>
+            <?php endif; ?>
+            <?php if ($this->getSecondTitle()): ?>
+            <div id="esns_box_block_2">
+                <?php echo $this->getSecondTitle() ?>
+            </div>
+            <?php endif; ?>
+        </div>
+
+        <?php if ($this->getText()): ?>
+        <div class="esns_box_lines"></div>
+        <div id="esns_box_block_3">
+            <?php echo $this->getText() ?>
+        </div>
+        <?php endif; ?>
+        <div class="esns_box_lines"></div>
+        <div id="esns_box_subscribe">
+            <div id="esns_box_subscribe_response_error"></div>
+            <div id="esns_box_subscribe_response_success"></div>
+            <div id="esns_box_subscribe_form">
+                <div id="esns_box_subscribe_input"><input onclick="if(this.value=='<?php echo $this->__('Email'); ?>') this.value=''" onblur="if(this.value=='') this.value='<?php echo $this->__('Email'); ?>'" id="esns_email" name="subscribe_email" value="<?php echo $this->__('Email'); ?>" type="text"></div>
+                <div id="esns_box_subscribe_submit"><a href="javascript:void(0)" id="esns_submit" ><?php echo $this->__('Subscribe'); ?></a></div>
+            </div>
+        </div>
+    </div>
+    <?php elseif($this->getTheme() == 'label'): ?>
+    <div id="esns_box_layer" class="tl">
+        <div id="esns_box_close"></div>
+
+
+            <div id="esns_box_block_1">
+                <?php echo $this->getFirstTitle() ?>
+            </div>
+
+
+            <div id="esns_box_block_2">
+                <?php echo $this->getSecondTitle() ?>
+            </div>
+
+
+
+        <div id="esns_box_block_3">
+            <?php echo $this->getText() ?>
+        </div>
+
+        <div id="esns_box_subscribe">
+            <div id="esns_box_subscribe_response_error"></div>
+            <div id="esns_box_subscribe_response_success"></div>
+            <div id="esns_box_subscribe_form">
+                <div id="esns_box_subscribe_input"><input onclick="if(this.value=='<?php echo $this->__('Email'); ?>') this.value=''" onblur="if(this.value=='') this.value='<?php echo $this->__('Email'); ?>'" id="esns_email" name="subscribe_email" value="<?php echo $this->__('Email'); ?>" type="text"></div>
+                <div id="esns_box_subscribe_submit"><a href="javascript:void(0)" id="esns_submit" ><?php echo $this->__('Subscribe'); ?></a></div>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+</div>
+<?php endif; ?>

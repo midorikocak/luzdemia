@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <ES_Newssubscribers>
+            <version>0.1.0</version>
+        </ES_Newssubscribers>
+    </modules>
+
+    <frontend>
+        <routers>
+            <newsletter>
+                <args>
+                    <modules>
+                        <ES_Newssubscribers before="Mage_Newsletter">ES_Newssubscribers</ES_Newssubscribers>
+                    </modules>
+                </args>
+            </newsletter>
+        </routers>
+
+        <layout>
+            <updates>
+                <newssubscribers>
+                    <file>newssubscribers.xml</file>
+                </newssubscribers>
+            </updates>
+        </layout>
+
+        <translate>
+            <modules>
+                <ES_Newssubscribers>
+                    <files>
+                        <default>ES_Newssubscribers.csv</default>
+                    </files>
+                </ES_Newssubscribers>
+            </modules>
+        </translate>
+    </frontend>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <ES_Newssubscribers>
+                    <files>
+                        <default>ES_Adminhtml_Newssubscribers.csv</default>
+                    </files>
+                </ES_Newssubscribers>
+            </modules>
+        </translate>
+    </adminhtml>
+
+    <global>
+        <blocks>
+            <newssubscribers>
+                <class>ES_Newssubscribers_Block</class>
+            </newssubscribers>
+        </blocks>
+
+        <helpers>
+            <newssubscribers>
+                <class>ES_Newssubscribers_Helper</class>
+            </newssubscribers>
+        </helpers>
+
+        <models>
+            <newssubscribers>
+                <class>ES_Newssubscribers_Model</class>
+            </newssubscribers>
+            <newsletter>
+                <rewrite>
+                    <subscriber>ES_Newssubscribers_Model_Subscriber</subscriber>
+                </rewrite>
+            </newsletter>
+        </models>
+
+    </global>
+
+    <default>
+        <newsletter>
+            <general>
+                <isactive>0</isactive>
+                <cookielifetime>999</cookielifetime>
+                <cookiename>es_newssubscribers</cookiename>
+                <theme>default</theme>
+                <firsttitle>Get your voucher now.</firsttitle>
+                <secondtitle>5 euro gift for you!</secondtitle>
+                <message>Would you like to be one of the first to receive exclusive information about the latest collections, offers and events from this online shop? Then just subscribe to our free newsletter now and get a voucher to the value of 5 € for your next purchase in our Online-Shop.</message>
+            </general>
+            <coupon>
+                <isactive>0</isactive>
+                <format>alphanum</format>
+                <length>8</length>
+            </coupon>
+        </newsletter>
+    </default>
+</config>

@@ -1,0 +1,85 @@
+<script type="text/javascript"> 
+//<![CDATA[
+var columnTemplate = '<div class="option-box" id="column_{{id}}">'+
+            '<table id="file_column_{{id}}" class="option-header" cellpadding="0" cellspacing="0">'+
+            '<input type="hidden" id="file_column_{{id}}_is_delete" name="file[column][{{id}}][is_delete]" value="" />'+
+            '<input type="hidden" id="file_column_{{id}}_id" name="file[column][{{id}}][id]" value="{{id}}" />'+
+            '<input type="hidden" id="file_column_{{id}}_column_id" name="file[column][{{id}}][column_id]" value="{{column_id}}" />'+
+            '<thead>'+
+                '<tr>'+
+                    '<th style="width: 200px"><?php echo Mage::helper('orders2csv')->__('Title') ?> <span class="required">*</span></th>'+
+                    '<th style="width: 400px"><?php echo Mage::helper('orders2csv')->__('Value') ?> <span class="required">*</span></th>'+
+                    '<th style="width: 150px"><?php echo Mage::helper('orders2csv')->__('Sort order') ?> <span class="required">*</span></th>'+
+                    '<th class="a-right"><?php echo $this->jsQuoteEscape($this->getDeleteButtonHtml()) ?></th>'+
+                '</tr>'+
+            '</thead>'+
+            '<tr>'+
+                '<td><input type="text" class="required-entry input-text" id="file_column_{{id}}_title" name="file[column][{{id}}][title]" value="{{title}}"></td>'+
+                '<td><select class="select" id="file_column_{{id}}_value" name="file[column][{{id}}][value]">'+
+                '<?php foreach ($this->getValueOptions() as $value => $label): 
+                 	echo "<option value=\"$value\">$label</option>";
+            	  endforeach; ?>'+
+				'</select></td>'+
+                '<td><input type="text" class="validate-zero-or-greater input-text" style="width: 50px;" id="file_column_{{id}}_sort_order" name="file[column][{{id}}][sort_order]" value="{{sort_order}}"></td>'+
+                '<td>&nbsp;</td>'+
+	        '</tr></table></div>';
+
+var fileColumn = {
+	div : $('file_column_container_top'),
+    templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
+    templateText : columnTemplate,
+    itemCount : 1,
+    itemNext : 1,
+    add : function(data) {
+    	this.template = new Template(this.templateText, this.templateSyntax);
+		if(!data.id){
+        	data = {};
+            data.id  = this.itemNext;
+            data.type = '';
+            data.column_id = 0;
+        } else {
+        	this.itemNext = data.item_count;
+        }
+        this.itemCount = data.id;
+        
+        Element.insert(this.div, {'after':this.template.evaluate(data)}); //$('column_'+data.id)
+        $('file_column_'+this.itemCount+'_value').setValue(data.value);
+
+        this.bindRemoveButtons();
+        this.itemNext++;
+    },
+    remove : function(event){
+        var element = $(Event.findElement(event, 'div'));
+        if(element){
+            $('file_'+element.readAttribute('id')+'_is_delete').value = '1';
+            element.addClassName('no-display');
+            element.addClassName('ignore-validate');
+            element.hide();
+        }
+    },
+    bindRemoveButtons : function(){
+        var buttons = $$('div.orders2csv-file-column .delete-file-column');
+        for(var i=0;i<buttons.length;i++){
+            if(!$(buttons[i]).binded){
+                $(buttons[i]).binded = true;
+                Event.observe(buttons[i], 'click', this.remove.bind(this));
+            }
+        }
+        var inputs = $$('div.orders2csv-file-column button', 'div.orders2csv-file-column input', 'div.orders2csv-file-column select', 'div.orders2csv-file-column textarea');
+        inputs.each(function(el) { Event.observe(el, 'change', el.setHasChanges.bind(el));  } )
+    }
+}
+
+fileColumn.bindRemoveButtons();
+
+if($('<?php echo $this->getAddButtonId() ?>')){
+    Event.observe('<?php echo $this->getAddButtonId() ?>', 'click', fileColumn.add.bind(fileColumn));
+}
+
+//adding data
+<?php foreach ($this->getColumnValues() as $_value): ?>
+	fileColumn.add(<?php echo $_value->toJson() ?>);
+<?php endforeach; ?>
+
+//]]>
+</script>

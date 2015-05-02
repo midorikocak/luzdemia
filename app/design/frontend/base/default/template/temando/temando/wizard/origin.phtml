@@ -1,0 +1,140 @@
+<div class="page-head">
+    <h3><?php echo $this->__('Origin Location') ?></h3>
+</div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<h4><?php echo $this->__('Temando will return quotes based on the origin location address.') ?></h4>
+<form action="<?php echo $this->getUrl('*/*/save', array('_current' => true)) ?>" method="post" id="form-validate">
+    <fieldset class="group-select wide">
+        <legend><?php echo $this->__('Name & Address') ?></legend>
+        <h4 class="legend"><?php echo $this->__('Name & Address') ?></h4>
+        <ul>
+            <li>
+                <div class="input-box">
+                    <label for="company_name"><?php echo $this->__('Company Name') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="origin_company_name" name="origin_company_name" value="<?php echo Mage::helper('temando')->getConfigData('origin/company_name'); ?>" class="required-entry input-text">
+
+                </div>
+
+            </li>
+            <li>
+                <div class="input-box">
+                    <label for="origin_street"><?php echo $this->__('Street') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="origin_street" name="origin_street" value="<?php echo Mage::helper('temando')->getConfigData('origin/street'); ?>" class="required-entry input-text">
+                </div>
+
+            </li>
+            <li>
+                <div class="input-box">
+                    <label for="origin_city"><?php echo $this->__('City') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="origin_city" name="origin_city" value="<?php echo Mage::helper('temando')->getConfigData('origin/city'); ?>" class="required-entry input-text">
+                </div>
+
+            </li>
+            <li>
+                <div class="input-box">
+                    <label for="origin_postcode"><?php echo $this->__('ZIP/Postal Code') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="origin_postcode" name="origin_postcode" value="<?php echo Mage::helper('temando')->getConfigData('origin/postcode'); ?>" class="required-entry input-text">
+                </div>
+
+            </li>
+            <li>
+                <div class="input-box">
+                    <label for="origin_country"><?php echo $this->__('Country') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <?php echo $this->getHtmlSelect('countries'); ?>
+                </div>
+
+            </li>
+            <li>
+                <div class="input-box">
+                    <label for="origin_region"><?php echo $this->__('Region') ?> <span class="required">*</span></label><br/>
+
+                </div>
+                <div class="input-box">
+                    <?php echo $this->getHtmlSelect('regions'); ?>
+                    <input type="hidden" id="region_name" name="region_name">
+                </div>
+            </li>
+        </ul>
+    </fieldset>
+    <fieldset class="group-select wide">
+        <legend><?php echo $this->__('Contact Details') ?></legend>
+        <h4 class="legend"><?php echo $this->__('Contact Details') ?></h4>
+        <ul>
+            <li>
+                <div class="input-box">
+                    <label for="origin_contact_name"><?php echo $this->__('Contact Name') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="origin_contact_name" name="origin_contact_name" value="<?php echo Mage::helper('temando')->getConfigData('origin/contact_name'); ?>" class="required-entry input-text">
+                </div>
+            </li>
+            <li>
+                <div class="input-box">
+                    <label for="origin_email"><?php echo $this->__('Contact Email') ?> <span class="required">*</span></label><br/>
+
+                </div>
+                <div class="input-box">
+                    <input type="text" id="origin_email" name="origin_email" value="<?php echo Mage::helper('temando')->getConfigData('origin/email'); ?>" class="required-entry input-text">
+                </div>
+            </li>
+            <li>
+                <div class="input-box">
+                    <label for="origin_phone1"><?php echo $this->__('Phone 1') ?> <span class="required">*</span></label><br/>
+
+                </div>
+                <div class="input-box">
+                    <input type="text" id="origin_phone1" name="origin_phone1" value="<?php echo Mage::helper('temando')->getConfigData('origin/phone1'); ?>" class="required-entry input-text">
+                </div>
+            </li>
+            <li>
+                <div class="input-box">
+                    <label for="origin_phone2"><?php echo $this->__('Phone 2') ?></label><br/>
+
+                </div>
+                <div class="input-box">
+                    <input type="text" id="origin_phone2" name="origin_phone2" value="<?php echo Mage::helper('temando')->getConfigData('origin/phone2'); ?>" class="input-text">
+                </div>
+            </li>
+            <li>
+                <div class="input-box">
+                    <label for="origin_fax"><?php echo $this->__('Fax') ?></label><br/>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="origin_fax" name="origin_fax" value="<?php echo Mage::helper('temando')->getConfigData('origin/fax'); ?>" class="input-text">
+                </div>
+            </li>
+        </ul>
+    </fieldset>
+    <div class="button-set">
+        <p class="required">* <?php echo $this->__('Required Fields') ?></p>
+        <button class="form-button" type="button" onclick="setLocation('<?php echo $this->getCancelUrl(); ?>');"><span><?php echo $this->__('Cancel') ?></span></button>
+        <button class="form-button" type="button" onclick="setLocation('<?php echo $this->getUrl('*/*/back', array('_current' => true)) ?>');"><span><?php echo $this->__('Back') ?></span></button>
+        <button class="form-button" type="button" onclick="setLocation('<?php echo $this->getUrl('*/*/skip', array('_current' => true)) ?>');"><span><?php echo $this->__('Skip') ?></span></button>
+        <button id="button" class="form-button" type="submit"><span><?php echo $this->__('Continue') ?></span></button>
+    </div>
+</form>
+<script type="text/javascript">
+    var dataForm = new VarienForm('form-validate');
+    var OriginRegionUpdater = new RegionUpdater('origin_country', 'region_name', 'origin_region', <?php echo $this->helper('temando/wizard')->getRegionJson() ?>, undefined, 'origin_postcode');
+</script>
+<script type="text/javascript">
+//<[CDATA[    
+    var shipping_estimator_url = '<?php echo $this->getUrl('etemando/pcs/autocompletecart', array('_secure' => Mage::app()->getStore()->isCurrentlySecure())); ?>';
+    var avs = new Avs(
+            shipping_estimator_url,
+            'origin_postcode',
+            'origin_city',
+            'origin_country'
+            );
+//]]>
+</script>

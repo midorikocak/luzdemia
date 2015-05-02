@@ -1,0 +1,378 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+		<magik translate="label" module="deziresettings">
+			<label>Magik</label>
+			<sort_order>205</sort_order>
+		</magik>
+	</tabs>
+	<sections>
+		<deziresettings translate="label" module="deziresettings">
+			<label>Dezire Theme Settings</label>
+			<tab>magik</tab>
+			<sort_order>10</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<deziresettings_appearance translate="label">
+					<label>Appearance</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>10</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<width translate="label comment">
+							<label>Width: </label>
+							<frontend_type>radios</frontend_type>
+							<frontend_model>deziresettings/adminhtml_system_config_form_field_width</frontend_model>
+							<source_model>deziresettings/config_width</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</width>						
+						<footer translate="label comment">
+							<label>Footer: </label>
+							<frontend_type>radios</frontend_type>
+							<frontend_model>deziresettings/adminhtml_system_config_form_field_footer</frontend_model>
+							<source_model>deziresettings/config_footer</source_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</footer>
+						<font translate="label comment">
+							<label>Font: </label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>deziresettings/adminhtml_system_config_form_field_font</frontend_model>
+							<source_model>deziresettings/config_font</source_model>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</font>						
+                  
+						<color translate="label comment">
+							<label>Theme Color: </label>
+							<comment>This color will be used for buttons</comment>
+							<frontend_type>text</frontend_type>
+							<frontend_model>deziresettings/adminhtml_system_config_form_field_color</frontend_model>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</color>
+						<header_bg_color translate="label comment">
+                                                        <label>Header BG Color: </label>
+                                                        <comment>This color will be used for header background</comment>
+                                                        <frontend_type>text</frontend_type>
+                                                        <frontend_model>deziresettings/adminhtml_system_config_form_field_color</frontend_model>
+                                                        <sort_order>60</sort_order>
+                                                        <show_in_default>1</show_in_default>
+                                                        <show_in_website>1</show_in_website>
+                                                        <show_in_store>1</show_in_store>
+                                                </header_bg_color>
+                                                <header_fg_color translate="label comment">
+							<label>Header Text Color: </label>
+							<comment>This color will be used header text/links</comment>
+							<frontend_type>text</frontend_type>
+							<frontend_model>deziresettings/adminhtml_system_config_form_field_color</frontend_model>
+							<sort_order>70</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</header_fg_color>
+                                                <footer_bg_color translate="label comment">
+							<label>Footer BG Color: </label>
+							<comment>This color will be used for footer background</comment>
+							<frontend_type>text</frontend_type>
+							<frontend_model>deziresettings/adminhtml_system_config_form_field_color</frontend_model>
+							<sort_order>80</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</footer_bg_color>
+                                                <footer_fg_color translate="label comment">
+							<label>Footer Text Color: </label>
+							<comment>This color will be used footer text/links</comment>
+							<frontend_type>text</frontend_type>
+							<frontend_model>deziresettings/adminhtml_system_config_form_field_color</frontend_model>
+							<sort_order>90</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</footer_fg_color>
+                                                <content_bg_color translate="label comment">
+							<label>Content bg Color: </label>
+							<comment>This color will be used for content bg</comment>
+							<frontend_type>text</frontend_type>
+							<frontend_model>deziresettings/adminhtml_system_config_form_field_color</frontend_model>
+							<sort_order>100</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</content_bg_color>
+					</fields>
+				</deziresettings_appearance>
+				<deziresettings_header translate="label">
+                                      <label>Header</label>
+                                      <frontend_type>text</frontend_type>
+                                      <sort_order>20</sort_order>
+                                      <show_in_default>1</show_in_default>
+                                      <show_in_website>1</show_in_website>
+                                      <show_in_store>1</show_in_store>
+                                      <fields>
+                                              <navigation_home translate="label">
+                                                        <label>Home Link in Navigation</label>
+                                                        <frontend_type>select</frontend_type>
+                                                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                                                        <sort_order>10</sort_order>
+                                                        <show_in_default>1</show_in_default>
+                                                        <show_in_website>1</show_in_website>
+                                                        <show_in_store>1</show_in_store>
+                                              </navigation_home> 
+                                              
+                                              <ecategory translate="label">
+                                                        <label>Apply product to category in Top Navigation</label>
+                                                        <frontend_type>select</frontend_type>
+                                                        <source_model>deziresettings/config_category</source_model>
+                                                        <sort_order>40</sort_order>
+                                                        <show_in_default>1</show_in_default>
+                                                        <show_in_website>1</show_in_website>
+                                                        <show_in_store>1</show_in_store>
+                                              </ecategory>
+                                      </fields>
+                                </deziresettings_header>
+				<deziresettings_labels translate="label">
+                                        <label>Product Labels</label>
+                                        <frontend_type>text</frontend_type>
+                                        <sort_order>40</sort_order>
+                                        <show_in_default>1</show_in_default>
+                                        <show_in_website>1</show_in_website>
+                                        <show_in_store>1</show_in_store>
+                                        <fields>
+                                                <new_label translate="label">
+                                                        <label>Show "New" label</label>
+                                                        <frontend_type>select</frontend_type>
+                                                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                                                        <sort_order>10</sort_order>
+                                                        <show_in_default>1</show_in_default>
+                                                        <show_in_website>1</show_in_website>
+                                                        <show_in_store>1</show_in_store>
+                                                </new_label>
+	                                        <new_label_position translate="label">
+                                                        <label>"New" label position</label>
+                                                        <frontend_type>select</frontend_type>
+                                                        <source_model>deziresettings/config_position</source_model>
+                                                        <sort_order>20</sort_order>
+                                                        <show_in_default>1</show_in_default>
+                                                        <show_in_website>1</show_in_website>
+                                                        <show_in_store>1</show_in_store>
+                                                </new_label_position>
+	                                        <sale_label translate="label">
+                                                        <label>Show "Sale" label</label>
+                                                        <frontend_type>select</frontend_type>
+                                                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                                                        <sort_order>30</sort_order>
+                                                        <show_in_default>1</show_in_default>
+                                                        <show_in_website>1</show_in_website>
+                                                        <show_in_store>1</show_in_store>
+                                                </sale_label>
+	                                        <sale_label_position translate="label">
+                                                        <label>"Sale" label position</label>
+                                                        <frontend_type>select</frontend_type>
+                                                        <source_model>deziresettings/config_position</source_model>
+                                                        <sort_order>40</sort_order>
+                                                        <show_in_default>1</show_in_default>
+                                                        <show_in_website>1</show_in_website>
+                                                        <show_in_store>1</show_in_store>
+                                                </sale_label_position>
+                                        </fields>
+                                </deziresettings_labels>                
+                                <deziresettings_footer translate="label">
+                                        <label>Footer</label>
+                                        <frontend_type>text</frontend_type>
+                                        <sort_order>50</sort_order>
+                                        <show_in_default>1</show_in_default>
+                                        <show_in_website>1</show_in_website>
+                                        <show_in_store>1</show_in_store>
+                                        <fields>
+                                                <footer_google_analytics translate="label">
+                                                        <label>Google Analytics in Footer</label>
+                                                        <frontend_type>select</frontend_type>
+                                                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                                                        <sort_order>10</sort_order>
+                                                        <show_in_default>1</show_in_default>
+                                                        <show_in_website>1</show_in_website>
+                                                        <show_in_store>1</show_in_store>
+                                                </footer_google_analytics>
+                                                <footer_google_analytics_path translate="label">
+                                                        <label>Google Analytics</label>
+                                                        <frontend_type>textarea</frontend_type>
+                                                        <sort_order>20</sort_order>
+                                                        <show_in_default>1</show_in_default>
+                                                        <show_in_website>1</show_in_website>
+                                                        <show_in_store>1</show_in_store>
+                                                </footer_google_analytics_path>
+                                        </fields>                    
+                                </deziresettings_footer>                
+                                <deziresettings_social translate="label">
+                                        <label>Social Links</label>
+                                        <frontend_type>text</frontend_type>
+                                        <sort_order>60</sort_order>
+                                        <show_in_default>1</show_in_default>
+                                        <show_in_website>1</show_in_website>
+                                        <show_in_store>1</show_in_store>
+                                        <fields>
+                                                <social_link translate="label">
+                                                        <label>Enable Social Links</label>
+                                                        <frontend_type>select</frontend_type>
+                                                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                                                        <sort_order>10</sort_order>
+                                                        <show_in_default>1</show_in_default>
+                                                        <show_in_website>1</show_in_website>
+                                                        <show_in_store>1</show_in_store>
+                                                </social_link>
+                                                <facebook_social_link_path translate="label">
+                                                        <label>Facebook Link Path</label>
+                                                        <frontend_type>text</frontend_type>
+                                                        <sort_order>20</sort_order>
+                                                        <show_in_default>1</show_in_default>
+                                                        <show_in_website>1</show_in_website>
+                                                        <show_in_store>1</show_in_store>
+                                                </facebook_social_link_path>
+                                                <twitter_social_link_path translate="label">
+                                                        <label>Twitter Link Path</label>
+                                                        <frontend_type>text</frontend_type>
+                                                        <sort_order>30</sort_order>
+                                                        <show_in_default>1</show_in_default>
+                                                        <show_in_website>1</show_in_website>
+                                                        <show_in_store>1</show_in_store>
+                                                </twitter_social_link_path> 
+                                                <googleplus_social_link_path translate="label">
+                                                        <label>Googleplus Link Path</label>
+                                                        <frontend_type>text</frontend_type>
+                                                        <sort_order>40</sort_order>
+                                                        <show_in_default>1</show_in_default>
+                                                        <show_in_website>1</show_in_website>
+                                                        <show_in_store>1</show_in_store>
+                                                </googleplus_social_link_path> 
+                                                <rss_social_link_path translate="label">
+                                                        <label>RSS Link Path</label>
+                                                        <frontend_type>text</frontend_type>
+                                                        <sort_order>50</sort_order>
+                                                        <show_in_default>1</show_in_default>
+                                                        <show_in_website>1</show_in_website>
+                                                        <show_in_store>1</show_in_store>
+                                                </rss_social_link_path>  
+                                                <pinterest_social_link_path translate="label">
+                                                        <label>Pinterest Link Path</label>
+                                                        <frontend_type>text</frontend_type>
+                                                        <sort_order>60</sort_order>
+                                                        <show_in_default>1</show_in_default>
+                                                        <show_in_website>1</show_in_website>
+                                                        <show_in_store>1</show_in_store>
+                                                </pinterest_social_link_path>
+                                                <linkedin_social_link_path translate="label">
+                                                        <label>Linkedin Link Path</label>
+                                                        <frontend_type>text</frontend_type>
+                                                        <sort_order>70</sort_order>
+                                                        <show_in_default>1</show_in_default>
+                                                        <show_in_website>1</show_in_website>
+                                                        <show_in_store>1</show_in_store>
+                                                </linkedin_social_link_path>
+                                                <youtube_social_link_path translate="label">
+                                                        <label>Youtube Link Path</label>
+                                                        <frontend_type>text</frontend_type>
+                                                        <sort_order>80</sort_order>
+                                                        <show_in_default>1</show_in_default>
+                                                        <show_in_website>1</show_in_website>
+                                                        <show_in_store>1</show_in_store>
+                                                </youtube_social_link_path> 
+                                        </fields>  
+                                </deziresettings_social>               
+                                <deziresettings_products translate="label">
+                                        <label>Products</label>
+                                        <frontend_type>text</frontend_type>
+                                        <sort_order>70</sort_order>
+                                        <show_in_default>1</show_in_default>
+                                        <show_in_website>1</show_in_website>
+                                        <show_in_store>1</show_in_store>
+                                        <fields>
+                                                <upsell_product translate="label">
+                                                        <label>Upsell Products in detail page</label>
+                                                        <frontend_type>select</frontend_type>
+                                                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                                                        <sort_order>10</sort_order>
+                                                        <show_in_default>1</show_in_default>
+                                                        <show_in_website>1</show_in_website>
+                                                        <show_in_store>1</show_in_store>
+                                                </upsell_product>
+                                                <related_product translate="label">
+                                                        <label>Related Products in detail page</label>
+                                                        <frontend_type>select</frontend_type>
+                                                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                                                        <sort_order>20</sort_order>
+                                                        <show_in_default>1</show_in_default>
+                                                        <show_in_website>1</show_in_website>
+                                                        <show_in_store>1</show_in_store>
+                                                </related_product>
+                                                <nextprevious_product translate="label">
+                                                        <label>Next Previous products in detail page</label>
+                                                        <frontend_type>select</frontend_type>
+                                                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                                                        <sort_order>30</sort_order>
+                                                        <show_in_default>1</show_in_default>
+                                                        <show_in_website>1</show_in_website>
+                                                        <show_in_store>1</show_in_store>
+                                                </nextprevious_product>
+                                        </fields>  
+                                </deziresettings_products>
+                                                              
+                                <deziresettings_shoppingcart translate="label">
+                                        <label>Shopping Cart</label>
+                                        <frontend_type>text</frontend_type>
+                                        <sort_order>90</sort_order>
+                                        <show_in_default>1</show_in_default>
+                                        <show_in_website>1</show_in_website>
+                                        <show_in_store>1</show_in_store>
+                                        <fields>
+                                                <shoppingcart_top translate="label">
+                                                        <label>Display Shopping Cart at top</label>
+                                                        <frontend_type>select</frontend_type>
+                                                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                                                        <sort_order>10</sort_order>
+                                                        <show_in_default>1</show_in_default>
+                                                        <show_in_website>1</show_in_website>
+                                                        <show_in_store>1</show_in_store>
+                                                </shoppingcart_top>
+                                        </fields>  
+                                </deziresettings_shoppingcart>
+                                
+                                <deziresettings_cloudzoom translate="label">
+                                        <label>Cloud Zoom</label>
+                                        <frontend_type>text</frontend_type>
+                                        <sort_order>100</sort_order>
+                                        <show_in_default>1</show_in_default>
+                                        <show_in_website>1</show_in_website>
+                                        <show_in_store>1</show_in_store>
+                                        <fields>
+                                                <cloudzoom_view translate="label">
+                                                        <label>Display Cloud Zoom</label>
+                                                        <frontend_type>select</frontend_type>
+                                                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                                                        <sort_order>10</sort_order>
+                                                        <show_in_default>1</show_in_default>
+                                                        <show_in_website>1</show_in_website>
+                                                        <show_in_store>1</show_in_store>
+                                                </cloudzoom_view>
+                                        </fields>  
+                                </deziresettings_cloudzoom>                               
+			</groups>
+		</deziresettings>
+	</sections>
+</config>
+
+

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Toogas Lda.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA (End-User License Agreement)
+ * that is bundled with this package in the file licence_toogas_community.txt.
+ * It is also available at this URL:
+ * http://www.toogas.com/licences/toogas_community.txt
+ *
+ * @category   Toogas
+ * @package    Toogas_Toogaslda
+ * @copyright  Copyright (c) 2010 Toogas Lda. (http://www.toogas.com)
+ * @license    http://www.toogas.com/licences/toogas_community.txt
+ */
+ -->
+<config>
+    <tabs>
+        <toogaslda module="toogaslda">
+            <label>Toogas Lda.</label>
+            <sort_order>100</sort_order>          
+        </toogaslda>
+    </tabs>   
+    <sections>
+    	<toogas_toogaslda translate="label" module="toogaslda">
+            <label>Contact Us</label>
+            <tab>toogaslda</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>10000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>     	
+		    <groups>
+		        <toogas_contact>
+		            <frontend_model>toogaslda/adminhtml_system_config_fieldset_toogas</frontend_model>
+		            <frontend_type>text</frontend_type>
+		            <sort_order>0</sort_order>
+		            <show_in_default>1</show_in_default>
+		            <show_in_website>1</show_in_website>
+		            <show_in_store>1</show_in_store>
+		        </toogas_contact>
+		    </groups>
+		</toogas_toogaslda>    
+    </sections>       
+</config>

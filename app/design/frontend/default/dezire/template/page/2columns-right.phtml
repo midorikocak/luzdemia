@@ -1,0 +1,42 @@
+
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+<!DOCTYPE html>
+<html lang="<?php echo $this->getLang() ?>">
+<head>
+<?php echo $this->getChildHtml('head') ?>
+</head>
+
+<body class="<?php echo Mage::getStoreConfig('deziresettings/deziresettings_appearance/width');  echo $this->getBodyClass()?' '.$this->getBodyClass().'':'' ?>">
+
+<?php echo $this->getChildHtml('after_body_start') ?>
+
+       <?php echo $this->getChildHtml('global_notices') ?>      
+       <?php echo $this->getChildHtml('header') ?>
+           <!-- BEGIN Main Container col2-right --> 
+       <section class="main-container col2-right-layout">  
+          <div class="main-container-inner">
+              <?php echo $this->getChildHtml('breadcrumbs') ?> 
+            <article class="col-main">             
+              <?php echo $this->getChildHtml('global_messages') ?>
+              <?php echo $this->getChildHtml('content') ?>                   
+            </article><!--col-main-->
+          <aside class="col-right sidebar">      
+              <?php echo $this->getChildHtml('right') ?>                 
+          </aside> <!--col-right sidebar-->
+         </div><!--main-container-inner-->
+       </section> <!--main-container col2-left-layout-->
+      <section class="service-section service-section1">
+         
+      </section> <!--service-section service-section1-->
+      
+      
+        <?php echo $this->getChildHtml('footer') ?>
+        <?php echo $this->getChildHtml('before_body_end') ?>
+        <?php echo $this->getAbsoluteFooter() ?>
+      
+</body>
+</html>

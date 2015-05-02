@@ -1,0 +1,6 @@
+<div class="page-title">
+    <h2><?php echo $this->__('An error occurred in the process of payment') ?></h2>
+</div>
+<?php if ($this->getRealOrderId()) : ?><p><?php echo $this->__('Order #') . $this->getRealOrderId() ?></p><?php endif ?>
+<?php if ($error = $this->getErrorMessage()) : ?><p><?php echo $error ?></p><?php endif ?>
+<p><?php echo $this->__('Click <a href="%s">here</a> to continue dezireping.', $this->getContinueDezirepingUrl()) ?></p>

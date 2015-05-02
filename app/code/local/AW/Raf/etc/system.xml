@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<config>
+   <sections>
+       <awraf translate="label" module="awraf">
+            <label>Refer a Friend</label>
+            <tab>awall</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <sort_order>10</sort_order>
+                    <fields>
+                        <calculate translate="label">
+                            <label><![CDATA[Calculate Purchase Amount As]]></label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>awraf/source_calculate</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </calculate>
+                        <coupons translate="label">
+                            <label><![CDATA[Allow Usage With Coupons]]></label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </coupons>
+                        <cart_total translate="label comment">
+                            <label><![CDATA[Apply discount if cart total is equal or greater than]]></label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <comment><![CDATA[Specify amount in base website currency]]></comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cart_total>
+                        <min_limit translate="label comment">
+                            <label><![CDATA[Minimum discount to be able to redeem]]></label>
+                            <comment><![CDATA[Specify amount in base website currency]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </min_limit>
+                        <max_limit translate="label">
+                            <label><![CDATA[Max discount % to order]]></label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <backend_model>awraf/system_config_limitValidator</backend_model>
+                        </max_limit>
+                    </fields>
+                </general>
+               
+                <referral translate="label">
+                    <label>Referral</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <sort_order>30</sort_order>
+                    <fields>
+                        <bonus translate="label">
+                            <label><![CDATA[Give bonus to referral for registration]]></label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </bonus>                        
+                        <bonus_type translate="label">
+                            <label><![CDATA[Bonus type]]></label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>awraf/source_bonusType</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </bonus_type>                        
+                        <bonus_amount translate="label">
+                            <label><![CDATA[Bonus amount]]></label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </bonus_amount>
+                    </fields>
+                </referral>                            
+                <invite translate="label">
+                    <label>Invitation</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <sort_order>50</sort_order>
+                    <fields>
+                        <enabled translate="label">
+                            <label><![CDATA[Allow invitation]]></label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <email_sender translate="label">
+                            <label>Email sender</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_identity</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </email_sender>                        
+                        <template translate="label">
+                            <label><![CDATA[Select email template]]></label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </template>                        
+                        <redirect_link translate="label comment">
+                            <label><![CDATA[Redirect to]]></label>
+                            <comment><![CDATA[Define the page for users to be redirected to after clicking the referred link]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </redirect_link>
+                    </fields>
+                </invite>                
+                 <advanced translate="label">
+                    <label>Advanced</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <sort_order>60</sort_order>
+                    <fields>
+                        <reset_all translate="label">
+                            <label>Reset all rule activities</label>                            
+                            <frontend_model>awraf/adminhtml_system_configuration_button</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <value>3</value>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </reset_all>
+                    </fields>
+                </advanced>                           
+            </groups>
+        </awraf>
+    </sections>
+</config>

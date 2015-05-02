@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Magmodules_Sortbydate>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Magmodules_Sortbydate>
+    </modules>
+</config>

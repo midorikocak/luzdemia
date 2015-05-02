@@ -1,0 +1,66 @@
+<div class="page-head">
+    <h3><?php echo $this->__('Allowed Countries') ?></h3>
+</div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<h4><?php echo $this->__('Defines the countries you are using Temando to ship from and to.'); ?></h4>
+<form action="<?php echo $this->getUrl('*/*/save', array('_current' => true)) ?>" method="post" id="form-validate">
+    <fieldset class="group-select wide">
+        <legend><?php echo $this->__('Allowed Countries') ?></legend>
+        <h4 class="legend"><?php echo $this->__('Allowed Countries') ?></h4>
+        <ul>
+            <li>
+                <div class="input-box">
+                    <label for="allowed_methods"><?php echo $this->__('Mode') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <?php echo $this->getHtmlSelect('allowedCountries'); ?>
+                    <p style="margin-top:4px; line-height:1.3em; color:#666;">
+                        <small><?php echo $this->__('Select Allowed Countries to allow all enabled countries. Select Specific Countries to pick & choose (ensure Australia is selected). ') ?></small>
+                    </p> 
+                </div>
+            </li>
+            <li id="specificcountry_box">
+                <div class="input-box">
+                    <label for="specificcountry"><?php echo $this->__('Specific Countries') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <?php echo $this->getHtmlSelect('specificCountries'); ?>
+                </div>
+            </li>
+        </ul>
+    </fieldset>
+    <div class="button-set">
+        <p class="required">* <?php echo $this->__('Required Fields') ?></p>
+        <button class="form-button" type="button" onclick="setLocation('<?php echo $this->getCancelUrl(); ?>');"><span><?php echo $this->__('Cancel') ?></span></button>
+        <button class="form-button" type="button" onclick="setLocation('<?php echo $this->getUrl('*/*/back', array('_current' => true)) ?>');"><span><?php echo $this->__('Back') ?></span></button>
+        <button class="form-button" type="button" onclick="setLocation('<?php echo $this->getUrl('*/*/skip', array('_current' => true)) ?>');"><span><?php echo $this->__('Skip') ?></span></button>
+        <button class="form-button" type="submit"><span><?php echo $this->__('Continue') ?></span></button>
+    </div>
+</form>
+<script type="text/javascript">
+    var dataForm = new VarienForm('form-validate');
+    if ($('sallowspecific').value == '1') {
+        $('sallowspecific').setValue('1');
+        $('specificcountry').addClassName('required-entry');
+        $('specificcountry_box').show();
+    } else {
+        $('sallowspecific').setValue('0');
+        $('specificcountry').removeClassName('required-entry');
+        $('specificcountry_box').hide();
+    }
+</script>
+<script type="text/javascript">
+    //<![CDATA[  
+
+    Event.observe($('sallowspecific'), 'change', function() {
+        if ($('sallowspecific').value == '1') {
+            $('specificcountry').addClassName('required-entry');
+            $('specificcountry_box').show();
+        } else {
+            $('specificcountry').removeClassName('required-entry');
+            $('specificcountry_box').hide();
+        }
+    });
+    //]]>
+</script>
+

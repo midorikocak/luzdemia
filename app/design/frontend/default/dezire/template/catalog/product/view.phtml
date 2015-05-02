@@ -1,0 +1,224 @@
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?>
+
+<?php if (Mage::getStoreConfig('deziresettings/deziresettings_products/nextprevious_product')): ?>
+
+    <?php // Previous and Next product links in product page
+     
+    $_product = $this->getProduct();
+     
+    if(!$_product->getCategoryIds())
+    return; // Don't show Previous and Next if product is not in any category
+     
+    $cat_ids = $_product->getCategoryIds(); // get all categories where the product is located
+    $cat = Mage::getModel('catalog/category')->load( $cat_ids[0] ); // load first category, you should enhance this, it works for me
+     
+    $order = Mage::getStoreConfig('catalog/frontend/default_sort_by');
+    $direction = 'asc'; // asc or desc
+     
+    $category_products = $cat->getProductCollection()->addAttributeToSort($order, $direction);
+    $category_products->addAttributeToFilter('status',1); // 1 or 2
+    $category_products->addAttributeToFilter('visibility',4); // 1.2.3.4
+     
+    $cat_prod_ids = $category_products->getAllIds(); // get all products from the category
+    $_product_id = $_product->getId();
+     
+    $_pos = array_search($_product_id, $cat_prod_ids); // get position of current product
+    $_next_pos = $_pos+1;
+    $_prev_pos = $_pos-1;
+     
+    // get the next product url
+    if( isset($cat_prod_ids[$_next_pos]) ) {
+    $_next_prod = Mage::getModel('catalog/product')->load( $cat_prod_ids[$_next_pos] );
+    } else {
+    $_next_prod = Mage::getModel('catalog/product')->load( reset($cat_prod_ids) );
+    }
+    // get the previous product url
+    if( isset($cat_prod_ids[$_prev_pos]) ) {
+    $_prev_prod = Mage::getModel('catalog/product')->load( $cat_prod_ids[$_prev_pos] );
+    } else {
+    $_prev_prod = Mage::getModel('catalog/product')->load( end($cat_prod_ids) );
+    }
+
+    ?>
+         
+<?php endif; ?>  <!-- Endif Next Previous Product -->
+<?php /*
+  <div class="product-next-prev">
+      <?php if($_next_prod != NULL): ?>
+         <a class="product-next" title="Next" href="<?php print $_next_prod->getProductUrl(); ?>"><span></span></a>
+      <?php endif; ?>  
+      <?php if($_prev_prod != NULL): ?>
+         <a class="product-prev" title="Previous" href="<?php print $_prev_prod->getProductUrl(); ?>"><span></span></a>
+      <?php endif; ?>    
+  </div> <!--product-next-prev-->
+*/?>
+<?php
+$product_categories = array();
+                    $categoryIds = $_product->getCategoryIds();
+
+                    foreach ($categoryIds as $category_id) {
+                        $_cat = Mage::getModel('catalog/category')->load($category_id);
+                        $product_categories[] = $_cat->getName();
+                    }
+                    $product_val = Mage::getModel('catalog/product')->load($_product->getId());
+?>
+
+<div class="product-view" itemscope itemtype="http://schema.org/Product" itemid="#product_base">
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+
+
+
+  <div class="product-essential">
+
+      <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+
+        <div class="product-img-box">            
+              <?php echo $this->getChildHtml('media') ?>           
+        </div>
+
+        <div class="no-display">
+            <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+            <input type="hidden" name="related_product" id="related-products-field" value="" />
+        </div>
+               
+          <div class="product-shop">
+             <div class="product-name">
+               <h1 itemprop="name"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+             </div>
+             <?php if ($_product->getShortDescription()):?>
+               <div class="short-description">                
+                 <?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
+               </div>
+             <?php endif;?> 
+
+            <?php //echo $this->getReviewsSummaryHtml($_product, false, true)?>
+  
+            <?php /*<button class="button"><?php echo $this->getChildHtml('alert_urls') ?></button> */?>
+            <?php echo $this->getChildHtml('product_type_data') ?>
+            <?php echo $this->getTierPriceHtml() ?>
+            <?php echo $this->getChildHtml('extrahint') ?>             
+        
+            <?php if (!$this->hasOptions()):?>                        
+                    <?php if($_product->isSaleable()): ?>
+                        <?php echo $this->getChildHtml('addtocart') ?>
+                        <?php if( $this->helper('wishlist')->isAllow() || $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product)): ?>                           
+                        <?php endif; ?>
+                    <?php endif; ?>                
+                <?php echo $this->getChildHtml('addto') ?>
+                <?php echo $this->getChildHtml('extra_buttons') ?>              
+            <?php elseif (!$_product->isSaleable()): ?>
+                    <?php echo $this->getChildHtml('addto') ?>
+			<?php else:?>
+				<?php if ($_product->isSaleable() && $this->hasOptions()):?>
+					<?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+				<?php endif;?>
+
+				<?php if ($_product->isSaleable() && $this->hasOptions()):?>
+					<?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+				<?php endif;?>
+            <?php endif; ?>
+
+			  <?php $_product_url = $this->helper('core/url')->getCurrentUrl();?>
+			  <div class="zero_social" style="clear:both; padding-top: 10px;">
+				  <div class="fb-share-button" data-href="<?php echo $_product_url;?>" data-type="button" data-width="100" style="float:left !important; display:block !important; margin-right:5px;"></div>
+				  <a href="https://twitter.com/share" class="twitter-share-button" data-via="luzdemiacom" data-count="none">Tweet</a>
+				  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+				  <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('interactone/pinit.phtml')->toHtml(); ?>
+			  </div>
+
+<div class="product-collateral">
+        <!-- ADDITIONAL -->
+          <?php echo $this->getChildHtml('product_additional_data') ?>
+        <!-- ADDITIONAL -->
+</div> <!--product-collateral-->
+<?php /*if (Mage::getStoreConfig('deziresettings/deziresettings_social/social_link')) { ?>
+            <div class="social">
+       <ul class="link">
+          <li class="fb"><a  target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('deziresettings/deziresettings_social/facebbok_social_link_path') ?>" title="<?php echo $this->__('Facebook');?>"></a></li>
+          <li class="tw"><a target="_blank" rel="nofollow"  href="<?php echo Mage::getStoreConfig('deziresettings/deziresettings_social/twitter_social_link_path') ?>" title="<?php echo $this->__('Twitter');?>"></a></li>
+          <li class="googleplus"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('deziresettings/deziresettings_social/googleplus_social_link_path') ?>" title="<?php echo $this->__('GooglePlus');?>"></a></li>
+          <li class="rss"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('deziresettings/deziresettings_social/rss_social_link_path') ?>" title="<?php echo $this->__('RSS');?>"></a></li>
+          <li class="pintrest"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('deziresettings/deziresettings_social/pinterest_social_link_path') ?>" title="<?php echo $this->__('PInterest');?>"></a></li>
+          <li class="linkedin"><a  target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('deziresettings/deziresettings_social/linkedin_social_link_path') ?>" title="<?php echo $this->__('Linkedin');?>"></a></li>
+          <li class="youtube"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('deziresettings/deziresettings_social/youtube_social_link_path') ?>" title="<?php echo $this->__('Youtube');?>"></a></li>
+       </ul>
+    </div> <!--social-->
+      <?php }*/ ?>
+            
+            <?php echo $this->getChildHtml('other');?>
+       </div> <!--product-shop -->
+       <?php echo $this->getLayout()->getBlock('catalog.product.related')->toHtml()?>
+<!-- Detail page custom block -->
+
+</form>
+</div> <!--product-essential-->
+
+    <script type="text/javascript">
+    //<![CDATA[
+        var productAddToCartForm = new VarienForm('product_addtocart_form');
+        productAddToCartForm.submit = function(button, url) {
+            if (this.validator.validate()) {
+                var form = this.form;
+                var oldUrl = form.action;
+
+                if (url) {
+                   form.action = url;
+                }
+                var e = null;
+                try {
+                    this.form.submit();
+                } catch (e) {
+                }
+                this.form.action = oldUrl;
+                if (e) {
+                    throw e;
+                }
+
+                if (button && button != 'undefined') {
+                    button.disabled = true;
+                }
+            }
+        }.bind(productAddToCartForm);
+
+        productAddToCartForm.submitLight = function(button, url){
+            if(this.validator) {
+                var nv = Validation.methods;
+                delete Validation.methods['required-entry'];
+                delete Validation.methods['validate-one-required'];
+                delete Validation.methods['validate-one-required-by-name'];
+                // Remove custom datetime validators
+                for (var methodName in Validation.methods) {
+                    if (methodName.match(/^validate-datetime-.*/i)) {
+                        delete Validation.methods[methodName];
+                    }
+                }
+
+                if (this.validator.validate()) {
+                    if (url) {
+                        this.form.action = url;
+                    }
+                    this.form.submit();
+                }
+                Object.extend(Validation.methods, nv);
+            }
+        }.bind(productAddToCartForm);
+    //]]>
+    </script>
+
+
+</div> <!--product-view-->
+<?php $magentoCurrentUrl = Mage::helper('core/url')->getCurrentUrl();?>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/tr_TR/sdk.js#xfbml=1&appId=249421971912110&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!--div class="fb-comments" data-href="<?php echo $magentoCurrentUrl;?>" data-numposts="5" data-colorscheme="light" data-width="880px"></div-->
+

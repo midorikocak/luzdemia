@@ -1,0 +1,19 @@
+<?php 
+/* Newsletter subscribe */
+?>
+<h4><strong>LUZDEMIA.COM'DAN HABERDAR OLMAK İÇİN</strong></h4>
+<div class="newsletter">
+    <form action="<?php echo $this->getFormActionUrl() ?>" method="post" id="newsletter-validate-detail">
+      <div id="container_form_news">
+        <div id="container_form_news2">
+           <input type="text" name="email" id="newsletter" title="<?php echo $this->__('Sign up for our newsletter') ?>" onfocus=" this.value='' " value="<?php echo $this->__('Enter your email address') ?>" class="input-text required-entry validate-email" />                              
+           <button type="submit" title="<?php echo $this->__('Subscribe') ?>" class="button subscribe"><span><?php echo $this->__('Submit') ?></span></button>
+        </div>
+      </div>
+    </form>
+    <script type="text/javascript">
+    //<![CDATA[
+        var newsletterSubscriberFormDetail = new VarienForm('newsletter-validate-detail');
+    //]]>
+    </script>
+</div> <!--newsletter-->

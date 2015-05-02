@@ -1,0 +1,137 @@
+<?php if (Mage::getStoreConfig('deziresettings/deziresettings_products/related_product')): ?>
+
+<?php if($this->getItems()->getSize()): ?>
+<!-- BEGIN CATEGORY PRODUCTS -->
+<div class="related-block">
+<div class="block-title"><?php echo $this->__('Related Products');?></div>
+<div class="block-content">
+  <div class=" jcarousel-skin-tango4">
+  <div class="jcarousel-container jcarousel-container-horizontal" style="position: relative; display: block;">
+            <div class="jcarousel-clip jcarousel-clip-horizontal" style="position: relative;">
+ 
+      <ul class="products-grid last even jcarousel-list jcarousel-list-horizontal" id="mycarousel4" style="overflow: hidden; position: relative; top: 0px; margin: 0px; padding: 0px; left: -265px; width: 1160px;">
+       <?php $rl_row = 0; foreach($this->getItems() as $_item): ?>
+		   <?php if ($rl_row % 2 == 0 ):?>
+            <li class="jcarousel-item jcarousel-item-horizontal jcarousel-item-1 jcarousel-item-1-horizontal" jcarouselindex="1" style="float: left; list-style: none outside none;">
+			<?php endif;?>
+             <div class="item-inner">
+              <div class="item-img">
+             <div class="item-img-info">
+              <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_item, 'small_image'), null, true) ?>" class="product-image">
+                  <?php echo $this->helper('deziresettings')->getLabel($_item);  ?>
+                  <img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(200,200); ?>" class="small-image" width="200" height="200" alt="<?php echo $this->stripTags($this->getImageLabel($_item, 'small_image'), null, true) ?>" style="width:200px !important;" />
+              </a>
+              </div><!--item-img-info-->
+             </div><!--item-img-->
+              
+              <!-- BEGIN PROD IMAGE DETAIL -->
+              <div class="item-info">
+              <div class="info-inner">
+                <div class="product-name">
+                <h4>
+                 <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->stripTags($_item->getName(), null, true) ?>">
+                    <?php $prod_name = $this->htmlEscape($_item->getName()) ; 
+                      if(strlen($prod_name) > 20) {echo substr($prod_name,0,20)."...";}else {echo $prod_name;}?>
+                 
+                 </a> 
+                 </h4> 
+                 </div> 
+              
+                 <div class="item-content">
+                 <?php if($_item->getRatingSummary()): ?>
+                    <?php echo $this->getReviewsSummaryHtml($_item) ?>
+                 <?php  endif;  ?> 
+                 <div class="item-price"> 
+                 <?php echo $this->getPriceHtml($_item, true, '-related') ?>
+                 </div><!--item-price-->
+                 </div><!--item-content-->            
+                  </div><!--info-inner-->
+          
+              <div class="actions">  
+           
+              <span class="add-to-links">
+                <?php /* if ($this->helper('wishlist')->isAllow()) : ?>
+                    <a href="<?php echo $this->helper('wishlist')->getAddUrl($_item) ?>" class="link-wishlist" title="<?php echo $this->__('Add to wishlist');?>"><span><?php echo $this->__('Add to wishlist');?></span></a>
+                <?php endif; ?>
+                <?php if($_item->isSaleable()): ?>
+                      <button title="Add to Cart" type="button" class="button btn-cart" data-original-title="Add to Cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_item) ?>')"><span><?php echo $this->__('Add to Cart')?></span></button>
+                   <?php else: ?>
+                      <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                   <?php endif; ?>
+
+                <?php if($_compareUrl=$this->getAddToCompareUrl($_item)): ?>
+                    <span class="separator">|</span><a href="<?php echo $_compareUrl ?>" class="link-compare" title="<?php echo $this->__('Add to compare');?>"><span><?php echo $this->__('Add to compare');?></span></a>
+                <?php endif; */ ?>
+              </span> <!--add-to-links-->
+               
+                  
+              </div><!--actions-->
+            </div><!--item-inner-->
+                </div> <!--item-info-->
+			<?php if ($rl_row % 2 == 1 ):?>
+            </li>
+		  	<?php endif;?>
+             <?php $rl_row++; endforeach; ?>
+		  <?php if ($rl_row % 2 == 1 ):?>
+			  </li>
+		  <?php endif;?>
+        </ul>
+         
+        <script type="text/javascript">decorateList('block-related', 'none-recursive')</script>
+  
+  </div>
+  <div class="jcarousel-prev jcarousel-prev-horizontal" style="display: block;"></div>
+  <div class="jcarousel-next jcarousel-next-horizontal" style="display: block;"></div>
+  </div>
+ 
+  </div>
+
+  </div>
+
+</div>
+</div><!--related-block-->
+   
+    <script type="text/javascript">
+    //<![CDATA[
+    $$('.related-checkbox').each(function(elem){
+        Event.observe(elem, 'click', addRelatedToProduct)
+    });
+
+    var relatedProductsCheckFlag = false;
+    function selectAllRelated(txt){
+        if (relatedProductsCheckFlag == false) {
+            $$('.related-checkbox').each(function(elem){
+                elem.checked = true;
+            });
+            relatedProductsCheckFlag = true;
+            txt.innerHTML="<?php echo $this->__('unselect all') ?>";
+        } else {
+            $$('.related-checkbox').each(function(elem){
+                elem.checked = false;
+            });
+            relatedProductsCheckFlag = false;
+            txt.innerHTML="<?php echo $this->__('select all') ?>";
+        }
+        addRelatedToProduct();
+    }
+
+    function addRelatedToProduct(){
+        var checkboxes = $$('.related-checkbox');
+        var values = [];
+        for(var i=0;i<checkboxes.length;i++){
+            if(checkboxes[i].checked) values.push(checkboxes[i].value);
+        }
+        if($('related-products-field')){
+            $('related-products-field').value = values.join(',');
+        }
+    }
+    //]]>
+    </script>
+<?php endif; ?>  <!-- end related product -->
+
+<?php endif; ?>
+
+      
+                
+
+

@@ -1,0 +1,61 @@
+<?php
+/**
+ * $this->renderCategoriesMenuHtml() supports optional arguments:
+ * int Level number for list item class to start from
+ * string Extra class of outermost list items
+ * string If specified wraps children list in div with this class
+ */
+?>
+
+    <?php $_helper = Mage::helper('catalog/category') ?>
+    <?php $_categories = $_helper->getStoreCategories() ?>
+    <?php //$currentCategory = Mage::registry('current_category') ?>
+
+
+
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+          jQuery('.toggle').click(function() {
+               if (jQuery('.submenu').is(":hidden"))
+               {
+                    jQuery('.submenu').slideDown("fast");
+               } else {
+                    jQuery('.submenu').slideUp("fast");
+               }
+               return false;
+          });
+});
+
+/*Phone Menu*/
+jQuery(document).ready(function() {
+        jQuery(".topnav").accordion({
+                accordion:false,
+                speed: 300,
+                closedSign: '+',
+                openedSign: '-'
+        });
+});
+
+</script>
+
+<?php $_menu = $this->renderCategoriesMenuHtml(0,'level-top') ?>
+<?php if($_menu): ?>
+<div id="menu" class="hidden-desktop">
+  <ul class="navmenu">
+     <li>
+      <div class="menutop">
+        <div class="toggle"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></div>
+        <h2><?php echo $this->__('Menu'); ?></h2>        
+       </div>
+       <ul class="submenu" style="display:none;">
+         <li>
+           <ul class="topnav">
+              <?php echo $_menu; ?>
+           </ul>
+         </li>
+       </ul> 
+     </li>
+  </ul> <!--navmenu-->
+</div>
+<?php endif ?>

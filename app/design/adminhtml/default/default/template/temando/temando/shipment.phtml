@@ -1,0 +1,24 @@
+<?php
+
+/* @var $this Temando_Temando_Block_Adminhtml_Shipment_Edit_Tab_Form */
+?>
+
+<div>
+    <div class="box-left">
+        <?php echo $this->getLayout()->createBlock('temando/adminhtml_shipment_edit_tab_form_status')->setTemplate('temando/temando/shipment/status.phtml')->toHtml(); ?>
+        <?php echo $this->getLayout()->createBlock('temando/adminhtml_shipment_edit_tab_form_anytime')->setTemplate('temando/temando/shipment/anytime.phtml')->toHtml(); ?>
+        <?php echo $this->getLayout()->createBlock('temando/adminhtml_shipment_edit_tab_form_origin')->setTemplate('temando/temando/shipment/origin.phtml')->toHtml(); ?>
+    </div>
+    <div class="box-right">
+        <?php echo $this->getLayout()->createBlock('temando/adminhtml_shipment_edit_tab_form_anywhere')->setTemplate('temando/temando/shipment/anywhere.phtml')->toHtml(); ?>
+        <?php echo $this->getLayout()->createBlock('temando/adminhtml_shipment_edit_tab_form_insurance')->setTemplate('temando/temando/shipment/insurance.phtml')->toHtml(); ?>
+    </div>
+    <div class="clear"></div>
+    
+    <?php echo $this->getLayout()->createBlock('temando/adminhtml_shipment_edit_tab_form_products')->setTemplate('temando/temando/shipment/products.phtml')->toHtml(); ?>
+    <?php echo $this->getLayout()->createBlock('temando/adminhtml_shipment_edit_tab_form_boxes')->setTemplate('temando/temando/shipment/boxes.phtml')->toHtml(); ?>
+    
+    <?php if ($this->getShipment()->isStatusOpened() && count($this->getQuotes())): ?>
+        <?php echo $this->getLayout()->createBlock('temando/adminhtml_shipment_edit_tab_form_quotes')->setTemplate('temando/temando/shipment/quotes.phtml')->toHtml(); ?>
+    <?php endif; ?>
+</div>

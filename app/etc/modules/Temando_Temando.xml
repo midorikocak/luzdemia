@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Temando_Temando>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Temando_Temando>
+    </modules>
+</config>

@@ -1,0 +1,28 @@
+<div class="add-to-box">
+<?php $_product = $this->getProduct(); ?>
+<?php $buttonTitle = $this->__('Add to Cart'); ?>
+
+<?php if($_product->isSaleable()): ?>      
+        <?php if(!$_product->isGrouped()): ?>
+<div class="add-to-cart">
+      <label for="qty"><?php echo $this->__('Qty:') ?></label> 
+
+       <span class="qty-input-text ">
+            <select  name="qty" id="qty" >
+                <?php
+                
+                for ($x=1; $x<=20; $x=$x+1) {
+                    echo '<option value="' . $x . '">' . $x . ' </option>';
+                }
+                ?>
+            </select> 
+       </span>
+     
+</div> <!--add-to-cart-->
+        <?php endif; ?>    
+        <button type="button" title="<?php echo $buttonTitle ?>" class="button btn-cart" onclick="productAddToCartForm.submit(this)"><span><?php echo $buttonTitle ?></span></button>
+        <?php echo $this->getChildHtml('', true, true) ?>                     
+<?php endif; ?>
+
+
+</div> <!--add-to-box-->

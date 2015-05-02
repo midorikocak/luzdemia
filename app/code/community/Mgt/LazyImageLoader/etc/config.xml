@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mgt_LazyImageLoader>
+            <version>1.0.4</version>
+        </Mgt_LazyImageLoader>
+    </modules>
+     <global>
+        <helpers>
+            <mgt_lazy_image_loader>
+                <class>Mgt_LazyImageLoader_Helper</class>
+            </mgt_lazy_image_loader>
+        </helpers>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <mgt_lazy_image_loader>
+                    <file>mgt_lazy_image_loader.xml</file>
+                </mgt_lazy_image_loader>
+            </updates>
+        </layout>
+    </frontend>
+</config>

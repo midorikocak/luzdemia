@@ -1,0 +1,48 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Raf
+ * @version    2.1.5
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php if (!Mage::getSingleton('customer/session')->isLoggedIn() || !Mage::helper('awraf/config')->isInviteAllowed()): return; endif?>
+<?php
+$buttonId = uniqid( rand(0, 1000) );
+?>
+<button class="button" id="referafriend-button<?php echo $buttonId;?>" type="button"><?php echo $this->__('Invite a Friend and get Discount') ?></button>
+<script type="text/javascript">
+    //<![CDATA[
+    document.observe('dom:loaded', function () {
+        if ($('raf-invite')) {
+            $$('.raf-invite').first().setStyle({"display": "block"});
+            $('referafriend-button<?php echo $buttonId;?>').observe('click', function(e){
+                Form.getElements($('raf-invite')).each(function(el){
+                    el.disabled = false;
+                });
+                $$('.raf-invite').first().addClassName('is-opened');
+            });
+            $$('.raf-invite .panel-nav__action--cancel').first().observe('click', function(e){
+                $$('.raf-invite').first().removeClassName('is-opened');
+            });
+        }
+    });
+    //]]>
+</script>

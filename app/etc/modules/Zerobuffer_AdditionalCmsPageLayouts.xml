@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config>
+ <modules>
+   <Zerobuffer_AdditionalCmsPageLayouts>
+     <codePool>local</codePool>
+     <active>true</active>
+   </Zerobuffer_AdditionalCmsPageLayouts>
+ </modules>
+</config>

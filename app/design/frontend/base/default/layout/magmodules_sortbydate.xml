@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <catalog_category_default>
+        <reference name="product_list">
+            <action method="setDefaultDirection" ifconfig="sortbydate/general/sorting_desc"><dir>desc</dir></action>
+        </reference>
+    </catalog_category_default>
+    <catalog_category_layered>
+        <reference name="product_list">
+            <action method="setDefaultDirection" ifconfig="sortbydate/general/sorting_desc"><dir>desc</dir></action>
+        </reference>
+    </catalog_category_layered>
+</layout>

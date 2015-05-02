@@ -1,0 +1,21 @@
+<?php 
+/* New Products */
+?>
+<?php  $_helper = $this->helper('catalog/output'); ?>
+<?php if (($_products = $this->getProductCollection()) && $_products->getSize()): ?>
+<?php $_columnCount = $this->getColumnCount(); ?> 
+    <?php $i=0; $v1=1; foreach ($_products->getItems() as $_product): ?>
+        <?php if ($i++%$_columnCount==0): ?>      
+        <?php endif ?> 
+          <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(150,150) ?>" width="150" height="150" alt="<?php echo $this->htmlEscape($_product->getName()) ?>" /></a>      
+          <div class="item-title">
+             <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>">
+                  <?php $prod_name = $this->htmlEscape($_product->getName()) ; 
+                  if(strlen($prod_name) > 20) {echo substr($prod_name,0,20)."...";}else {echo $prod_name;}?>
+             </a>
+          </div> <!--item-title-->
+          <?php echo $this->getPriceHtml($_product, true, '-new') ?>                     
+        <?php if ($i%$_columnCount==0 || $i==count($_products)): ?>
+        <?php endif ?>       
+    <?php endforeach; ?>
+<?php endif; ?> <!-- Endif collection -->

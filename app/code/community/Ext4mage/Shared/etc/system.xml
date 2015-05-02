@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE
+ *
+ * This source file a part of Ext4mage_Html2pdf extension
+ * all rights to this modul belongs to ext4mage.com
+ *
+ * @category    Ext4mage
+ * @package     Ext4mage_Html2pdf
+ * @copyright   Copyright (c) 2011 ext4mage (http://www.ext4mage.com)
+ */
+-->
+<config>
+    <tabs>
+        <ext4mage translate="label">
+            <label>ext4mage</label>
+            <sort_order>280</sort_order>
+        </ext4mage>
+    </tabs>
+</config>

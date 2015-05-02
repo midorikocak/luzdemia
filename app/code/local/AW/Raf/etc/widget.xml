@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<widgets>   
+    <awraf_share type="awraf/share" translate="name description"> 
+        <name>Refer A Friend Share Block</name>
+        <description>Adds widget with share buttons</description>  
+        <parameters>
+            <title translate="label"> 
+                <label>Widget Title</label>
+                <type>text</type>
+                <visible>1</visible>
+                <required>0</required>
+            </title>            
+            <link_type translate="label">
+                <label>Url Target</label>
+                <visible>1</visible>
+                <type>select</type>               
+                <values>
+                    <link_inline translate="label">
+                        <value>1</value>
+                        <label>Main Page</label>
+                    </link_inline>
+                    <default translate="label">
+                        <value>2</value>
+                        <label>Current Page</label>
+                    </default>                   
+                    <custom_page translate="label">
+                        <value>3</value>
+                        <label>Custom Page</label>
+                    </custom_page>
+                </values>
+            </link_type>
+            <custom_url translate="label">
+                <label>Custom Page Url</label>               
+                <type>text</type>
+                <depends><link_type><value>3</value></link_type></depends>
+                <visible>1</visible>                
+            </custom_url>   
+            <template translate="label">
+                <label>Template</label>
+                <visible>1</visible>
+                <type>select</type>
+                <value>aw_raf/share.phtml</value>
+                <values>
+                    <default translate="label">
+                        <value>aw_raf/share.phtml</value>
+                        <label>Default Template</label>
+                    </default>
+                </values>
+                <sort_order>10</sort_order>
+            </template>                 
+        </parameters>     
+    </awraf_share>   
+</widgets> 

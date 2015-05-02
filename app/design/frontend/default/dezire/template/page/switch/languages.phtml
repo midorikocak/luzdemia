@@ -1,0 +1,52 @@
+
+<?php
+/**
+ * Language switcher template
+ *
+ * @see Mage_Page_Block_Switch
+ */
+?>
+ 
+
+<?php if(count($this->getStores())>1): ?>
+<div class="language-box">
+  <div class="language-switcher">
+   <div style="display: none;" class="language_detail">
+   <?php foreach ($this->getStores() as $_lang): ?>
+       <?php //if ($_lang->getCode() != 'default'): ?>
+          <div class="language-inner">
+            <a href="<?php echo $this->getCurrentUrl() . '?___store=' . $_lang->getCode();?>">
+               <img src="<?php echo $this->getSkinUrl('images/flag_' . $this->htmlEscape($_lang->getCode()) . '.png') ?>" width="16" height="11" alt="<?php echo $this->htmlEscape($_lang->getName()) ?>" />
+               <span><?php echo $this->htmlEscape($_lang->getName()) ?></span>
+            </a>
+          </div>  <!--language-inner -->
+       <?php //endif;?>
+   <?php endforeach;?>
+  </div> <!--language_detail-->
+  <div class="select_lang"> 
+     <?php $storecode = Mage::app()->getStore()->getCode(); ?>
+     <img src="<?php echo $this->getSkinUrl('images/flag_' . $storecode . '.png') ?>" width="16" height="11" alt="<?php echo $this->htmlEscape($_lang->getName()) ?>"/> 
+     <span><?php echo Mage::app()->getStore()->getName(); ?></span> <span class="caret"></span>
+  </div> <!--select_lang-->
+  </div> <!--language-switcher-->
+</div> <!--language-box-->
+<script type="text/javascript">
+        jQuery(function() {
+                jQuery(".language-switcher").hover(function() {
+                        jQuery('.select_lang').addClass('active');
+                        jQuery(".language_detail").stop(true, true).slideDown(200, "easeInSine");
+                        },  
+                        function() {
+                        jQuery('.select_lang').removeClass('active');
+                        jQuery(".language_detail").stop(true, true).fadeOut(100, "easeInCubic");
+                        });
+
+        });
+</script>
+<?php endif;?>
+
+
+
+       
+
+

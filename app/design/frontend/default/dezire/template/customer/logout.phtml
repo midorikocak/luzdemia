@@ -1,0 +1,21 @@
+
+<div class="dezireping-cart">
+<div class="container top">
+ <div class="row">
+  <div class="span12">
+    <div class="wrapper">
+     <h2 class="nopadding"><?php echo Mage::helper('customer')->__('You are now logged out') ?></h2>
+    </div> <!--wrapper-->
+  </div> <!--span12-->
+ </div> <!--row-->
+ <div class="row">
+  <p><?php echo Mage::helper('customer')->__('You have logged out and will be redirected to our homepage in 5 seconds.') ?></p>
+ </div> <!--row-->
+<script type="text/javascript">
+//<![CDATA[
+    setTimeout(function(){ location.href = '<?php echo $this->getUrl() ?>'},5000);
+//]]>
+</script>
+</div> <!--container top-->
+</div> <!--dezireping-cart-->
+<br />

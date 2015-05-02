@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE
+ *
+ * This source file a part of Ext4mage extension
+ * all rights to this modul belongs to ext4mage.com
+ *
+ * @category    Ext4mage
+ * @package     Ext4mage_shared
+ * @copyright   Copyright (c) 2011 ext4mage (http://www.ext4mage.com)
+ */
+-->
+<config>
+    <modules>
+        <ext4mage_Common>
+            <version>1.1.0</version> 
+        </ext4mage_Common>
+    </modules>
+    <global>
+        <models>
+            <ext4mageshared>
+                <class>Ext4mage_Shared_Model</class>
+            </ext4mageshared>
+        </models>
+        <helpers>
+            <ext4mageshared>
+                <class>Ext4mage_Shared_Helper</class>
+            </ext4mageshared>
+        </helpers>
+    </global>
+</config>

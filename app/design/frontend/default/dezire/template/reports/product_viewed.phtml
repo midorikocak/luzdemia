@@ -1,0 +1,19 @@
+
+<?php if ($_products = $this->getRecentlyViewedProducts()): ?>
+<div class="block block-list block-viewed">
+    <div class="block-title">
+        <?php echo $this->__('Recently Viewed') ?>
+    </div>
+    <div class="block-content">
+        <ol id="recently-viewed-items">
+        <?php foreach ($_products as $_item): ?>
+            <li class="item">
+               
+               <a class="product-name" href="<?php echo $this->getProductUrl($_item) ?>"><?php echo $prod_name= $this->helper('catalog/output')->productAttribute($_item, $_item->getName() , 'name'); ?></a> 
+            </li>
+        <?php endforeach; ?>
+        </ol>
+        <script type="text/javascript">decorateList('recently-viewed-items');</script>
+    </div><!--block-content-->
+</div><!--block block-list block-viewed-->
+<?php endif; ?>

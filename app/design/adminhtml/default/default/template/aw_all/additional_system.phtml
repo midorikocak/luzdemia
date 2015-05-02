@@ -1,0 +1,49 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Raf
+ * @version    2.1.5
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><div class="entry-edit-head collapseable">
+    <a id="<?php echo $this->getHtmlId()?>-head" href="javascript:void(0);" onclick="Fieldset.toggleCollapse('<?php echo $this->getHtmlId()?>'); saveState('<?php echo $this->getHtmlId()?>');return false;">
+        <?php echo $this->getHeaderText();?>
+    </a>
+</div>
+<fieldset class="" id="<?php echo $this->getHtmlId()?>" style="display: none;">
+    <legend><?php echo $this->getHeaderText();?></legend>
+    <div>
+        <span><?php echo $this->__('Memory limit');?> : <?php echo $this->getPhpInfo('memory_limit');?></span>
+    </div>
+    <div>
+        <span><?php echo $this->__('Max execution time');?> : <?php echo $this->getPhpInfo('max_execution_time');?></span>
+    </div>
+    <div>
+        <span><?php echo $this->__('Operation system');?> : <?php echo $this->getSystemInfo();?></span>
+    </div>
+    <div>
+        <span>
+            <a href="<?php echo $this->getMagentoRequirementsUrl();?>" target="_blank" title="<?php echo $this->__('Magento system requirements');?>">
+                <?php echo $this->__('Magento system requirements');?>
+            </a>
+        </span>
+    </div>
+</fieldset>

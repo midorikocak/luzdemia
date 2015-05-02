@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE
+ *
+ * This source file a part of Ext4mage_Shared extension
+ * all rights to this modul belongs to ext4mage.com
+ *
+ * @category    Ext4mage
+ * @package     Ext4mage_Shared
+ * @copyright   Copyright (c) 2011 ext4mage (http://www.ext4mage.com)
+ */
+-->
+<config>
+	<menu>
+		<ext4mage translate="title" module="ext4mageshared">
+			<title>ext4mage</title>
+			<sort_order>78</sort_order>              
+		</ext4mage>
+	</menu>
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+				<children>
+					<ext4mage>
+						<title>ext4mage Modules</title>
+						<sort_order>78</sort_order>
+					</ext4mage>
+					<system>
+						<children>
+							<config>
+								<children>
+									<ext4mage translate="title" module="ext4mageshared">
+										<title>ext4mage section</title>
+									</ext4mage>
+								</children>
+							</config>
+						</children>
+					</system>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+	
+</config>
+

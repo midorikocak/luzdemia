@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+    
+    <default>
+        <reference name="head">
+            <action method="addJs"><script>temando/autocomplete.js</script></action>
+	    <action method="addJs"><script>temando/avs.js</script></action>
+            <action method="addCss"><stylesheet>css/temando/autocomplete.css</stylesheet></action>
+        </reference>
+    </default>
+    
+    <default>
+        <reference name="before_body_end">
+            <block type='core/template' name="pcs" template='temando/temando/pcs.phtml' />
+        </reference>
+    </default>
+    
+    <etemando_pcs_product>
+        <reference name="root">
+            <block type="temando/product_shipping_methods" name="root" template="temando/temando/product/shipping/methods.phtml"/>
+        </reference>
+    </etemando_pcs_product>
+    
+    <etemando_wizard_index>
+        <label>Temando Wizard</label>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>temando/temando/wizard.phtml</template>
+            </action>
+            <block type="page/html" template="temando/temando/wizard/left.phtml" name="temando-left" as="temando-left"/>
+            <block type="temando/wizard_html" template="temando/temando/wizard/account.phtml" name="content" as="content"/>
+        </reference>
+    </etemando_wizard_index>
+    
+    <checkout_onepage_index>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/temando/checkout.js</name>
+            </action>
+            <action method="addCss">
+                <stylesheet>css/temando/styles.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="checkout.onepage.shipping_method.available">
+            <block name="checkout.onepage.shipping_method.available" type="temando/onepage_shipping_method_available" template="temando/temando/shipping_method/available.phtml">
+                <block name="checkout.onepage.shipping_method.available.single" as="options_single" type="temando/onepage_shipping_method_available_single" template="temando/temando/shipping_method/available/options_single.phtml" />
+            </block>
+        </reference>       
+    </checkout_onepage_index>
+    
+    <checkout_onepage_shippingmethod>
+        <reference name="root">
+            <block name="root" type="temando/onepage_shipping_method_available" template="temando/temando/shipping_method/available.phtml" >
+                <block name="checkout.onepage.shipping_method.available.single" as="options_single" type="temando/onepage_shipping_method_available_single" template="temando/temando/shipping_method/available/options_single.phtml" />
+            </block>
+        </reference>
+    </checkout_onepage_shippingmethod>
+    
+    <checkout_cart_index>
+        <reference name="checkout.cart.shipping">
+            <action method="setTemplate" ifconfig='carriers/temando/active'>
+                <template>temando/temando/checkout/cart/shipping.phtml</template>
+            </action>
+        </reference>
+
+    </checkout_cart_index>
+
+    <catalog_product_view>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/temando/product.js</name>
+            </action>
+            <action method="addCss">
+                <stylesheet>css/temando/product.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="right">
+            <block type="temando/product_shipping" name="temando.product.shipping" before="-" template="temando/temando/product/shipping.phtml"/>
+        </reference>
+    </catalog_product_view>
+    
+    <customer_address_form>
+        <reference name="my.account.wrapper">
+            <block type="customer/address_edit" name="customer_address_edit" template="temando/temando/customer/address/edit.phtml"/>
+        </reference>
+    </customer_address_form>
+    
+    <checkout_multishipping_customer_address translate="label">
+        <reference name="customer_address_edit">
+            <block type="customer/address_edit" name="customer_address_edit" template="temando/temando/customer/address/edit.phtml"/>
+        </reference>
+    </checkout_multishipping_customer_address>
+   
+    <paypal_express_review>
+	<reference name="before_body_end">
+	    <remove name="pcs" />
+	</reference>
+    </paypal_express_review>
+   
+</layout>

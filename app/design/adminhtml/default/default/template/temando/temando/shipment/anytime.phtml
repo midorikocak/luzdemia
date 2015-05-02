@@ -1,0 +1,76 @@
+<?php
+/* @var $this Temando_Temando_Block_Adminhtml_Shipment_Edit_Tab_Form_Anytime */
+?>
+
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4><?php echo $this->__('Pick-up Date'); ?></h4>
+    </div>
+    <div class="fieldset">
+        <?php if ($this->getShipment()->isStatusOpened()): ?>
+        <table cellspacing="0" class="form-list">
+            <tr>
+                <td class="label"><input type="radio" name="ready" value="" onclick="$('select_pick_up').hide();" id="ready_0" /></td>
+                <td class="value"><label><?php echo $this->__('ASAP'); ?></label></td>
+            </tr>
+            <tr>
+                <td class="label"><input type="radio" name="ready" value="1" onclick="$('select_pick_up').show();" id="ready_1" /></td>
+                <td class="value"><label><?php echo $this->__('Select Date:'); ?></label></td>
+            </tr>
+        </table>
+        <?php endif; ?>
+        <div id="select_pick_up">
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Date'); ?></label></td>
+                    <td class="value">
+                        <?php if ($this->getShipment()->isStatusOpened()): ?>
+                            <input id="ready_date" name="ready_date" value="<?php echo $this->getShipment()->getReadyDate(); ?>" class="input-text" />
+                            <img id="ready_date_trigger" alt="Select date" title="Select date" class="v-middle" src="<?php echo $this->getSkinUrl('images/grid-cal.gif'); ?>" />
+                            <script type="text/javascript">
+                                //<![CDATA[
+                                    Calendar.setup({
+                                        inputField: "ready_date",
+                                        ifFormat: "%Y-%m-%e",
+                                        showsTime: false,
+                                        button: "ready_date_trigger",
+                                        align: "Bl",
+                                        singleClick : true
+                                    });
+                                //]]>
+                            </script>
+                        <?php else: ?>
+                            <?php echo $this->getShipment()->getReadyDate(); ?>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Time of Day'); ?></label></td>
+                    <td class="value">
+                        <?php if ($this->getShipment()->isStatusOpened()): ?>
+                            <select id="ready_time" name="ready_time" class="select">
+                                <option value=""></option>
+                                <?php foreach (Mage::getModel('temando/system_config_source_readytime')->toOptionArray() as $_time): ?>
+                                    <option value="<?php echo $_time['value']; ?>" <?php if ($_time['value'] == $this->getShipment()->getReadyTime()): ?> selected="selected"<?php endif;?>><?php echo $_time['label']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        <?php else: ?>
+                            <?php echo $this->getShipment()->getReadyTime(); ?>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <?php if ($this->getShipment()->isStatusOpened()): ?>
+        <script type="text/javascript">
+            <?php if ($this->getShipment()->getReadyDate()): ?>
+            $('ready_1').checked = true;
+            $('select_pick_up').show();
+            <?php else: ?>
+            $('ready_0').checked = true;
+            $('select_pick_up').hide();
+            <?php endif; ?>
+        </script>
+        <?php endif; ?>
+    </div>
+</div>

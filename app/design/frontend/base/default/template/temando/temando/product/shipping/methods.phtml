@@ -1,0 +1,27 @@
+<?php if (($_shippingRateGroups = $this->getEstimateRates())): ?>
+<?php Mage::log($_shippingRateGroups, null, 'temando.log', true); ?>
+<dl class="sp-methods">
+    <?php foreach ($_shippingRateGroups as $code => $_rates): ?>
+        <dt><?php echo $this->getCarrierName($code) ?></dt>
+        <dd>
+            <ul>
+            <?php foreach ($_rates->getAllRates() as $_rate): ?>
+                <li<?php if ($_rate->getErrorMessage()) echo ' class="error-msg"';?>>
+                   <?php if ($_rate->getErrorMessage()): ?>
+                        <?php echo $_rate->getErrorMessage() ?>
+                   <?php else: ?>
+                        <label for="s_method_<?php echo $_rate->getCode() ?>"><?php echo $_rate->getMethodTitle() ?>
+                        <?php $_excl = $this->formatPrice($_rate->getPrice()); ?>
+                        <?php echo $_excl; ?>
+                        <?php /* if ($this->helper('tax')->displayShippingBothPrices() && $_incl != $_excl): ?>
+                            (<?php echo $this->__('Incl. Tax'); ?> <?php echo $_incl; ?>)
+                        <?php endif; */ ?>
+                        </label>
+                   <?php endif ?>
+                </li>
+            <?php endforeach; ?>
+            </ul>
+        </dd>
+    <?php endforeach; ?>
+</dl>
+<?php endif; ?>

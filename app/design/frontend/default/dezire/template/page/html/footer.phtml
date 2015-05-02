@@ -1,0 +1,107 @@
+<?php $footer_type = Mage::getStoreConfig('deziresettings/deziresettings_appearance/footer'); ?>
+
+
+<section>
+<?php //echo $this->getLayout()->createBlock('cms/block')->setBlockId('dezire_logo_brand_block')->toHtml() ?>
+</section>
+
+<footer>
+
+<div class="footer <?php echo $footer_type;?>">
+
+
+<!-- BEGIN INFORMATIVE FOOTER -->  
+  <?php switch ($footer_type) {
+      case 'informative' :
+          ?>
+<div class="inner">
+<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('dezire_footer_about_us')->toHtml() ?>
+<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('dezire_footer_information_links_block')->toHtml() ?>
+  <div class="footer-column-last">
+     <?php echo $this->getChildHtml('footerNewsletter') ?>
+    <?php if (Mage::getStoreConfig('deziresettings/deziresettings_social/social_link')) { ?>
+    <div class="social">
+       <h4><?php echo $this->__('Follow Us') ?></h4>
+       <ul class="link">
+          <li class="fb"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('deziresettings/deziresettings_social/facebook_social_link_path') ?>" title="<?php echo $this->__('Facebook');?>"></a></li>
+          <li class="tw"><a target="_blank" rel="nofollow"  href="<?php echo Mage::getStoreConfig('deziresettings/deziresettings_social/twitter_social_link_path') ?>" title="<?php echo $this->__('Twitter');?>"></a></li>
+          <li class="pintrest"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('deziresettings/deziresettings_social/pinterest_social_link_path') ?>" title="<?php echo $this->__('Pinterest');?>"></a></li>
+          <?php /*
+          <li class="googleplus"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('deziresettings/deziresettings_social/googleplus_social_link_path') ?>" title="<?php echo $this->__('GooglePlus');?>"></a></li>
+
+          <li class="linkedin"><a  target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('deziresettings/deziresettings_social/linkedin_social_link_path') ?>" title="<?php echo $this->__('Linkedin');?>"></a></li>
+          <li class="rss"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('deziresettings/deziresettings_social/rss_social_link_path') ?>" title="<?php echo $this->__('RSS');?>"></a></li>
+          <li class="youtube"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('deziresettings/deziresettings_social/youtube_social_link_path') ?>" title="<?php echo $this->__('Youtube');?>"></a></li>
+          */?>
+          <li class="instagram"><a target="_blank" rel="nofollow" href="http://instagram.com/luzdemia" title="<?php echo $this->__('Instagram');?>"></a></li>
+       </ul>
+    </div> <!--social-->
+    <?php } ?>
+  </div> <!--footer-column-last-->
+</div> <!--inner-->
+
+<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('dezire_footer_links')->toHtml() ?>
+
+<!-- BEGIN SIMPLE FOOTER -->  
+          <?php
+          break;
+      case 'simple' :
+      default: ?>
+     
+<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('dezire_footer_links')->toHtml() ?>
+
+     <?php     
+  }
+  ?> 
+
+</div> <!--footer-->
+
+</footer>
+
+<div class="orange-slider" style="display:none">
+  <div class="icons">
+    <a  class="show_hide" id="questionbox-side-phonebutton" href="javascript:void(0)"><i class="icon-phones"></i></a>
+    <a class="show_hide1" id="questionbox-side-emailbutton" href="javascript:void(0)"><i style="font-size:20px" class="icon-email"></i></a> 
+  </div>
+  <div class="text alignleft"><?php echo $this->__('QUESTIONS?') ?></div>
+</div>
+
+<div id="hideShow" style="text-align:left;display:none">
+<div class="right-side-content hidden1">
+   <!--Contact Static Block -->
+   <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('dezire_rhs_contact_form_block')->toHtml() ?> 
+   <a href="javascript:void(0)" id="hideDiv" class="slider-close"></a>
+</div> <!--right-side-content hidden1-->
+</div> <!--#hideShow-->
+
+<!-- Contact Us Form -->
+<?php echo $this->getChildHtml('contactForm') ?>
+
+<script language=javascript type='text/javascript'>
+
+jQuery('.show_hide').click(function(){
+            jQuery("#hideShow").show(); 
+            jQuery("#hideShow1").hide();
+        });
+
+jQuery('.show_hide1').click(function(){
+            jQuery("#hideShow1").show();
+            jQuery("#hideShow").hide(); 
+        });
+
+jQuery('#hideDiv').click(function(){
+            jQuery("#hideShow").hide(); 
+        });
+
+jQuery('#hideDiv1').click(function(){
+            jQuery("#hideShow1").hide(); 
+        });
+
+</script>
+        
+        <!-- Midori Debug -->
+        <?php if (Mage::getModel('customer/session')->getUserLogin(true)): //true means that the value will be removed from session after this call?>
+           <script>
+           console.log('user logged in');
+           </script>
+        <?php endif;?>

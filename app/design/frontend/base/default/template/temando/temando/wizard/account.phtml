@@ -1,0 +1,80 @@
+<div class="page-head">
+    <h3><?php echo $this->__('Temando Account Details') ?></h3>
+</div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<h4><?php echo $this->__('We have provided you with test credentials. To go live, enter your unique details.'); ?></h4>
+<form action="<?php echo $this->getUrl('*/*/save', array('_current' => true)) ?>" method="post" id="form-validate">
+    <fieldset class="group-select wide">
+        <legend><?php echo $this->__('Account Details') ?></legend>
+        <h4 class="legend"><?php echo $this->__('Account Details') ?></h4>
+        <ul>
+            <li>
+                <div class="input-box">
+                    <label for="sandbox"><?php echo $this->__('Mode') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <?php echo $this->getHtmlSelect('mode'); ?>
+                    <p style="margin-top:4px; line-height:1.3em; color:#666;">
+                        <small><?php echo $this->__('Sandbox is used for testing.') ?></small>
+                    </p>
+                </div>
+
+            </li>
+            <li>
+                <div class="input-box">
+                    <label for="general_client"><?php echo $this->__('Client ID') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="general_client" value="<?php echo Mage::helper('temando')->getConfigData('general/client'); ?>" class="required-entry input-text">
+                    <p style="margin-top:4px; line-height:1.3em; color:#666;">
+                        <small><?php echo $this->__('If you are unsure contact <a href="mailto:support@temando.com">support@temando.com</a>.') ?></small>
+                    </p>               
+                </div>
+            </li>
+            <li>
+                <div class="input-box">
+                    <label for="general_username"><?php echo $this->__('Login ID') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="general_username" value="<?php echo Mage::helper('temando')->getConfigData('general/username'); ?>" class="required-entry input-text">
+                    <p style="margin-top:4px; line-height:1.3em; color:#666;">
+                        <small><?php echo $this->__('The Login ID created when setting up your Temando.com profile.') ?></small>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="input-box">
+                    <label for="general_password"><?php echo $this->__('Password') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <input type="password" name="general_password" value="<?php echo Mage::helper('temando')->getConfigData('general/password'); ?>" class="required-entry input-text">
+                    <p style="margin-top:4px; line-height:1.3em; color:#666;">
+                        <small><?php echo $this->__('The password created when setting up your Temando.com profile.') ?></small>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="input-box">
+                    <label for="payment_type"><?php echo $this->__('Payment Type') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <?php echo $this->getHtmlSelect('payment'); ?>
+                    <p style="margin-top:4px; line-height:1.3em; color:#666;">
+                        <small><?php echo $this->__('Account for those with a pre-approved Trade Account, otherwise select Credit.') ?></small>
+                    </p>
+                </div>
+
+            </li>
+        </ul>
+    </fieldset>
+    <div class="button-set">
+        <p class="required">* <?php echo $this->__('Required Fields') ?></p>
+        <button class="form-button" type="button" onclick="setLocation('<?php echo $this->getCancelUrl(); ?>');"><span><?php echo $this->__('Cancel') ?></span></button>
+        <button class="form-button" type="button" onclick="setLocation('<?php echo $this->getUrl('*/*/skip', array('_current' => true)) ?>');"><span><?php echo $this->__('Skip') ?></span></button>
+        <button class="form-button" type="submit"><span><?php echo $this->__('Continue') ?></span></button>
+    </div>
+</form>
+<script type="text/javascript">
+    var dataForm = new VarienForm('form-validate');
+</script>
+

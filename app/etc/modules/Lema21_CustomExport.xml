@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Lema21
+ * @category   Lema21
+ * @package    Lema21_CustomExport
+ * @copyright  Copyright (c) 2010-2011 Unicode Systems. (http://www.unicodesystems.in)
+ * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ 
+  Module to export orders to custom CSV
+
+  CSV template file available in Lema21/CustomExport/Template/template.csv
+
+  Possible Entities: order|customer|address
+  
+  Example: 
+  order.increment_id | order.status | order.grand_total | customer.email
+    
+ */-->
+<config>
+    <modules>
+        <Lema21_CustomExport>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Lema21_CustomExport>
+    </modules>
+</config>

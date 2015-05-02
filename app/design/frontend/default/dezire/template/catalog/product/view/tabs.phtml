@@ -1,0 +1,65 @@
+
+<?php $custom_tab1 = Mage::getModel('cms/block')->load('dezire_custom_tab1'); ?>
+<?php $custom_tab2 = Mage::getModel('cms/block')->load('dezire_custom_tab2'); ?>
+<div class="addtional-info">
+<div class="tab-box">
+<ul class="product-tabs">
+    <?php foreach ($this->getTabs() as $_index => $_tab): ?>
+        <?php if($this->getChildHtml($_tab['alias'])): ?>
+            <li id="product_tabs_<?php echo $_tab['alias'] ?>" class="tabLink<?php echo !$_index?' activeLink first':(($_index==count($this->getTabs())-1)?' last':'')?>"><a href="#"><?php echo $_tab['title']?></a></li>
+        <?php endif; ?>
+    <?php endforeach; ?>
+    <?php if($custom_tab1->getIsActive()): ?>
+        <li id="product_tabs_custom"><a href="#"><?php echo $custom_tab1->getTitle(); ?></a></li>
+    <?php endif; ?>
+    <?php if($custom_tab2->getIsActive()): ?>
+        <li id="product1_tabs_custom"><a href="#"><?php echo $custom_tab2->getTitle(); ?></a></li>
+    <?php endif; ?>
+</ul>
+</div> <!--tab-box-->
+<?php foreach ($this->getTabs() as $_index => $_tab): ?>
+    <?php if($this->getChildHtml($_tab['alias'])): ?>
+        <div class="tabcontent" id="product_tabs_<?php echo $_tab['alias'] ?>_contents"><div class="product-tabs-content-inner clearfix"><?php echo $this->getChildHtml($_tab['alias']) ?></div></div>
+    <?php endif; ?>
+<?php endforeach; ?>
+<?php if($custom_tab1->getIsActive()): ?>
+    <div class="tabcontent" id="product_tabs_custom_contents"><div class="product-tabs-content-inner clearfix"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('dezire_custom_tab1')->toHtml() ?></div></div>
+<?php endif; ?>
+<?php if($custom_tab2->getIsActive()): ?>
+    <div class="tabcontent" id="product1_tabs_custom_contents"><div class="product-tabs-content-inner clearfix"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('dezire_custom_tab2')->toHtml() ?></div></div>
+<?php endif; ?>
+<script type="text/javascript">
+//<![CDATA[
+Varien.Tabs = Class.create();
+Varien.Tabs.prototype = {
+  initialize: function(selector) {
+    var self=this;
+    $$(selector+' a').each(this.initTab.bind(this));
+  },
+
+  initTab: function(el) {
+      el.href = 'javascript:void(0)';
+      if ($(el.parentNode).hasClassName('activeLink')) {
+        this.showContent(el);
+      }
+      el.observe('click', this.showContent.bind(this, el));
+  },
+
+  showContent: function(a) {
+    var li = $(a.parentNode), ul = $(li.parentNode);
+    ul.select('li', 'ol').each(function(el){
+      var contents = $(el.id+'_contents');
+      if (el==li) {
+        el.addClassName('activeLink');
+        contents.show();
+      } else {
+        el.removeClassName('activeLink');
+        contents.hide();
+      }
+    });
+  }
+}
+new Varien.Tabs('.product-tabs');
+//]]>
+</script>
+</div> <!--addtional-info-->

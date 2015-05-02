@@ -1,0 +1,33 @@
+<?php 
+/* Top shopping Cart  */ 
+?>
+<!-- <div class="top-cart-contain top-cart-contain-fake"> -->
+        <div class="mini-cart">
+            <div class="basket_top dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"> 
+            
+                <a href="<?php echo $this->getUrl('checkout/cart') ?>" style="padding-bottom:15px;"><span><?php echo $this->__('My Cart');?><?php if(Mage::helper('checkout/cart')->getSummaryCount() > 1) { echo " (" . Mage::helper('checkout/cart')->getSummaryCount() .")"; } elseif(Mage::helper('checkout/cart')->getSummaryCount() == 1) { echo " (1)"; }  else {echo " (0)"; } ?></span></a></div>
+                  <div class="top-cart-content top-cart-content-2 arrow_box">
+                   <?php $_items = $this->getRecentItems() ?>
+                   <?php if(count($_items)): ?>   
+                     <div class="block-subtitle"><?php echo $this->__('Recently added item(s)') ?></div> 
+                      <ul id="cart-sidebar" class="mini-products-list">
+                         <?php foreach($_items as $_item): ?>
+                             <?php echo $this->getItemHtml($_item) ?>
+                         <?php endforeach; ?>               
+                      </ul>                              
+                      <div class="top-subtotal">
+                      <?php echo $this->__('Subtotal:');?> 
+                            <span class="price"></span>
+                            <span class="price"><?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?></span>
+                       
+                      </div> <!--prices-wrap-->
+                      <div class="actions">
+                        <button type="button" class="view-cart" onclick="window.location='<?php echo $this->getUrl('checkout/cart') ?>';" title="<?php echo $this->__('View Cart') ?>" ><span><?php echo $this->__('View Cart') ?></span></button>                 
+                        <button type="button" title="<?php echo $this->__('Checkout') ?>" class="btn-checkout" onclick="window.location='<?php echo $this->getCheckoutUrl() ?>';"><span><?php echo $this->__('Checkout') ?></span></button>                         
+                      </div>  <!--actions-->
+                     <?php else: ?>               
+                          <p class="a-center noitem"><?php echo $this->__('You have no items in your shopping cart.') ?></p>               
+                      <?php endif ?>
+                </div> <!--top-cart-content-->
+          </div> <!--mini-cart-->
+<!--        </div> -->

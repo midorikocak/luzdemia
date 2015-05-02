@@ -1,0 +1,56 @@
+<?php
+
+/* @var $this Temando_Temando_Block_Adminhtml_Shipment_Edit_Tab_Form_Products */
+?>
+
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4><?php echo $this->__('Items Ordered'); ?></h4>
+    </div>
+</div>
+<div class="grid np">
+    <div class="hor-scroll">
+        <table cellspacing="0" class="box np">
+            <col />
+            <col style="width: 100px;" />
+            <col style="width: 40px;" />
+            <col style="width: 70px;" />
+            <col style="width: 70px;" />
+            <col style="width: 70px;" />
+            <col style="width: 70px;" />
+            <thead>
+                <tr class="headings">
+                    <td colspan="4" style="visibility:hidden;"></td>
+                    <th colspan="3" class="a-center last"><?php echo $this->__('Dimensions'); ?></th>
+                </tr>
+                <tr class="headings">
+                    <th><?php echo $this->__('Product'); ?></th>
+                    <th><?php echo $this->__('SKU'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Qty'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Weight'); ?></th>
+		    <th class="a-center"><?php echo $this->__('Length'); ?></th>
+		    <th class="a-center last"><?php echo $this->__('Width'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Height'); ?></th>
+                </tr>
+            </thead>
+            <?php $_i = 0; foreach ($this->getShipment()->getOrder()->getItemsCollection() as $_item): ?>
+                <tbody>
+                <?php if (!$_item->getParentItem()): /* @var $_item Mage_Sales_Model_Order_Item */ ?>
+                    <?php 
+			Mage::helper('temando')->applyTemandoParamsToItem($_item);
+		    ?>
+                    <tr class="<?php echo ++$_i % 2 ? 'odd' : 'even'; ?>">
+                        <td><?php echo $_item->getName(); ?></td>
+                        <td><?php echo $_item->getSku(); ?></td>
+                        <td><?php echo (float)$_item->getQtyOrdered(); ?></td>
+                        <td><?php echo (float)$_item->getWeight() . ' ' . $this->getWeightUnitText(); ?></td>
+                        <td><?php echo (float)$_item->getTemandoLength() . ' ' . $this->getMeasureUnitText(); ?></td>
+                        <td><?php echo (float)$_item->getTemandoWidth() . ' ' . $this->getMeasureUnitText(); ?></td>
+			<td class="last"><?php echo (float)$_item->getTemandoHeight() . ' ' . $this->getMeasureUnitText(); ?></td>
+                    </tr>
+                <?php endif; ?>
+                </tbody>
+            <?php endforeach; ?>
+        </table>
+    </div>
+</div>

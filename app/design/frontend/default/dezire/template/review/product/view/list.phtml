@@ -1,0 +1,105 @@
+<?php $_items = $this->getReviewsCollection()->getItems();?>
+<div class="box-collateral box-reviews" id="customer-reviews">
+    <?php echo $this->getChildHtml('review_form') ?>
+    <?php if (count($_items)):?>
+
+       <div class="box-reviews2">
+        <h3><?php echo $this->__('Customer Reviews') ?></h3>
+      
+           
+       
+           <?php echo $this->getChildHtml('toolbar') ?>
+           <div class="box visible" >
+           <?php $count_reviews=0;?>
+            <ul>
+            <?php foreach ($_items as $_review):
+                 if($count_reviews==1) {
+                 ?>
+                <div id="showHideReview" style="display:none;"> 
+                <?php }?>
+              <li>
+                <?php $_votes = $_review->getRatingVotes(); ?>
+                <?php if (count($_votes)): ?>
+                <table class="ratings-table" >
+                    <col width="1" />
+                    <col />
+                    <tbody>
+                        <?php foreach ($_votes as $_vote): ?>
+                        <tr>
+                            <th><?php echo $this->escapeHtml($_vote->getRatingCode()) ?></th>
+                            <td>
+                                <div class="rating-box">
+                                    <div class="rating" style="width:<?php echo $_vote->getPercent() ?>%;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+              
+
+            <div class="review" >
+            <h6>
+                <a href="<?php echo $this->getReviewUrl($_review->getId()) ?>">
+                    
+                <?php echo $this->htmlEscape($_review->getTitle()) ?></a>
+                </h6>
+                <small>
+                <?php echo $this->__('Review by <span>%s</span>', $this->htmlEscape($_review->getNickname())) ?><?php echo $this->__('(on %s)', $this->formatDate($_review->getCreatedAt()), 'long') ?>
+                </small> 
+                <div class="review-txt"><?php echo nl2br($this->htmlEscape($_review->getDetail())) ?>
+                </div>
+                
+                </div><!--review-->
+                  <?php endif; ?>
+                </li>
+               
+              
+              <?php $count_reviews++;?>
+        <?php endforeach; 
+           if($count_reviews>1) {
+                 ?>
+                </div> 
+                <?php }?>
+          </ul>
+          </div><!--box visible-->
+          
+          <div class="actions">
+          <a type="button" id="show_review_all"  class="button view-all"  onclick="showDiv()" > 
+    <span><?php echo $this->__('View all');?></span></a>
+
+    <a type="button" id="hide_review"  class="button view-all"  style="display:none" onclick="HideDiv()" > 
+    <span><?php echo $this->__('Hide');?></span></a>
+        </div>
+            
+        <?php //echo $this->getChildHtml('toolbar') ?>
+         </div>  
+
+    <?php endif;?>
+<div class="clear"></div>
+
+</div> <!--box-collateral box-reviews-->
+
+<script type="text/javascript" language="javascript">
+    function showDiv()
+    {
+            document.getElementById('showHideReview').style.display = ""; 
+            document.getElementById('hide_review').style.display = "";
+             document.getElementById('show_review_all').style.display = "none";
+
+       
+        
+    }
+    function HideDiv()
+    {
+     
+            document.getElementById('showHideReview').style.display = "none"; 
+            document.getElementById('show_review_all').style.display = "";
+            document.getElementById('hide_review').style.display = "none";
+       
+        
+    }
+</script>
+
+
+

@@ -1,0 +1,50 @@
+
+<?php if ($this->getIsNeedToDisplaySideBar()):?>
+<div class="block block-list block-cart">
+    <?php $_cartQty = $this->getSummaryCount() ?>
+    <div class="block-title">
+        <?php echo $this->__('My Cart') ?>
+    </div>
+    <div class="block-content">
+    <?php if ($_cartQty>0): ?>
+        <div class="summary">
+            <?php if ($_cartQty==1): ?>
+                <p class="amount"><?php echo $this->__('There is <a href="%s">1 item</a> in your cart.', $this->getUrl('checkout/cart')) ?></p>
+            <?php else: ?>
+                <p class="amount"><?php echo $this->__('There are <a href="%s">%s items</a> in your cart.', $this->getUrl('checkout/cart'), $_cartQty) ?></p>
+            <?php endif ?>
+            <p class="subtotal">
+                <?php if ($this->canApplyMsrp()): ?>
+                    <span class="map-cart-sidebar-total"><?php echo $this->__('ORDER TOTAL WILL BE DISPLAYED BEFORE YOU SUBMIT THE ORDER'); ?></span>
+                <?php else: ?>
+                    <span class="label"><?php echo $this->__('Cart Subtotal:') ?></span> <?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?>
+                    <?php if ($_subtotalInclTax = $this->getSubtotalInclTax()): ?>
+                        <br />(<?php echo Mage::helper('checkout')->formatPrice($_subtotalInclTax) ?> <?php echo Mage::helper('tax')->getIncExcText(true) ?>)
+                    <?php endif; ?>
+                <?php endif; ?>
+            </p>
+        </div>
+    <?php endif ?>
+    <?php if($_cartQty && $this->isPossibleOnepageCheckout()): ?>
+    <div class="ajax-checkout">
+        <?php echo $this->getChildHtml('extra_actions') ?>
+        <button type="button" title="<?php echo $this->__('Checkout') ?>" class="button button-checkout" onclick="window.location='<?php echo $this->getCheckoutUrl() ?>';">
+           <span><?php echo $this->__('Checkout') ?></span>
+        </button>                                
+    </div>
+    <?php endif ?>
+    <?php $_items = $this->getRecentItems() ?>
+    <?php if(count($_items)): ?>
+        <p class="block-subtitle"><?php echo $this->__('Recently added item(s)') ?></p>
+        <ol id="cart-sidebar" class="mini-products-list">
+        <?php foreach($_items as $_item): ?>
+            <?php echo $this->getItemHtml($_item) ?>
+        <?php endforeach; ?>
+        </ol>
+        <script type="text/javascript">decorateList('cart-sidebar', 'none-recursive')</script>
+    <?php else: ?>
+        <p class="empty"><?php echo $this->__('You have no items in your dezireping cart.') ?></p>
+    <?php endif ?>
+    </div>
+</div>
+<?php endif;?>

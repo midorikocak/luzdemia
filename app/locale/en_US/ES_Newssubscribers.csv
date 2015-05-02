@@ -1,0 +1,10 @@
+"Subscribe","Subscribe"
+"Email","Email"
+"Please enter a valid email address.","Please enter a valid email address"
+"This email address is already assigned to another user.","This email address is already assigned to another user."
+"Thank you for your subscription.","Thank you for your subscription."
+"There was a problem with the subscription.","There was a problem with the subscription."
+"Confirmation request has been sent.","Confirmation request has been sent."
+"There was a problem with coupon generation.","There was a problem with coupon generation."
+"There was a problem with the subscription: %s","%s"
+

@@ -1,0 +1,11 @@
+<config>
+	<modules>
+		<Zerobuffer_PayU>
+			<active>true</active>
+			<codePool>local</codePool>
+			<depends>
+				<Mage_Payment />
+			</depends>
+		</Zerobuffer_PayU>
+	</modules>
+</config>

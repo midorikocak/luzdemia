@@ -1,0 +1,61 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Raf
+ * @version    2.1.5
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php if ($this->discountAllowed()): ?>
+<form id="awraf-discount-coupon-form" class="awraf-discount-coupon-form" action="<?php echo $this->getUrl('awraf/cart/createCoupon') ?>" method="post">
+    <div class="discount"> 
+        <h2><?php echo $this->__('Apply Discount For Referred Friends') ?></h2>
+        <div class="discount-form"> 
+            <label for="coupon_code"><?php echo $this->__('Available balance is %s', $this->getAvailableAmount()) ?></label>
+            <input type="hidden" name="remove" id="awraf-remove-discount" value="0" /> 
+            <div class="input-box"> 
+                <input class="input-text" id="awraf-amount" name="awraf-amount" value="<?php echo $this->getNumericAmount(); ?>" />
+                <?php if ($this->getMaxDiscount()): ?>
+                    <label class="raf-maximum-discount"><?php echo $this->__('Maximum allowed discount to order is %d%%', $this->getMaxDiscount()); ?></label>                
+                <?php endif; ?>
+            </div>
+            <div class="buttons-set">
+                <button type="button" title="<?php echo $this->__('Apply') ?>" class="button" onclick="awrafDiscountForm.submit(false)" value="<?php echo $this->__('Apply') ?>"><span><span><?php echo $this->__('Apply') ?></span></span></button>
+                <?php if ($this->cancelAllowed()): ?><button type="button" title="<?php echo $this->__('Cancel') ?>" class="button" onclick="awrafDiscountForm.submit(true)" value="<?php echo $this->__('Cancel') ?>"><span><span><?php echo $this->__('Cancel') ?></span></span></button><?php endif; ?>
+            </div>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    //<![CDATA[
+    var awrafDiscountForm = new VarienForm('awraf-discount-coupon-form');
+    awrafDiscountForm.submit = function (isRemove) {
+        if (isRemove) {
+            $('awraf-amount').removeClassName('required-entry');
+            $('awraf-remove-discount').value = "1";
+        } else {
+            $('awraf-amount').addClassName('required-entry');
+            $('awraf-remove-discount').value = "0";
+        }
+        return VarienForm.prototype.submit.bind(awrafDiscountForm)();
+    };
+    //]]>
+</script>
+<?php endif; ?>

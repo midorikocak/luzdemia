@@ -1,0 +1,52 @@
+<?php
+
+/* @var $this Temando_Temando_Block_Adminhtml_Shipment_Edit_Tab_Form_Status */
+?>
+
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4><?php echo $this->__('Shipment Status'); ?></h4>
+    </div>
+    <div class="fieldset">
+        <table cellspacing="0" class="form-list">
+            <tbody>
+		<?php if ($this->getShipment()->isPickup()): ?>
+		    <tr>
+			<td class="label"><label><?php echo $this->__('Selected Pickup Location'); ?></label></td>
+			<td class="value"><strong><?php echo $this->getShipment()->getPickupDescription(); ?></strong></td>
+		    </tr>
+		<?php endif; ?>
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Shipment Status'); ?></label></td>
+                    <td class="value"><strong><?php echo $this->getShipmentStatusText(); ?></strong></td>
+                </tr>
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Carrier Selected by Customer'); ?></label></td>
+                    <td class="value"><strong><?php echo $this->getCustomerSelectedQuoteDescription(); ?></strong></td>
+                </tr>
+                <?php foreach ($this->getShipment()->getOptions() as $_option): ?>
+                    <?php /* @var $_option Temando_Temando_Model_Option_Abstract */?>
+                    <tr>
+                        <td class="label"><label><?php echo $_option->getName(); ?></label></td>
+                        <td class="value"><strong><?php echo $_option->getLabel($_option->getForcedValue()); ?></strong>
+                    </tr>
+                <?php endforeach; ?>
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Shipping Paid by Customer'); ?></label></td>
+                    <td class="value"><strong><?php echo $this->formatCurrency($this->getShipment()->getOrder()->getShippingAmount()); ?></strong></td>
+                </tr>
+                <?php if ($this->getShipment()->getStatus() == Temando_Temando_Model_System_Config_Source_Shipment_Status::BOOKED): ?>
+                    <?php $_permutation = $this->getShipment()->getSelectedQuotePermutation(); ?>
+                    <tr>
+                        <td class="label"><label><?php echo $this->__('Final Carrier Selected'); ?></label></td>
+                        <td class="value"><strong><?php echo $_permutation ? $_permutation->getDescription() : $this->getShipment()->getSelectedQuote()->getDescription(); ?></strong></td>
+                    </tr>
+                    <tr>
+                        <td class="label"><label><?php echo $this->__('Final Shipping Amount'); ?></label></td>
+                        <td class="value"><strong><?php echo $this->formatCurrency($this->getShipment()->getAnticipatedCost()); ?></strong></td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+<div class="page-head">
+    <h3><?php echo $this->__('Catalog/Product') ?></h3>
+</div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<h4><?php echo $this->__('This area relates to the unique packaging of your products.'); ?></h4>
+<p style="font-size: 11px;"><?php echo $this->__('Ensure you populate your Temando tab in the Magento Catalog section.'); ?></p>
+<form action="<?php echo $this->getUrl('*/*/save', array('_current' => true)) ?>" method="post" id="form-validate">
+    <fieldset class="group-select wide">
+        <legend><?php echo $this->__('Units') ?></legend>
+        <h4 class="legend"><?php echo $this->__('Units') ?></h4>
+        <p style="font-size: 11px; color:#666;"><?php echo $this->__('Corresponds to the numerical values entered against each of your products in the catalogue.'); ?></p>
+        <ul>
+            <li>
+                <div class="input-box">
+                    <label for="measure"><?php echo $this->__('Measure Unit') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <?php echo $this->getHtmlSelect('measureUnits'); ?>
+                </div>
+
+            </li>
+            <li>
+                <div class="input-box">
+                    <label for="weight"><?php echo $this->__('Weight Unit') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <?php echo $this->getHtmlSelect('weightUnits'); ?>
+                </div>
+
+            </li>
+        </ul>
+    </fieldset>
+    <fieldset class="group-select wide">
+        <legend><?php echo $this->__('Default Packaing') ?></legend>
+        <h4 class="legend"><?php echo $this->__('Default Packaing') ?></h4>
+        <p style="font-size: 11px; color:#666;"><?php echo $this->__('The default package you create will be used for a product if you have not pre-defined dimensions of a product in the Temando Tab of the Catalog section.') ?></p>
+        <ul>
+            <li>
+                <div class="input-box">
+                    <label for="packaging"><?php echo $this->__('Packaging Type') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <?php echo $this->getHtmlSelect('packagingType'); ?>
+                </div>
+            </li>
+            <li>
+                <div class="input-box">
+                    <label for="fragile"><?php echo $this->__('Fragile') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <?php echo $this->getHtmlSelect('fragile'); ?>
+                </div>
+            </li>
+            <li>
+                <div class="input-box">
+                    <label for="length"><?php echo $this->__('Length') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="defaults_length" value="<?php echo Mage::helper('temando')->getConfigData('defaults/length'); ?>" class="required-entry input-text">
+                </div>
+            </li>
+            <li>
+                <div class="input-box">
+                    <label for="width"><?php echo $this->__('Width') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="defaults_width" value="<?php echo Mage::helper('temando')->getConfigData('defaults/width'); ?>" class="required-entry input-text">
+                </div>
+            </li>
+            <li>
+                <div class="input-box">
+                    <label for="height"><?php echo $this->__('Height') ?> <span class="required">*</span></label><br/>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="defaults_height" value="<?php echo Mage::helper('temando')->getConfigData('defaults/height'); ?>" class="required-entry input-text">
+                </div>
+            </li>
+        </ul>
+    </fieldset>
+    <div class="button-set">
+        <p class="required">* <?php echo $this->__('Required Fields') ?></p>
+        <button class="form-button" type="button" onclick="setLocation('<?php echo $this->getCancelUrl(); ?>');"><span><?php echo $this->__('Cancel') ?></span></button>
+        <button class="form-button" type="button" onclick="setLocation('<?php echo $this->getUrl('*/*/back', array('_current' => true)) ?>');"><span><?php echo $this->__('Back') ?></span></button>
+        <button class="form-button" type="button" onclick="setLocation('<?php echo $this->getUrl('*/*/skip', array('_current' => true)) ?>');"><span><?php echo $this->__('Skip') ?></span></button>
+        <button class="form-button" type="submit"><span><?php echo $this->__('Continue') ?></span></button>
+    </div>
+</form>
+<script type="text/javascript">
+    var dataForm = new VarienForm('form-validate');
+</script>
+

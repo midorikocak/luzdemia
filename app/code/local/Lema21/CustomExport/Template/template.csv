@@ -1,0 +1,1 @@
+order.increment_id|order.created_at|invoice.created_at|billing.name|shipping.name|order.order_currency_code|order.grand_total|order.status|order.payment_method|order.coupon_code|order.discount_amount|order.total_refunded|order.shipping_amount|shipping.tracking_code|billing.address|shipping.address|gift.sender|gift.recipient|gift.message|billing.telephone|customer.email

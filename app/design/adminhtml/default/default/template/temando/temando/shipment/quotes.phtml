@@ -1,0 +1,68 @@
+<?php
+
+/* @var $this Temando_Temando_Block_Adminhtml_Shipment_Edit_Tab_Form_Quotes */
+?>
+
+<div>
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4><?php echo $this->__('Available Quotes'); ?></h4>
+        </div>
+    </div>
+    <div class="grid np">
+        <div class="hor-scroll">
+            <table cellspacing="0" class="box np">
+                <col style="width: 200px;" />
+                <col />
+                <col style="width: 120px;" />
+                <col style="width: 200px;" />
+                <col style="width: 150px;" />
+                <col style="width: 120px;" />
+                <thead>
+                    <tr class="headings">
+                        <th><?php echo $this->__('Carrier'); ?></th>
+                        <th><?php echo $this->__('Delivery Method'); ?></th>
+                        <th><?php echo $this->__('ETA'); ?></th>
+                        <th><?php echo $this->__('Cost'); ?></th>
+                        <th><?php echo $this->__('Notes'); ?></th>
+                        <th class="last">&nbsp;</th>
+                    </tr>
+                </thead>
+                <?php $_i = 0; foreach ($this->getQuotes() as $_quote): /* @var $_quote Temando_Temando_Model_Quote */ ?>
+                    <tbody>
+                        <tr class="<?php echo ++$_i % 2 ? 'odd' : 'even'; ?>">
+                            <td><?php echo $_quote->getCarrier()->getCompanyName(); ?></td>
+                            <td><?php echo $_quote->getDeliveryMethod(); ?></td>
+                            <td><?php echo $_quote->getEtaDescription(); ?></td>
+                            <td><?php echo $this->formatQuotePrice($_quote); ?></td>
+                            <td><?php echo $this->getQuoteNotes($_quote); ?></td>
+                            <td class="last">
+				<?php if ($this->getShipment()->isPickup()): ?>
+				    <?php if ($this->getShipment()->isReserved() && $this->getShipment()->getAdminSelectedQuoteId() == $_quote->getId()): ?>
+					<a href="<?php echo $this->getUrl('*/*/confirmReservation', array('shipment' => $this->getShipment()->getId(), 'quote' => $_quote->getId())); ?>" onclick="javascript: return checkUnsavedChanges();"><?php echo $this->__('Confirm Reservation'); ?></a>
+				    <?php else: ?>
+					<a href="<?php echo $this->getUrl('*/*/makeReservation', array('shipment' => $this->getShipment()->getId(), 'quote' => $_quote->getId())); ?>" onclick="javascript: return checkUnsavedChanges();"><?php echo $this->__('Make Reservation'); ?></a>
+				    <?php endif; ?>
+				<?php else: ?>
+				    <a href="<?php echo $this->getUrl('*/*/book', array('shipment' => $this->getShipment()->getId(), 'quote' => $_quote->getId())); ?>" onclick="javascript: return checkUnsavedChanges();"><?php echo $this->__('Make Booking'); ?></a>
+				<?php endif; ?>
+			    </td>
+                        </tr>
+                    </tbody>
+                <?php endforeach; ?>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+function checkUnsavedChanges() {
+    var changed = $$('.changed');
+    if(changed.size() === 1) {
+	//no changes
+	return true;
+    }
+    return confirm('<?php echo $this->__('Unsaved changes will be lost. Continue booking?'); ?>');
+}
+//]]>
+</script>

@@ -1,0 +1,613 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <temando>
+            <label>Temando Settings</label>    
+            <tab>sales</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>321</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_model>temando/adminhtml_system_config_form_fieldset_general</frontend_model>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment><![CDATA[<div style="padding:10px;background-color:#fff;border:1px solid #ddd;margin-bottom:7px;">If you don't have a Temando account, you can <a href="https://www.temando.com/register/" target="_blank">Sign Up</a> immediately.</div>]]></comment>
+                    <fields>
+                        <sandbox translate="label">
+                            <label>Sandbox</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>20</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[If set to "Yes", the sandbox (testing) service will be used (usually set to "No" on a live site)]]></comment>
+                        </sandbox>
+                        <client>
+                            <label>Client ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <frontend_model>temando/adminhtml_system_config_form_field_required</frontend_model>
+                            <backend_model>temando/system_config_backend_form_field_required_text</backend_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </client>
+                        <username translate="label">
+                            <label>Login ID</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>temando/adminhtml_system_config_form_field_required</frontend_model>
+                            <backend_model>temando/system_config_backend_form_field_required_text</backend_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </username>
+                        <password translate="label">
+                            <label>Password</label>
+                            <frontend_type>password</frontend_type>
+                            <frontend_model>temando/adminhtml_system_config_form_field_required</frontend_model>
+                            <backend_model>temando/system_config_backend_form_field_required_text</backend_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </password>
+                        <payment_type translate="label">
+                            <label>Payment Type</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>temando/system_config_source_payment</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[If choosing "credit", please ensure you have sufficient credit in your Temando account]]></comment>
+                        </payment_type>
+                    </fields>
+                </general>
+                <options translate="label">
+                    <label>Options</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <show_product_estimate translate="label">
+                            <label>Show Estimate Shipping on Product Page</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Set to yes to enable a shipping estimation widget on the product page.]]></comment>
+                        </show_product_estimate>
+                        <label_type translate="label">
+                            <label>Shipping Label Type</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>temando/system_config_source_labeltype</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </label_type>
+                        <show_transit_type translate="label">
+                            <label>Show Transit Type</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>30</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_transit_type>
+                        <show_transit_time translate="label">
+                            <label>Show Transit Time</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>40</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_transit_time>
+                    </fields>
+                </options>
+                <insurance translate="label">
+                    <label>Insurance</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <status translate="label">
+                            <label>Insurance</label>
+                            <frontend_type>select</frontend_type>
+                            <frontend_model>temando/adminhtml_system_config_form_field_insurance</frontend_model>
+                            <sort_order>10</sort_order>
+                            <source_model>temando/system_config_source_insurance</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Disabled - This option is unavailable to users.<br/>Optional - The option is presented during checkout.<br/>Mandatory - Insurance must be added to all orders.]]></comment>
+                        </status>
+                    </fields>
+                </insurance>
+                <carbon translate="label">
+                    <label>Carbon Offset</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>40</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <status translate="label">
+                            <label>Carbon Offset</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <source_model>temando/system_config_source_carbon</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Disabled - This option is unavailable to users.<br/>Optional - The option is presented during checkout.<br/>Mandatory - Carbon offsets are added to all orders.]]></comment>
+                        </status>
+                    </fields>
+                </carbon>
+                <footprints translate="label">
+                    <label>Footprints</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>50</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <status translate="label">
+                            <label>Footprints</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <source_model>temando/system_config_source_footprints</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Disabled - This option is unavailable to users.<br/>Optional - The option is presented during checkout.<br/>Mandatory - Footprints charges are added to all orders.]]></comment>
+                        </status>
+                    </fields>
+                </footprints>
+                <pricing translate="label">
+                    <label>Pricing</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>60</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <error_process translate="label">
+                            <label>Error from Temando processing</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>temando/system_config_source_errorprocess</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Show error message to customer from Temando or show flat rate shipping method.]]></comment>
+                        </error_process>
+                        <method translate="label">
+                            <label>Pricing Method</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>temando/system_config_source_pricing</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[<strong>Free Shipping</strong> - no charge to customer.<br/><strong>Fixed Price / Flat Rate</strong> - customer always pays the amount set in "Shipping Price" below.<br/><strong>Dynamic Pricing</strong><br/>- <strong>All</strong>: All quotes from carriers in "allowed carriers" above are shown for the customer to choose from.<br/>- <strong>Cheapest</strong>: Only the cheapest quote is shown.<br/>- <strong>Fastest</strong>: Only the fastest quote is shown.<br/>- <strong>Cheapest and Fastest</strong>: The customer can choose between the cheapest or the fastest quote.]]></comment>
+                        </method>
+                        <shipping_fee translate="label">
+                            <label>Shipping Price</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </shipping_fee>
+                        <handling_fee translate="label">
+                            <label>Handling Fee / Markup</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </handling_fee>
+                        <handling_type translate="label">
+                            <label>Handling Fee Calculation</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>shipping/source_handlingType</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </handling_type>
+                        <rule_button translate="label">
+                            <label></label>
+                            <frontend_model>temando/adminhtml_system_config_form_button_rule</frontend_model>
+                            <frontend_type>button</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </rule_button>
+                    </fields>
+                </pricing>
+                <units translate="label">
+                    <label>Units</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>60</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <measure translate="label">
+                            <label>Measure Unit</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>temando/system_config_source_unit_measure</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[The units used for product measurements]]></comment>
+                        </measure>
+                        <weight translate="label">
+                            <label>Weight Unit</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>temando/system_config_source_unit_weight</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[The units used for product weights]]></comment>
+                        </weight>
+                    </fields>
+                </units>
+                <defaults translate="label">
+                    <label>Packaging</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>70</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment><![CDATA[Default values will be used for all products that do not have product specific dimensions & packaging information configured.]]></comment>
+                    <fields>
+                        <packaging translate="label">
+                            <label>Packaging</label>
+                            <frontend_type>select</frontend_type>
+                            <frontend_model>temando/adminhtml_system_config_form_field_required</frontend_model>
+                            <source_model>temando/system_config_source_shipment_packaging</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </packaging>
+                        <fragile translate="label">
+                            <label>Fragile</label>
+                            <frontend_type>select</frontend_type>
+                            <frontend_model>temando/adminhtml_system_config_form_field_required</frontend_model>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </fragile>
+                        <length translate="label">
+                            <label>Length</label>
+                            <frontend_model>temando/adminhtml_system_config_form_field_required</frontend_model>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </length>
+                        <width translate="label">
+                            <label>Width</label>
+                            <frontend_model>temando/adminhtml_system_config_form_field_required</frontend_model>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </width>
+                        <height translate="label">
+                            <label>Height</label>
+                            <frontend_model>temando/adminhtml_system_config_form_field_required</frontend_model>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[If unknown use 10x10x10]]></comment>
+                        </height>
+                    </fields>
+                </defaults>
+                <origin translate="label">
+                    <label>Stock origin (warehouse) details</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>80</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <comment><![CDATA[Please enter the details of your pick-up location for all products.]]></comment>
+                    <fields>
+                        <contact_name translate="label">
+                            <label>Contact Name</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>temando/adminhtml_system_config_form_field_required</frontend_model>
+                            <backend_model>temando/system_config_backend_form_field_required_text</backend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </contact_name>
+                        <company_name translate="label">
+                            <label>Company Name</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </company_name>
+                        <street translate="label">
+                            <label>Street</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>temando/adminhtml_system_config_form_field_required</frontend_model>
+                            <backend_model>temando/system_config_backend_form_field_required_text</backend_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </street>
+                        <city translate="label">
+                            <label>City</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>temando/adminhtml_system_config_form_field_required</frontend_model>
+                            <backend_model>temando/system_config_backend_form_field_required_text</backend_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </city>
+                        <postcode translate="label">
+                            <label>Postcode</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>temando/adminhtml_system_config_form_field_required</frontend_model>
+                            <backend_model>temando/system_config_backend_form_field_required_text</backend_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </postcode>
+                        <country translate="label">
+                            <label>Country</label>
+                            <frontend_type>select</frontend_type>
+                            <frontend_model>temando/adminhtml_system_config_form_field_required</frontend_model>
+                            <frontend_class>temando-countries</frontend_class>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </country>
+                        <region translate="label">
+                            <label>Region/State</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>temando/adminhtml_system_config_form_field_required</frontend_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </region>
+                        <type translate="label">
+                            <label>Type</label>
+                            <frontend_type>select</frontend_type>
+                            <frontend_model>temando/adminhtml_system_config_form_field_required</frontend_model>
+                            <backend_model>temando/system_config_backend_form_field_required_businessresidential</backend_model>
+                            <source_model>temando/system_config_source_origin_type</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </type>
+                        <phone1 translate="label">
+                            <label>Phone 1</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>temando/adminhtml_system_config_form_field_required</frontend_model>
+                            <backend_model>temando/system_config_backend_form_field_required_text</backend_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </phone1>
+                        <phone2 translate="label">
+                            <label>Phone 2</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </phone2>
+                        <fax translate="label">
+                            <label>Fax</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </fax>
+                        <email translate="label">
+                            <label>Email</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>temando/adminhtml_system_config_form_field_required</frontend_model>
+                            <backend_model>temando/system_config_backend_form_field_required_location</backend_model>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </email>
+                        <loading_facilities translate="label">
+                            <label>Loading Facilities</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Does the warehouse have loading facilities?]]></comment>
+                        </loading_facilities>
+                        <forklift translate="label">
+                            <label>Forklift</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Does the warehouse have a forklift?]]></comment>
+                        </forklift>
+                        <dock translate="label">
+                            <label>Dock</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Does the warehouse have a dock?]]></comment>
+                        </dock>
+                        <limited_access translate="label">
+                            <label>Limited Access</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>160</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Does the warehouse have limited access?]]></comment>
+                        </limited_access>
+                        <pobox translate="label">
+                            <label>PO Box</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>160</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Is the address of this warehouse a postal box?]]></comment>
+                        </pobox>
+                        <warehouse_button translate="label">
+                            <label></label>
+                            <frontend_model>temando/adminhtml_system_config_form_button_warehouse</frontend_model>
+                            <frontend_type>button</frontend_type>
+                            <sort_order>170</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </warehouse_button>
+                    </fields>
+                </origin>
+            </groups>
+        </temando>
+        <carriers>
+            <groups>
+                <temando translate="label">
+                    <label>Temando</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>99999</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <config_path>carriers/temando/active</config_path>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <sallowspecific translate="label">
+                            <label>Ship to applicable countries</label>
+                            <frontend_type>select</frontend_type>
+                            <config_path>carriers/temando/sallowspecific</config_path>
+                            <sort_order>20</sort_order>
+                            <frontend_class>shipping-applicable-country</frontend_class>
+                            <source_model>adminhtml/system_config_source_shipping_allspecificcountries</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sallowspecific>
+                        <specificcountry translate="label">
+                            <label>Ship to specific countries</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>30</sort_order>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </specificcountry>
+                        <showmethod translate="label">
+                            <label>Show method if not applicable</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>40</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </showmethod>
+                        <free_shipping_enable translate="label">
+                            <label>Free Shipping with Minimum Order Amount</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </free_shipping_enable>
+                        <free_shipping_subtotal translate="label">
+                            <label>Minimum Order Amount for Free Shipping</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </free_shipping_subtotal>
+                        <specificerrmsg translate="label">
+                            <label>Displayed Error Message</label>
+                            <frontend_type>textarea</frontend_type>
+                            <config_path>carriers/temando/specificerrmsg</config_path>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </specificerrmsg>
+                        <allowed_methods translate="label">
+                            <label>Allowed Carriers</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <config_path>carriers/temando/allowed_methods</config_path>
+                            <sort_order>80</sort_order>
+                            <source_model>temando/shipping_carrier_temando_source_method</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Use CTRL + click to select multiple carriers<br/>A higher plan is required to load eParcel Australia Post rates. Please contact <a href="mailto:sales@temando.com">sales@temando.com</a>.]]></comment>
+                        </allowed_methods>
+                    </fields>
+                </temando>
+            </groups>
+        </carriers>
+    </sections>
+</config>

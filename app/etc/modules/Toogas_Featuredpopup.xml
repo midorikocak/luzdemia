@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Toogas_Featuredpopup>
+			<active>true</active>
+			<codePool>local</codePool>
+		</Toogas_Featuredpopup>
+	</modules>
+</config>

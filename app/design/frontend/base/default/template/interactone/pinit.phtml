@@ -1,0 +1,18 @@
+<?php 
+$_product = Mage::registry('current_product');
+if (Mage::getStoreConfig('pinit/general/enabled')) : 
+$piniturl='http://pinterest.com/pin/create/button/?'.
+'url='.$this->helper('core/url')->getCurrentUrl().
+'&media='.$this->helper('catalog/image')->init($_product, 'image')->resize(150).
+'&description='."Pin%20it%20here" ;
+?>
+
+<a href="<?php echo $piniturl; ?>" class="pin-it-button" count-layout="horizontal">Pin It</a>
+<script type="text/javascript" src="http://assets.pinterest.com/js/pinit.js"></script>
+    
+
+<?php endif; ?>
+
+  
+
+ 
