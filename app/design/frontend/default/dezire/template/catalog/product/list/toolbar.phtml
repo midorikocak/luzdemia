@@ -6,7 +6,12 @@
  * @see Mage_Catalog_Block_Product_List_Toolbar
  */
 ?>
-<?php if($this->getCollection()->getSize()): ?>
+<?php 
+if(!isset($flag_list_status)){
+   $flag_list_status = false;
+}
+
+if($this->getCollection()->getSize()): ?>
 <div class="toolbar">
 
     <?php if( $this->isExpanded() ): ?>
