@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layout version="0.1.0">
-   <default>
-      <reference name="before_body_end">
-         <block type="core/template" name="midori_conversion_login" template="midori_conversion/login.phtml" />
-      </reference>
-   </default>
-</layout>
+<config>
+    <modules>
+        <Midori_Conversion>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Midori_Conversion>
+    </modules>
+</config>

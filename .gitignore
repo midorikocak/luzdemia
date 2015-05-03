@@ -22,3 +22,4 @@
 /var/report/
 /var/resource_config.json
 sitemap.xml
+.DS_Store

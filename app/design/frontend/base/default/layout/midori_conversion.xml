@@ -2,7 +2,7 @@
 <layout version="0.1.0">
    <default>
       <reference name="before_body_end">
-         <block type="core/template" name="midori_conversion_login" template="midori_conversion_login.phtml" />
+         <block type="core/template" name="midori_conversion"  as="midori_conversion" template="midori/conversion.phtml" />
       </reference>
    </default>
 </layout>

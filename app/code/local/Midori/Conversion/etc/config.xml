@@ -8,9 +8,9 @@
    <frontend>
       <layout>
          <updates>
-            <conversion  module="Midori_Conversion">
-               <file>Midori_Conversion.xml</file>
-            </conversion>
+            <midori_conversion  module="Midori_Conversion">
+               <file>midori_conversion.xml</file>
+            </midori_conversion>
          </updates>
       </layout>
    </frontend>
