@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <IWD_All>
+            <version>1.2.1</version>
+        </IWD_All>
+    </modules>
+
+    <admin>
+        <routers>
+            <iwdall>
+                <use>admin</use>
+                <args>
+                    <module>IWD_All</module>
+                    <frontName>iwdall</frontName>
+                </args>
+            </iwdall>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <IWD_All>
+                    <files>
+                        <default>IWD_All.csv</default>
+                    </files>
+                </IWD_All>
+            </modules>
+        </translate>
+
+        <layout>
+            <updates>
+                <iwdall>
+                    <file>iwdall.xml</file>
+                </iwdall>
+            </updates>
+        </layout>
+
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <iwdnotification>
+                        <class>iwdall/observer</class>
+                        <method>preDispatch</method>
+                    </iwdnotification>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+    </adminhtml>
+
+    <global>
+        <models>
+            <iwdall>
+                <class>IWD_All_Model</class>
+                <resourceModel>iwdall_mysql4</resourceModel>
+            </iwdall>
+
+            <iwdall_mysql4>
+                <class>IWD_All_Model_Mysql4</class>
+                <entities>
+                    <notification>
+                        <table>iwd_notification</table>
+                    </notification>
+                </entities>
+            </iwdall_mysql4>
+        </models>
+
+        <resources>
+            <iwdall_setup>
+                <setup>
+                    <module>IWD_All</module>
+                </setup>
+            </iwdall_setup>
+
+            <iwdall_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </iwdall_write>
+
+            <iwdall_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </iwdall_read>
+        </resources>
+
+        <helpers>
+            <iwdall>
+                <class>IWD_All_Helper</class>
+            </iwdall>
+        </helpers>
+
+        <blocks>
+            <iwdall>
+                <class>IWD_All_Block</class>
+            </iwdall>
+        </blocks>
+    </global>
+
+    <frontend>
+        <layout>
+            <updates>
+                <iwdall>
+                    <file>iwd_all.xml</file>
+                </iwdall>
+            </updates>
+        </layout>
+        <routers>
+            <iwdall>
+                <use>standard</use>
+                <args>
+                    <module>IWD_All</module>
+                    <frontName>iwdextensions</frontName>
+                </args>
+            </iwdall>
+        </routers>
+    </frontend>
+
+    <default>
+        <iwdall>
+            <default>
+                <jquery>1</jquery>
+            </default>
+        </iwdall>
+    </default>
+</config>

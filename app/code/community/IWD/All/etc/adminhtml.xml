@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <system>
+            <children>
+                <iwdall translate="title" module="iwdall">
+                    <title>IWD Extensions</title>
+                    <sort_order>0</sort_order>
+                    <children>
+                        <support translate="title" module="iwdall">
+                            <title>Support</title>
+                            <sort_order>10</sort_order>
+                            <action>iwdall/adminhtml_support</action>
+                        </support>
+                        <!--<conflicts translate="title" module="iwdall">
+                            <title>Extensions Conflict</title>
+                            <sort_order>20</sort_order>
+                            <action>iwdall/adminhtml_conflicts</action>
+                        </conflicts>-->
+                    </children>
+                </iwdall>
+            </children>
+        </system>
+    </menu>
+
+    <acl>
+        <resources>
+            <all>Allow everything</all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <iwdall translate="title">
+                                <title>IWD Extensions</title>
+                                <sort_order>10</sort_order>
+                                <children>
+                                    <support translate="title">
+                                        <title>Support Tickets</title>
+                                    </support>
+                                    <conflicts translate="title">
+                                        <title>Extensions Conflict</title>
+                                    </conflicts>
+                                </children>
+                            </iwdall>
+                            <config>
+                                <children>
+                                    <iwdall translate="title" module="iwdall">
+                                        <title>IWD Core</title>
+                                        <sort_order>60</sort_order>
+                                    </iwdall>
+                                    <iwdstore translate="title" module="iwdall">
+                                        <title>IWD Extensions</title> 
+                                        <sort_order>60</sort_order>
+                                    </iwdstore>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

@@ -1,11 +1,35 @@
-<!-- MIDORI CONVERSION -->
+<!-- MIDORI MMX -->
 
-<?php
-if(Mage::getModel('customer/session')->getUserLogin(true)){
-?>
-<script>
-console.log('user logged in');
-</script>
-<?php
-}
-?>
+<?php if(Mage::getModel('customer/session')->getUserLogin(true)):?>
+   <script>
+   console.log('user logged in');
+   Conversion.prototype.userLogin(<?=Mage::getModel('customer/session')->getUserLogin()?>);
+   </script>
+<?php endif; ?>
+<?php if(Mage::getModel('customer/session')->getUserRegister(true)):?>
+   <script>
+
+   Conversion.prototype.userLogin(<?=Mage::getModel('customer/session')->getUserRegistered()?>);
+   </script>
+<?php endif; ?>
+<?php if(Mage::getModel('customer/session')->getAddProduct()):?>
+   <script>
+   Conversion.prototype.addToCart(<?=Mage::getModel('customer/session')->getAddProduct()?>);
+   <?php 
+   Mage::getModel('customer/session')->unsAddProduct();
+   ?>
+   </script>
+<?php endif; ?>
+<?php if(Mage::getModel('customer/session')->getRemoveProduct()):?>
+   <script>
+   Conversion.prototype.removeFromCart(<?=Mage::getModel('customer/session')->getAddProduct()?>);
+   </script>
+   <?php 
+   Mage::getModel('customer/session')->unsRemoveProduct();
+   ?>
+<?php endif; ?>
+<?php if(Mage::getModel('customer/session')->getPurchaseProduct(true)):?>
+   <script>
+   console.log('user purchased product);
+   </script>
+   <?php endif; ?>

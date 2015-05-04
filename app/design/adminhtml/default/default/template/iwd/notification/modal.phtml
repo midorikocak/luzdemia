@@ -1,0 +1,36 @@
+<!-- Modal -->
+
+<?php $collection = $this->getNotification();?>
+<?php if ($collection->getSize()>0):?>
+<div class="modal fade" id="iwd-modal" tabindex="-1" role="dialog" aria-hidden="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"><?php echo __('Zest Messages')?></h4>
+			</div>
+			
+			<div class="modal-body">
+				<?php foreach($collection as $message):?>
+				<?php $this->helper('iwdall/message')->updateStatusInternal($message, 'view', true)?>
+				<div class="item-message">
+					<h3><?php echo $message->getTitle();?></h3>	
+					<p><?php echo $message->getDescription();?></p>					
+				</div>
+				<?php endforeach;?>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn-link" id="mark-all-read" data-dismiss="modal"><?php echo $this->__('Mark all as read ')?></button>
+	          	<button type="button" class="btn-link" id="mark-all-remove"data-dismiss="modal"><?php echo $this->__('Remove All')?></button>
+	        </div>
+		</div>
+	</div>
+</div>
+<script>
+IWD.notification.markReadUrl = '<?php echo $this->getMarkReadUrl()?>';
+IWD.notification.removeUrl = '<?php echo $this->getRemoveUrl()?>';
+jQuery(document).ready(function($){
+		$('#iwd-modal').modal('show');	
+});
+</script>
+<?php endif;?>

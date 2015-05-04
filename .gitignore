@@ -12,6 +12,7 @@
 /media/captcha/
 /media/tmp/
 /media/xmlconnect
+/media/*
 /var/import/
 /var/export/
 /var/cache/
@@ -23,3 +24,7 @@
 /var/resource_config.json
 sitemap.xml
 .DS_Store
+/var/backups/
+/var/importexport/
+/var/tmp/
+/temp_/

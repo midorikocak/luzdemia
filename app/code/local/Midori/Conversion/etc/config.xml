@@ -23,13 +23,69 @@
       <events>
          <customer_login>
             <observers>
-               <midori_conversion_addjs>
+               <midori_conversion_userlogin>
                   <type>singleton</type>
                   <class>midori_conversion/observer</class>
                   <method>userLogin</method>
-               </midori_conversion_addjs>
+               </midori_conversion_userlogin>
             </observers>
          </customer_login>
+         <customer_register_success>
+            <observers>
+               <midori_conversion_userregister>
+                  <type>singleton</type>
+                  <class>midori_conversion/observer</class>
+                  <method>userRegister</method>
+                  </midori_conversion_userregister>
+            </observers>
+         </customer_register_success>
+         <sales_quote_add_item>
+            <observers>
+               <midori_conversion_addtocart>
+                  <type>singleton</type>
+                  <class>midori_conversion/observer</class>
+                  <method>addToCart</method>
+               </midori_conversion_addtocart>
+            </observers>
+         </sales_quote_add_item>
+         <sales_quote_remove_item>
+            <observers>
+               <midori_conversion_removefromcart>
+                  <type>singleton</type>
+                  <class>midori_conversion/observer</class>
+                  <method>removeFromCart</method>
+               </midori_conversion_removefromcart>
+            </observers>
+         </sales_quote_remove_item>
+         
+         <catalog_controller_product_view>
+            <observers>
+               <midori_conversion_productview>
+                  <type>singleton</type>
+                  <class>midori_conversion/observer</class>
+                  <method>productView</method>
+               </midori_conversion_productview>
+            </observers>
+         </catalog_controller_product_view>
+         
+         <catalog_block_product_list_collection>
+            <observers>
+               <midori_conversion_productlist>
+                  <type>singleton</type>
+                  <class>midori_conversion/observer</class>
+                  <method>productList</method>
+               </midori_conversion_productlist>
+            </observers>
+         </catalog_block_product_list_collection>
+         <sales_order_payment_pay>
+            <observers>
+               <midori_conversion_purchaseproduct>
+                  <type>singleton</type>
+                  <class>midori_conversion/observer</class>
+                  <method>purchaseProduct</method>
+               </midori_conversion_purchaseproduct>
+            </observers>
+         </sales_order_payment_pay>
       </events>
    </global>
 </config>
