@@ -2,12 +2,9 @@
 <layout version="0.1.0">
    <default>
       <reference name="before_body_end">
-         <block type="core/template" name="midori_conversion"  as="midori_conversion" template="midori/conversion.phtml" />
-      </reference>
-      <reference name="head">
-         <action method="addJs">
-         <js>midori/conversion.js</js>
-         </action>
+         <block type="page/html_head" name="midori_conversion"  as="midori_conversion" template="midori/conversion.phtml">
+            <action method="addJs"><script>midori/conversion.js</script></action>
+         </block>
       </reference>
    </default>
 </layout>

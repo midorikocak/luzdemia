@@ -1,16 +1,28 @@
 <!-- MIDORI MMX -->
-
-<?php if(Mage::getModel('customer/session')->getUserLogin(true)):?>
+<?php echo $this->getCssJsHtml() ?>
+<?php if(Mage::getModel('customer/session')->getUserLogin()):?>
    <script>
-   console.log('user logged in');
-   Conversion.prototype.userLogin(<?=Mage::getModel('customer/session')->getUserLogin()?>);
+   <?
+   $userId = Mage::getSingleton('customer/session')->getCustomer()->getId();
+   $userEmail = Mage::getModel('customer/session')->getUserLogin();
+   ?>
+   Conversions.userLogin('<?=$userId?>','<?=$userEmail?>');
    </script>
+   <?php 
+   Mage::getModel('customer/session')->unsUserLogin();
+   ?>
 <?php endif; ?>
-<?php if(Mage::getModel('customer/session')->getUserRegister(true)):?>
+<?php if(Mage::getModel('customer/session')->getUserRegister()):?>
    <script>
-
-   Conversion.prototype.userLogin(<?=Mage::getModel('customer/session')->getUserRegistered()?>);
+   <?
+   $userId = Mage::getSingleton('customer/session')->getCustomer()->getId();
+   $userEmail = Mage::getModel('customer/session')->getUserRegistered();
+   ?>
+   Conversions.userRegister('<?=$userId?>','<?=$userEmail?>');
    </script>
+   <?php 
+   Mage::getModel('customer/session')->unsUserRegister();
+   ?>
 <?php endif; ?>
 <?php if(Mage::getModel('customer/session')->getAddProduct()):?>
    <script>
@@ -28,8 +40,29 @@
    Mage::getModel('customer/session')->unsRemoveProduct();
    ?>
 <?php endif; ?>
-<?php if(Mage::getModel('customer/session')->getPurchaseProduct(true)):?>
+<?php if(Mage::getModel('customer/session')->getProductView()):?>
    <script>
-   console.log('user purchased product);
+   Conversion.prototype.productView(<?=Mage::getModel('customer/session')->getProductView()?>);
    </script>
+   <?php 
+   Mage::getModel('customer/session')->unsProductView();
+   ?>
+<?php endif; ?>
+<?php if(Mage::getModel('customer/session')->getProductList()):?>
+   <?php foreach(Mage::getModel('customer/session')->getProductList() as $product):?>
+   <script>
+   Conversion.prototype.productList(<?=json_encode($product)?>);
+   </script>
+   <?php endforeach;?>
+   <?php 
+   Mage::getModel('customer/session')->unsProductList();
+   ?>
+<?php endif; ?>
+<?php if(Mage::getModel('customer/session')->getPurchaseProduct()):?>
+   <script>
+      Conversion.prototype.purchaseProduct(<?=Mage::getModel('customer/session')->getPurchaseProduct()?>);
+   </script>
+   <?php 
+   Mage::getModel('customer/session')->unsPurchaseProduct();
+   ?>
    <?php endif; ?>

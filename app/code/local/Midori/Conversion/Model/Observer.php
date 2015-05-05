@@ -3,6 +3,7 @@ class Midori_Conversion_Model_Observer
 {
    
    public $brand = "luzio";
+   public $affiliation = "Luzdemia";
    
    private function createProductArray($product, $quantity = null, $price = null, $position = null, $list = null){
       $categoriesList = "";
@@ -52,22 +53,32 @@ class Midori_Conversion_Model_Observer
       $event = $observer->getEvent();
       $customer = $event->getCustomer();
       $email = $customer->getEmail();
-      Mage::getModel('customer/session')->setUserRegisterId($customer->getId()); 
-      Mage::getModel('customer/session')->setUserRegister(true); 
+      //Mage::getModel('customer/session')->setUserRegisterId($customer->getId()); 
+      Mage::getModel('customer/session')->setUserRegister($email); 
    }
    
    public function userLogin(Varien_Event_Observer $observer)
    {
       $event = $observer->getEvent();
       $customer = $event->getCustomer();
-      $email = $customer->getId();
-      Mage::getModel('customer/session')->setUserLoginId($customer->getId()); 
-      Mage::getModel('customer/session')->setUserLogin(true); 
+      $email = $customer->getEmail();
+      //Mage::getModel('customer/session')->setUserLoginId($customer->getId()); 
+      Mage::getModel('customer/session')->setUserLogin($email); 
    }
    
    public function purchaseProduct(Varien_Event_Observer $observer)
    {
-      Mage::getModel('customer/session')->setPurchaseProduct(true);       
+      $event = $observer->getEvent();
+      $order = $event->getInvoice()->getOrder();
+      $purchase = [];
+      $purchase['id'] = $observer->getPayment()->getOrder()->getIncrementId();
+      $purchase['affiliation'] = $this->affiliation;
+      $purchase['revenue'] = $order->getGrandTotal() - $order->getShippingAmount();
+      $purchase['shipping'] = $order->getShippingAmount();
+      $purchase['tax'] = $order->getFullTaxInfo();
+      $purchase['coupon'] = $order->getCouponCode();
+      
+      Mage::getModel('customer/session')->setPurchaseProduct(json_encode($purchase));       
    }
    
    public function addToCart(Varien_Event_Observer $observer)
@@ -88,12 +99,22 @@ class Midori_Conversion_Model_Observer
    
    public function productView(Varien_Event_Observer $observer)
    {
-      Mage::getModel('customer/session')->setProductView(true);          
+      $event = $observer->getEvent();
+      $product = $observer->getProduct();
+      $productArray = $this->createProductArray($product);  
+      Mage::getModel('customer/session')->setProductView(json_encode($productArray));          
    }
    
    public function productList(Varien_Event_Observer $observer)
    {
-      Mage::getModel('customer/session')->setProductList(true);          
+      $products = $observer->getEvent()->getCollection();
+      $count = 0;
+      $listProducts = [];
+      foreach($products as $prod) {
+         array_push($listProducts,$this->createProductArray($prod,null,null,$count));
+      $count++;
+      }
+      Mage::getModel('customer/session')->setProductList($listProducts);          
    }
    
 }  

@@ -35,17 +35,24 @@
 
 */
 
+
+
 var options = {
    googleAnalyticsId: 'UA-46592405-1',
-   fbPixelId: '993172604039692'
+   fbPixelId: '993172604039692',
+   fbRegisterTrackingId: '6023454191700',
+   fbPurchaseTrackingId: '6023454158300'
 };
 
 function Conversion(options){
+   //console.log('DEBUG: constructor called.');
    
-   this.user = '';
-   this.cart = [];
+   this.fbRegisterTrackingId = options.fbRegisterTrackingId;
+   //this.fbLoginTrackingId = options.fbLoginTrackingId;
+   this.fbPurchaseTrackingId = options.fbPurchaseTrackingId;
    
    if(typeof window._fbq === "undefined"){
+      //console.log('DEBUG: define fb');
       (function() {
          var _fbq = window._fbq || (window._fbq = []);
          if (!_fbq.loaded) {
@@ -62,17 +69,18 @@ function Conversion(options){
       
       window._fbq = window._fbq || [];
       window._fbq.push(['track', 'PixelInitialized', {}]);
-      window.onload = function(){
+      (function() {
          document.body.innerHTML += '<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id='+options.fbPixelId+'&amp;ev=PixelInitialized" /></noscript>';  
-      }
+      })();
    }
    
    if(typeof window.ga === "undefined")
    {
+      //console.log('DEBUG: define ga');
       // Google Analytics is Loading
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m);
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
       ga('create', options.googleAnalyticsId , 'auto');
@@ -85,6 +93,21 @@ function Conversion(options){
       ga('send', 'pageview');
       ga('require', 'ec');
    }
+   
+   this.userRegister = function(userId,userEmail){
+      var values = {'id':userId,'email':userEmail};
+      this.prototype.facebookAddData(options.fbRegisterTrackingId,values);
+   };
+   
+   this.userLogin = function(userId,userEmail){
+      ga('set', '&uid', userId);
+      //var values = {'id':userId,'email':userEmail};
+      //this.facebookAddData(options.fbRegisterTrackingId,values);
+   };
+   
+   this.purchaseProduct = function(purchase){
+      this.facebookAddData(options.fbPurchaseTrackingId,purchase);
+   };
 }
    
    
@@ -104,61 +127,72 @@ Conversion.prototype = {
    facebookAddData: function(trackingId,values){
       window._fbq.push(['track', trackingId, values]);
       
-      window.onload = function(){
+      //window.onload = function(){
          document.body.innerHTML += '<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev='+trackingId+'&amp;'+this.fbValues(values)+'&amp;noscript=1" /></noscript>';  
-      }
-         },
+         //}
+      },
       
-   createPromo : function(promoId, promoName, promoCreative,promoPosition){
-      var Promo = {
-         'id':promoId,
-         'name':promoName,
-         'creative': promoCreative,
-         'position': promoPosition
-      };
+      createPromo : function(promoId, promoName, promoCreative,promoPosition){
+         var Promo = {
+            'id':promoId,
+            'name':promoName,
+            'creative': promoCreative,
+            'position': promoPosition
+         };
       
-      return Promo;
-   },
+         return Promo;
+      },
    
-   userRegister : function(userId,userEmail,trackingId){
+      productView : function(product){
+         if(typeof window.ga !== "undefined"){
+            ga('ec:addProduct', product);
+            ga('ec:setAction', 'detail');
+            ga('send', 'pageview');       // Send product details view with the initial pageview.
+         }
+      },
+   
+      productList : function(product){
+         if(typeof window.ga !== "undefined"){
+            ga('ec:addImpression', product);
+         }
+      },
+   
+      addToCart : function(product){
+         if(typeof window.ga !== "undefined"){
+            ga('ec:addProduct', product);
+            ga('ec:setAction', 'add');
+            ga('send', 'event', 'Cart', 'Added', product.id);     // Send data using our «Cart» event.
+         }
+      },
+   
+      removeFromCart : function(product){
+         if(typeof window.ga !== "undefined"){
+            ga('ec:addProduct', product);
+            ga('ec:setAction', 'remove');
+            ga('send', 'event', 'Cart', 'removed', product.id);  
+         }
       
-      var values = {'id':userId,'email':userEmail};
-      this.facebookAddData(trackingId,values);
-   },
+      },
    
-   userLogin : function(userId){
-      ga('set', '&uid', userId);
-   },
-   
-   purchaseProduct: function(){
-      
-   },
-   
-   addToCart : function(product){
-      ga('ec:addProduct', product);
-      ga('ec:setAction', 'add');
-      ga('send', 'event', 'Cart', 'Added', product.id);     // Send data using our «Cart» event.
-   },
-   
-   removeFromCart : function(product){
-      ga('ec:addProduct', product);
-      ga('ec:setAction', 'remove');
-      ga('send', 'event', 'Cart', 'removed', product.id);  
-      
-   },
-   
-   addPromo : function(positionId,promo, place){
-      ga('ec:addPromo', promo);
-      ga('ec:setAction', 'promo_click');
-      ga('send', 'event', place, positionId, promo.creative);
-   },
+      addPromo : function(positionId,promo, place){
+         if(typeof window.ga !== "undefined"){
+            ga('ec:addPromo', promo);
+            ga('ec:setAction', 'promo_click');
+            ga('send', 'event', place, positionId, promo.creative);
+         }
+      },
          
-   setCartStep : function(stepNumber){
-      ga('ec:setAction','checkout', {
-         'step': stepNumber            // A value of 1 indicates this action is first checkout step.
-      });
-      ga('send', 'pageview');   // Pageview for cart
-   }     
-};
+      setCartStep : function(stepNumber){
+         if(typeof window.ga !== "undefined"){
+            ga('ec:setAction','checkout', {
+               'step': stepNumber            // A value of 1 indicates this action is first checkout step.
+            });
+            ga('send', 'pageview');   // Pageview for cart
+         }
+      }     
+   };
 
-Conversions = new Conversion(options);
+   (function() {
+      //console.log('DEBUG: windows loaded');
+      Conversions = new Conversion(options);
+   })();
