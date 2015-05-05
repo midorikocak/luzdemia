@@ -37,7 +37,7 @@
 
 
 
-var options = {
+var conversionOptions = {
    googleAnalyticsId: 'UA-46592405-1',
    fbPixelId: '993172604039692',
    fbRegisterTrackingId: '6023454191700',
@@ -69,9 +69,9 @@ function Conversion(options){
       
       window._fbq = window._fbq || [];
       window._fbq.push(['track', 'PixelInitialized', {}]);
-      (function() {
-         document.body.innerHTML += '<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id='+options.fbPixelId+'&amp;ev=PixelInitialized" /></noscript>';  
-      })();
+      document.observe("dom:loaded", function() {
+        $$(".footer").first().insert({ after: '<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id='+options.fbPixelId+'&amp;ev=PixelInitialized" /></noscript>' });
+      });
    }
    
    if(typeof window.ga === "undefined")
@@ -127,9 +127,9 @@ Conversion.prototype = {
    facebookAddData: function(trackingId,values){
       window._fbq.push(['track', trackingId, values]);
       
-      //window.onload = function(){
-         document.body.innerHTML += '<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev='+trackingId+'&amp;'+this.fbValues(values)+'&amp;noscript=1" /></noscript>';  
-         //}
+      document.observe("dom:loaded", function() {
+        $$(".footer").first().insert({ after: '<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev='+trackingId+'&amp;'+this.fbValues(values)+'&amp;noscript=1" /></noscript>' });
+      });
       },
       
       createPromo : function(promoId, promoName, promoCreative,promoPosition){
@@ -196,5 +196,5 @@ Conversion.prototype = {
 
    (function() {
       //console.log('DEBUG: windows loaded');
-      Conversions = new Conversion(options);
+      Conversions = new Conversion(conversionOptions);
    })();
