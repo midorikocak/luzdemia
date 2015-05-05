@@ -32,7 +32,9 @@
 
 <?php
         $postData = $this->getRequest()->getPost();
-        $cc_installment = $postData["payment"]["cc_installment"];
+        if(isset($postData["payment"]["cc_installment"]) ){
+            $cc_installment = $postData["payment"]["cc_installment"];
+        }
             ?>
 
 <?php if ($this->getTotals()): ?>
