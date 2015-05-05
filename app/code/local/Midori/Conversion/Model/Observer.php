@@ -8,6 +8,7 @@ class Midori_Conversion_Model_Observer
    private function createProductArray($product, $quantity = null, $price = null, $position = null, $list = null){
       $categoriesList = "";
       $cats = $product->getCategoryIds();
+      $sku = Mage::getModel('catalog/product')->load($product->getId())->getSku();
       
       $counter = 0;
       
@@ -22,10 +23,11 @@ class Midori_Conversion_Model_Observer
              $categoriesList .= ' / '.$_cat->getName();
           }
           $counter++;
-      } 
+      }
+       
       
       $productArray = [
-         'id'=>$product->getSku(),
+         'id'=>$sku,
          'name'=>$product->getName(),
          'category'=>$categoriesList,
          'brand'=> $this->brand
@@ -69,9 +71,10 @@ class Midori_Conversion_Model_Observer
    public function purchaseProduct(Varien_Event_Observer $observer)
    {
       $event = $observer->getEvent();
-      $order = $event->getInvoice()->getOrder();
+      $order = $event->getOrder(); 
+      
       $purchase = [];
-      $purchase['id'] = $observer->getPayment()->getOrder()->getIncrementId();
+      $purchase['id'] = $order->getIncrementId();
       $purchase['affiliation'] = $this->affiliation;
       $purchase['revenue'] = $order->getGrandTotal() - $order->getShippingAmount();
       $purchase['shipping'] = $order->getShippingAmount();

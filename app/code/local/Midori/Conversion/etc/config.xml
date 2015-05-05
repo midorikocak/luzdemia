@@ -77,7 +77,7 @@
                </midori_conversion_productlist>
             </observers>
          </catalog_block_product_list_collection>
-         <sales_order_payment_pay>
+         <checkout_onepage_controller_success_action>
             <observers>
                <midori_conversion_purchaseproduct>
                   <type>singleton</type>
@@ -85,7 +85,7 @@
                   <method>purchaseProduct</method>
                </midori_conversion_purchaseproduct>
             </observers>
-         </sales_order_payment_pay>
+         </checkout_onepage_controller_success_action>
       </events>
    </global>
 </config>

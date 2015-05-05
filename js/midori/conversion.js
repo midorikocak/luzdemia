@@ -167,9 +167,11 @@ Conversion.prototype = {
    
       removeFromCart : function(product){
          if(typeof window.ga !== "undefined"){
-            ga('ec:addProduct', product);
-            ga('ec:setAction', 'remove');
-            ga('send', 'event', 'Cart', 'removed', product.id);  
+            if(typeof product !== "undefined"){
+               ga('ec:addProduct', product);
+               ga('ec:setAction', 'remove');
+               ga('send', 'event', 'Cart', 'removed', product.id);  
+            }
          }
       
       },
