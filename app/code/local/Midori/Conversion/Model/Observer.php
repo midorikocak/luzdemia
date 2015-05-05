@@ -70,11 +70,11 @@ class Midori_Conversion_Model_Observer
    
    public function purchaseProduct(Varien_Event_Observer $observer)
    {
-      $event = $observer->getEvent();
-      $order = $event->getOrder(); 
+      $orderId = Mage::getSingleton('checkout/session')->getLastRealOrderId();
+      $order = Mage::getModel('sales/order')->load($orderId);
       
       $purchase = [];
-      $purchase['id'] = $order->getIncrementId();
+      $purchase['id'] = $orderId;
       $purchase['affiliation'] = $this->affiliation;
       $purchase['revenue'] = $order->getGrandTotal() - $order->getShippingAmount();
       $purchase['shipping'] = $order->getShippingAmount();
