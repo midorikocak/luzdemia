@@ -106,6 +106,13 @@ function Conversion(options){
    };
    
    this.purchaseProduct = function(purchase,products){
+      
+      for (var key in products) {
+        if (p.hasOwnProperty(key)) {
+           ga('ec:addProduct', products[key]);
+        }
+      }
+      
       ga('ec:setAction', 'purchase', purchase);
       ga('send', 'pageview');
       this.facebookAddData(options.fbPurchaseTrackingId,purchase);
@@ -130,7 +137,7 @@ Conversion.prototype = {
       window._fbq.push(['track', trackingId, values]);
       
       document.observe("dom:loaded", function() {
-        $$(".footer").first().insert({ after: '<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev='+trackingId+'&amp;'+this.fbValues(values)+'&amp;noscript=1" /></noscript>' });
+        $$(".footer").first().insert({ after: '<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev='+trackingId+'&amp;'+this.prototype.fbValues(values)+'&amp;noscript=1" /></noscript>' });
       });
       },
       
