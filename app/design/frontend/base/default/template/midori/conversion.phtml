@@ -59,7 +59,7 @@
 <?php endif; ?>
 <?php if(Mage::getModel('customer/session')->getPurchaseProduct()):?>
    <script>
-      Conversion.prototype.purchaseProduct(<?=Mage::getModel('customer/session')->getPurchaseProduct()?>);
+      Conversion.purchaseProduct(<?=Mage::getModel('customer/session')->getPurchaseProduct()?>,<?=Mage::getModel('customer/session')->getPurchasedProducts()?>);
    </script>
    <?php 
    Mage::getModel('customer/session')->unsPurchaseProduct();

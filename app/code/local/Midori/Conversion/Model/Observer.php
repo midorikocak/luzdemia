@@ -73,6 +73,11 @@ class Midori_Conversion_Model_Observer
       $orderId = Mage::getSingleton('checkout/session')->getLastRealOrderId();
       $order = Mage::getModel('sales/order')->load($orderId);
       
+      $items = $order->getAllVisibleItems();
+         foreach($items as $product){
+            $productArray = $this->createProductArray($product,$product->getData('qty_ordered'),$product->getFinalPrice());
+         }
+      Mage::getModel('customer/session')->setPurchasedProducts(json_encode($productArray));
       $purchase = [];
       $purchase['id'] = $orderId;
       $purchase['affiliation'] = $this->affiliation;

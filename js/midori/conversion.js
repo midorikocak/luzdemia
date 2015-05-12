@@ -105,7 +105,9 @@ function Conversion(options){
       //this.facebookAddData(options.fbRegisterTrackingId,values);
    };
    
-   this.purchaseProduct = function(purchase){
+   this.purchaseProduct = function(purchase,products){
+      ga('ec:setAction', 'purchase', purchase);
+      ga('send', 'pageview');
       this.facebookAddData(options.fbPurchaseTrackingId,purchase);
    };
 }
