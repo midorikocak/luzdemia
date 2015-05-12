@@ -105,10 +105,29 @@ function Conversion(options){
       //this.facebookAddData(options.fbRegisterTrackingId,values);
    };
    
+   this.fbValues = function(obj) {
+      var str = [];
+      for(var p in obj)
+      if (obj.hasOwnProperty(p)) {
+         str.push("cd["+ encodeURIComponent(p) + "]" + "=" + encodeURIComponent(obj[p]));
+      }
+      return str.join("&amp;");
+   };
+   
+   this.facebookAddData = function(trackingId,values){
+      
+      var fbValues = this.fbValues(values);
+      window._fbq.push(['track', trackingId, values]);
+      
+      document.observe("dom:loaded", function() {
+        $$(".footer").first().insert({ after: '<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev='+trackingId+'&amp;'+fbValues+'&amp;noscript=1" /></noscript>' });
+      });
+      };
+   
    this.purchaseProduct = function(purchase,products){
       
       for (var key in products) {
-        if (p.hasOwnProperty(key)) {
+        if (products.hasOwnProperty(key)) {
            ga('ec:addProduct', products[key]);
         }
       }
@@ -117,29 +136,15 @@ function Conversion(options){
       ga('send', 'pageview');
       this.facebookAddData(options.fbPurchaseTrackingId,purchase);
    };
+   
+
 }
    
    
 Conversion.prototype = {
    
    contructor : Conversion,
-   
-   fbValues: function(obj) {
-      var str = [];
-      for(var p in obj)
-      if (obj.hasOwnProperty(p)) {
-         str.push("cd["+ encodeURIComponent(p) + "]" + "=" + encodeURIComponent(obj[p]));
-      }
-      return str.join("&amp;");
-   },
-   
-   facebookAddData: function(trackingId,values){
-      window._fbq.push(['track', trackingId, values]);
-      
-      document.observe("dom:loaded", function() {
-        $$(".footer").first().insert({ after: '<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev='+trackingId+'&amp;'+this.prototype.fbValues(values)+'&amp;noscript=1" /></noscript>' });
-      });
-      },
+
       
       createPromo : function(promoId, promoName, promoCreative,promoPosition){
          var Promo = {

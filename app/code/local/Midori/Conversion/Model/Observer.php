@@ -70,20 +70,28 @@ class Midori_Conversion_Model_Observer
    
    public function purchaseProduct(Varien_Event_Observer $observer)
    {
+      $order = new Mage_Sales_Model_Order();
       $orderId = Mage::getSingleton('checkout/session')->getLastRealOrderId();
-      $order = Mage::getModel('sales/order')->load($orderId);
+      $order->loadByIncrementId($orderId);
+      //$order = Mage::getModel('sales/order')->load($orderId);
       
-      $items = $order->getAllVisibleItems();
+      
+      $items = $order->getAllItems();
+      $productsArray = [];
          foreach($items as $product){
-            $productArray = $this->createProductArray($product,$product->getData('qty_ordered'),$product->getFinalPrice());
+            array_push($productsArray,$this->createProductArray($product,$product->getData('qty_ordered'),$product->getFinalPrice()));
          }
-      Mage::getModel('customer/session')->setPurchasedProducts(json_encode($productArray));
+         
+      Mage::getModel('customer/session')->setPurchasedProducts(json_encode($productsArray));
+      
+      //$taxInfo = $order->getFullTaxInfo();
+      
       $purchase = [];
       $purchase['id'] = $orderId;
       $purchase['affiliation'] = $this->affiliation;
       $purchase['revenue'] = $order->getGrandTotal() - $order->getShippingAmount();
       $purchase['shipping'] = $order->getShippingAmount();
-      $purchase['tax'] = $order->getFullTaxInfo();
+      $purchase['tax'] = $order->getTaxAmount();
       $purchase['coupon'] = $order->getCouponCode();
       
       Mage::getModel('customer/session')->setPurchaseProduct(json_encode($purchase));       
