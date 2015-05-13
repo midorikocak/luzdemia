@@ -4,37 +4,37 @@
  font-family: 'Lato';
  font-style: italic;
  font-weight: 400;
- src: local('Gotham Italic'), local('Gotham-Italic'), url(fonts/GOTHAMNARROW-BOOKITALIC.OTF) format('opentype');
+ src: local('Gotham Italic'), local('Gotham-Italic'), url(fonts/gothamnarrow-bookitalic.otf) format('opentype');
 }
 @font-face {
  font-family: 'Lato';
  font-style: normal;
  font-weight: 900;
- src: local('Gotham Black'), local('Gotham-Black'), url(fonts/GOTHAMNARROW-BLACK.OTF) format('opentype');
+ src: local('Gotham Black'), local('Gotham-Black'), url(fonts/gothamnarrow-black.otf) format('opentype');
 }
 @font-face {
  font-family: 'Lato';
  font-style: italic;
  font-weight: 300;
- src: local('Gotham Light Italic'), local('Gotham-LightItalic'), url(fonts/GOTHAMNARROW-THINITALIC.OTF) format('opentype');
+ src: local('Gotham Light Italic'), local('Gotham-LightItalic'), url(fonts/gothamnarrow-thinitalic.otf) format('opentype');
 }
 @font-face {
  font-family: 'Lato';
  font-style: italic;
  font-weight: 700;
- src: local('Gotham Bold Italic'), local('Gotham-BoldItalic'), url(fonts/GOTHAMNARROW-BOLDITALIC.OTF) format('opentype');
+ src: local('Gotham Bold Italic'), local('Gotham-BoldItalic'), url(fonts/gothamnarrow-bolditalic.otf) format('opentype');
 }
 @font-face {
  font-family: 'Lato';
  font-style: normal;
  font-weight: 300;
- src: local('Gotham Light'), local('Gotham-Light'), url(fonts/GOTHAMNARROW-LIGHT.OTF) format('opentype');
+ src: local('Gotham Light'), local('Gotham-Light'), url(fonts/gothamnarrow-light.otf) format('opentype');
 }
 @font-face {
 	font-family: 'Lato';
 	font-style: normal;
 	font-weight: 400;
-	src: local('Gotham Regular'), local('Gotham-Regular'), url(fonts/GOTHAMNARROW-BOOK.OTF) format('opentype');
+	src: local('Gotham Regular'), local('Gotham-Regular'), url(fonts/gothamnarrow-book.otf) format('opentype');
 }
 
 @font-face {
