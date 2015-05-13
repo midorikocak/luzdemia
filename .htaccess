@@ -11,7 +11,7 @@ Header set Access-Control-Allow-Origin "%{ORIGIN_SUB_DOMAIN}e" env=ORIGIN_SUB_DO
 <IfModule mod_setenvif.c>
  <IfModule mod_headers.c>
    # mod_headers, y u no match by Content-Type?!
-   <FilesMatch "\.(gif|png|jpe?g|svg|svgz|ico|webp)$">
+   <FilesMatch "\.(?i:gif|png|jpe?g|svg|svgz|ico|webp)$">
      SetEnvIf Origin ":" IS_CORS
      Header set Access-Control-Allow-Origin "*" env=IS_CORS
    </FilesMatch>
@@ -24,11 +24,14 @@ Header set Access-Control-Allow-Origin "%{ORIGIN_SUB_DOMAIN}e" env=ORIGIN_SUB_DO
 # Alternatively you could only whitelist your
 # subdomains like "subdomain.example.com".
 <IfModule mod_headers.c>
- <FilesMatch "\.(ttf|ttc|otf|eot|woff|font.css|css)$">
+ <FilesMatch "\.(?i:ttf|ttc|otf|eot|woff|font.css|css)$">
    Header set Access-Control-Allow-Origin "*"
  </FilesMatch>
 </IfModule>
 
+<FilesMatch ".(eot|ttf|otf|woff)">
+	Header set Access-Control-Allow-Origin "*"
+</FilesMatch>
 
 #################################################################### 
 ################## Creare's Magento .htaccess File #################
@@ -168,7 +171,7 @@ SetEnvIf X-Forwarded-Proto https HTTPS=on
 
 <ifModule mod_expires.c>
 	ExpiresActive On
-	ExpiresDefault "access plus 1 seconds"
+	ExpiresDefault "access plus 1 year"
 	ExpiresByType text/html "access plus 1 seconds"
 	ExpiresByType image/gif "access plus 2592000 seconds"
 	ExpiresByType image/jpeg "access plus 2592000 seconds"
