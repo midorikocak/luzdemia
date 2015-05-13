@@ -3708,7 +3708,7 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#333', endColor
 .btn:hover, .btn:focus, .button-inverse, .button-vote:hover, .sidebar .button:hover, .sidebar .button:focus, .sidebar .btn:hover, .sidebar .btn:focus, .form-list .bootstrap-select.btn-group .btn:hover .caret, .form-list .bootstrap-select.btn-group .btn:focus .caret, .buttons-set .back-link a:hover, .buttons-set .back-link a:focus, .scrolltop, .button-tabs li a:hover, .button-tabs li a:focus {
 	border:0px #111 solid;
 	background:#222;
-	padding:8px 12px;
+	/*padding:8px 12px;*/
 	color:#FFF;
 }
 .dropdown .dropdown-menu .button:hover, .dropdown .dropdown-menu .button:focus {
