@@ -37,7 +37,7 @@ $this->setData('column_count', 3); // burası önceden değiştirilmiş
                         <!-- BEGIN PRODUCT IMAGE -->
                         <div class="product-image">
                             <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="">
-                                <img class="lazy small-image" src="getSkinUrl('images/mgt_lazy_image_loader/loader.gif'); ?>" data-src="helper('catalog/image')->init($_product, 'small_image')->resize(230,230); ?>" width="230" height="135" alt="stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                                <img class="lazy small-image" src="getSkinUrl('images/mgt_lazy_image_loader/loader.gif'); ?>" data-src="helper('catalog/image')->init($_product, 'small_image')->resize(230,345); ?>" width="230" height="135" alt="stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
                             </a>
                         </div> <!--product-image-->
                         <!-- BEGIN PRODUCT SHOP -->
@@ -122,7 +122,7 @@ $this->setData('column_count', 3); // burası önceden değiştirilmiş
                                 <div class="item-img-info">
 
                                     <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
-                                        <img class="lazy" src="<?php $this->getSkinUrl('images/mgt_lazy_image_loader/loader.gif'); ?>" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(230, 230); ?>" width="230" height="230" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                                        <img class="lazy" src="<?php $this->getSkinUrl('images/mgt_lazy_image_loader/loader.gif'); ?>" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(230, 345); ?>" width="230" height="345" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
                                     </a>
                                     <?php echo $this->helper('deziresettings')->getLabel($_product); ?>
                                     <!-- BEGIN PROD IMAGE DETAIL -->
