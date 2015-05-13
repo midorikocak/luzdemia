@@ -32,6 +32,20 @@
         <?php endif; ?>
                 </li>
                 <div class="clear"></div>
+                <li class="fields">
+                   <div class="field">
+                       <label for="billing:turkish_tax_office"><em>*</em><?php echo $this->__('Turkish Tax Office') ?></label>
+                       <div class="input-box">
+                           <input type="text" title="<?php echo $this->__('Turkish Tax Office') ?>" name="billing[turkish_tax_office]" value="<?php echo $this->escapeHtml($this->getAddress()->getTurkishTaxOffice()) ?>" class="input-text" id="billing:turkish_tax_office" />
+                       </div>
+                   </div>
+                   <div class="field">
+                       <label for="billing:turkish_tax_number"><em>*</em><?php echo $this->__('Turkish Tax Number') ?></label>
+                       <div class="input-box">
+                           <input type="text" title="<?php echo $this->__('Turkish Tax Number') ?>" name="billing[turkish_tax_number]" value="<?php echo $this->escapeHtml($this->getAddress()->getTurkishTaxNumber()) ?>" class="input-text" id="billing:turkish_tax_number" />
+                       </div>
+                   </div>
+                </li>
         <?php $_streetValidationClass = $this->helper('opc')->getAttributeValidationClass('street'); ?>
                 <li class="wide">
                     <label for="billing:street1" class="required"><em>*</em><?php echo $this->__('Address') ?></label>
