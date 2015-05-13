@@ -1,7 +1,7 @@
 <?php
 $is_persistent = Mage::helper('opc')->isPersistentMember(); 
 echo $this->getMessagesBlock()->getGroupedHtml() ?>
-<p class="left"><a class="login-trigger signin-modal opc-login-trigger <?php if($is_persistent):?>is_persistent<?php endif;?>" data-modal="modal-login"><?php echo $this->__('LOGIN')?></a></p>
+<p class="left"><a class="login-trigger signin-modal opc-login-trigger <?php if($is_persistent):?>is_persistent<?php endif;?>" data-modal="modal-login"><?php echo $this->__('Login')?></a></p><?php echo $this->getChildHtml('inchoo_socialconnect_checkout')?>
 
 <div class="md-modal md-effect-7" id="modal-login">
 	<div class="md-content">
