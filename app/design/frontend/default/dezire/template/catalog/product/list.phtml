@@ -122,7 +122,7 @@ $this->setData('column_count', 3); // burası önceden değiştirilmiş
                                 <div class="item-img-info">
 
                                     <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
-                                        <img class="lazy" src="<?php $this->getSkinUrl('images/mgt_lazy_image_loader/loader.gif'); ?>" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false)->resize(230, 345); ?>" width="230" height="345" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                                        <img class="lazy" src="<?php $this->getSkinUrl('images/mgt_lazy_image_loader/loader.gif'); ?>" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false)->resize(null, 345); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
                                     </a>
                                     <?php echo $this->helper('deziresettings')->getLabel($_product); ?>
                                     <!-- BEGIN PROD IMAGE DETAIL -->
