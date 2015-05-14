@@ -51,10 +51,18 @@
    <?php foreach(Mage::getModel('customer/session')->getProductList() as $product):?>
    <script>
    var productsList = <?=json_encode($product)?>;
-   if(typeof productsList.list === undefined){
-      productsList.list = <?=Mage::helper('core/url')->getCurrentUrl();?>
+   var isCategory = '<?php
+   if(Mage::registry('current_category')==null){
+      echo "false";
    }
    
+   ?>';
+   if(isCategory == ''){
+      productsList['list'] = 'katalog';
+   }
+   else{
+      productsList['list'] = 'other';
+   }  
    Conversion.prototype.productList(productsList);
    </script>
    <?php endforeach;?>
