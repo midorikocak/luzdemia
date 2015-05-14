@@ -37,7 +37,7 @@ Whoops, it looks like you have an invalid PHP version.</h3></div><p>Magento supp
 /**
  * Error reporting
  */
-error_reporting(E_ALL | E_STRICT);
+error_reporting(E_ALL);
 
 /**
  * Compilation includes configuration file
@@ -60,8 +60,10 @@ if (!file_exists($mageFilename)) {
     }
     exit;
 }
+$ip = $_SERVER['REMOTE_ADDR'];
+$allowed = array('46.135.3.14','78.188.186.180','88.240.122.170','151.250.17.148','81.215.207.205');
 
-if (file_exists($maintenanceFile)) {
+if (file_exists($maintenanceFile) && !in_array($ip, $allowed)) {
     include_once dirname(__FILE__) . '/errors/503.php';
     exit;
 }
@@ -74,7 +76,7 @@ if (isset($_SERVER['MAGE_IS_DEVELOPER_MODE'])) {
     Mage::setIsDeveloperMode(true);
 }
 
-#ini_set('display_errors', 1);
+ini_set('display_errors', 1);
 
 umask(0);
 
