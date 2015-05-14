@@ -937,7 +937,11 @@ ul#cart-sidebar {
 	font-weight:900;
 	padding:8px 16px;
 	border:none;
+	font-family: "Lato", sans-serif;
+	text-align:left;
 	cursor:pointer;
+   text-decoration:none;
+   min-height:32px;
 	display:inline-block;
 	transition:color 300ms ease-in-out 0s, background-color 300ms ease-in-out 0s, background-position 300ms ease-in-out 0s;
 -webkit-border-radius: 2px;
@@ -952,6 +956,7 @@ ul#cart-sidebar {
 	background:#333
 }
 .mini-cart .actions .view-cart {
+      min-height:32px;
 	background:#d74069;
 	color:#fff;
 	font-size:11px;
@@ -961,10 +966,10 @@ ul#cart-sidebar {
 	border:none;
 	font-family: "Lato", sans-serif;
 	text-align:left;
-	text-transform:uppercase;
 	cursor:pointer;
 	text-decoration:none;
 	float:left;
+   display:inline-block;
 	transition:color 300ms ease-in-out 0s, background-color 300ms ease-in-out 0s, background-position 300ms ease-in-out 0s;
     -webkit-border-radius: 2px;
 
