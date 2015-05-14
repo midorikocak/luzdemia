@@ -932,7 +932,7 @@ ul#cart-sidebar {
 .mini-cart .actions .btn-checkout {
 	background:#1BBBB7;
 	color:#FFFFFF;
-	font-size:13px;
+	font-size:11px;
 	text-transform:uppercase;
 	font-weight:900;
 	padding:8px 16px;
@@ -954,7 +954,7 @@ ul#cart-sidebar {
 .mini-cart .actions .view-cart {
 	background:#d74069;
 	color:#fff;
-	font-size:13px;
+	font-size:11px;
 	text-transform:uppercase;
 	font-weight:900;
 	padding:8px 16px;
@@ -976,7 +976,7 @@ ul#cart-sidebar {
 .mini-cart .actions .view-cart:hover {
 	background:#333;
 	color:#fff;
-	font-size:13px;
+	font-size:11px;
 	text-transform:uppercase;
 	font-weight:900;
 	padding:8px 16px;
@@ -1007,7 +1007,7 @@ ul#cart-sidebar {
 .mini-cart .button.btn-checkout {
 	background-color:#970400;
 	color:#FFFFFF;
-	font-size:13px;
+	font-size:11px;
 	text-transform:uppercase;
 	font-weight:900;
 	padding:0px 6px;
