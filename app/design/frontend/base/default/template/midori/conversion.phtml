@@ -50,7 +50,12 @@
 <?php if(Mage::getModel('customer/session')->getProductList()):?>
    <?php foreach(Mage::getModel('customer/session')->getProductList() as $product):?>
    <script>
-   Conversion.prototype.productList(<?=json_encode($product)?>);
+   var productsList = <?=json_encode($product)?>;
+   if(typeof productsList.list === undefined){
+      productsList.list = <?=Mage::helper('core/url')->getCurrentUrl();?>
+   }
+   
+   Conversion.prototype.productList(productsList);
    </script>
    <?php endforeach;?>
    <?php 
