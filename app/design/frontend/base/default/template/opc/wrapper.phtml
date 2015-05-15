@@ -5,7 +5,7 @@ $package = Mage::getDesign()->getPackageName();
 $theme = Mage::getDesign()->getTheme('frontend');
 $is_persistent = Mage::helper('opc')->isPersistentMember();
 ?>
-<div class="opc-wrapper-opc design_package_<?php echo $package;?> design_theme_<?php echo $theme;?>">
+<div ng-app='richDocument' class="opc-wrapper-opc design_package_<?php echo $package;?> design_theme_<?php echo $theme;?>">
     <h2><?php echo $this->__('Checkout')?></h2>
 	<div class="opc-menu">
 <?php if(!$is_persistent):?>	
@@ -20,7 +20,7 @@ $is_persistent = Mage::helper('opc')->isPersistentMember();
     	  	<i class="fa fa-2x fa-shopping-cart"></i>
     	  	<i class="fa fa-2x dd-arrow"></i>
     	  	<?php echo Mage::helper('opc')->getGrandTotal()?>
-    	  </a>   
+    	  </a>
     	  <span class="polygon"></span>
     	  <div class="hidden" id="opc-review-block">
 		      <?php echo $this->_getReviewHtml()?>
