@@ -88,7 +88,9 @@ $is_persistent = Mage::helper('opc')->isPersistentMember();
 
 		<div class="opc-review-actions" id="checkout-review-submit">
 		      <h5 class="grand_total"><?php echo $this->__('Grand Total')?><?php echo Mage::helper('opc')->getGrandTotal()?></h5>
-		      <?php echo $this->getChildHtml('agreements')?>
+		      <div ng-controller="RichDocumentController">
+		      		      <?php echo $this->getChildHtml('agreements')?>
+		      </div>
 		      <?php echo $this->getChildHtml('opc.newsletters');?>
 		      <button type="button" title="<?php echo $this->__('Place Order Now') ?>" class="button btn-checkout opc-btn-checkout"><span><span><?php echo $this->__('Place Order Now') ?></span></span></button>
 		</div>
