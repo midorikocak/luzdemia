@@ -188,7 +188,7 @@
     
     <?php if ($this->canShip()): ?>
         <li class="control <?php if (!Mage::helper('opc')->isShowShippingForm()):?>hidden<?php endif;?>">
-            <input type="checkbox" name="billing[use_for_shipping]" id="billing:use_for_shipping_yes" ng-model="billing.use_for_shipping_yes" value="1"<?php if ($this->isUseBillingAddressForShipping()) {?> checked="checked"<?php }?> title="<?php echo  $this->__('Ship to this address') ?>" class="checkbox   " /><label for="billing:use_for_shipping_yes"><?php echo  $this->__('Ship to this address') ?></label>
+            <input type="checkbox" name="billing[use_for_shipping]" id="billing:use_for_shipping_yes" ng-model="billing.use_for_shipping_yes"  ng-change="toggleShipping()"  value="1"<?php if ($this->isUseBillingAddressForShipping()) {?> checked="checked"<?php }?> title="<?php echo  $this->__('Ship to this address') ?>" class="checkbox   " /><label for="billing:use_for_shipping_yes"><?php echo  $this->__('Ship to this address') ?></label>
         </li>
     <?php endif; ?>
     </ul>

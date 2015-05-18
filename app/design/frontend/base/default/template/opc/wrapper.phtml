@@ -5,7 +5,7 @@ $package = Mage::getDesign()->getPackageName();
 $theme = Mage::getDesign()->getTheme('frontend');
 $is_persistent = Mage::helper('opc')->isPersistentMember();
 ?>
-<div ng-app='richDocument' class="opc-wrapper-opc design_package_<?php echo $package;?> design_theme_<?php echo $theme;?>">
+<div ng-app='richDocument' ng-controller="RichDocumentController" class="opc-wrapper-opc design_package_<?php echo $package;?> design_theme_<?php echo $theme;?>">
     <h2><?php echo $this->__('Checkout')?></h2>
 	<div class="opc-menu">
 <?php if(!$is_persistent):?>	
@@ -88,7 +88,7 @@ $is_persistent = Mage::helper('opc')->isPersistentMember();
 
 		<div class="opc-review-actions" id="checkout-review-submit">
 		      <h5 class="grand_total"><?php echo $this->__('Grand Total')?><?php echo Mage::helper('opc')->getGrandTotal()?></h5>
-		      <div ng-controller="RichDocumentController">
+		      <div>
 		      		      <?php echo $this->getChildHtml('agreements')?>
 		      </div>
 		      <?php echo $this->getChildHtml('opc.newsletters');?>
