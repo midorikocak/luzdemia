@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Magik_Scrollingcart>
+      <active>true</active>
+      <codePool>local</codePool>
+      <version>0.1.0</version>
+    </Magik_Scrollingcart>
+  </modules>
+</config>
