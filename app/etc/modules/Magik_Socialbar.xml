@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Magik_Socialbar>
+      <active>true</active>
+      <codePool>local</codePool>
+    </Magik_Socialbar>
+  </modules>
+</config>
