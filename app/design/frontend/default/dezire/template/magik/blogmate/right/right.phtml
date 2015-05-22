@@ -1,0 +1,42 @@
+<div id="secondary" class="widget-area" role="complementary">
+		<aside id="recent-posts-4" class="widget widget_recent_entries">
+			<h3 class="widget-title">Recent Posts</h3>
+			<ul>
+				<?php
+				$recent_posts = $this->getRecentPost();
+				$home_url = Mage::helper('core/url')->getHomeUrl();
+				foreach ($recent_posts as $recent_post_key => $recent_post_value) {
+					//$blog_url = $home_url.'blog/view/post/p/'.$recent_post_value['title_slug'].'/';
+
+					$urlKey = $recent_post_value['title_slug'];
+					$curl = Mage::getUrl('blog/view/post/p/'.$urlKey, array('_direct' => $urlKey)); 
+					$cnt=Mage::getModel('blogmate/blog')->chkIfExists('index/'.$urlKey,$urlKey);
+					$store_id=Mage::app()->getStore()->getId();
+					if($cnt==0 && ($urlKey != ''))
+					{	
+						$curl1=$recent_post_value['title_slug'];
+						$rewrite = Mage::getModel('core/url_rewrite');
+						$rewrite->setStoreId($store_id)
+						->setIdPath('index/'.$urlKey)
+						->setRequestPath($urlKey)
+						->setTargetPath('blog/view/post/p/'.$urlKey)
+						->setIsSystem(true)
+						->save();
+
+					}
+					$blog_url =$curl; 
+					?>
+					<li>
+						<a href="<?php echo $blog_url;?>" title="<?php echo ucfirst($recent_post_value['title']);?>"><?php echo ucfirst($recent_post_value['title']);?></a>
+					</li>
+					<?php
+				}
+				?>
+			</ul>
+		</aside>
+		<aside id="categories-2" class="widget widget_categories"><h3 class="widget-title">Categories</h3>		
+			<?php echo Mage::helper('blogmate')->getcattree(0);?>
+		</aside>
+
+		
+	</div>

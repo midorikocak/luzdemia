@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Magik_BlogMate>
+			<version>0.1.0</version>
+		</Magik_BlogMate>
+	</modules>
+	<frontend>
+		<routers>
+			<blogmate>
+				<use>standard</use>
+				<args>
+					<module>Magik_BlogMate</module>
+					<frontName>blog</frontName>
+				</args>
+			</blogmate>
+		</routers>
+		<layout>
+			<updates>
+				<blogmate>
+					<file>blogmate.xml</file>
+				</blogmate>
+			</updates>
+		</layout>
+	</frontend>
+	<global>
+		<helpers>
+			<blogmate>
+				<class>Magik_BlogMate_Helper</class>
+			</blogmate>
+		</helpers>
+		<blocks>
+			<blogmate>
+				<class>Magik_BlogMate_Block</class>
+			</blogmate>
+		</blocks>
+		<models>
+			<blogmate>
+				<class>Magik_BlogMate_Model</class>
+				<resourceModel>blogmate_mysql4</resourceModel>
+			</blogmate>
+			<blogmate_mysql4>
+				<class>Magik_BlogMate_Model_Mysql4</class>
+				<entities>		  
+					<blog>
+						<table>magik_blog</table>
+					</blog>		  
+					<category>
+						<table>magik_blog_category</table>
+					</category>		  
+					<comment>
+						<table>magik_blog_comment</table>
+					</comment>
+				</entities>
+			</blogmate_mysql4>
+		</models>
+		<resources>
+			<blogmate_setup>
+				<setup>
+					<module>Magik_BlogMate</module>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</blogmate_setup>
+			<blogmate_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</blogmate_write>
+			<blogmate_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</blogmate_read>
+		</resources>
+	</global>
+	<admin>
+		<routers>
+			<blogmate>
+				<use>admin</use>
+				<args>
+					<module>Magik_BlogMate</module>
+					<frontName>blogmate</frontName>
+				</args>
+			</blogmate>
+		</routers>
+	</admin>
+	<adminhtml>
+		<menu>
+			<blogmate module="blogmate">
+				<title>BlogMate</title>
+				<sort_order>100</sort_order>
+				<children>
+					<blogmatebackend module="blogmate">
+						<title>Blog Settings</title>
+						<sort_order>0</sort_order>
+						<action>adminhtml/system_config/edit/section/blogmate</action>
+					</blogmatebackend>
+					<blog module="blogmate">
+						<title>Manage Blog</title>
+						<sort_order>30</sort_order>
+						<action>blogmate/adminhtml_blog</action>
+					</blog>
+					<category module="blogmate">
+						<title>Manage Category</title>
+						<sort_order>40</sort_order>
+						<action>blogmate/adminhtml_category</action>
+					</category>
+					<comment module="blogmate">
+						<title>Manage Comment</title>
+						<sort_order>50</sort_order>
+						<action>blogmate/adminhtml_comment</action>
+					</comment>
+				</children>
+			</blogmate>
+		</menu>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<blogmate translate="title" module="blogmate">
+							<title>BlogMate</title>
+							<sort_order>1000</sort_order>
+							<children>
+								<blogmatebackend translate="title">
+									<title>Blog Settings</title>
+								</blogmatebackend>
+								<blog translate="title">
+									<title>Manage Blog</title>
+									<sort_order>30</sort_order>
+								</blog>
+								<category translate="title">
+									<title>Manage Category</title>
+									<sort_order>40</sort_order>
+								</category>
+								<comment translate="title">
+									<title>Manage Comment</title>
+									<sort_order>50</sort_order>
+								</comment>
+							</children>
+						</blogmate>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<blogmate>
+					<file>blogmate.xml</file>
+				</blogmate>
+			</updates>
+		</layout>
+	</adminhtml>
+</config> 

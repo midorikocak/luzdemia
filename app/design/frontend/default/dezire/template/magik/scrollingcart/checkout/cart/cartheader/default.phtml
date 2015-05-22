@@ -1,0 +1,28 @@
+<?php
+$_item = $this->getItem();
+$isVisibleProduct = $_item->getProduct()->isVisibleInSiteVisibility();
+//$canApplyMsrp = Mage::helper('catalog')->canApplyMsrp($_item->getProduct(), Mage_Catalog_Model_Product_Attribute_Source_Msrp_Type::TYPE_BEFORE_ORDER_CONFIRM);
+?>
+<li class="item">
+	<?php if ($this->hasProductUrl()): ?>
+		<a href="<?php echo $this->getProductUrl()?>" title="<?php echo $this->htmlEscape($this->getProductName()) ?>" class="product-image"><img src="<?php echo $this->getProductThumbnail()->resize(50, 50)->setWatermarkSize('30x10'); ?>" width="50" height="50" alt="<?php echo $this->htmlEscape($this->getProductName()) ?>" /></a>
+	<?php else: ?>
+		<span class="product-image"><img src="<?php echo $this->getProductThumbnail()->resize(50, 50)->setWatermarkSize('30x10'); ?>" width="50" height="50" alt="<?php echo $this->htmlEscape($this->getProductName()) ?>" /></span>
+	<?php endif; ?>
+	<div class="product-details">
+		<p class="product-name">
+			<?php if ($this->hasProductUrl()): ?>
+				<a href="<?php echo $this->getProductUrl() ?>">
+			<?php endif; ?>
+				<?php echo $this->htmlEscape($this->getProductName()) ?>
+			<?php if ($this->hasProductUrl()): ?>
+				</a>
+			<?php endif; ?>
+		</p>
+		<a href="<?php echo $this->getDeleteUrl() ?>" title="<?php echo $this->__('Remove This Item') ?>" onclick="return confirm('<?php echo $this->__('Are you sure you would like to remove this item from the shopping cart?') ?>');" class="top-btn-remove">
+			<?php echo $this->__('Remove This Item') ?>
+		</a>
+	</div>
+      
+</li>
+ 

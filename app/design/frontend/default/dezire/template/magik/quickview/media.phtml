@@ -1,0 +1,48 @@
+<?php
+    $_product = $this->getProduct();
+    $_helper = $this->helper('catalog/output');
+
+?>
+<div class="product-img-box">
+    <div class="product-image">
+	    <a href="<?php echo $this->helper('catalog/image')->init($_product, 'image') ?>" class ="cloud-zoom" id="zoom1" rel="adjustX:10, adjustY:-2, zoomWidth:300, zoomHeight:300">
+	    <?php
+		  $_img = '<img itemprop="image" src="'.$this->helper('catalog/image')->init($_product, 'thumbnail')->resize(450,450).'" alt="'.$this->htmlEscape($this->getImageLabel($_product)).'" title="'.$this->htmlEscape($this->getImageLabel($_product)).'" />';
+		  echo $_helper->productAttribute($_product, $_img, 'thumbnail'); 
+	    ?>
+	    </a>
+    </div> <!--product-image-->
+   <?php if(count($_product->getMediaGalleryImages()) > 0){ ?>   
+    <div class="more-views">
+	  <div class="jcarousel-container jcarousel-container-horizontal">
+	    <div class="jcarousel-clip jcarousel-clip-horizontal">
+	      <ul id="more<?php echo $v; ?>" class="more">
+	      <?php $product = Mage::getModel('catalog/product')->load($_product->getId());
+		    foreach ($product->getMediaGalleryImages() as $image) : ?>
+		  <li class="jcarousel-item jcarousel-item-horizontal jcarousel-item-1 jcarousel-item-1-horizontal"  style="float: left; list-style: none outside none;">
+		    <a href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $image->getFile()); ?>" class="cloud-zoom-gallery" rel="useZoom: 'zoom1', smallImage: '<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $image->getFile())->resize(260,260); ?>' ">
+		      <img itemprop="image" data-main-image-src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $image->getFile())->resize(260, 260); ?>" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $image->getFile())->resize(75, 75); ?>" width="75" height="75" alt="" />
+		    </a>
+		  </li>
+	      <?php endforeach; ?>
+	      </ul>
+	    </div>  
+	    
+	      <div  class="jcarousel-prev jcarousel-prev-horizontal"></div>
+	      <div  class="jcarousel-next jcarousel-next-horizontal"></div>
+	    
+	  </div> <!--jcarousel-container-->
+
+	  <script type="text/javascript">
+	      jQuery(document).ready(function() {
+		  jQuery('#more<?php echo $v; ?>').jcarousel({
+		      wrap: 'circular',
+		      scroll:1,
+		      itemFallbackDimension: 300
+		  });
+
+	      });
+	  </script>
+    </div> <!--more-views-->
+<?php } ?>
+ </div> <!--product-img-box--> 

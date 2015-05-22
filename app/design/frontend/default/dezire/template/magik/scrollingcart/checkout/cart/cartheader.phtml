@@ -1,0 +1,276 @@
+<?php 
+      $scrollcart_search=Mage::app()->getStore()->getConfig('scrollingcart_section/scrollingcart_group/scartsearch');
+      $scrollcart_backtop=Mage::app()->getStore()->getConfig('scrollingcart_section/scrollingcart_group/scartbacktop');
+      $button_bgcolor= Mage::app()->getStore()->getConfig('scrollingcart_section/scrollingcartcustom_group/scartbtnbgcolor');
+      $button_txtcolor= Mage::app()->getStore()->getConfig('scrollingcart_section/scrollingcartcustom_group/scartbtntxtcolor');
+      $productname_color= Mage::app()->getStore()->getConfig('scrollingcart_section/scrollingcartcustom_group/scartprdname');
+      $price_color= Mage::app()->getStore()->getConfig('scrollingcart_section/scrollingcartcustom_group/scartprice');
+      $text_color= Mage::app()->getStore()->getConfig('scrollingcart_section/scrollingcartcustom_group/scartlabel');
+      $show_delete= Mage::app()->getStore()->getConfig('scrollingcart_section/scrollingcartcustom_group/scartdelete');
+      $show_top= Mage::app()->getStore()->getConfig('scrollingcart_section/scrollingcartcustom_group/scarttop');
+      $scart_position= Mage::app()->getStore()->getConfig('scrollingcart_section/scrollingcart_group/scartposition');
+      $scart_background= Mage::app()->getStore()->getConfig('scrollingcart_section/scrollingcartcustom_group/scartbackground');
+?>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+
+	jQuery("#<?php echo $scart_position ?>_toolbar").show(); 
+	jQuery("#back-top").hide();
+
+	jQuery(function() {
+	      jQuery(window).scroll(function() {
+		  if (jQuery(this).scrollTop() > 150) {
+			jQuery('#back-top').fadeIn();
+		  } else { 
+			jQuery('#back-top').fadeOut();
+		  }
+	      });
+
+	      jQuery('#back-top a').click(function() {
+		  jQuery('body,html').animate({scrollTop: 0}, 400);
+		  return false;
+	      });
+
+
+
+	});
+
+    jQuery("#<?php echo $scart_position ?>_toolbar .shoppingcart").bind('mouseenter',function() {
+        jQuery(".shopping_cart_mini",this).stop(true, true).fadeIn(200, "linear");
+    });
+
+    jQuery("#<?php echo $scart_position ?>_toolbar .shoppingcart").bind('mouseleave',function() {
+        jQuery(".shopping_cart_mini",this).stop(true, true).fadeOut(200, "linear");
+    });
+
+    jQuery("#right_toolbar .form-search ").mouseenter(function() {
+        jQuery('#right_toolbar .form-search input').animate({
+            right: 48,
+            width: 240
+        }, 300);
+    });
+
+ jQuery("#left_toolbar .form-search ").mouseenter(function() {
+        jQuery('#left_toolbar .form-search input').animate({
+            left: 40,
+            width: 240
+        }, 300);
+    });
+
+ jQuery("#right_toolbar .form-search ").mouseleave(function() {
+        jQuery('#right_toolbar .form-search input').stop(true, false).animate({
+            right: 20,
+            width: 0
+        }, 300);
+    });
+
+    jQuery("#left_toolbar .form-search ").mouseleave(function() {
+        jQuery('#left_toolbar .form-search input').stop(true, false).animate({
+            left: 20,
+            width: 0
+        }, 300);
+    });
+
+});
+</script> 
+
+<style>
+#right_toolbar {
+	position: fixed;
+	right:5px;
+	top: <?php echo $show_top ?>;
+	z-index: 500;
+	width:45px;
+}
+#left_toolbar {
+	position: fixed;
+	left:0px;
+	top: <?php echo $show_top ?>;
+	z-index: 500;
+	width:45px;
+}
+#right_toolbar .shopping_cart_mini {
+	position:absolute;
+	bottom:-135px;
+	margin-right:38px;
+	right:0;
+	left:auto;
+	top:auto;
+	overflow:hidden;
+	width:250px;
+background-color:<?php echo $scart_background ?>;
+}
+#left_toolbar .shopping_cart_mini {
+    position:absolute;
+    bottom:-135px;
+    margin-left:38px;
+    right:auto;
+    left:0;
+    top:auto;
+    overflow:hidden;
+    width:250px;
+background-color:<?php echo $scart_background ?>;
+}
+.shoppingcart .fadelink {
+	background:<?php echo $button_bgcolor ?>;
+	padding:5px 0px;
+	position:absolute;
+	right:0;
+	top:0;
+	float:right;
+	border-radius:5px;
+}
+.shoppingcart:hover .fadelink span a {
+	background:<?php echo $button_bgcolor ?>;
+	color:#fff;
+	cursor: pointer;
+	-webkit-transition: background-color 0.25s 0s ease;
+	-moz-transition: background-color 0.25s 0s ease;
+	-o-transition: background-color 0.25s 0s ease;
+}
+.shopping_cart_mini .product-detailes .product-name {
+	color: <?php echo $productname_color ?>;
+	text-decoration: none;
+	font-size: 12px;
+	line-height:1.05em;
+}
+.shopping_cart_mini .button {
+	float: left;
+	margin-right:5px;
+	padding: 0 7px;
+	border-radius: 3px;
+	background:<?php echo $button_bgcolor ?>;
+	color:<?php echo $button_txtcolor ?>;
+	text-decoration:none;
+	line-height:31px;
+	-webkit-transition: background-color 0.25s 0s ease;
+	-moz-transition: background-color 0.25s 0s ease;
+	-o-transition: background-color 0.25s 0s ease;
+
+}
+#right_toolbar .form-search button {
+    background-color: <?php echo $button_bgcolor ?>;
+    border: medium none;
+    border-radius: 4px 4px 4px 4px;
+    float: right;
+    margin: -3px 0 0 5px;
+    padding: 3px 0 1px;
+    position: relative;
+    width: 40px;
+    z-index: 100;
+}
+#left_toolbar .form-search button {
+    background-color: <?php echo $button_bgcolor ?>;
+    border: medium none;
+    border-radius: 4px 4px 4px 4px;
+    float: right;
+    margin: -3px 0 0 5px;
+    padding: 3px 0 1px;
+    position: relative;
+    width: 40px;
+    z-index: 100;
+}
+.scrollproduct-price {
+	color: <?php echo $price_color ?>;
+	
+}
+.scarttxtcolor{
+color:<?php echo $text_color ?>;
+}
+</style>
+<?php 
+      $_items =$this->getItems();
+      $_cartQty = $this->getItemsSummaryQty(); 
+
+?>
+<div  id="<?php echo $scart_position ?>_toolbar">
+    <div class="shoppingcart">
+	<div class="fadelink">
+	      <span class="pull-<?php echo $scart_position ?>"> 
+		 
+		  <img src="<?php echo $this->getSkinUrl('images/scrollcart_icon.png'); ?>" align="absmiddle">
+	      </span>
+	     <?php if( count($_items) > 0 ){  ?>
+			<span class="badge  badge-inverse"><?php echo $this->__($_cartQty);  ?> </span> 
+	      <?php } ?>
+
+	      <?php if(count($_items) < 4){ ?>
+		     <?php if(count($_items) == 0){ ?>
+			<div class="shopping_cart_mini" style="bottom:0px;">
+		     <?php }else{ ?>
+			<div class="shopping_cart_mini">
+		      <?php } ?>
+	      <?php }else { ?>
+		  <div class="shopping_cart_mini" style="overflow-y:auto;height:300px;">
+	      <?php } ?>
+		   
+		<div class="inner-wrapper"> 
+			<?php 
+			     
+			      if(count($_items)){ 
+			?>
+				  <?php 
+					if($_cartQty > 0){ ?>
+					   <span class="scarttxtcolor"><?php echo $this->__('There are %s items in your cart', $_cartQty); ?></span>
+				<?php 	} 
+				  ?>
+				  <?php 
+					foreach($_items as $_item):
+						$model = Mage::getModel('catalog/product'); 
+						$_product = $model->load($_item->getProductId());
+				  ?>
+					  <div class="item"> 
+						<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_item->getName()) ?>" class="product-image">
+						<img src="<?php echo Mage::helper('catalog/image')->init($_item->getProduct(), 'thumbnail');; ?>" alt="<?php echo $this->htmlEscape($_item->getName()) ?>" height="50" width="50" /></a>
+						
+						<div class="product-detailes"> 
+						    <a href="<?php echo $_product->getProductUrl() ?>" class="product-name"><?php echo $this->htmlEscape($_item->getName()) ?> </a>
+						    <div class="scrollproduct-price">
+							  <strong><?php echo $_item->getQty() ?> x <span class="price"><?php echo $this->helper('checkout')->formatPrice($_item->getPrice()); ?></span> </strong>
+						    </div>
+						</div>
+						<?php 
+						      if($show_delete == 1){  
+						      $delurl=Mage::getUrl( 'checkout/cart/delete', array( 'id' => $_item->getId() ) ); ?>
+						      <div class="alignright">  
+							  <a href="<?php echo $delurl ?>"><img src="<?php echo $this->getSkinUrl('images/btn_scroll_trash.png'); ?>"></a> 
+						      </div>
+						<?php } ?>
+					</div>
+				<?php 	endforeach; ?>
+
+				<div>
+				    <?php $subTotal = $this->helper('checkout')->formatPrice(Mage::getSingleton('checkout/cart')->getQuote()->getSubtotal());  ?>   
+				    <span class="scarttxtcolor">Cart Subtotal:</span> <span class="scrollproduct-price"><strong><?php echo $subTotal; ?></strong></span>
+				</div>
+
+				<div class="shopping"> 
+				      <a href="<?php echo $this->getCheckoutUrl() ?>" class="button">Checkout</a> 
+				      <a href="<?php echo $this->getUrl('checkout/cart'); ?>" class="button">View Cart</a> 
+				</div>
+  
+			<?php 
+			    }else{ ?>
+				 <span class="scarttxtcolor"><?php echo $this->__('You have no items in your shopping cart.'); ?></span>
+			    <?php   } 
+			?>
+		      </div>
+	      </div>
+	</div>
+    </div>
+    <?php 
+	    if($scrollcart_search == 1){
+		  $catalogSearchHelper =  $this->helper('catalogsearch');?>
+		  <div class="search_wrapper">
+			      <form class="form-search" action="<?php echo $catalogSearchHelper->getResultUrl() ?>" method="get">
+				<button type="submit"><img src="<?php echo $this->getSkinUrl('images/scrollsearch_icon.png'); ?>" align="absmiddle"></button>
+				<input name="q" class="input-medium search-query" value="search" onBlur="if (this.value == '') {this.value = 'search';}" onFocus="if(this.value =='search') {this.value = '';}" type="text">
+			      </form>
+		  </div>
+	  <?php } ?>
+
+    <?php  if($scrollcart_backtop == 1){  ?>
+	      <div id="back-top" style="display:none;"><a href="#top"><img src="<?php echo $this->getSkinUrl('images/magikbackto_top.png'); ?>"></a></div>
+    <?php  } ?>
+</div>
+

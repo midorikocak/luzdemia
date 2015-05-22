@@ -1,0 +1,183 @@
+<?php    
+$storeIds =Mage::app()->getStore()->getStoreId();
+$reqblockid=$this->getData('block_id');
+$attributeSet = Mage::getModel('socialbar/socialbar')->load($reqblockid);
+$is_homepage = Mage::getBlockSingleton('page/html_header')->getIsHomePage();	
+$tableSocial = (string)Mage::getConfig()->getTablePrefix().'magik_socialbar';
+$tableService = (string)Mage::getConfig()->getTablePrefix().'magik_socialsites';
+$getServices=$attributeSet['show_socialsites'];
+if( count($attributeSet['id']) > 0){
+	if($reqblockid != ''){
+
+		if($is_homepage) { 	    
+			
+		      $write = Mage::getSingleton('core/resource')->getConnection('core_write');
+		      $readresult=$write->query("SELECT magikservice.name as servicename,magikservice.favicon as servicefavicon,magikservice.url as serviceurl
+					      FROM ".$tableService." as magikservice join ".$tableSocial." as magiksocial WHERE magikservice.id IN (".$getServices.") AND magiksocial.id=".$reqblockid." AND ( magiksocial.show_pagelocation ='chkhomelevel' OR magiksocial.show_pagelocation ='chkallpagelevel' ) AND ( magiksocial.store_id LIKE '%$storeIds%' || (magiksocial.store_id='0')) ");
+		      $socialresult = $readresult->fetchAll();
+		}
+
+		if($this->getRequest()->getControllerName()=='category') { 
+		    $reqCatid = Mage::registry('current_category')->getId();
+		    $write = Mage::getSingleton('core/resource')->getConnection('core_write');
+		    $readresult=$write->query("SELECT magikservice.name as servicename,magikservice.favicon as servicefavicon,magikservice.url as serviceurl
+					      FROM  ".$tableService." as magikservice join ".$tableSocial." as magiksocial WHERE magikservice.id IN (".$getServices.") AND magiksocial.id=".$reqblockid." AND (magiksocial.show_category LIKE '$reqCatid,%' OR magiksocial.show_category LIKE '%,$reqCatid' OR magiksocial.show_category LIKE '$reqCatid' OR magiksocial.show_pagelocation ='chkallpagelevel') AND ( magiksocial.store_id LIKE '%$storeIds%' || (magiksocial.store_id='0'))
+					      ");
+		    $socialresult = $readresult->fetchAll();
+	  
+		}
+
+		if($this->getRequest()->getControllerName()=='product') { 
+		    
+		    if(Mage::app()->getFrontController()->getRequest()->getModuleName() != 'tag'){
+			    $reqProdid = Mage::registry('current_product')->getId(); 
+			    $check_socialoverride = Mage::getModel('catalog/product')->load($reqProdid)->getData('product_socialbar'); 
+			    
+			    if($check_socialoverride != 1){
+				  $write = Mage::getSingleton('core/resource')->getConnection('core_write');
+				  $readresult=$write->query("SELECT magikservice.name as servicename,magikservice.favicon as servicefavicon,magikservice.url as serviceurl
+					      FROM ".$tableService." as magikservice join ".$tableSocial." as magiksocial WHERE magikservice.id IN (".$getServices.") AND magiksocial.id=".$reqblockid." AND ( magiksocial.show_pagelocation ='chkallpagelevel' OR magiksocial.show_pagelocation ='chkproductlevel' ) AND ( magiksocial.store_id LIKE '%$storeIds%' || (magiksocial.store_id='0'))
+					      ");
+				  $socialresult = $readresult->fetchAll();
+
+			    }
+			    
+		    }
+
+		    if(Mage::app()->getFrontController()->getRequest()->getModuleName() == 'tag'){
+
+			      $write = Mage::getSingleton('core/resource')->getConnection('core_write');
+			      $readresult=$write->query("SELECT magikservice.name as servicename,magikservice.favicon as servicefavicon,magikservice.url as serviceurl
+					      FROM ".$tableService." as magikservice join ".$tableSocial." as magiksocial WHERE magikservice.id IN (".$getServices.") AND magiksocial.id=".$reqblockid." AND ( magiksocial.show_pagelocation ='chkallpagelevel') AND ( magiksocial.store_id LIKE '%$storeIds%' || (magiksocial.store_id='0'))
+					      ");
+			      $socialresult = $readresult->fetchAll();
+		    }
+		}
+
+
+		$page = Mage::app()->getFrontController()->getRequest()->getRouteName();
+		if(($page =='cms')){ 
+			if($is_homepage == ''){
+			$write = Mage::getSingleton('core/resource')->getConnection('core_write');
+			$readresult=$write->query("SELECT magikservice.name as servicename,magikservice.favicon as servicefavicon,magikservice.url as serviceurl
+					      FROM ".$tableService." as magikservice join ".$tableSocial." as magiksocial WHERE magikservice.id IN (".$getServices.") AND magiksocial.id=".$reqblockid." AND ( magiksocial.show_pagelocation ='chkcmslevel' OR magiksocial.show_pagelocation ='chkallpagelevel' ) AND ( magiksocial.store_id LIKE '%$storeIds%' || (magiksocial.store_id='0')) ");
+			$socialresult = $readresult->fetchAll();
+			}
+		}
+	  
+		if((Mage::app()->getFrontController()->getRequest()->getModuleName() == 'catalogsearch') && ($this->getRequest()->getControllerName() == 'result')){
+			    
+			$write = Mage::getSingleton('core/resource')->getConnection('core_write');
+			$readresult=$write->query("SELECT magikservice.name as servicename,magikservice.favicon as servicefavicon,magikservice.url as serviceurl
+					      FROM ".$tableService." as magikservice join ".$tableSocial." as magiksocial WHERE magikservice.id IN (".$getServices.") AND magiksocial.id=".$reqblockid." AND ( magiksocial.show_pagelocation ='chkallpagelevel') AND ( magiksocial.store_id LIKE '%$storeIds%' || (magiksocial.store_id='0'))
+					      ");
+			$socialresult = $readresult->fetchAll();
+		}
+
+
+	if(count($socialresult) > 0) { ?>
+	<div class="social">      
+       <ul class="link">
+
+		<?php     
+
+			      foreach ($socialresult as $row) { 
+			    $product = Mage::registry('current_product');
+			      if($product){
+					$productDescp=strip_tags($product->getDescription());
+					$prodMedia=Mage::helper('catalog/image')->init($product, 'image') ;
+			      }
+			    $url = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+			    $title = "";
+			    $shareUrl = urlencode($url);
+			    $socialname=$row['servicename'];
+			    $final_design =  $row['serviceurl'];
+			    $final_design = str_replace('PERMALINK',$url,$final_design);
+			    $final_design = str_replace('TITLE',$title,$final_design);
+			    $final_design = str_replace('DESCRIPTION',$productDescp,$final_design);
+			    $final_design = str_replace('Productmedia',$prodMedia,$final_design);
+			    
+
+			  switch ($socialname) {
+			    case "Delicious":
+			      $reqclass='delicious';
+			      break;
+			    case "Design Float":
+			      $reqclass='designfloat';
+			      break;
+			    case "Digg":
+			      $reqclass='digg';
+			      break;
+			  case "Diigo":
+			      $reqclass='diigo';
+			      break;
+			    case "DZone":
+			      $reqclass='dzone';
+			      break;
+			    case "Facebook":
+			      $reqclass='fb';
+			      break;
+			    case "FriendFeed":
+			      $reqclass='friendfeed';
+			      break;
+			    case "Google Bookmark":
+			      $reqclass='googlebookmark';
+			      break;
+			    case "LinkedIn":
+			      $reqclass='linkedin';
+			      break;
+			  case "Live":
+			      $reqclass='live';
+			      break;
+			    case "Mixx":
+			      $reqclass='mixx';
+			      break;
+			    case "MyShare":
+			      $reqclass='myshare';
+			      break;
+			    case "MySpace":
+			      $reqclass='myspace';
+			      break;
+			    case "Posterous":
+			      $reqclass='posterous';
+			      break;
+			    case "Reddit":
+			      $reqclass='reddit';
+			      break;
+			  case "StumbleUpon":
+			      $reqclass='stumbleupon';
+			      break;
+			    case "Tumblr":
+			      $reqclass='tumblr';
+			      break;
+			    case "Twitter":
+			      $reqclass='tw';
+			      break;
+			    case "Pinterest":
+			      $reqclass='pintrest';
+			      break;
+			  case "Google Plus":
+			      $reqclass='googleplus';
+			      break;
+			    default:
+			  $reqclass='';
+			  }
+		      ?>
+			<li class="<?php echo $reqclass;?>">
+			<a href="<?php echo $final_design; ?>" rel="nofollow" target="_blank" style="text-decoration:none;">
+				
+			</a>
+			</li>
+
+	<?php       } ?>
+</ul>
+	</div>
+
+	<?php   }//close socialresult
+	}//close blockid
+}//attributeSet count
+	?>
+		    
+		      
+				
+			

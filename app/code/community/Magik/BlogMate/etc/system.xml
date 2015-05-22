@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+		<magik translate="label" module="blogmate">
+			<label>Magik</label>
+			<sort_order>0</sort_order>
+		</magik>
+	</tabs>
+	<sections>
+		<blogmate translate="label" module="blogmate">                    
+			<label>Blog</label>
+			<tab>magik</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>11</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>            
+			<groups>
+				<blog_setting translate="label"> 
+					<label>Blog Setting</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>0</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<title translate="label">
+							<label>Page Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>0</sort_order>
+							<comment>Blog title on blog page</comment>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</title>
+						<keywords translate="label">
+							<label>Meta Keywords</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</keywords>
+						<description translate="label">
+							<label>Meta Description</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</description>
+						<blogcrumbs translate="label">
+							<label>Show Breadcrumbs</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</blogcrumbs>
+						<numrecentpost translate="label">
+							<label>Number of recent post to display</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</numrecentpost>
+					</fields>
+				</blog_setting>
+				<comment_setting translate="label"> 
+					<label>Comment Setting</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enabled translate="label">
+							<label>Enable Comments</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</enabled>
+						<login translate="label">
+							<label>Login Required to Comment</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</login>
+						<approval translate="label">
+							<label>Auto Approve Comments</label>
+							<comment>All comments will appear immediately without the need for approval by admin.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</approval>
+						<loginauto translate="label">
+							<label>Logged in Auto Approve Comments</label>
+							<comment>Only comments made by users that are logged in will automaticlly be approved.</comment>                            
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</loginauto>
+					</fields>
+				</comment_setting>
+			</groups>
+		</blogmate>
+	</sections>
+</config>

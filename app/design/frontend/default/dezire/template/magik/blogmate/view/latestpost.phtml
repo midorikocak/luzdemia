@@ -1,0 +1,60 @@
+<?php /* Latest Blog */ ?>
+
+<div class="blog_fix latest-news">
+  <div class="blog_post">
+     <div class="blog-title">
+       <h2><span><?php echo $this->__('Latest Blog') ?></span></h2>
+     </div> <!--blog-title-->
+
+			<ul style="top: 0px; left: 0px;">
+				<?php
+				$recent_posts = $this->getRecentPost(); //print_r ($recent_posts); exit;
+                                //echo $rec_pos = count($recent_posts); 
+				$home_url = Mage::helper('core/url')->getHomeUrl();
+                                $i=0;
+				foreach ($recent_posts as $recent_post_key => $recent_post_value) {
+                                    if($i < 4) {
+					//$blog_url = $home_url.'blog/view/post/p/'.$recent_post_value['title_slug'].'/';
+
+					$urlKey = $recent_post_value['title_slug'];
+					$curl = Mage::getUrl('blog/view/post/p/'.$urlKey, array('_direct' => $urlKey)); 
+					$cnt=Mage::getModel('blogmate/blog')->chkIfExists('index/'.$urlKey,$urlKey);
+					$store_id=Mage::app()->getStore()->getId();
+					if($cnt==0 && ($urlKey != ''))
+					{	
+						$curl1=$recent_post_value['title_slug'];
+						$rewrite = Mage::getModel('core/url_rewrite');
+						$rewrite->setStoreId($store_id)
+						->setIdPath('index/'.$urlKey)
+						->setRequestPath($urlKey)
+						->setTargetPath('blog/view/post/p/'.$urlKey)
+						->setIsSystem(true)
+						->save();
+
+					}
+					$blog_url =$curl; 
+					?>
+					<li>
+
+                                        <?php 
+                                             $texthtml2 = $recent_post_value['blog_content'];
+                                             preg_match('/<img[^>]+src="{{media url="([^">]+)"/', $texthtml2, $image);
+                                        ?>
+                                        <?php if($image[1]) { ?>
+                                                <a href="<?php echo $blog_url;?>"> <img src="<?php echo Mage::getBaseUrl('media') . $image[1];?>" width="300" height="200" alt="<?php echo $this->__('Blog image') ?>" /> </a>
+                                        <?php } ?>
+						<h2><?php echo ucfirst($recent_post_value['title']);?></h2>
+                                                <h3><i class="icon-calendar"></i><time class="entry-date" datetime="<?php echo date('c', strtotime($recent_post_value['created_at']));?>"><?php echo date('M d, Y', strtotime($recent_post_value['created_at']));?></time>.</h3>
+                                                <p><?php echo ucfirst($recent_post_value['short_description']);?></p>
+                                                <div class="f-block"><a href="<?php echo $blog_url;?>"><?php echo $this->__('Read More') ?></a></div>
+                                                
+					</li>
+					<?php
+                                     $i++;
+                                   }
+				}
+				?>
+			</ul>
+
+  </div> <!--blog_post-->
+</div> <!--blog_fix latest-news-->

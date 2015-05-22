@@ -1,0 +1,102 @@
+<?php
+	$home_url = Mage::helper('core/url')->getHomeUrl();
+?>
+<div id="main" class="wrapper">
+	<?php echo $this->getPagerHtml();?>
+	<div id="primary" class="site-content">
+		<div id="content" role="main">
+			<?php
+			$processor = Mage::getModel('core/email_template_filter');
+			$category_post_collection = $this->getCollection();
+			$home_url = Mage::helper('core/url')->getHomeUrl();
+			$post_count = 0;
+
+			foreach ($category_post_collection as $post_key => $post_value) {
+				++$post_count;
+				//$blog_url = $home_url.'blogmate/view/post/p/'.$post_value['title_slug'].'/';
+				$urlKey = $post_value['title_slug'];
+				    $curl = Mage::getUrl('blog/view/post/p/'.$urlKey, array('_direct' => $urlKey)); 
+				    $cnt=Mage::getModel('blogmate/blog')->chkIfExists('index/'.$urlKey,$urlKey);
+				    $store_id=Mage::app()->getStore()->getId();
+				    if($cnt==0 && ($urlKey!=''))
+				    {	
+					    $curl1=$post_value['title_slug'];
+					    $rewrite = Mage::getModel('core/url_rewrite');
+					    $rewrite->setStoreId($store_id)
+					    ->setIdPath('index/'.$urlKey)
+					    ->setRequestPath($curl1)
+					    ->setTargetPath('blog/view/post/p/'.$urlKey)
+					    ->setIsSystem(true)
+					    ->save();
+
+				    }
+				 $blog_url =$curl; 
+				?>
+				<article id="post-29" class="post-29 post type-post status-publish format-standard hentry category-daytrips">
+					<header class="entry-header">
+						<h1 class="entry-title">
+							<a href="<?php echo $blog_url;?>" rel="bookmark"><?php echo $title = $processor->filter($post_value['title']);?></a>
+						</h1>
+					</header>
+					<div class="entry-content">
+						<?php echo $short_blog_content = $processor->filter($post_value['short_blog_content']);?>
+						<p>
+							<a href="<?php echo $blog_url;?>" class="more-link">Continue reading <span class="meta-nav">→</span></a>
+						</p>
+					</div>
+					<footer class="entry-meta">
+						This entry was posted
+						<?php
+						$categories_selected = $post_value['categories_selected'];
+						$categories_selected = explode(',', $categories_selected);
+						foreach ($categories_selected as $category_key => $category_id) {
+							$category_detail = $this->getCategoryById($category_id);
+							//$category_url = $home_url.'blogmate/view/category/c/'.$category_detail[0]['title_slug'].'/';
+							$caturlKey = $category_detail[0]['title_slug'];
+							$catcurl = Mage::getUrl('blog/view/category/c/'.$caturlKey, array('_direct' => $caturlKey)); 
+							$catcnt=Mage::getModel('blogmate/blog')->chkIfExists('index/'.$caturlKey,$caturlKey);
+							$storeId=Mage::app()->getStore()->getId();
+							if($catcnt==0 && ($caturlKey!=''))
+							{	
+								$catcurl1=$category_detail[0]['title_slug'];
+								$catrewrite = Mage::getModel('core/url_rewrite');
+								$catrewrite->setStoreId($storeId)
+								->setIdPath('index/'.$caturlKey)
+								->setRequestPath($catcurl1)
+								->setTargetPath('blog/view/category/c/'.$caturlKey)
+								->setIsSystem(true)
+								->save();
+
+							}
+							$category_url =$catcurl;
+							if($category_key==0) echo 'in ';
+							else echo ', ';
+							?>
+							<a href="<?php echo $category_url;?>" title="View all posts in <?php echo ucfirst($category_detail[0]['title']);?>" rel="category tag"><?php echo ucfirst($category_detail[0]['title']);?></a>
+						<?php
+						}
+						
+						?>
+						On <time class="entry-date" datetime="<?php echo date('c', strtotime($post_value['created_at']));?>"><?php echo date('M d, Y', strtotime($post_value['created_at']));?></time>.
+					</footer>
+				</article>
+				<?php
+			}
+			if($post_count == 0) {
+				?>
+				<article id="post-29" class="post-29 post type-post status-publish format-standard hentry category-daytrips">
+					<div class="entry-content">
+						There are no posts under this category.
+					</div>
+				</article>
+				<?php
+			}
+			?>
+		</div>
+	</div>
+
+	<?php
+		echo $this->getChildHtml('blog_right');
+	?>
+
+</div>

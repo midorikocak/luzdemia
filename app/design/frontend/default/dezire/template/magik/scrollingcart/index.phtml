@@ -1,0 +1,10 @@
+ <?php 
+      $scrollcartdisplay=Mage::app()->getStore()->getConfig('scrollingcart_section/scrollingcart_group/scartdisplay');
+      if($scrollcartdisplay == 1 ){
+	  echo $this->getChildHtml('cart_cartheader');
+      }
+ ?>
+
+
+     
+  

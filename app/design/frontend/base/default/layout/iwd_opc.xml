@@ -168,7 +168,7 @@
 			</block>
 		<block type="core/text" name="rich_document.js">
             <action method="setText">
-                <text><![CDATA[<script type="text/javascript" src="js/midori/rich_document.js"></script>]]></text>
+                <text><![CDATA[<script type="text/javascript" src="/js/midori/rich_document.js"></script>]]></text>
             </action>
         </block>
 		</reference>
