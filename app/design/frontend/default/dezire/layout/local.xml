@@ -365,8 +365,6 @@
 	    <reference name="head">
 		<action method="addItem"><type>skin_css</type><name>css/blogmate/blogmate.css</name></action>
 	    </reference>
-       <reference name="content"><remove name="product_list_toolbar_pager"/></reference>
-       <reference name="content"><remove name="product_list_toolbar"/></reference>
 	    <reference name="content">   
 	      <block type="blogmate/index" name="blogmate_index" template="magik/blogmate/index.phtml">
 		<block type="blogmate/index" name="blog_right" template="magik/blogmate/right/right.phtml"/>
@@ -380,8 +378,6 @@
 	    <reference name="head">
 		<action method="addItem"><type>skin_css</type><name>css/blogmate/blogmate.css</name></action>
 	    </reference>
-       <reference name="content"><remove name="product_list_toolbar_pager"/></reference>
-       <reference name="content"><remove name="product_list_toolbar"/></reference>
 	    <reference name="content">   
 	      <block type="blogmate/index" name="blogmate_index" template="magik/blogmate/view/post.phtml">
 		<block type="blogmate/comments" name="blog_comments" template="magik/blogmate/comments/comments.phtml"/>
@@ -396,8 +392,6 @@
 	    <reference name="head">
 		<action method="addItem"><type>skin_css</type><name>css/blogmate/blogmate.css</name></action>
 	    </reference>
-       <reference name="content"><remove name="product_list_toolbar_pager"/></reference>
-       <reference name="content"><remove name="product_list_toolbar"/></reference>
 	    <reference name="content">   
 	      <block type="blogmate/view" name="blogmate_view" template="magik/blogmate/view/category.phtml">
 		<block type="blogmate/view" name="blog_right" template="magik/blogmate/right/right.phtml"/>
@@ -411,8 +405,6 @@
 	    <reference name="head">
 		<action method="addItem"><type>skin_css</type><name>css/blogmate/blogmate.css</name></action>
 	    </reference>
-       <reference name="content"><remove name="product_list_toolbar_pager"/></reference>
-       <reference name="content"><remove name="product_list_toolbar"/></reference>
 	    <reference name="content">   
 	      <block type="blogmate/index" name="blogmate_index" template="magik/blogmate/index.phtml">
 		<block type="blogmate/index" name="blog_right" template="magik/blogmate/right/right.phtml"/>
