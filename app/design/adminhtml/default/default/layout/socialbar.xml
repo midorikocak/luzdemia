@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+  <socialbar_adminhtml_socialbar_index>
+	<reference name="content">
+	  <block type="socialbar/adminhtml_socialbar" name="socialbar" />
+	</reference>
+  </socialbar_adminhtml_socialbar_index>
+  <socialbar_adminhtml_socialbarhelp_index>
+        <reference name="content">
+            <block type="socialbar/adminhtml_socialbarhelp" name="socialbarhelp" template="socialbar/socialbarhelp.phtml" />
+        </reference>
+    </socialbar_adminhtml_socialbarhelp_index>
+  <default> 
+    <reference name="head">
+	 
+	<action method="addItem"><type>skin_css</type><name>socialbar-admin.css</name><params/></action>
+    </reference> 
+  </default>
+</layout>

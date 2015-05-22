@@ -1,0 +1,10 @@
+.head-adminhtml-socialbar {
+    background-image: url("images/socialbar_magik.png");
+}
+)
+.icon-head {
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    min-height: 18px;
+    padding-left: 22px;
+}

@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Magik_Socialbar>
+      <version>0.2.0</version>
+    </Magik_Socialbar>
+  </modules>
+  <frontend>
+    <routers>
+      <socialbar>
+        <use>standard</use>
+          <args>
+            <module>Magik_Socialbar</module>
+            <frontName>socialbar</frontName>
+          </args>
+      </socialbar>
+    </routers>
+		
+  </frontend>
+  <global>
+    <helpers>
+      <socialbar>
+        <class>Magik_Socialbar_Helper</class>
+      </socialbar>
+    </helpers>
+	<blocks>
+	  <socialbar>
+		<class>Magik_Socialbar_Block</class>
+	  </socialbar>
+	</blocks>
+	<models>
+	  <socialbar>
+		<class>Magik_Socialbar_Model</class>
+		<resourceModel>socialbar_mysql4</resourceModel>
+	  </socialbar>
+	  <socialbar_mysql4>
+		<class>Magik_Socialbar_Model_Mysql4</class>
+		<entities>		  
+			  <socialbar>
+				<table>magik_socialbar</table>
+			  </socialbar>
+			  <socialsites>
+				<table>magik_socialsites</table>
+			  </socialsites>
+        </entities>
+	  </socialbar_mysql4>
+	</models>
+	<resources>
+	  <socialbar_setup>
+		<setup>
+		  <module>Magik_Socialbar</module>
+		</setup>
+		<connection>
+		  <use>core_setup</use>
+		</connection>
+	  </socialbar_setup>
+	  <socialbar_write>
+		<connection>
+		  <use>core_write</use>
+		</connection>
+	  </socialbar_write>
+	  <socialbar_read>
+		<connection>
+		  <use>core_read</use>
+		</connection>
+	  </socialbar_read>
+	</resources>
+  </global>
+  <admin>
+	<routers>
+	  <socialbar>
+	    <use>admin</use>
+		<args>
+		  <module>Magik_Socialbar</module>
+		  <frontName>socialbar</frontName>
+		</args>
+	  </socialbar>
+	</routers>
+  </admin>
+  <adminhtml>
+	<menu>
+	  <socialbar module="socialbar">
+		<title>Social Bar</title>
+		<sort_order>100</sort_order>
+		<children>
+		  <socialbar module="socialbar">
+		    <title>Manage Social Bar</title>
+			<sort_order>0</sort_order>
+			<action>socialbar/adminhtml_socialbar</action>
+		  </socialbar>
+		  <socialbarhelp module="socialbar">
+                        <title>How to Install</title>
+                        <sort_order>2</sort_order>
+                        <action>socialbar/adminhtml_socialbarhelp</action>
+                    </socialbarhelp>
+		</children>
+	  </socialbar>
+	</menu>
+	<acl>
+	  <resources>
+		<all>
+		  <title>Allow Everything</title>
+		</all>
+		<admin>
+		  <children>
+			<socialbar translate="title" module="socialbar">
+			  <title>Socialbar</title>
+			  <sort_order>1000</sort_order>
+			  <children>
+			      <socialbar translate="title">
+				    <title>Manage Social Bar</title>
+				    <sort_order>0</sort_order>
+			      </socialbar>
+			      <socialbarhelp module="socialbar">
+				    <title>How to Install</title>
+				    <sort_order>2</sort_order>
+			      </socialbarhelp>
+			  </children>
+			</socialbar>
+		  </children>
+		</admin>
+	  </resources>
+	</acl>
+	<layout>
+	  <updates>
+		<socialbar>
+		  <file>socialbar.xml</file>
+		</socialbar>
+	  </updates>
+	</layout>
+  </adminhtml>
+</config> 

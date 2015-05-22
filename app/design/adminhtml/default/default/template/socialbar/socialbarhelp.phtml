@@ -1,0 +1,26 @@
+<div class="content-header">
+<h3 class="icon-head head-adminhtml-socialbar">Social Bar Help</h3> 
+</div>
+<div style="font: 15px/1.7em Arial, Helvetica, sans-serif; border: 1px solid #D6D6D6; padding: 10px 15px;"><span><b>How it Works?</b></span>
+   <div>
+	<div style="margin:6px 0px 10px 10px;">
+		<span style="margin: 0 0 10px 0;">1. Copy app directory into magento/app directory.</span><br>
+		<span style="margin: 0 0 10px 0;">2. Copy skin directory into magento/skin directory.</span><br>
+		<span style="margin: 0 0 10px 0;">3. After Creating Social bar in admin. Copy this block code and paste in required  page template file of your theme. </span><br>
+		<span style="margin-left: 16px;">  Call a block in phtml page :- <b>$this->getLayout()->createBlock("core/template")->setTemplate("socialbar/socialbar.phtml")->setBlockId(1)->toHtml();</b> </span><br>
+		<span style="margin-left: 16px;">  Call a block in other block :- <b>{{block type="core/template" block_id="1" template="socialbar/socialbar.phtml"}}</b></span>	
+	</div>
+    </div>
+    <div>
+	    <span><b>Compatibility</b></span><br/>
+	    This extension is compatible with Magento 1.5.x.x, 1.6.x.x, 1.7.x.x
+    </div>
+    <div>
+	    <span><b>Support</b></span><br/>
+	    For any queries <a style="cursor:pointer" target="_blank" href="http://www.magikcommerce.com/contacts/">Contact Us</a> OR
+	    Discuss it on our <a style="cursor:pointer" target="_blank" href="http://forum.magikcommerce.com/">Forum</a>	 
+    </div>
+</div>
+
+
+

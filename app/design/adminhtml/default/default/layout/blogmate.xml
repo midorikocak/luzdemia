@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<blogmate_adminhtml_blog_index>
+		<reference name="content">
+			<block type="blogmate/adminhtml_blog" name="blog" />
+		</reference>
+	</blogmate_adminhtml_blog_index>
+	<blogmate_adminhtml_blog_edit>
+		<update handle="editor" />
+	</blogmate_adminhtml_blog_edit>
+	<blogmate_adminhtml_blog_new>
+		<update handle="editor" />
+	</blogmate_adminhtml_blog_new>
+	<blogmate_adminhtml_category_index>
+		<reference name="content">
+			<block type="blogmate/adminhtml_category" name="category" />
+		</reference>
+	</blogmate_adminhtml_category_index>
+	<blogmate_adminhtml_comment_index>
+		<reference name="content">
+			<block type="blogmate/adminhtml_comment" name="comment" />
+		</reference>
+	</blogmate_adminhtml_comment_index>
+</layout>

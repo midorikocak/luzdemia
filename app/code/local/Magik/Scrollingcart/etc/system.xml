@@ -1,0 +1,160 @@
+<?xml version="1.0" ?>
+<config>
+    <tabs>
+        <magik translate="label">
+            <label>Magik</label>
+            <sort_order>200</sort_order>
+        </magik>
+    </tabs>
+    <sections>
+        <scrollingcart_section translate="label">
+            <label>Scrolling cart</label>
+            <sort_order>12</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <tab>magik</tab>
+            <groups>
+                <scrollingcart_group translate="label">
+                    <label>Scrollingcart Configuration</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+			<scartdisplay translate="label">
+                             <label>Display Scrolling Cart</label>
+                              <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+			     <sort_order>10</sort_order>
+                             <show_in_default>1</show_in_default>
+                             <show_in_website>1</show_in_website>
+                             <show_in_store>1</show_in_store>
+                         </scartdisplay>
+                        
+                        <scartposition translate="label">
+                             <label>Select Scrolling cart Position</label>
+                             <frontend_type>select</frontend_type>
+                             <source_model>scrollingcart/scartposition</source_model>
+                             <sort_order>20</sort_order>
+                             <show_in_default>1</show_in_default>
+                             <show_in_website>1</show_in_website>
+                             <show_in_store>1</show_in_store>
+                         </scartposition>
+                         
+                        <scartsearch translate="label">
+                             <label>Display Search </label>
+                              <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+			     <sort_order>30</sort_order>
+                             <show_in_default>1</show_in_default>
+                             <show_in_website>1</show_in_website>
+                             <show_in_store>1</show_in_store>
+                         </scartsearch>
+                        
+                        <scartbacktop translate="label">
+                             <label>Display Back to Top link </label>
+                              <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+			     <sort_order>40</sort_order>
+                             <show_in_default>1</show_in_default>
+                             <show_in_website>1</show_in_website>
+                             <show_in_store>1</show_in_store>
+                         </scartbacktop>
+                     </fields> 
+                </scrollingcart_group>
+                
+                 <scrollingcartcustom_group>
+		      <label>Scrollingcart Custom Configuration</label>
+		      <sort_order>15</sort_order>
+		      <show_in_default>1</show_in_default>
+		      <show_in_website>1</show_in_website>
+		      <show_in_store>1</show_in_store>
+		      <fields>
+		      
+                         <scartbackground translate="label">
+                            <label>Background Color</label>
+			    <frontend_type>text</frontend_type>
+                            <frontend_model>scrollingcart/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>21</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </scartbackground>
+		        
+                        <scartlabel translate="label">
+                             <label>Text Color</label>
+                             <frontend_type>text</frontend_type>
+                             <frontend_model>scrollingcart/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>22</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                         </scartlabel>
+                      
+			<scartprdname translate="label">
+                             <label>Product Name Color</label>
+                             
+                             <frontend_type>text</frontend_type>
+                             <frontend_model>scrollingcart/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>23</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                         </scartprdname>
+                         
+                         <scartprice translate="label">
+                             <label>Price Color</label>
+                             <frontend_type>text</frontend_type>
+                             <frontend_model>scrollingcart/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>24</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                         </scartprice>
+                         
+                          <scartbtnbgcolor translate="label">
+                             <label>Button Color</label>
+                             <frontend_type>text</frontend_type>
+                             <frontend_model>scrollingcart/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                         </scartbtnbgcolor>
+                         
+                          <scartbtntxtcolor translate="label">
+                             <label>Button Text Color</label>
+                             <frontend_type>text</frontend_type>
+                             <frontend_model>scrollingcart/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>26</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                         </scartbtntxtcolor>
+                         
+                         <scartdelete translate="label">
+                             <label>Display Delete </label>
+                              <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+			     <sort_order>27</sort_order>
+                             <show_in_default>1</show_in_default>
+                             <show_in_website>1</show_in_website>
+                             <show_in_store>1</show_in_store>
+                         </scartdelete>
+                         
+                         <scarttop translate="label">
+                             <label>Set Scrolling Cart from top </label>
+                             <frontend_type>text</frontend_type>
+                             <comment> Add this format 30% or 30px</comment>
+			     <sort_order>28</sort_order>
+                             <show_in_default>1</show_in_default>
+                             <show_in_website>1</show_in_website>
+                             <show_in_store>1</show_in_store>
+                         </scarttop>
+                  </fields>
+                 </scrollingcartcustom_group>
+            </groups>
+        </scrollingcart_section>
+    </sections>
+</config>

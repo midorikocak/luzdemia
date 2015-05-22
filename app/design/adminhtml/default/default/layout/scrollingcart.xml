@@ -1,0 +1,23 @@
+<?xml version="1.0"?>   
+<layout version="0.1.0">   
+<default>
+	<reference name="head"> 
+	    <action method="addItem"><type>skin_css</type><name>css/scrollingcart/scroll.css</name><params/></action>
+	    <action method="addJs"><script>magikscrollingcart/jquery-1.7.1.min.js</script></action>
+	 </reference>
+	<reference name="head"> 
+	       <block type="scrollingcart/index" name="scrollingcart_index" template="scrollingcart/index.phtml">   
+		 <block type="checkout/cart" name="cart_cartheader" template="scrollingcart/checkout/cart/cartheader.phtml" >
+		      <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>scrollingcart/checkout/cart/cartheader/default.phtml</template></action>
+			<action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>scrollingcart/checkout/cart/cartheader/default.phtml</template></action>
+			<action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>scrollingcart/checkout/cart/cartheader/default.phtml</template></action>
+			<block type="core/text_list" name="cart_cartheader.extra_actions" as="extra_actions" translate="label" module="checkout">
+				<label>Shopping Cart Cartheader Extra Actions</label>
+			</block>
+		    
+		  </block>  
+		</block>
+	 </reference>
+    </default>
+</layout>   
+	
