@@ -360,7 +360,7 @@
         </catalog_seo_sitemap>          
 <blogmate_index_index>   
 	    <reference name="root">   
-	      <action method="setTemplate"><template>page/1column.phtml</template></action>   
+	      <action method="setTemplate"><template>page/1column-view.phtml</template></action>   
 	    </reference> 
 	    <reference name="head">
 		<action method="addItem"><type>skin_css</type><name>css/blogmate/blogmate.css</name></action>
@@ -373,7 +373,7 @@
 	  </blogmate_index_index>
 	  <blogmate_view_post>   
 	    <reference name="root">   
-	      <action method="setTemplate"><template>page/1column.phtml</template></action>   
+	      <action method="setTemplate"><template>page/1column-view.phtml</template></action>   
 	    </reference>
 	    <reference name="head">
 		<action method="addItem"><type>skin_css</type><name>css/blogmate/blogmate.css</name></action>
@@ -387,7 +387,7 @@
 	  </blogmate_view_post>
 	  <blogmate_view_category>   
 	    <reference name="root">   
-	      <action method="setTemplate"><template>page/1column.phtml</template></action>   
+	      <action method="setTemplate"><template>page/1column-view.phtml</template></action>   
 	    </reference>
 	    <reference name="head">
 		<action method="addItem"><type>skin_css</type><name>css/blogmate/blogmate.css</name></action>
@@ -400,7 +400,7 @@
 	  </blogmate_view_category>
 	  <blogmate>   
 	    <reference name="root">   
-	      <action method="setTemplate"><template>page/1column.phtml</template></action>   
+	      <action method="setTemplate"><template>page/1column-view.phtml</template></action>   
 	    </reference> 
 	    <reference name="head">
 		<action method="addItem"><type>skin_css</type><name>css/blogmate/blogmate.css</name></action>
