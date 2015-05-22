@@ -50,6 +50,8 @@
                         <action method="addItem"><type>skin_js</type><name>js/packery.pkgd.min.js</name></action>                     
                         <action method="addItem"><type>skin_js</type><name>js/custom.js</name></action>
                         <action method="addItem"><type>skin_js</type><name>js/jquery.fancybox-1.3.4.pack.js</name></action>
+ 						<action method="addItem"><type>skin_css</type><name>css/blogmate/blogmate.css</name></action>
+                        
                 </reference>
 
                 
@@ -355,5 +357,58 @@
               <reference name="root">
                       <action method="setTemplate"><template>page/1column-view.phtml</template></action>
               </reference>         
-        </catalog_seo_sitemap>
+        </catalog_seo_sitemap>          
+<blogmate_index_index>   
+	    <reference name="root">   
+	      <action method="setTemplate"><template>page/1column.phtml</template></action>   
+	    </reference> 
+	    <reference name="head">
+		<action method="addItem"><type>skin_css</type><name>css/blogmate/blogmate.css</name></action>
+	    </reference>
+	    <reference name="content">   
+	      <block type="blogmate/index" name="blogmate_index" template="magik/blogmate/index.phtml">
+		<block type="blogmate/index" name="blog_right" template="magik/blogmate/right/right.phtml"/>
+	      </block> 
+	    </reference>   
+	  </blogmate_index_index>
+	  <blogmate_view_post>   
+	    <reference name="root">   
+	      <action method="setTemplate"><template>page/1column.phtml</template></action>   
+	    </reference>
+	    <reference name="head">
+		<action method="addItem"><type>skin_css</type><name>css/blogmate/blogmate.css</name></action>
+	    </reference>
+	    <reference name="content">   
+	      <block type="blogmate/index" name="blogmate_index" template="magik/blogmate/view/post.phtml">
+		<block type="blogmate/comments" name="blog_comments" template="magik/blogmate/comments/comments.phtml"/>
+		<block type="blogmate/index" name="blog_right" template="magik/blogmate/right/right.phtml"/>
+	      </block> 
+	    </reference>   
+	  </blogmate_view_post>
+	  <blogmate_view_category>   
+	    <reference name="root">   
+	      <action method="setTemplate"><template>page/1column.phtml</template></action>   
+	    </reference>
+	    <reference name="head">
+		<action method="addItem"><type>skin_css</type><name>css/blogmate/blogmate.css</name></action>
+	    </reference>
+	    <reference name="content">   
+	      <block type="blogmate/view" name="blogmate_view" template="magik/blogmate/view/category.phtml">
+		<block type="blogmate/view" name="blog_right" template="magik/blogmate/right/right.phtml"/>
+	      </block> 
+	    </reference>   
+	  </blogmate_view_category>
+	  <blogmate>   
+	    <reference name="root">   
+	      <action method="setTemplate"><template>page/1column.phtml</template></action>   
+	    </reference> 
+	    <reference name="head">
+		<action method="addItem"><type>skin_css</type><name>css/blogmate/blogmate.css</name></action>
+	    </reference>
+	    <reference name="content">   
+	      <block type="blogmate/index" name="blogmate_index" template="magik/blogmate/index.phtml">
+		<block type="blogmate/index" name="blog_right" template="magik/blogmate/right/right.phtml"/>
+	      </block> 
+	    </reference>   
+	  </blogmate>
 </layout>
