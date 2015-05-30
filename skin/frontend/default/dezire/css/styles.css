@@ -10122,7 +10122,7 @@ h3 {
 	margin:0 auto 0px;
 	width:1150px;
 	padding:0px;
-	float:left
+	/*float:left*//* Midori ????!!!?? */
 }
 .jcarousel-next-horizontal1 {
 	display:block;
