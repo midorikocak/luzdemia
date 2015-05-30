@@ -22,6 +22,15 @@
 				</blogmate>
 			</updates>
 		</layout>
+      <translate>
+          <modules>
+              <IWD_Opc>
+                  <files>
+                      <default>Magik_BlogMate.csv</default>
+                  </files>
+              </IWD_Opc>
+          </modules>
+      </translate>
 	</frontend>
 	<global>
 		<helpers>

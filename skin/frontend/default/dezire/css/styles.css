@@ -11599,3 +11599,8 @@ a.button.view-all {
       height:auto;
    }
 }
+
+.entry-content img{
+   max-width:100%;
+   height:auto;
+}

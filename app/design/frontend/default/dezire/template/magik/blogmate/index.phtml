@@ -47,47 +47,16 @@
 					<div class="entry-content">
 						<?php echo $short_blog_content = $processor->filter($post_value['short_blog_content']);?>
 						<p>
-							<a href="<?php echo $blog_url;?>" class="more-link">Continue reading <span class="meta-nav">→</span></a>
+							<a href="<?php echo $blog_url;?>" class="more-link"><?php echo $this->__('Continue reading') ?> <span class="meta-nav">→</span></a>
 						</p>
 					</div>
-					<footer class="entry-meta">
-						This entry was posted
-						<?php
-						$categories_selected = $post_value['categories_selected'];
-						$categories_selected = explode(',', $categories_selected);
-						foreach ($categories_selected as $category_key => $category_id) {
-							$category_detail = $this->getCategoryById($category_id);
-							//$category_url = $home_url.'blog/view/category/c/'.$category_detail[0]['title_slug'].'/';
-
-							$caturlKey = $category_detail[0]['title_slug'];
-							$catcurl = Mage::getUrl('blog/view/category/c/'.$caturlKey, array('_direct' => $caturlKey)); 
-							$catcnt=Mage::getModel('blogmate/blog')->chkIfExists('index/'.$caturlKey,$caturlKey);
-							$storeId=Mage::app()->getStore()->getId();
-							if($catcnt==0 && ($caturlKey !=''))
-							{	
-								$catcurl1=$category_detail[0]['title_slug'];
-								$catrewrite = Mage::getModel('core/url_rewrite');
-								$catrewrite->setStoreId($storeId)
-								->setIdPath('index/'.$caturlKey)
-								->setRequestPath($catcurl1)
-								->setTargetPath('blog/view/category/c/'.$caturlKey)
-								->setIsSystem(true)
-								->save();
-
-							}
-							$category_url =$catcurl;
-							
-
-
-							if($category_key==0) echo 'in ';
-							else echo ', ';
-							?>
-							<a href="<?php echo $category_url;?>" title="View all posts in <?php echo ucfirst($category_detail[0]['title']);?>" rel="category tag"><?php echo ucfirst($category_detail[0]['title']);?></a>
-						<?php
-						}
-						?>
-						On <time class="entry-date" datetime="<?php echo date('c', strtotime($post_value['created_at']));?>"><?php echo date('M d, Y', strtotime($post_value['created_at']));?></time>.
-					</footer>
+               <script>
+               jQuery(window).load(function(){
+                  jQuery('.entry-content img:first-of-type').click(function(){
+                     window.location.href ="<?php echo $blog_url;?>";
+                  });
+               });
+               </script>
 				</article>
 				<?php
 			}
@@ -95,7 +64,7 @@
 				?>
 				<article id="post-29" class="post-29 post type-post status-publish format-standard hentry category-daytrips">
 					<div class="entry-content">
-						There are no posts under this category.
+                  <?php echo $this->__('There are no posts under this category.') ?>
 					</div>
 				</article>
 				<?php

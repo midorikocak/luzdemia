@@ -1,6 +1,6 @@
 <div id="secondary" class="widget-area" role="complementary">
 		<aside id="recent-posts-4" class="widget widget_recent_entries">
-			<h3 class="widget-title">Recent Posts</h3>
+			<h3 class="widget-title"><?php echo $this->__('Recent Posts') ?></h3>
 			<ul>
 				<?php
 				$recent_posts = $this->getRecentPost();
@@ -34,7 +34,7 @@
 				?>
 			</ul>
 		</aside>
-		<aside id="categories-2" class="widget widget_categories"><h3 class="widget-title">Categories</h3>		
+		<aside id="categories-2" class="widget widget_categories"><h3 class="widget-title"><?php echo $this->__('Categories') ?></h3>		
 			<?php echo Mage::helper('blogmate')->getcattree(0);?>
 		</aside>
 

@@ -1,5 +1,5 @@
 <div id="main" class="wrapper">
-	<div id="primary" class="site-content">
+	<div id="primary">
 		<div id="content" role="main">
 			<?php
 			$processor = Mage::getModel('core/email_template_filter');
@@ -20,43 +20,6 @@
 					<div class="entry-content">
 						<?php echo $blog_content = $processor->filter($post_value['blog_content']);?>
 					</div>
-					<footer class="entry-meta">
-						This entry was posted
-						<?php
-						$categories_selected = $post_value['categories_selected'];
-						$categories_selected = explode(',', $categories_selected);
-						foreach ($categories_selected as $category_key => $category_id) {
-							$category_detail = $this->getCategoryById($category_id);
-							//$category_url = $home_url.'blogmate/view/category/c/'.$category_detail[0]['title_slug'].'/';
-							$urlKey = $category_detail[0]['title_slug'];
-							$curl = Mage::getUrl('blog/view/category/c/'.$urlKey, array('_direct' => $urlKey)); 
-							$cnt=Mage::getModel('blogmate/blog')->chkIfExists('index/'.$urlKey,$urlKey);
-							$store_id=Mage::app()->getStore()->getId();
-							if($cnt==0 && ($urlKey!=''))
-							{	
-								$curl1=$category_detail[0]['title_slug'];
-								$rewrite = Mage::getModel('core/url_rewrite');
-								$rewrite->setStoreId($store_id)
-								->setIdPath('index/'.$urlKey)
-								->setRequestPath($curl1)
-								->setTargetPath('blog/view/category/c/'.$urlKey)
-								->setIsSystem(true)
-								->save();
-
-							}
-							$category_url =$curl;
-							
-
-							if($category_key==0) echo 'in ';
-							else echo ', ';
-							?>
-							<a href="<?php echo $category_url;?>" title="View all posts in <?php echo ucfirst($category_detail[0]['title']);?>" rel="category tag"><?php echo ucfirst($category_detail[0]['title']);?></a>
-						<?php
-						}
-						
-						?>
-						On <time class="entry-date" datetime="<?php echo date('c', strtotime($post_value['created_at']));?>"><?php echo date('M d, Y', strtotime($post_value['created_at']));?></time>.
-					</footer>
 				</article>
 				<?php
 			
@@ -72,9 +35,5 @@
 			</div>
 		</div>
 	</div>
-
-	<?php
-		echo $this->getChildHtml('blog_right');
-	?>
 
 </div>
