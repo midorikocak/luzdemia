@@ -42,6 +42,8 @@
                                         ?>
                                         <?php if($image[1]) { ?>
                                                 <a href="<?php echo $blog_url;?>"> <img src="<?php echo Mage::getBaseUrl('media') . $image[1];?>" width="300" height="200" alt="<?php echo $this->__('Blog image') ?>" /> </a>
+                                        <?php } elseif(preg_match('/<img[^>]+src="([^">]+)"/', $texthtml2, $image_src)) {?>
+                                                <a href="<?php echo $blog_url;?>"> <img src="<?php echo $image_src[1];?>" width="300" height="200" alt="<?php echo $this->__('Blog image') ?>" /> </a>
                                         <?php } ?>
 						<h2><?php echo ucfirst($recent_post_value['title']);?></h2>
                                                 <!--h3><i class="icon-calendar"></i><time class="entry-date" datetime="<?php echo date('c', strtotime($recent_post_value['created_at']));?>"><?php echo date('M d, Y', strtotime($recent_post_value['created_at']));?></time>.</h3-->
