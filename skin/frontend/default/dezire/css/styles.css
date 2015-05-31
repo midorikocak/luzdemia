@@ -309,7 +309,7 @@ img {
 /* ========= Header Container ==========*/
 header {
 	background:#fff;
-	max-height:130px;
+/*	max-height:130px;*/
 	position:relative;
 }
 header .top-links {
