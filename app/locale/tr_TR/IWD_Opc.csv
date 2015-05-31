@@ -1,4 +1,4 @@
-* Required Fields,* Required Fields
+* Required Fields,* Gerekli Alanlar
 Address,Adres
 Already registered?,Zaten üye misiniz?
 An error occurred in the process of payment,Ödeme sürecinde hata oldu
@@ -13,14 +13,14 @@ City,İlçe
 Close,Kapat
 Company,Firma
 Confirm Password,Parolayı tekrarla
-Continue,Devam
+Continue,Facebook ile Bağlan
 Country,Ülke
 "Coupon code ""%s"" is not valid.","Kupon ""%s"" geçerli değil"
 "Coupon code ""%s"" was applied.","Kupon ""%s"" uygulandı."
 Coupon code was canceled.,Kupon iptal edildi.
 Data saving problem,Veri Kayıt Hatası
 Details,Detaylar
-Email Address,Eposta Adresi
+Email Address,E-posta
 Enabled,Geçerli
 Estimate Shipping and Tax,Tahmmini Teslimat ve Vegi
 Excl. Tax,Vegi Hariç
@@ -39,7 +39,7 @@ Payment Method,Ödeme Yöntemi
 Payment method information,Ödeme Yöntemi Bilgisi
 Payment method is not defined,Ödeme yöntemi tanımlanmadı
 Place Order,Siparişi tamamla
-Place Order Now,Şimdi Siparişi tamamla
+Place Order Now,Siparişi tamamla
 Please agree to all Terms and Conditions before placing the order.,Lütfen sipariş vermeden önce tüm koşulları ve sözleşmeleri onaylayınız.
 Please agree to all Terms and Conditions before placing the orders.,Lütfen sipariş vermeden önce tüm koşulları ve sözleşmeleri onaylayınız.
 Please agree to all the terms and conditions before placing the order.,Lütfen sipariş vermeden önce tüm koşulları ve sözleşmeleri onaylayınız.
