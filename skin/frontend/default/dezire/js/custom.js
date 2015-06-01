@@ -31,6 +31,7 @@ function deleteCartInSidebar() {
 
 $jq(document).ready(function(){
     slideEffectAjax();
+    $jq('.tip').tipr();
 });
 
 
