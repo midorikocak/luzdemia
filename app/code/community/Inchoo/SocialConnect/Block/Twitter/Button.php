@@ -69,7 +69,7 @@ class Inchoo_SocialConnect_Block_Twitter_Button extends Mage_Core_Block_Template
     {
         if(empty($this->userInfo)) {
             if(!($text = Mage::registry('inchoo_socialconnect_button_text'))){
-                $text = $this->__('Connect');
+                $text = $this->__('Connect with Twitter');
             }
         } else {
             $text = $this->__('Disconnect');

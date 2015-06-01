@@ -13,7 +13,7 @@ City,İlçe
 Close,Kapat
 Company,Firma
 Confirm Password,Parolayı tekrarla
-Continue,Facebook ile Bağlan
+Continue,Devam
 Country,Ülke
 "Coupon code ""%s"" is not valid.","Kupon ""%s"" geçerli değil"
 "Coupon code ""%s"" was applied.","Kupon ""%s"" uygulandı."
@@ -40,9 +40,9 @@ Payment method information,Ödeme Yöntemi Bilgisi
 Payment method is not defined,Ödeme yöntemi tanımlanmadı
 Place Order,Siparişi tamamla
 Place Order Now,Siparişi tamamla
-Please agree to all Terms and Conditions before placing the order.,Lütfen sipariş vermeden önce tüm koşulları ve sözleşmeleri onaylayınız.
-Please agree to all Terms and Conditions before placing the orders.,Lütfen sipariş vermeden önce tüm koşulları ve sözleşmeleri onaylayınız.
-Please agree to all the terms and conditions before placing the order.,Lütfen sipariş vermeden önce tüm koşulları ve sözleşmeleri onaylayınız.
+Please agree to all Terms and Conditions before placing the order.,Lütfen mesafeli satış sözleşmesini okuyup, onaylayınız.
+Please agree to all Terms and Conditions before placing the orders.,Lütfen mesafeli satış sözleşmesini okuyup, onaylayınız.
+Please agree to all the terms and conditions before placing the order.,Lütfen mesafeli satış sözleşmesini okuyup, onaylayınız.
 Please log in below:,Lütfen giriş yapınız.
 "Please select region, state or province","Lütfen eksik adres bilgisini tamamlayın"
 Please select shipping address for applicable items,Teslimat adresini seçiniz
@@ -67,7 +67,7 @@ Set customer's addresses in shopping cart,Sepetteki müşteri adresini seçin
 Set payment method,Ödeme yöntemini seçin
 Set shipping method,Teslimat yöntemini seçin
 Ship to different address, Farklı bir adrese gönder
-Ship to this address,Bu adrese gönder
+Ship to this address,Teslimat ve fatura adresi olarak kullan
 Shipping Address,Teslimat Adresi
 Shipping Information,Teslimat Bilgisi
 Shipping Method,Teslimat Yöntemi
@@ -101,4 +101,7 @@ Turkish Tax Number, Vergi Numarası
 Turkish Tax Office, Vergi Dairesi
 Review Your Order,Sipariş Özeti
 Login to your Account,Oturum açınız
-Close, apat
+Close, Kapat
+Connect with Facebook, Facebook ile Bağlan
+Connect with Google, Google ile Bağlan
+Connect with Twitter, Twitter ile Bağlan
