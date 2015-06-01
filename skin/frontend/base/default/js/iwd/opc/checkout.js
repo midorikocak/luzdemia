@@ -110,7 +110,7 @@ IWD.OPC = {
 			IWD.OPC.bindChangePaymentFields();
 			$j_opc(document).on('click', '#co-payment-form input[type="radio"]', function(event){
 				IWD.OPC.removeNotAllowedPaymentMethods();
-				
+				console.log('met');
 				IWD.OPC.validatePayment();
 			});
 		},
@@ -134,6 +134,7 @@ IWD.OPC = {
 		
 		/** CHECK PAYMENT IF PAYMENT IF CHECKED AND ALL REQUIRED FIELD ARE FILLED PUSH TO SAVE **/
 		validatePayment: function(){
+
 			// check all required fields not empty
 			var is_empty = false;
 			$j_opc('#co-payment-form .required-entry').each(function(){
@@ -145,13 +146,14 @@ IWD.OPC = {
 				if(is_empty){
 					IWD.OPC.saveOrderStatus = false;
 					IWD.OPC.Checkout.hideLoader();
-					IWD.OPC.Checkout.unlockPlaceOrder();				
+					IWD.OPC.Checkout.unlockPlaceOrder();			
 					return false;
 				}
 			}
 			////
 
 			var vp = payment.validate();
+
 			if(!vp)
 			{
 				IWD.OPC.saveOrderStatus = false;
@@ -168,7 +170,6 @@ IWD.OPC = {
 				IWD.OPC.saveOrderStatus = false;
 				IWD.OPC.Checkout.hideLoader();
 				IWD.OPC.Checkout.unlockPlaceOrder();
-				
 				IWD.OPC.bindChangePaymentFields();
 			}
 			
@@ -180,7 +181,6 @@ IWD.OPC = {
 			IWD.OPC.unbindChangePaymentFields();
 			
 			$j_opc('#co-payment-form input').keyup(function(event){
-				
 				if (IWD.OPC.Checkout.ajaxProgress!=false){
 					clearTimeout(IWD.OPC.Checkout.ajaxProgress);
 				}
@@ -191,7 +191,6 @@ IWD.OPC = {
 			});
 			$j_opc('#payu_installment').change(function(){IWD.OPC.Checkout.pullReview();});
 			$j_opc('#co-payment-form select').change(function(event){
-            //console.log('change');
 				if (IWD.OPC.Checkout.ajaxProgress!=false){
 					clearTimeout(IWD.OPC.Checkout.ajaxProgress);
                            //console.log('ajax progress');
@@ -285,7 +284,7 @@ IWD.OPC = {
 			IWD.OPC.agreements = $j_opc('#checkout-agreements').serializeArray();
 			
 			IWD.OPC.getSubscribe();
-
+			
 			if (typeof(response.review)!= "undefined"){
 				IWD.OPC.Decorator.updateGrandTotal(response);
 				$j_opc('#opc-review-block').html(response.review);
@@ -715,6 +714,7 @@ IWD.OPC.Checkout = {
 		
 		/** PULL PAYMENTS METHOD AFTER LOAD PAGE **/
 		pullPayments: function(){
+			
 			IWD.OPC.Checkout.lockPlaceOrder();
 			IWD.OPC.Checkout.xhr = $j_opc.post(IWD.OPC.Checkout.config.baseUrl + 'onepage/json/payments',function(response){
 				IWD.OPC.Checkout.xhr = null;
