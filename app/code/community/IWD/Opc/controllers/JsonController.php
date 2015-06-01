@@ -735,6 +735,27 @@ class IWD_Opc_JsonController extends Mage_Core_Controller_Front_Action{
 			return;
 		}
 	}
+   
+   public function getInstallments(){
+		Mage::app()->getCacheInstance()->cleanType('layout');
+		
+		$layout = $this->getLayout();
+		$update = $layout->getUpdate();
+		$update->load('checkout_onepage_review');
+		$layout->generateXml();
+		$layout->generateBlocks();
+		$review = $layout->getBlock('root');
+		$review->setTemplate('opc/onepage/review/info.phtml');
+		
+		//clear cache
+		Mage::app()->getCacheInstance()->cleanType('layout');
+		return $review->toHtml();
+      
+      
+      // $html = Mage::getSingleton('core/layout')->createBlock('core/template')
+      //             ->setTemplate('checkout/onepage/review/totals.phtml')->toHtml();
+      // $this->getResponse()->setBody($html);
+   }
 	
 	public function commentAction(){
 		if ($this->_expireAjax()) {

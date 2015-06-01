@@ -133,8 +133,7 @@ IWD.OPC = {
 		},
 		
 		/** CHECK PAYMENT IF PAYMENT IF CHECKED AND ALL REQUIRED FIELD ARE FILLED PUSH TO SAVE **/
-		validatePayment: function(){	
-			console.log('validate function');
+		validatePayment: function(){
 			// check all required fields not empty
 			var is_empty = false;
 			$j_opc('#co-payment-form .required-entry').each(function(){
@@ -155,7 +154,6 @@ IWD.OPC = {
 			var vp = payment.validate();
 			if(!vp)
 			{
-            console.log('payment val');
 				IWD.OPC.saveOrderStatus = false;
 				IWD.OPC.Checkout.hideLoader();
 				IWD.OPC.Checkout.unlockPlaceOrder();
@@ -191,7 +189,7 @@ IWD.OPC = {
 					IWD.OPC.validatePayment();
 				}, 1000);
 			});
-			
+			$j_opc('#payu_installment').change(function(){IWD.OPC.Checkout.pullReview();});
 			$j_opc('#co-payment-form select').change(function(event){
             //console.log('change');
 				if (IWD.OPC.Checkout.ajaxProgress!=false){
@@ -699,7 +697,7 @@ IWD.OPC.Checkout = {
 		/** PULL REVIEW **/
 		pullReview: function(){
 			IWD.OPC.Checkout.lockPlaceOrder();
-			IWD.OPC.Checkout.xhr = $j_opc.post(IWD.OPC.Checkout.config.baseUrl + 'onepage/json/review',function(response){
+			IWD.OPC.Checkout.xhr = $j_opc.post(IWD.OPC.Checkout.config.baseUrl + 'onepage/json/review',{'payment': {'cc_installment':jQuery('#payu_installment').val()}},function(response){
 				IWD.OPC.Checkout.xhr = null;
 				IWD.OPC.Checkout.hideLoader();
 				IWD.OPC.Checkout.unlockPlaceOrder();

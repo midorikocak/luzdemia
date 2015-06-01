@@ -54,13 +54,13 @@
                 </tr>
             <?php endif; ?>
         </thead>
-        <?php echo $this->getChildHtml('totals'); ?>
         <tbody>
         <?php foreach($this->getItems() as $_item): ?>
             <?php echo $this->getItemHtml($_item)?>
         <?php endforeach ?>
         </tbody>
     </table>
+            <?php echo $this->getChildHtml('totals'); ?>
 </div>
 <?php echo $this->getChildHtml('items_after'); ?>
 <script type="text/javascript">
