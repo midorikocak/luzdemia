@@ -108,6 +108,7 @@ $this->setData('column_count', 3); // burası önceden değiştirilmiş
                     foreach ($categoryIds as $category_id) {
                         $_cat = Mage::getModel('catalog/category')->load($category_id);
                         $product_categories[] = $_cat->getName();
+                        var_dump($_cat->getWideImage());
                     }
                     $product_val = Mage::getModel('catalog/product')->load($_product->getId());
                     ?>
