@@ -108,7 +108,15 @@ $this->setData('column_count', 3); // burası önceden değiştirilmiş
                     foreach ($categoryIds as $category_id) {
                         $_cat = Mage::getModel('catalog/category')->load($category_id);
                         $product_categories[] = $_cat->getName();
-                        var_dump($_cat->getWideImage());
+                        //echo $_cat->getName();
+                        //echo $_cat->getWideImages();
+                        if($_cat->getData('wide_images')==true){
+                           $image_wide = true;
+                        }
+                        else{
+                           $image_wide = false;
+                        }
+                        //var_dump($_cat->getData('wide_image'));
                     }
                     $product_val = Mage::getModel('catalog/product')->load($_product->getId());
                     ?>
@@ -123,8 +131,19 @@ $this->setData('column_count', 3); // burası önceden değiştirilmiş
                                 <div class="item-img-info">
 
                                     <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
-                                        <!--img class="lazy" src="<?php //$this->getSkinUrl('images/mgt_lazy_image_loader/loader.gif'); ?>" data-src="<?php //echo $this->helper('catalog/image')->init($_product, 'thumbnail')->constrainOnly(true)->keepAspectRatio(false)->keepFrame(true)->resize(230, 345); ?>" alt="<?php //echo $this->stripTags($this->getImageLabel($_product, 'thumbnail'), null, true) ?>" /-->
+                                       <?php
+                                       if($image_wide){
+                                          ?>
+                                          <img class="lazy" src="<?php $this->getSkinUrl('images/mgt_lazy_image_loader/loader.gif'); ?>" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail')->constrainOnly(true)->keepAspectRatio(false)->keepFrame(true)->resize(230, 230); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'thumbnail'), null, true) ?>" />
+                                          
+                                          <?php
+                                          
+                                       }else{
+                                       ?>
                                         <img class="lazy" src="<?php $this->getSkinUrl('images/mgt_lazy_image_loader/loader.gif'); ?>" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(230, 230); ?>" width="230" height="230" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                                        <?php
+                                        }
+                                        ?>
                                     </a>
                                     <?php echo $this->helper('deziresettings')->getLabel($_product); ?>
                                     <!-- BEGIN PROD IMAGE DETAIL -->
