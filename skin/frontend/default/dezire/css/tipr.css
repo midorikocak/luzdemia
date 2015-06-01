@@ -13,6 +13,7 @@ http://www.tipue.com/tipr
      color: #333; 
      background-color: #fff;
      padding: 9px 17px;
+     z-index:999;
 }
 .tipr_container_bottom
 {
