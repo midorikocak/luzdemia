@@ -15,6 +15,19 @@ if ($_imgUrl = $_category->getImageUrl()) {
    $_imgHtml = '<p class="category-image"><img src="'.$_imgUrl.'" alt="'.$this->htmlEscape($_category->getName()).'" title="'.$this->htmlEscape($_category->getName()).'" /></p>';
    $_imgHtml = $_helper->categoryAttribute($_category, $_imgHtml, 'image');
 }
+
+$path = $_category->getPath();
+$ids = explode('/', $path);
+$image_wide = false;
+
+foreach ($ids as $treeCategoryId){
+   $treeCategory = Mage::getModel('catalog/category')->load($treeCategoryId);
+   if($treeCategory->getWideImages()==true)
+   {
+      $image_wide = true;
+   }
+}
+Mage::register('image_wide', $image_wide);
 ?>
 <div class="page-title">
    <?php if($this->IsRssCatalogEnable() && $this->IsTopCategory()): ?>
