@@ -37,7 +37,7 @@
 					<li>
 
                                         <?php 
-                                             $texthtml2 = $recent_post_value['blog_content'];
+                                             $texthtml2 = $recent_post_value['short_blog_content'];
                                              preg_match('/<img[^>]+src="{{media url="([^">]+)"/', $texthtml2, $image);
                                         ?>
                                         <?php if($image[1]) { ?>
