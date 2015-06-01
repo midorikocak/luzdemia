@@ -118,7 +118,7 @@ $this->setData('column_count', 3); // burası önceden değiştirilmiş
                     $product_val = Mage::getModel('catalog/product')->load($_product->getId());
                     ?>
 
-                    <li class="item <?php if($image_wide){echo 'wide-image';  ?> <?php
+                    <li class="item <?php if($image_wide){echo 'wide-image';}  ?> <?php
                     // Yani ancak bu kadar cahil olunabilir. Column Count datasını kullanma, direk buraya 4 yaz. Sonra da developerim diye gez etrafta.
                     // Üstelik o da css tarafında bozulmuş. Magento uzmanı cahil.
                      if (($i - 1) % $_columnCount == 0): ?> first<?php elseif ($i % $_columnCount == 0): ?> last<?php endif; ?>">
