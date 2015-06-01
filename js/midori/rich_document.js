@@ -16,6 +16,7 @@
 
     app.controller('RichDocumentController', ['$scope', function($scope) {
     	
+      $scope.currentdate = Date();
     	$scope.billing = {};
     	$scope.shipping = {};
           
