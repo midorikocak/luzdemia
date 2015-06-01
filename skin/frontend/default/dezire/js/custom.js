@@ -92,7 +92,9 @@ $jq(document).ready(function(){
 jQuery(window).load(function() {
   jQuery().UItoTop();
   jQuery('.tooltip').tooltipster();
-  jQuery('img.lazy').jail();
+  if(typeof jQuery.jail != 'undefined'){
+  	  jQuery('img.lazy').jail();
+  }
 	});
 
 /*--------| End UItoTop -------------------*/
