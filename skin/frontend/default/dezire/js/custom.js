@@ -92,8 +92,7 @@ $jq(document).ready(function(){
 jQuery(window).load(function() {
   jQuery().UItoTop();
   jQuery('.tip').tipr({
-       'speed': 300,
-       'mode': 'top'
+
   });
 	});
 
