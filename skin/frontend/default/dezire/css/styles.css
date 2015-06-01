@@ -2993,6 +2993,17 @@ form h2, form h3, .section h3 {
 	margin:20px 20px 0 0;
    max-height: 375px;
 }
+
+.products-grid .wide-image {
+		float: left;
+	background: #FFF;
+	width:263px;
+	min-height:330px;
+	/*border: 1px solid #EFEFEF;*/
+	padding:15px 15px 20px;
+	margin:20px 20px 0 0;
+   max-height: 520px !important;
+}
 /* image manipulation */
 /*
 .products-grid .item-img{
