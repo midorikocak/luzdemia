@@ -489,7 +489,7 @@ ul.stores_top_link a:hover {
 	/*border-right: 0px solid #cacaca;*/
 	color:#fff;
 	font-size:12px;
-	text-transform:uppercase;
+	/*text-transform:uppercase;*/
 	padding-left:25px
 }
 .toplinks ul.links li a:hover {
@@ -658,7 +658,7 @@ ul.stores_top_link a:hover {
 	padding:0;
 	width: 55px;
 	height:55px;
-	border:1px #ddd solid;
+	/*border:1px #ddd solid;*/
 	padding:5px;
 }
 .top-cart-content .product-name {
