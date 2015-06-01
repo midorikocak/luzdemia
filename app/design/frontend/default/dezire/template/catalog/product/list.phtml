@@ -110,9 +110,6 @@ $this->setData('column_count', 3); // burası önceden değiştirilmiş
                         $product_categories[] = $_cat->getName();
                         //echo $_cat->getName();
                         //echo $_cat->getWideImages();
-                        if($_cat->getData('wide_images') != null && $_cat->getData('wide_images')==true){
-                           $image_wide = true;
-                        }
                         //var_dump($_cat->getData('wide_image'));
                     }
                     $product_val = Mage::getModel('catalog/product')->load($_product->getId());
