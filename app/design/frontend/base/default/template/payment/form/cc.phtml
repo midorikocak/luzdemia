@@ -97,7 +97,7 @@
     <?php echo $this->getChildHtml() ?>
     <?php if($this->hasVerification()): ?>
     <li id="<?php echo $_code ?>_cc_type_cvv_div">
-        <label for="<?php echo $_code ?>_cc_cid" class="required"><em>*</em><?php echo $this->__('Card Verification Number') ?><span style="color:red;" class="tooltip" data-tip="<?php echo $this->__('Security number is the last 3 digits on behind of your credit card.') ?>">  ?</span></label>
+        <label for="<?php echo $_code ?>_cc_cid" class="required"><em>*</em><?php echo $this->__('Card Verification Number') ?><span style="color:red;" class="tooltip" title="<?php echo $this->__('Security number is the last 3 digits on behind of your credit card.') ?>">  ?</span></label>
         <div class="input-box">
             <div class="v-fix">
                 <input type="text" title="<?php echo $this->__('Card Verification Number') ?>" class="input-text cvv required-entry validate-cc-cvn" id="<?php echo $_code ?>_cc_cid" name="payment[cc_cid]" value="" />
