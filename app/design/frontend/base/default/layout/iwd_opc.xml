@@ -61,13 +61,10 @@
 
 			<block type="core/text" name="google.cdn.angular">
 				<action method="setText">
-					<text><![CDATA[<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.js"></script>]]></text>
-				</action>
-			</block>
-         
-			<block type="core/text" name="google.cdn.angular">
-				<action method="setText">
-					<text><![CDATA[<script src="//code.angularjs.org/1.4.0/angular-sanitize.min.js"></script>]]></text>
+					<text><![CDATA[
+                  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.js"></script>
+                  <script src="//code.angularjs.org/1.4.0/angular-sanitize.min.js"></script>
+               ]]></text>
 				</action>
 			</block>
 
