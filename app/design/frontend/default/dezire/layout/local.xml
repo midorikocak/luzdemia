@@ -50,7 +50,7 @@
                         <action method="addItem"><type>skin_js</type><name>js/slippry.min.js</name></action> 
                         <action method="addItem"><type>skin_js</type><name>js/imagesloaded.pkgd.min.js</name></action> 
                         <action method="addItem"><type>skin_js</type><name>js/packery.pkgd.min.js</name></action>
-                        <action method="addItem"><type>skin_js</type><name>js/tipr.min.js</name></action>
+                        <action method="addItem"><type>skin_js</type><name>/js/tipr/tipr.min.js</name></action>
                         <action method="addItem"><type>skin_js</type><name>js/jquery.fancybox-1.3.4.pack.js</name></action>                     
                         <action method="addItem"><type>skin_js</type><name>js/custom.js</name></action>
 
