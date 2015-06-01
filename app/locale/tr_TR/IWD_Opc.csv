@@ -1,108 +1,108 @@
-* Required Fields,* Gerekli Alanlar
-Address,Adres
-Already registered?,Zaten üye misiniz?
-An error occurred in the process of payment,Ödeme sürecinde hata oldu
-Apply Coupon,Kuponu uygula
-Billing Address,Fatura Adresi
-Cancel Coupon,Kuponu iptal et.
-Cannot apply the coupon code.,Kupon eklenemiyor.
-Cannot open the overview page,Cannot open the overview page
-Card Verification Number Visual Reference,Kart Doğrulama Kodu Görsel Referans
-Checkout,Alışverişi Tamamla
-City,İlçe
-Close,Kapat
-Company,Firma
-Confirm Password,Parolayı tekrarla
-Continue,Devam
-Country,Ülke
+"* Required Fields","* Gerekli Alanlar"
+"Address","Adres"
+"Already registered?","Zaten üye misiniz?"
+"An error occurred in the process of payment","Ödeme sürecinde hata oldu"
+"Apply Coupon","Kuponu uygula"
+"Billing Address","Fatura Adresi"
+"Cancel Coupon","Kuponu iptal et."
+"Cannot apply the coupon code.","Kupon eklenemiyor."
+"Cannot open the overview page","Cannot open the overview page"
+"Card Verification Number Visual Reference","Kart Doğrulama Kodu Görsel Referans"
+"Checkout","Alışverişi Tamamla"
+"City","İlçe"
+"Close","Kapat"
+"Company","Firma"
+"Confirm Password","Parolayı tekrarla"
+"Continue","Devam"
+"Country","Ülke"
 "Coupon code ""%s"" is not valid.","Kupon ""%s"" geçerli değil"
 "Coupon code ""%s"" was applied.","Kupon ""%s"" uygulandı."
-Coupon code was canceled.,Kupon iptal edildi.
-Data saving problem,Veri Kayıt Hatası
-Details,Detaylar
-Email Address,E-posta
-Enabled,Geçerli
-Estimate Shipping and Tax,Tahmmini Teslimat ve Vegi
-Excl. Tax,Vegi Hariç
-Fax,Faks
-Forgot your password?,Parolamı unuttum
-Gift Message,Hediye Mesajı
-Grand Total:,toplam:
-Incl. Tax,Vergi Dahil
-Invalid method: %s,Geçersiz Yöntem: %s
-Login,Giriş
-New Address,Yeni Adres
-Order place error.,Sipariş Hatası.
-Password,Parola
-Payment Information,Ödeme Bilgisi.
-Payment Method,Ödeme Yöntemi
-Payment method information,Ödeme Yöntemi Bilgisi
-Payment method is not defined,Ödeme yöntemi tanımlanmadı
-Place Order,Siparişi tamamla
-Place Order Now,Siparişi tamamla
-Please agree to all Terms and Conditions before placing the order.,Lütfen mesafeli satış sözleşmesini okuyup, onaylayınız.
-Please agree to all Terms and Conditions before placing the orders.,Lütfen mesafeli satış sözleşmesini okuyup, onaylayınız.
-Please agree to all the terms and conditions before placing the order.,Lütfen mesafeli satış sözleşmesini okuyup, onaylayınız.
-Please log in below:,Lütfen giriş yapınız.
-"Please select region, state or province","Lütfen eksik adres bilgisini tamamlayın"
-Please select shipping address for applicable items,Teslimat adresini seçiniz
-Please select shipping methods for all addresses,Tüm adresler için teslimat yöntemini seçiniz.
-Price,Fiyat
-Proceed to Checkout,Alışverişi Tamamla
-Product Name,Ürün Adı
-Qty,Miktar
-Qty:,Miktar:
-Remove item,Ürünü kaldır
-Save in address book,Adres defterine ekle
-Select Address,Adres Seç
-Select Addresses,Adresleri Seç
-Select Shipping Method,Teslimat Yöntemini Seç
-Select State/Province...,Şehir Seçiniz...
-Select a billing address from your address book or enter a new address.,Adres defterinden bir fatura adresi seçin veya yeni fatura adresi girin
-Select a shipping address from your address book or enter a new address.,Adres defterinden bir teslimat adresi seçin veya yeni teslimat adresi girin
-Send To,Alıcı
-"Separate by "","".","Virgülle ayrılmış "",""."
-Set customer for shopping cart,Sepet için müşteriyi seç
-Set customer's addresses in shopping cart,Sepetteki müşteri adresini seçin
-Set payment method,Ödeme yöntemini seçin
-Set shipping method,Teslimat yöntemini seçin
-Ship to different address, Farklı bir adrese gönder
-Ship to this address,Teslimat ve fatura adresi olarak kullan
-Shipping Address,Teslimat Adresi
-Shipping Information,Teslimat Bilgisi
-Shipping Method,Teslimat Yöntemi
-Shipping Methods,Teslimat Yöntemleri
-Shipping To,Alıcı
-Shipping information,Teslimat bilgisi
-Shipping method has not been selected yet,Teslimat yöntemi seçilmedi
-Shipping selection is not applicable.,Teslimat seçeneği geçersiz
-"Sorry, no quotes are available for this order at this time.","Bu sipariş için kota yetersiz"
-State/Province,Şehir
-Street Address,Adres ve Sokak
-Street Address %s,Adres ve Sokak %s
-Submitting order information...,Sipariş Bilgisi Gönderiliyor...
-Subtotal,Ara Toplam
-Telephone,Telefon
-Terms and Conditions,Koşullar ve Sözleşmeler
-Terms and Conditions Information,Koşul ve Sözleşme Bilgisi
-Terms and conditions,Koşullar ve sözleşmeler
-Text,Metin
-The onepage checkout is disabled.,Tek sayfada alışveriş tamamlama devredışı.
-There was an error processing your order. Please contact us or try again later.,Siparişiniz alınırken sorun oluştu, Lütfen bize ulaşın veya daha sonra tekrar deneyin.
-Total,Toplam
-Unable to set Payment Method.,Ödeme yönetimi seçilemedi
-Use Billing Address,Fatura Adresini Kullan
-What's this?,Bu nedir?
-Zip/Postal Code,Posta Kodu
-Fill in the Fields below to complete your purchase!,Siparişinizi tamamlamak için eksik yerleri doldurun!
-Name & Address,Teslimat ve Fatura Adresi
-LOGIN HERE,Giriş Yapın
-Turkish Tax Number, Vergi Numarası
-Turkish Tax Office, Vergi Dairesi
-Review Your Order,Sipariş Özeti
-Login to your Account,Oturum açınız
-Close, Kapat
-Connect with Facebook, Facebook ile Bağlan
-Connect with Google, Google ile Bağlan
-Connect with Twitter, Twitter ile Bağlan
-Security number is the last 3 digits on behind of your credit card.,Güvenlik numarası kredi kartınızın arkasında bulunan rakamın son üç hanesidir.
+"Coupon code was canceled.","Kupon iptal edildi."
+"Data saving problem","Veri Kayıt Hatası"
+"Details","Detaylar"
+"Email Address","E-posta"
+"Enabled","Geçerli"
+"Estimate Shipping and Tax","Tahmmini Teslimat ve Vegi"
+"Excl. Tax","Vegi Hariç"
+"Fax","Faks"
+"Forgot your password?","Parolamı unuttum"
+"Gift Message","Hediye Mesajı"
+"Grand Total:","toplam:"
+"Incl. Tax","Vergi Dahil"
+"Invalid method: %s","Geçersiz Yöntem: %s"
+"Login","Giriş"
+"New Address","Yeni Adres"
+"Order place error.","Sipariş Hatası."
+"Password","Parola"
+"Payment Information","Ödeme Bilgisi."
+"Payment Method","Ödeme Yöntemi"
+"Payment method information","Ödeme Yöntemi Bilgisi"
+"Payment method is not defined","Ödeme yöntemi tanımlanmadı"
+"Place Order","Siparişi tamamla"
+"Place Order Now","Siparişi tamamla"
+"Please agree to all Terms and Conditions before placing the order.","Lütfen mesafeli satış sözleşmesini okuyup, onaylayınız."
+"Please agree to all Terms and Conditions before placing the orders.","Lütfen mesafeli satış sözleşmesini okuyup, onaylayınız."
+"Please agree to all the terms and conditions before placing the order.","Lütfen mesafeli satış sözleşmesini okuyup, onaylayınız."
+"Please log in below:","Lütfen giriş yapınız."
+"Please select region"," state or province,Lütfen eksik adres bilgisini tamamlayın"
+"Please select shipping address for applicable items","Teslimat adresini seçiniz"
+"Please select shipping methods for all addresses","Tüm adresler için teslimat yöntemini seçiniz."
+"Price","Fiyat"
+"Proceed to Checkout","Alışverişi Tamamla"
+"Product Name","Ürün Adı"
+"Qty","Miktar"
+"Qty:","Miktar:"
+"Remove item","Ürünü kaldır"
+"Save in address book","Adres defterine ekle"
+"Select Address","Adres Seç"
+"Select Addresses","Adresleri Seç"
+"Select Shipping Method","Teslimat Yöntemini Seç"
+"Select State/Province...","Şehir Seçiniz..."
+"Select a billing address from your address book or enter a new address.","Adres defterinden bir fatura adresi seçin veya yeni fatura adresi girin"
+"Select a shipping address from your address book or enter a new address.","Adres defterinden bir teslimat adresi seçin veya yeni teslimat adresi girin"
+"Send To","Alıcı"
+"Separate by """,""".,Virgülle ayrılmış "",""."
+"Set customer for shopping cart","Sepet için müşteriyi seç"
+"Set customer's addresses in shopping cart","Sepetteki müşteri adresini seçin"
+"Set payment method","Ödeme yöntemini seçin"
+"Set shipping method","Teslimat yöntemini seçin"
+"Ship to different address"," Farklı bir adrese gönder"
+"Ship to this address","Teslimat ve fatura adresi olarak kullan"
+"Shipping Address","Teslimat Adresi"
+"Shipping Information","Teslimat Bilgisi"
+"Shipping Method","Teslimat Yöntemi"
+"Shipping Methods","Teslimat Yöntemleri"
+"Shipping To","Alıcı"
+"Shipping information","Teslimat bilgisi"
+"Shipping method has not been selected yet","Teslimat yöntemi seçilmedi"
+"Shipping selection is not applicable.","Teslimat seçeneği geçersiz"
+"Sorry"," no quotes are available for this order at this time.,Bu sipariş için kota yetersiz"
+"State/Province","Şehir"
+"Street Address","Adres ve Sokak"
+"Street Address %s","Adres ve Sokak %s"
+"Submitting order information...","Sipariş Bilgisi Gönderiliyor..."
+"Subtotal","Ara Toplam"
+"Telephone","Telefon"
+"Terms and Conditions","Koşullar ve Sözleşmeler"
+"Terms and Conditions Information","Koşul ve Sözleşme Bilgisi"
+"Terms and conditions","Koşullar ve sözleşmeler"
+"Text","Metin"
+"The onepage checkout is disabled.","Tek sayfada alışveriş tamamlama devredışı."
+"There was an error processing your order. Please contact us or try again later.","Siparişiniz alınırken sorun oluştu, Lütfen bize ulaşın veya daha sonra tekrar deneyin."
+"Total","Toplam"
+"Unable to set Payment Method.","Ödeme yönetimi seçilemedi"
+"Use Billing Address","Fatura Adresini Kullan"
+"What's this?","Bu nedir?"
+"Zip/Postal Code","Posta Kodu"
+"Fill in the Fields below to complete your purchase!","Siparişinizi tamamlamak için eksik yerleri doldurun!"
+"Name & Address","Teslimat ve Fatura Adresi"
+"LOGIN HERE","Giriş Yapın"
+"Turkish Tax Number"," Vergi Numarası"
+"Turkish Tax Office"," Vergi Dairesi"
+"Review Your Order","Sipariş Özeti"
+"Login to your Account","Oturum açınız"
+"Close"," Kapat"
+"Connect with Facebook"," Facebook ile Bağlan"
+"Connect with Google"," Google ile Bağlan"
+"Connect with Twitter"," Twitter ile Bağlan"
+"Security number is the last 3 digits on behind of your credit card.","Güvenlik numarası kredi kartınızın arkasında bulunan rakamın son üç hanesidir."
