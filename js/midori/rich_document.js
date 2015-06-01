@@ -12,7 +12,7 @@
  * 
  */
 	'use strict';
-    var app = angular.module('richDocument',[]);
+    var app = angular.module('richDocument',['ngSanitize']);
 
     app.controller('RichDocumentController', ['$scope', function($scope) {
     	
