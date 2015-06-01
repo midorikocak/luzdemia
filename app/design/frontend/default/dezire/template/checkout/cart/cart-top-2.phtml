@@ -9,7 +9,7 @@
                   <div class="top-cart-content top-cart-content-2 arrow_box">
                    <?php $_items = $this->getRecentItems() ?>
                    <?php if(count($_items)): ?>   
-                     <div class="block-subtitle"><?php echo $this->__('Recently added item(s)') ?></div> 
+                     <!--div class="block-subtitle"><?php echo $this->__('Recently added item(s)') ?></div--> 
                       <ul id="cart-sidebar" class="mini-products-list">
                          <?php foreach($_items as $_item): ?>
                              <?php echo $this->getItemHtml($_item) ?>
