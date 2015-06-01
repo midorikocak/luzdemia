@@ -432,7 +432,7 @@ float:right;margin-left:16px;}
 
 .social-buttons a{width:195px; height:44px;line-height:44px;display:block;border-radius:2px;padding-left:18px;cursor:pointer;color:#fff;}
 .social-buttons a i{color:inherit;margin-top:7px;}
-.social-buttons a span{float:right;color:#fff;font-size:18px;text-transform:uppercase;background:transparent;margin-right:0;padding-right:8px;line-height:inherit;}
+.social-buttons a span{float:right;color:#fff;font-size:13px;text-transform:uppercase;background:transparent;margin-right:0;padding-right:8px;line-height:inherit;}
 .social-buttons a span span{float:none !important;background:none !important;margin:0 !important;padding:0 !important}
 .social-buttons a:hover,
 .social-buttons.facebook {background-color:#3b5998; color:#fff;}
