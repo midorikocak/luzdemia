@@ -40,7 +40,7 @@
         margin: 0 auto 0px;
         text-align: left;
         text-transform: none;
-        border-bottom:3px #333 solid;
+        border-bottom:3px #D74069 solid;
         margin-bottom:30px
 }
 .blog-title h2:after {
@@ -51,7 +51,7 @@
         right: 3px;
         top: 0px;
         text-shadow:none;
-        border-bottom:3px #D74069 solid
+        border-bottom:3px #D74069 solid;
 }
 
 .blog-title h2 {
@@ -59,7 +59,7 @@
   text-transform: uppercase /*1.3333em*/;
   font-family: 'Lato', sans-serif;
   font-weight: normal;
-  color: #D74069;
+  color: #333;
   width:265px;
   display:inline-block;
   transition: color 300ms ease-in-out 0s, background-color 300ms ease-in-out 0s, background-position 300ms ease-in-out 0s;
