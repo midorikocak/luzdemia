@@ -91,7 +91,7 @@ $jq(document).ready(function(){
 })(jQuery);
 jQuery(window).load(function() {
   jQuery().UItoTop();
-  jQuery('.tip').tipr();
+  jQuery('.tooltip').tooltipster();
 	});
 
 /*--------| End UItoTop -------------------*/
