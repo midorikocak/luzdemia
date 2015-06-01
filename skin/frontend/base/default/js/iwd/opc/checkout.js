@@ -134,7 +134,7 @@ IWD.OPC = {
 		
 		/** CHECK PAYMENT IF PAYMENT IF CHECKED AND ALL REQUIRED FIELD ARE FILLED PUSH TO SAVE **/
 		validatePayment: function(){	
-			
+			console.log('validate function');
 			// check all required fields not empty
 			var is_empty = false;
 			$j_opc('#co-payment-form .required-entry').each(function(){
@@ -155,6 +155,7 @@ IWD.OPC = {
 			var vp = payment.validate();
 			if(!vp)
 			{
+            console.log('payment val');
 				IWD.OPC.saveOrderStatus = false;
 				IWD.OPC.Checkout.hideLoader();
 				IWD.OPC.Checkout.unlockPlaceOrder();
@@ -192,12 +193,15 @@ IWD.OPC = {
 			});
 			
 			$j_opc('#co-payment-form select').change(function(event){
+            //console.log('change');
 				if (IWD.OPC.Checkout.ajaxProgress!=false){
 					clearTimeout(IWD.OPC.Checkout.ajaxProgress);
+                           //console.log('ajax progress');
 				}
 				
 				IWD.OPC.Checkout.ajaxProgress = setTimeout(function(){
 					IWD.OPC.validatePayment();
+               //console.log('validate');
 				}, 1000);
 			});
 		},
@@ -1470,7 +1474,6 @@ IWD.OPC.Decorator = {
 		setActivePayment: function(){
 			//check and setup current active method 
 			this.setCurrentPaymentActive();
-			
 			$j_opc(document).on('click','#checkout-payment-method-load dt', function(){
 				$j_opc('#checkout-payment-method-load dt').removeClass('active');
 				$j_opc(this).addClass('active');
