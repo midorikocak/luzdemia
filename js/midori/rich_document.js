@@ -16,7 +16,7 @@
 
     app.controller('RichDocumentController', ['$scope', function($scope) {
     	
-      $scope.currentorder = angular.element('#checkout-review-table');
+      $scope.currentorder = angular.element('#checkout-review-table').html();
       $scope.currentdate = Date();
     	$scope.billing = {};
     	$scope.shipping = {};
