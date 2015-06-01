@@ -31,7 +31,6 @@ function deleteCartInSidebar() {
 
 $jq(document).ready(function(){
     slideEffectAjax();
-    $jq('.tip').tipr();
 });
 
 
@@ -92,6 +91,10 @@ $jq(document).ready(function(){
 })(jQuery);
 jQuery(window).load(function() {
   jQuery().UItoTop();
+  jQuery('.tip').tipr({
+       'speed': 300,
+       'mode': 'top'
+  });
 	});
 
 /*--------| End UItoTop -------------------*/
