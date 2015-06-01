@@ -11604,3 +11604,11 @@ a.button.view-all {
    max-width:100%;
    height:auto;
 }
+
+#agreement-modal-body{
+   font-size:12px;
+}
+
+#agreement-modal-body h2{
+   font-size:12px;
+}
