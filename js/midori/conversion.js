@@ -162,12 +162,22 @@ Conversion.prototype = {
             ga('ec:addProduct', product);
             ga('ec:setAction', 'detail');
             ga('send', 'pageview');       // Send product details view with the initial pageview.
+            var google_tag_params = {
+            ecomm_prodid: product.id,
+            ecomm_pagetype: 'product',
+            ecomm_totalvalue: product.price,
+            };
          }
       },
    
       productList : function(product){
          if(typeof window.ga !== "undefined"){
             ga('ec:addImpression', product);
+            var google_tag_params = {
+            ecomm_prodid: product.id,
+            ecomm_pagetype: 'category',
+            ecomm_totalvalue: product.price,
+            };
          }
       },
    
