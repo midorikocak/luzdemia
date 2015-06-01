@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<tabs>
+        <aromicon translate="label" module="aromicon_gua">
+            <label>Aromicon</label>
+            <sort_order>1</sort_order>
+        </aromicon>
+    </tabs>
+    <sections>
+		<aromicon_gua module="aromicon_gua">
+			<label>Google Universal Analytics</label>
+			<tab>aromicon</tab>
+			<sort_order>100</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+                <general translate="label" module="aromicon_gua">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment></comment>
+                    <fields>
+                        <enable>
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable>
+                        <add_to>
+                            <label>Script Position</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>aromicon_gua/system_config_source_addto</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Here you can choose the script postion in you html code. "Head" will work always. "Before Body End" might not work on custom themes.</comment>
+                        </add_to>
+                        <account_id>
+                            <label>Account Id</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Please enter your UA Id here. e.g. UA-4xxxxxxx-1</comment>
+                        </account_id>
+                        <anonymize_ip>
+                            <label>Anonymize Ip</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </anonymize_ip>
+                        <force_ssl>
+                            <label>Force SSL</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment>Force SSL, set to 'Yes' if you want always to send data over https.</comment>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </force_ssl>
+                    </fields>
+                </general>
+                <ecommerce translate="label" module="aromicon_gua">
+                    <label>E-Commerce</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment>Here you can enable E-Commerce Tracking for Google Universal Analytics. Tracking Code is added to Success Page.</comment>
+                    <fields>
+                        <enable>
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable>
+                        <transaction_id>
+                            <label>Transaction Id</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>aromicon_gua/system_config_source_orderid</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </transaction_id>
+                        <checkout_url>
+                            <label>Checkout  URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Please type in the relative URL of your checkout url without trailing slash. Standard is /checkout/onepage</comment>
+                        </checkout_url>
+                        <success_url>
+                            <label>Checkout Success Page URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Please type in the relative URL of your checkout success page url. Standard is /checkout/onepage/success</comment>
+                        </success_url>
+                        <funnel_enable>
+                            <label>Enable Funnel Tracking</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </funnel_enable>
+                    </fields>
+                </ecommerce>
+                <customer translate="label" module="aromicon_gua">
+                <label>Customer</label>
+                <frontend_type>text</frontend_type>
+                <sort_order>30</sort_order>
+                <show_in_default>1</show_in_default>
+                <show_in_website>1</show_in_website>
+                <show_in_store>1</show_in_store>
+                <comment>Here you can enable some Custom Dimensions and Custom Metrics for Customer Tracking. You always have to setup those dimensions and metrics first.
+                Please refer to Google Universial Analytics Manual, how to setup Custom Dimensions.</comment>
+                <fields>
+                    <enable_customergroup>
+                        <label>Enable Customer Group Tracking</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>10</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <comment>Activate Customer Group Tracking. Setup custom dimension first and copy dimension id.</comment>
+                    </enable_customergroup>
+                    <dimension_customergroup>
+                        <label>Customer Group Dimension</label>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>20</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <comment>Please add your Dimension Id here.(e.g. 1)</comment>
+                        <depends>
+                            <enable_customergroup>1</enable_customergroup>
+                        </depends>
+                    </dimension_customergroup>
+                    <!--enable_first_order>
+                        <label>Enable Customer First Purchase Tracking ( Date )</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>30</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <comment>Activate First Purchase Date Tracking. Setup custom dimension first and copy dimension id.</comment>
+                    </enable_first_order>
+                    <dimension_first_order>
+                        <label>First Purchase Date Dimension</label>
+                        <frontend_type>text</frontend_type>
+                        <validate>validate-number</validate>
+                        <sort_order>40</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <comment>Please add your Dimension Id here.(e.g. 1)</comment>
+                        <depends>
+                            <enable_first_order>1</enable_first_order>
+                        </depends>
+                    </dimension_first_order>
+                    <enable_customer_orders>
+                        <label>Enable Customers Number of Purchases Tracking ( Count )</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>50</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <comment>Activate Number of Purchases Tracking. Setup custom dimension first and copy dimension id.</comment>
+                    </enable_customer_orders>
+                    <metric_customer_orders>
+                        <label>Number Of Purchases Metric</label>
+                        <frontend_type>text</frontend_type>
+                        <validate>validate-number</validate>
+                        <sort_order>60</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <comment>Please add your Metric Id here.(e.g. 1)</comment>
+                        <depends>
+                            <enable_customer_orders>1</enable_customer_orders>
+                        </depends>
+                    </metric_customer_orders-->
+                </fields>
+                </customer>
+                <product translate="label" module="aromicon_gua">
+                <label>Product View</label>
+                <frontend_type>text</frontend_type>
+                <sort_order>40</sort_order>
+                <show_in_default>1</show_in_default>
+                <show_in_website>1</show_in_website>
+                <show_in_store>1</show_in_store>
+                <comment><![CDATA[Here you can enable some Custom Dimensions and Custom Metrics for Product Pageview Tracking. You always have to setup those dimensions and metrics first.
+                    Please refer to <a href="https://developers.google.com/analytics/devguides/platform/customdimsmets">Google Universial Analytics Manual</a>, how to setup Custom Dimensions.]]></comment>
+                <fields>
+                    <enable_price>
+                        <label>Enable Product Price Tracking</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>10</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <comment>Activate First Purchase Date Tracking. Setup custom dimension first and copy dimension id.</comment>
+                    </enable_price>
+                    <metric_price>
+                        <label>Product Price Metric</label>
+                        <frontend_type>text</frontend_type>
+                        <validate>validate-number</validate>
+                        <sort_order>20</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <comment>Please add your Metrics Id here.(e.g. 1), You have to setup this metric as currency.</comment>
+                        <depends>
+                            <enable_price>1</enable_price>
+                        </depends>
+                    </metric_price>
+                    <enable_availability>
+                        <label>Enable Product Availablity Tracking</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>30</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <comment>Activate First Purchase Date Tracking. Setup custom dimension first and copy dimension id.</comment>
+                    </enable_availability>
+                    <dimension_availability>
+                        <label>Product Availabilty Dimension</label>
+                        <frontend_type>text</frontend_type>
+                        <validate>validate-number</validate>
+                        <sort_order>40</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <comment>Please add your Dimension Id here.(e.g. 1)</comment>
+                        <depends>
+                            <enable_availability>1</enable_availability>
+                        </depends>
+                    </dimension_availability>
+                </fields>
+                </product>
+                <remarketing translate="label" module="aromicon_gua">
+                <label>Remarketing</label>
+                <frontend_type>text</frontend_type>
+                <sort_order>50</sort_order>
+                <show_in_default>1</show_in_default>
+                <show_in_website>1</show_in_website>
+                <show_in_store>1</show_in_store>
+                <comment></comment>
+                <fields>
+                    <enable>
+                        <label>Enable Remarketing</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>10</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <comment></comment>
+                    </enable>
+                </fields>
+                </remarketing>
+			</groups>
+		</aromicon_gua>
+    </sections>
+</config>

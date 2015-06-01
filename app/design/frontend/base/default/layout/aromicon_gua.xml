@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <block type="aromicon_gua/gua" name="google_universial_analytics" template="aromicon/gua/gua.phtml" />
+        </reference>
+        <reference name="before_body_end">
+            <block type="aromicon_gua/gua" name="google_universial_analytics" template="aromicon/gua/gua.phtml" />
+        </reference>
+    </default>
+</layout>

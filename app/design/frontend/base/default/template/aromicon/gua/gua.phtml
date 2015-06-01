@@ -1,0 +1,65 @@
+<?php /** */?>
+<?php if($this->isActive()): ?>
+    <!--Aromicon Google Universal Analytics Section start -->
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', '<?php echo $this->getAccountId(); ?>', '<?php echo $this->getRequest()->getHttpHost() ?>');
+        ga('set', 'anonymizeIp', <?php echo $this->isAnonymizeIp()?>);
+        <?php if($this->isRemarketing()):?>
+        ga('require', 'displayfeatures');
+        <?php endif;?>
+        <?php if($this->isSSL()):?>
+        ga('set', 'forceSSL', true);
+        <?php endif; ?>
+        <?php if($this->isCustomerGroup()):?>
+        ga('set', 'dimension<?php echo $this->getCustomerGroupDimensionId() ?>', '<?php echo $this->getCustomerGroup()?>');
+        <?php endif; ?>
+        <?php if($this->isFirstPurchase() && $this->isEcommerce()): ?>
+        ga('set', 'dimension<?php echo $this->getFirstPurchaseDimensionId() ?>', '<?php echo $this->getOrder()->getCreatedAtDate()?>');
+        <?php endif;?>
+        <?php if($this->isNumberOfPurchase() && $this->isEcommerce()): ?>
+        ga('set', 'metric<?php echo $this->getNumberOfPurchaseMetricId() ?>', '<?php echo $this->getNumberOfOrders()?>');
+        <?php endif;?>
+        <?php if($this->getProduct()): ?>
+            <?php if($this->isPriceTracking()): ?>
+            ga('set', 'metric<?php echo $this->getPriceMetricId() ?>', '<?php echo $this->getProduct()->getFinalPrice() ?>');
+            <?php endif; ?>
+            <?php if($this->isAvailabilityTracking()): ?>
+                ga('set', 'dimension<?php echo $this->getAvailabilityDimensionId() ?>', '<?php echo $this->getProduct()->isSaleable() ? 'Available' : 'Not Available' ?>');
+            <?php endif; ?>
+        <?php endif;?>
+        ga('send', 'pageview');
+        <?php if($this->isCheckout() && !$this->isEcommerce() ): ?>
+        Event.observe(window, 'load', function() {
+            try{ga('send', 'pageview', {'page': '<?php echo $this->getCheckoutUrl() ?>/<?php echo $this->getActiveStep()?>','title': '<?php echo $this->getActiveStep()?>'});}
+            catch(e){console.log(e);}
+            Checkout.prototype.gotoSection = function(section){
+                    var sectionElement = $('opc-'+section);
+                    sectionElement.addClassName('allow');
+                    this.accordion.openSection('opc-'+section);
+                    this.reloadProgressBlock(section);
+                    /**aromicon gua code*/
+                    try{ga('send', 'pageview', {'page': '<?php echo $this->getCheckoutUrl() ?>/'+section,'title': section});}catch(e){
+                        console.log(e);
+                    }
+            };
+        });
+        <?php endif;?>
+        <?php if($this->isEcommerce()): ?>
+        ga('require', 'ecommerce', 'ecommerce.js');
+        <?php $_order = $this->getOrder();?>
+        ga('ecommerce:addTransaction', { 'id': '<?php echo $_order->getData($this->getTransactionIdField())?>', 'affiliation': '<?php echo Mage::app()->getStore()->getName() ?>', 'revenue': '<?php echo $_order->getGrandTotal()?>', 'shipping': '<?php echo $_order->getShippingInclTax()?>', 'tax': '<?php echo  $_order->getTaxAmount()?>', 'currency': '<?php echo $_order->getOrderCurrencyCode();?>'});
+        <?php foreach($_order->getAllVisibleItems() as $_item): ?>
+        <?php if($_item->getParentItem()) continue; ?>
+        ga('ecommerce:addItem', {'id': '<?php echo $_order->getData($this->getTransactionIdField()) ?>', 'name': '<?php echo str_replace('\'','', $_item->getName()) ?>', 'sku': '<?php echo $_item->getSku() ?>', 'price': '<?php echo $_item->getPrice() ?>', 'quantity': '<?php echo (int) $_item->getQtyOrdered() ?>'});
+        <?php endforeach;?>
+        ga('ecommerce:send');
+        <?php endif;?>
+    </script>
+    <?php echo $this->getChildHtml(); ?>
+    <!--Aromicon Google Universal Analytics Section end -->
+<?php endif; ?>

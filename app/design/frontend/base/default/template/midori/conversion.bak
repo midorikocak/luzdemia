@@ -1,0 +1,68 @@
+<!-- MIDORI MMX -->
+<?php if(Mage::getModel('customer/session')->getUserLogin()):?>
+   <script>
+   <?
+   $userId = Mage::getSingleton('customer/session')->getCustomer()->getId();
+   $userEmail = Mage::getModel('customer/session')->getUserLogin();
+   ?>
+   Conversions.userLogin('<?=$userId?>','<?=$userEmail?>');
+   </script>
+   <?php 
+   Mage::getModel('customer/session')->unsUserLogin();
+   ?>
+<?php endif; ?>
+<?php if(Mage::getModel('customer/session')->getUserRegister()):?>
+   <script>
+   <?
+   $userId = Mage::getSingleton('customer/session')->getCustomer()->getId();
+   $userEmail = Mage::getModel('customer/session')->getUserRegistered();
+   ?>
+   Conversions.userRegister('<?=$userId?>','<?=$userEmail?>');
+   </script>
+   <?php 
+   Mage::getModel('customer/session')->unsUserRegister();
+   ?>
+<?php endif; ?>
+<?php if(Mage::getModel('customer/session')->getAddProduct()):?>
+   <script>
+   Conversion.prototype.addToCart(<?=Mage::getModel('customer/session')->getAddProduct()?>);
+   <?php 
+   Mage::getModel('customer/session')->unsAddProduct();
+   ?>
+   </script>
+<?php endif; ?>
+<?php if(Mage::getModel('customer/session')->getRemoveProduct()):?>
+   <script>
+   Conversion.prototype.removeFromCart(<?=Mage::getModel('customer/session')->getAddProduct()?>);
+   </script>
+   <?php 
+   Mage::getModel('customer/session')->unsRemoveProduct();
+   ?>
+<?php endif; ?>
+<?php if(Mage::getModel('customer/session')->getProductView()):?>
+   <script>
+   Conversion.prototype.productView(<?=Mage::getModel('customer/session')->getProductView()?>);
+   </script>
+   <?php 
+   Mage::getModel('customer/session')->unsProductView();
+   ?>
+<?php endif; ?>
+<?php if(Mage::getModel('customer/session')->getProductList()):?>
+   <?php foreach(Mage::getModel('customer/session')->getProductList() as $product):?>
+   <script>
+   Conversion.prototype.productList(<?=json_encode($product)?>);
+   </script>
+   <?php endforeach;?>
+   <?php 
+   Mage::getModel('customer/session')->unsProductList();
+   ?>
+<?php endif; ?>
+<?php if(Mage::getModel('customer/session')->getPurchaseProduct()):?>
+   <script>
+      Conversions.purchaseProduct(<?=Mage::getModel('customer/session')->getPurchaseProduct()?>,<?=Mage::getModel('customer/session')->getPurchasedProducts()?>);
+   </script>
+   <?php 
+   Mage::getModel('customer/session')->unsPurchaseProduct();
+   Mage::getModel('customer/session')->unsPurchasedProducts();
+   ?>
+   <?php endif; ?>
