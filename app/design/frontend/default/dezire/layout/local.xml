@@ -41,7 +41,7 @@
                         <action method="addCss"><stylesheet>css/responsive.css</stylesheet></action>  
                         <action method="addCss"><stylesheet>css/slippry.css</stylesheet></action>
                         <action method="addCss"><stylesheet>css/fancybox.css</stylesheet></action>
-                        <action method="addCss"><stylesheet>css/tooltipster.css.css</stylesheet></action>
+                        <action method="addCss"><stylesheet>css/tooltipster.css</stylesheet></action>
                         <action method="addItem"><type>skin_css</type><name>css/blogmate/blogmate.css</name></action>
                         
                         <action method="addItem"><type>skin_js</type><name>js/jquery.js</name></action>    
