@@ -115,7 +115,9 @@
         padding: 10px 0px 0px 0px;
 }
 .latest-news a {
-        color:#D74069
+        color:#D74069;
+	    height: 265px;
+	    display: block;
 }
 .latest-news .icon-calendar {
         margin-right:5px
