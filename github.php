@@ -106,6 +106,7 @@ try {
     if ($_SERVER['HTTP_X_GITHUB_EVENT'] != 'push') {
         echo "Works fine.";
     } else {
+       echo "Running";
         run();
     }
 } catch ( Exception $e ) {
