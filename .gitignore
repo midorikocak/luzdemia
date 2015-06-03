@@ -28,3 +28,6 @@ sitemap.xml
 /var/importexport/
 /var/tmp/
 /temp_/
+.project
+deployment.properties
+maintenance.flag
