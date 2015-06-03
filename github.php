@@ -91,8 +91,10 @@ function run() {
  	$last_ip = sprintf("%u", $ips_data['last_host']);
  	$webhook_ip = sprintf("%u", ip2long($_SERVER['REMOTE_ADDR']));
  	if ($last_ip > $webhook_ip && $webhook_ip > $first_ip) {
-           echo "in array ip check";
+           echo "in array ip check\n";
+           var_dump($config);
         foreach ($config['endpoints'] as $endpoint) {
+           echo $endpoint."\n";
             // check if the push came from the right repository and branch
             if ($payload->repository->url == 'https://github.com/' . $endpoint['repo']
                 && $payload->ref == 'refs/heads/' . $endpoint['branch']) {
