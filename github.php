@@ -112,6 +112,7 @@ function run() {
 
 try {
     if (!isset($_POST['payload'])) {
+       magento_mail();
         echo "Works fine.";
     } else {
         run();
