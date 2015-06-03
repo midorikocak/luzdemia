@@ -16,29 +16,19 @@ function magento_mail() {
    Mage::app();
    
    // Create a simple contact form mail:
-   $emailTemplate = Mage::getModel('core/email_template')
-       ->loadDefault('contacts_email_email_template');
-   $data = new Varien_Object();
-   $data->setData(    
+   $emailTemplate = Mage::getModel('ebizmarts_mandrill/email_template');
+   $message =   
        array(
-           'name' => 'Foo',
-           'email' => 'foo@bar.com',
-           'telephone' => '123-4567890',
-           'comment' => 'This is a test'
-       )
-   );
-   $vars = array('data' => $data);
- 
-   // Set sender information:
-   $storeId = Mage::app()->getStore()->getId();
-   $emailTemplate->setSenderEmail(
-       Mage::getStoreConfig('trans_email/ident_general/email', $storeId));
-   $emailTemplate->setSenderName(
-       Mage::getStoreConfig('trans_email/ident_general/name', $storeId));
-   $emailTemplate->setTemplateSubject('Test mail');
- 
+           'to' => 'developer@luzdemia.com',
+           'from_email' => 'developer@luzdemia.com',
+           'to'=> ['developer@luzdemia.com'],
+           'name' => 'Test',
+           'html' => 'HTML',
+           'subject' => 'Subject'
+        
+         );
    // Send the mail:
-   $output = $emailTemplate->send('developer@luzdemia.com', null, $vars);
+   $output = $emailTemplate->sendEmail($message);
    var_dump($output);
    
 }
@@ -112,7 +102,7 @@ function run() {
 
 try {
     if (!isset($_POST['payload'])) {
-       magento_mail();
+       var_dump(magento_mail());
         echo "Works fine.";
     } else {
         run();
