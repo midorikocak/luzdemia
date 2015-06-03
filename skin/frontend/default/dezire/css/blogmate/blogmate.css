@@ -40,7 +40,7 @@
         margin: 0 auto 0px;
         text-align: left;
         text-transform: none;
-        border-bottom:3px #D74069 solid;
+		border: none;
         margin-bottom:30px
 }
 .blog-title h2:after {
@@ -51,7 +51,7 @@
         right: 3px;
         top: 0px;
         text-shadow:none;
-        border-bottom:3px #D74069 solid;
+        /*border-bottom:3px #D74069 solid;*/
 }
 
 .blog-title h2 {
