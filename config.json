@@ -1,0 +1,14 @@
+{
+    "email": {
+        "from": "github-hook@luzdemia.com",
+        "to": "developer@luzdemia.com"
+    },
+    "endpoints": [
+        {
+            "repo": "mtkocak/luzdemia",
+            "branch": "master",
+            "action": "something has been changed on the server",
+            "run": "update_script.sh"
+        }
+    ]
+}
