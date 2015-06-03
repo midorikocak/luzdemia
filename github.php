@@ -94,7 +94,11 @@ function run() {
            echo "in array ip check\n";
            var_dump($config);
         foreach ($config['endpoints'] as $endpoint) {
-           echo $endpoint."\n";
+           var_dump($endpoint);
+           echo 'https://github.com/' . $endpoint['repo'] . "\n";
+           echo $payload->repository->url."\n";
+           echo 'refs/heads/' . $endpoint['branch']."\n";
+           echo $payload->ref. "\n";
             // check if the push came from the right repository and branch
             if ($payload->repository->url == 'https://github.com/' . $endpoint['repo']
                 && $payload->ref == 'refs/heads/' . $endpoint['branch']) {
