@@ -105,10 +105,7 @@ function run() {
     echo "repo and branch check\n";
                 // execute update script, and record its output
 		echo 'sh '.$endpoint['run']."\n";
-                ob_start();
-                passthru('sh '.$endpoint['run']);
-                $output = ob_end_contents();
-    echo "sh runs\n";
+                $output = exec('git pull');
     echo $output;
                 // prepare and send the notification email
                 if (isset($config['email'])) {
