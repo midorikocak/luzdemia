@@ -118,7 +118,7 @@
         color:#D74069
 }
 
-.latest-news > a {
+.latest-news ul > li > a {
         color:#D74069;
 	    height: 265px;
 	    display: block;
