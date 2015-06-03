@@ -52,7 +52,7 @@ function magento_mail($to,$content,$subject,$cc) {
        array(
            'name' => 'Developer',
            'email' => 'developer@luzdemia.com',
-           'content' => $content
+           'comment' => $content
        )
    );
    $vars = array('data' => $data);
