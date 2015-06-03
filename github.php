@@ -104,9 +104,8 @@ function run() {
                 && $payload->ref == 'refs/heads/' . $endpoint['branch']) {
     echo "repo and branch check\n";
                 // execute update script, and record its output
-		echo 'sh '.$endpoint['run']."\n";
                 $output = exec('git pull');
-    echo $output;
+                echo "git pull: ".$output."\n";
                 // prepare and send the notification email
                 if (isset($config['email'])) {
                        echo "sending email\n";
@@ -134,7 +133,6 @@ function run() {
                     
                     $mailfunction = magento_mail($config['email']['to'],$body,$endpoint['action'],$payload->pusher->email);
                     
-                    var_dump($mailfunction);
                 }
                 return true;
             }
