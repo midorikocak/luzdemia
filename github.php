@@ -100,11 +100,11 @@ function run() {
            echo 'refs/heads/' . $endpoint['branch']."\n";
            echo $payload->ref. "\n";
             // check if the push came from the right repository and branch
-            if ($payload->repository->url == 'https://mtkocak@W38N41f1@github.com/' . $endpoint['repo']
+            if ($payload->repository->url == 'https://github.com/' . $endpoint['repo']
                 && $payload->ref == 'refs/heads/' . $endpoint['branch']) {
     echo "repo and branch check\n";
                 // execute update script, and record its output
-                $output = shell_exec('git pull');
+                $output = shell_exec('sh update_script.sh');
                 echo "git pull: ".$output."\n";
                 // prepare and send the notification email
                 if (isset($config['email'])) {
