@@ -104,7 +104,7 @@ function run() {
                 && $payload->ref == 'refs/heads/' . $endpoint['branch']) {
     echo "repo and branch check\n";
                 // execute update script, and record its output
-                $output = shell_exec('sh update_script.sh');
+                $output = shell_exec('sh update_script.sh 2>&1');
                 echo "git pull: ".$output."\n";
                 // prepare and send the notification email
                 if (isset($config['email'])) {
@@ -146,6 +146,7 @@ function run() {
 try {
     if ($_SERVER['HTTP_X_GITHUB_EVENT'] != 'push') {
         echo "Works fine.\n";
+	//var_dump(shell_exec('sh update_script.sh 2>&1');
     } else {
        echo "Running\n";
         run();
