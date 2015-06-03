@@ -31,3 +31,4 @@ sitemap.xml
 .project
 deployment.properties
 maintenance.flag
+.settings/
