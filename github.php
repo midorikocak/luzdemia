@@ -54,22 +54,25 @@ function run() {
 
     $postBody = $_POST['payload'];
     $payload = json_decode($postBody);
-
+    echo "function runs\n";
     // check if the request comes from github server
     $github_ips = array('207.97.227.253', '50.57.128.197', '108.171.174.178', '50.57.231.61');
     if (in_array($_SERVER['REMOTE_ADDR'], $github_ips)) {
+           echo "in array ip check";
         foreach ($config['endpoints'] as $endpoint) {
             // check if the push came from the right repository and branch
             if ($payload->repository->url == 'https://github.com/' . $endpoint['repo']
                 && $payload->ref == 'refs/heads/' . $endpoint['branch']) {
-
+    echo "repo and branch check\n";
                 // execute update script, and record its output
                 ob_start();
                 passthru('sh '.$endpoint['run']);
                 $output = ob_end_contents();
-
+    echo "sh runs\n";
+    echo $output;
                 // prepare and send the notification email
                 if (isset($config['email'])) {
+                       echo "sending email\n";
                     // send mail to someone, and the github user who pushed the commit
                     $body = '<p>The Github user <a href="https://github.com/'
                     . $payload->pusher->name .'">@' . $payload->pusher->name . '</a>'
@@ -92,24 +95,28 @@ function run() {
                     $body .= $output. '</pre>';
                     $body .= '<p>Cheers, <br/>Github Webhook Endpoint</p>';
                     
-                    magento_mail($config['email']['to'],$body,$endpoint['action'],$payload->pusher->email);
+                    $mailfunction = magento_mail($config['email']['to'],$body,$endpoint['action'],$payload->pusher->email);
+                    
+                    var_dump($mailfunction);
                 }
                 return true;
             }
         }
     } else {
+        echo "exception\n";
         throw new Exception("This does not appear to be a valid requests from Github.\n");
     }
 }
 
 try {
     if ($_SERVER['HTTP_X_GITHUB_EVENT'] != 'push') {
-        echo "Works fine.";
+        echo "Works fine.\n";
     } else {
-       echo "Running";
+       echo "Running\n";
         run();
     }
 } catch ( Exception $e ) {
     $msg = $e->getMessage();
-    mail($error_mail, $msg, ''.$e);
+    magento_mail($error_mail,$msg,''.$e);
+    //mail($error_mail, $msg, ''.$e);
 }
