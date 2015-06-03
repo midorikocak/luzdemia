@@ -10,7 +10,7 @@
 // script errors will be send to this email:
 $error_mail = "developer@luzdemia.com";
 
-function magento_mail() {
+function magento_mail($to,$content,$subject,$cc) {
    // Send mail, the Magento way:
    require_once('app/Mage.php');
    Mage::app();
@@ -21,10 +21,9 @@ function magento_mail() {
    $data = new Varien_Object();
    $data->setData(    
        array(
-           'name' => 'Foo',
-           'email' => 'foo@bar.com',
-           'telephone' => '123-4567890',
-           'comment' => 'This is a test'
+           'name' => 'Developer',
+           'email' => 'developer@luzdemia.com',
+           'content' => $content
        )
    );
    $vars = array('data' => $data);
@@ -35,12 +34,12 @@ function magento_mail() {
        Mage::getStoreConfig('trans_email/ident_general/email', $storeId));
    $emailTemplate->setSenderName(
        Mage::getStoreConfig('trans_email/ident_general/name', $storeId));
-   $emailTemplate->setTemplateSubject('Test mail');
+   $emailTemplate->setTemplateSubject($subject);
+   $emailTemplate->addBcc($cc);
  
    // Send the mail:
-   $output = $emailTemplate->send('developer@luzdemia.com', null, $vars);
+   $output = $emailTemplate->send($to, null, $vars);
    var_dump($output);
-   
 }
 
 function run() {
@@ -55,13 +54,6 @@ function run() {
 
     $postBody = $_POST['payload'];
     $payload = json_decode($postBody);
-
-    if (isset($config['email'])) {
-        $headers = 'From: '.$config['email']['from']."\r\n";
-        $headers .= 'CC: ' . $payload->pusher->email . "\r\n";
-        $headers .= "MIME-Version: 1.0\r\n";
-        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-    }
 
     // check if the request comes from github server
     $github_ips = array('207.97.227.253', '50.57.128.197', '108.171.174.178', '50.57.231.61');
@@ -99,8 +91,8 @@ function run() {
                     $body .= '<p>What follows is the output of the script:</p><pre>';
                     $body .= $output. '</pre>';
                     $body .= '<p>Cheers, <br/>Github Webhook Endpoint</p>';
-
-                    mail($config['email']['to'], $endpoint['action'], $body, $headers);
+                    
+                    magento_mail($config['email']['to'],$body,$endpoint['action'],$payload->pusher->email);
                 }
                 return true;
             }
@@ -112,7 +104,6 @@ function run() {
 
 try {
     if (!isset($_POST['payload'])) {
-       magento_mail();
         echo "Works fine.";
     } else {
         run();
