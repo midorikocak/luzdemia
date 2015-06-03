@@ -10,6 +10,35 @@
 // script errors will be send to this email:
 $error_mail = "developer@luzdemia.com";
 
+function v4CIDRtoMask($cidr) {
+    $cidr = explode('/', $cidr);
+    return array($cidr[0], long2ip(-1 << (32 - (int)$cidr[1])));
+}
+function ipv4Breakout ($ip_address, $ip_nmask) {
+    $hosts = array();
+    //convert ip addresses to long form
+    $ip_address_long = ip2long($ip_address);
+    $ip_nmask_long = ip2long($ip_nmask);
+    //caculate network address
+    $ip_net = $ip_address_long & $ip_nmask_long;
+    //caculate first usable address
+    $ip_host_first = ((~$ip_nmask_long) & $ip_address_long);
+    $ip_first = ($ip_address_long ^ $ip_host_first) + 1;
+    //caculate last usable address
+    $ip_broadcast_invert = ~$ip_nmask_long;
+    $ip_last = ($ip_address_long | $ip_broadcast_invert) - 1;
+    //caculate broadcast address
+    $ip_broadcast = $ip_address_long | $ip_broadcast_invert;
+    // foreach (range($ip_first, $ip_last) as $ip) {
+    //         array_push($hosts, $ip);
+    // }
+    $block_info = array("network" => "$ip_net", 
+    	"first_host" => "$ip_first", 
+    	"last_host" => "$ip_last", 
+    	"broadcast" => "$ip_broadcast");
+    return $block_info;
+}
+
 function magento_mail($to,$content,$subject,$cc) {
    // Send mail, the Magento way:
    require_once('app/Mage.php');
@@ -56,8 +85,12 @@ function run() {
     $payload = json_decode($postBody);
     echo "function runs\n";
     // check if the request comes from github server
-    $github_ips = array('207.97.227.253', '50.57.128.197', '108.171.174.178', '50.57.231.61');
-    if (in_array($_SERVER['REMOTE_ADDR'], $github_ips)) {
+ 	$github_ips = v4CIDRtoMask('192.30.252.0/22');
+ 	$ips_data = ipv4Breakout($github_ips[0], $github_ips[1]);
+ 	$first_ip = sprintf("%u", $ips_data['first_host']);
+ 	$last_ip = sprintf("%u", $ips_data['last_host']);
+ 	$webhook_ip = sprintf("%u", ip2long($_SERVER['REMOTE_ADDR']));
+ 	if ($last_ip > $webhook_ip && $webhook_ip > $first_ip) {
            echo "in array ip check";
         foreach ($config['endpoints'] as $endpoint) {
             // check if the push came from the right repository and branch
