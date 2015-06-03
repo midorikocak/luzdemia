@@ -61,7 +61,7 @@ if (!file_exists($mageFilename)) {
     exit;
 }
 $ip = $_SERVER['REMOTE_ADDR'];
-$allowed = array('46.135.3.22','81.215.207.205','78.188.186.180','188.95.127.237');
+$allowed = array('46.135.3.21','81.215.207.205','78.188.186.180','188.95.127.237');
 
 if (file_exists($maintenanceFile) && !in_array($ip, $allowed)) {
     include_once dirname(__FILE__) . '/errors/503.php';
