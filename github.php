@@ -104,6 +104,7 @@ function run() {
                 && $payload->ref == 'refs/heads/' . $endpoint['branch']) {
     echo "repo and branch check\n";
                 // execute update script, and record its output
+		echo 'sh '.$endpoint['run']."\n";
                 ob_start();
                 passthru('sh '.$endpoint['run']);
                 $output = ob_end_contents();
