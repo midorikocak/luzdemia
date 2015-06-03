@@ -103,7 +103,7 @@ function run() {
 }
 
 try {
-    if (!isset($_POST['payload'])) {
+    if (!isset(if ($_SERVER['HTTP_X_GITHUB_EVENT'] == 'push'))) {
         echo "Works fine.";
     } else {
         run();
