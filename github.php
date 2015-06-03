@@ -40,7 +40,7 @@ function run() {
 
                 // execute update script, and record its output
                 ob_start();
-                passthru($endpoint['run']);
+                passthru('sh '.$endpoint['run']);
                 $output = ob_end_contents();
 
                 // prepare and send the notification email
