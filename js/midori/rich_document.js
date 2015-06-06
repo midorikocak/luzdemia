@@ -17,7 +17,8 @@
     app.controller('RichDocumentController', ['$scope', function($scope) {
     	
       $scope.currentorder = angular.element('#checkout-review-table-wrapper').html();
-      $scope.currentdate = Date();
+      var agreementDate = new Date();
+      $scope.currentdate = agreementDate.toLocaleDateString("tr");
     	$scope.billing = {};
     	$scope.shipping = {};
           
