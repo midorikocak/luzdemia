@@ -75,7 +75,7 @@
     app.controller('RichDocumentController', ['$scope', function($scope) {
     	
       $scope.currentorder = angular.element('#checkout-review-table-wrapper').html();
-      jQuery("input[name='payment[method]']").change(function(){
+      angular.element("input[name='payment[method]']").change(function(){
          
                $scope.currentorder = angular.element('#checkout-review-table-wrapper').html();
          
