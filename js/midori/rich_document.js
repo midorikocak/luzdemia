@@ -47,7 +47,7 @@
          }
          
          var billing = {
-            street1:billingstreet, firstname: billingfirstname
+            street1:billingstreet, firstname: billingfirstname, email: customer_email, phone: customer_phone
          };
          
          shippingText = angular.element('#shipping-address-select option:selected').text();
@@ -62,7 +62,7 @@
          }
          
          var shipping = {
-            street1:shippingstreet, firstname: shippingfirstname
+            street1:shippingstreet, firstname: shippingfirstname, email: customer_email, phone: customer_phone
          };
          
       }
