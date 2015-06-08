@@ -12,14 +12,17 @@
  * 
  */
 	'use strict';
+   
+   var billingText = "";
+   var shippingText = "";
 
    function getShippingBillingTexts(){
       if(angular.element('#billing-address-select').is(':visible')){
-         var billingText = angular.element('#billing-address-select option:selected').text();
+         billingText = angular.element('#billing-address-select option:selected').text();
       }
       
       if(angular.element('#shipping-address-select').is(':visible')){
-         var shippingText = angular.element('#shipping-address-select option:selected').text();
+         shippingText = angular.element('#shipping-address-select option:selected').text();
       }
    }
    
