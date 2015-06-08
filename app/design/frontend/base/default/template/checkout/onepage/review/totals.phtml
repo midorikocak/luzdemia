@@ -68,14 +68,14 @@
     <tr class="last">
         <td style="" class="a-left" colspan="3">Taksit Komisyonu</td>
         <td style="" class="a-right last">
-            <strong><span class="price"><?php echo $installment_calc;?> &nbsp;TL</span></strong>
+            <strong><span class="price"><?php echo number_format((float)$installment_calc, 2, '.', '');?> &nbsp;TL</span></strong>
         </td>
     </tr>
     <?php endif; ?>
     <tr class="last">
         <td style="" class="a-left" colspan="3"><strong>Genel Toplam</strong></td>
         <td style="" class="a-right last">
-            <strong><span id="final-total" class="price"><?php  echo ($grandTotal+$installment_calc);?>&nbsp;TL</span></strong>
+            <strong><span id="final-total" class="price"><?php  echo number_format((float)($grandTotal+$installment_calc), 2, '.', '');?>&nbsp;TL</span></strong>
         </td>
     </tr>
     <?php else: ?>
