@@ -21,6 +21,15 @@
          billingText = angular.element('#billing-address-select option:selected').text();
          shippingText = "";
          
+         var billingArray = billingText.split(',');
+         
+         var billingfirstname = billingArray[0];
+         var billingstreet = "";
+         for(var i=1; i<billingarray.length;i++)
+         {
+            billingstreet+=billingarray[i];
+         }
+         
          angular.element('#billing-address-select').change(function(){
             if(angular.element('#billing-address-select option:selected').val()==""){
              console.log('Yeni Fatura Adresi');
