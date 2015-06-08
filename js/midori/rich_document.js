@@ -17,12 +17,9 @@
    var shippingText = "";
 
    function getShippingBillingTexts(){
-      if(angular.element('#billing-address-select').is(':visible')){
+      if(angular.element('#billing-address-select').is(':visible')==true && angular.element('#shipping-address-select').is(':visible')==false){
          billingText = angular.element('#billing-address-select option:selected').text();
          shippingText = "";
-      }
-      else if(angular.element('#shipping-address-select').is(':visible')){
-         shippingText = angular.element('#shipping-address-select option:selected').text();
       }else{
          billingText = angular.element('#billing-address-select option:selected').text();
          shippingText = angular.element('#shipping-address-select option:selected').text();
