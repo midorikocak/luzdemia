@@ -706,11 +706,11 @@ IWD.OPC.Checkout = {
 					$j_opc('#opc-review-block').html(response.review);
 					
 					IWD.OPC.Checkout.removePrice();
+               $j_opc('#extra-info').empty();
                if($j_opc('#final-total').text()!="")
                {
                   $j_opc('.grand_total > span.price').text($j_opc('#final-total').text());
                   $j_opc('.review-total > span.price > span.price').text($j_opc('#final-total').text());
-                  $j_opc('#extra-info').empty();
                   $j_opc('#comissions').appendTo('#extra-info');
                }
 //					IWD.OPC.recheckAgree();
