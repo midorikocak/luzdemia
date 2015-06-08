@@ -19,9 +19,12 @@
    function getShippingBillingTexts(){
       if(angular.element('#billing-address-select').is(':visible')){
          billingText = angular.element('#billing-address-select option:selected').text();
+         shippingText = "";
       }
-      
-      if(angular.element('#shipping-address-select').is(':visible')){
+      else if(angular.element('#shipping-address-select').is(':visible')){
+         shippingText = angular.element('#shipping-address-select option:selected').text();
+      }else{
+         billingText = angular.element('#billing-address-select option:selected').text();
          shippingText = angular.element('#shipping-address-select option:selected').text();
       }
    }
