@@ -50,6 +50,11 @@
          getShippingBillingTexts();
       }
       // if changed check if shipping visible
+      
+      angular.element('#billing\\:use_for_shipping_yes').change(function(){
+         getShippingBillingTexts();
+      });
+      
       // if shipping visible get shipping values from that input
       // else get shipping values from billing input
       
