@@ -116,13 +116,10 @@ IWD.OPC = {
             
             $j_opc('#extra-info').empty();
             
-            $j_opc("input[name='payment[method]']").change(function(){
-               console.log('payment method changed');
-                     var appElement = document.querySelector('[ng-app=richDocument]');
-                     var $scope = angular.element(appElement).scope();
-                     $scope.$apply(function() {
-                         $scope.currentorder = angular.element('#checkout-review-table-wrapper').html();
-                     });
+            var appElement = document.querySelector('[ng-app=richDocument]');
+            var $scope = angular.element(appElement).scope();
+            $scope.$apply(function() {
+                $scope.currentorder = angular.element('#checkout-review-table-wrapper').html();
             });
             
             //update agreement
