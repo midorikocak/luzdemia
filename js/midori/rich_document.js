@@ -127,7 +127,14 @@
        	$scope.billing = {};
        	$scope.shipping = {};
       }else{
-         console.log(registeredAddress);
+         if(typeof registeredAddress.shipping != 'undefined'){
+            $scope.shipping.street1 = registeredAddress.shipping.street1;
+            $scope.shipping.firstname = registeredAddress.shipping.firstname;
+         }
+         if(typeof registeredAddress.billing != 'undefined'){
+            $scope.billing.street1 = registeredAddress.billing.street1;
+            $scope.billing.firstname = registeredAddress.billing.firstname;
+         }
       }
           
         $scope.$watch(function() {return angular.element('#opc-address-form-shipping').hasClass('hidden'); }, function(){
