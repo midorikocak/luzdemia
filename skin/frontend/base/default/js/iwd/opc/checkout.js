@@ -703,6 +703,9 @@ IWD.OPC.Checkout = {
 		
 		/** PULL REVIEW **/
 		pullReview: function(){
+         var appElement = document.querySelector('[ng-app=richDocument]');
+         var $myScope = angular.element(appElement).scope();
+         
 			IWD.OPC.Checkout.lockPlaceOrder();
 			IWD.OPC.Checkout.xhr = $j_opc.post(IWD.OPC.Checkout.config.baseUrl + 'onepage/json/review',{'payment': {'cc_installment':jQuery('#payu_installment').val()}},function(response){
 				IWD.OPC.Checkout.xhr = null;
@@ -712,10 +715,8 @@ IWD.OPC.Checkout = {
 					IWD.OPC.Decorator.updateGrandTotal(response);
 					$j_opc('#opc-review-block').html(response.review);
 					
-               var appElement = document.querySelector('[ng-app=richDocument]');
-               var $scope = angular.element(appElement).scope();
-               $scope.$apply(function() {
-                   $scope.currentorder = response.review;
+               $myScope.$apply(function() {
+                   $myScope.currentorder = response.review;
                });
                
 					IWD.OPC.Checkout.removePrice();
