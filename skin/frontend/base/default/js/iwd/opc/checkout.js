@@ -109,12 +109,12 @@ IWD.OPC = {
 			
 			IWD.OPC.bindChangePaymentFields();
 			$j_opc(document).on('click', '#co-payment-form input[type="radio"]', function(event){
+            IWD.OPC.Checkout.removePrice();
 				IWD.OPC.removeNotAllowedPaymentMethods();
 				console.log('met');
             IWD.OPC.Checkout.pullReview();
-            $j_opc('#extra-info').empty();
             
-            //update agreement
+            $j_opc('#extra-info').empty();
             
             $j_opc("input[name='payment[method]']").change(function(){
                console.log('payment method changed');
@@ -124,6 +124,8 @@ IWD.OPC = {
                          $scope.currentorder = angular.element('#checkout-review-table-wrapper').html();
                      });
             });
+            
+            //update agreement
             
             
 				IWD.OPC.validatePayment();
