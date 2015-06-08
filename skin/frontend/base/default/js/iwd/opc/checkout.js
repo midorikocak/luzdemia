@@ -112,6 +112,7 @@ IWD.OPC = {
 				IWD.OPC.removeNotAllowedPaymentMethods();
 				console.log('met');
             IWD.OPC.Checkout.pullReview();
+            $j_opc('#extra-info').empty();
 				IWD.OPC.validatePayment();
 			});
 		},
@@ -701,12 +702,12 @@ IWD.OPC.Checkout = {
 				IWD.OPC.Checkout.xhr = null;
 				IWD.OPC.Checkout.hideLoader();
 				IWD.OPC.Checkout.unlockPlaceOrder();
-            $j_opc('#extra-info').empty();
 				if (typeof(response.review)!="undefined"){
 					IWD.OPC.Decorator.updateGrandTotal(response);
 					$j_opc('#opc-review-block').html(response.review);
 					
 					IWD.OPC.Checkout.removePrice();
+               $j_opc('#extra-info').empty();
                if($j_opc('#final-total').text()!="")
                {
                   $j_opc('.grand_total > span.price').text($j_opc('#final-total').text());
