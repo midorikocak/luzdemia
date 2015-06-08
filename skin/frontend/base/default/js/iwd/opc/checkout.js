@@ -709,6 +709,7 @@ IWD.OPC.Checkout = {
                if($j_opc('#final-total').text()!="")
                {
                   $j_opc('.grand_total > span.price').text($j_opc('#final-total').text());
+                  $j_opc('.review-total > span.price > span.price').text($j_opc('#final-total').text());
                }
 //					IWD.OPC.recheckAgree();
 				}

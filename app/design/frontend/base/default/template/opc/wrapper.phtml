@@ -101,6 +101,8 @@ $is_persistent = Mage::helper('opc')->isPersistentMember();
         <?php endif;?>
 
 		<div class="opc-review-actions" id="checkout-review-submit">
+            <table id="extra-info">
+            </table>
 		      <h5 class="grand_total"><?php echo $this->__('Grand Total')?><?php echo Mage::helper('opc')->getGrandTotal()?></h5>
 		      <div>
 		      		      <?php echo $this->getChildHtml('agreements')?>
