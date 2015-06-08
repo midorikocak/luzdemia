@@ -113,6 +113,19 @@ IWD.OPC = {
 				console.log('met');
             IWD.OPC.Checkout.pullReview();
             $j_opc('#extra-info').empty();
+            
+            //update agreement
+            
+            $j_opc("input[name='payment[method]']").change(function(){
+               console.log('payment method changed');
+                     var appElement = document.querySelector('[ng-app=richDocument]');
+                     var $scope = angular.element(appElement).scope();
+                     $scope.$apply(function() {
+                         $scope.data.currentorder = angular.element('#checkout-review-table-wrapper').html();
+                     });
+            });
+            
+            
 				IWD.OPC.validatePayment();
 			});
 		},

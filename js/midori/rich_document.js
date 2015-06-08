@@ -130,10 +130,11 @@ app.controller('RichDocumentController', ['$scope',
          }
       });
       
-      angular.element("input[name='payment[method]']").change(function(){
-         console.log('payment method changes');
-         $scope.currentorder = angular.element('#checkout-review-table-wrapper').html();
-      });
+      // angular.element("input[name='payment[method]']").change(function(){
+      //    console.log('payment method changes');
+      //    $scope.currentorder = angular.element('#checkout-review-table-wrapper').html();
+      // });
+      
       // if shipping visible get shipping values from that input
       // else get shipping values from billing input
 
