@@ -12,11 +12,11 @@
  * 
  */
 	'use strict';
-   
-   var billingText = "";
-   var shippingText = "";
 
    function getShippingBillingTexts(){
+      var billingText = "";
+      var shippingText = "";
+      
       if(angular.element('#billing-address-select').is(':visible')==true && angular.element('#shipping-address-select').is(':visible')==false){
          billingText = angular.element('#billing-address-select option:selected').text();
          shippingText = "";
@@ -53,6 +53,8 @@
          });
          
       }
+      var result = {shipping:shippingText,billing:billingText};
+      return result;
    }
    
     var app = angular.module('richDocument',['ngSanitize']);
@@ -76,6 +78,7 @@
       // if visible add control to checkbox
       if(jQuery('#billing-address-select').length!=0)
       {
+         console.log('kayıtlı adres mevcut');
          getShippingBillingTexts();
       }
       // if changed check if shipping visible
