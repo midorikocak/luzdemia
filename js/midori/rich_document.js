@@ -20,9 +20,38 @@
       if(angular.element('#billing-address-select').is(':visible')==true && angular.element('#shipping-address-select').is(':visible')==false){
          billingText = angular.element('#billing-address-select option:selected').text();
          shippingText = "";
+         
+         angular.element('#shipping-address-select').change(function(){
+            if(angular.element('#shipping-address-select option:selected').val()==""){
+             console.log('Yeni Kargo Adresi');
+            }else
+            {
+            console.log(angular.element('#shipping-address-select option:selected').text());
+            }
+         });
+         
       }else{
          billingText = angular.element('#billing-address-select option:selected').text();
          shippingText = angular.element('#shipping-address-select option:selected').text();
+         
+         angular.element('#shipping-address-select').change(function(){
+            if(angular.element('#shipping-address-select option:selected').val()==""){
+             console.log('Yeni Kargo Adresi');
+            }else
+            {
+            console.log(angular.element('#shipping-address-select option:selected').text());
+            }
+         });
+
+         angular.element('#billing-address-select').change(function(){
+            if(angular.element('#billing-address-select option:selected').val()==""){
+             console.log('Yeni Fatura Adresi');
+            }else
+            {
+            console.log(angular.element('#billing-address-select option:selected').text());
+            }
+         });
+         
       }
    }
    
