@@ -12,6 +12,17 @@
  * 
  */
 	'use strict';
+
+   function getShippingBillingTexts(){
+      if(angular.element('#billing-address-select').is(':visible')){
+         var billingText = angular.element('#billing-address-select option:selected').text();
+      }
+      
+      if(angular.element('#shipping-address-select').is(':visible')){
+         var shippingText = angular.element('#shipping-address-select option:selected').text();
+      }
+   }
+   
     var app = angular.module('richDocument',['ngSanitize']);
 
     app.controller('RichDocumentController', ['$scope', function($scope) {
@@ -28,10 +39,18 @@
       *  billing shipping check
       */
       
+      // Algorithm
+      // Check if visible billing registered address
+      // if visible add control to checkbox
       if(jQuery('#billing-address-select').length!=0)
       {
-         console.log(jQuery('#billing-address-select option:selected').text());
+         getShippingBillingTexts();
       }
+      // if changed check if shipping visible
+      // if shipping visible get shipping values from that input
+      // else get shipping values from billing input
+      
+
     	$scope.billing = {};
     	$scope.shipping = {};
           
