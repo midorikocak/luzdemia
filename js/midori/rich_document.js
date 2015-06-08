@@ -16,6 +16,7 @@
    function getShippingBillingTexts(){
       var billingText = "";
       var shippingText = "";
+      var billingArray =[];
       
       if(angular.element('#billing-address-select').is(':visible')==true && angular.element('#shipping-address-select').is(':visible')==false){
          billingText = angular.element('#billing-address-select option:selected').text();
