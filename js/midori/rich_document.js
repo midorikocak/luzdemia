@@ -76,7 +76,7 @@
     	
       $scope.currentorder = angular.element('#checkout-review-table-wrapper').html();
       angular.element("input[name='payment[method]']").change(function(){
-         
+         console.log('paymetn method changes');
                $scope.currentorder = angular.element('#checkout-review-table-wrapper').html();
          
       });
