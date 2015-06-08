@@ -702,14 +702,13 @@ IWD.OPC.Checkout = {
 				IWD.OPC.Checkout.unlockPlaceOrder();
 				if (typeof(response.review)!="undefined"){
 					IWD.OPC.Decorator.updateGrandTotal(response);
+					$j_opc('#opc-review-block').html(response.review);
+					
+					IWD.OPC.Checkout.removePrice();
                if($j_opc('#final-total').text()!="")
                {
                   $j_opc('.grand_total > span.price').text($j_opc('#final-total').text());
                }
-					$j_opc('#opc-review-block').html(response.review);
-					
-					IWD.OPC.Checkout.removePrice();
-					
 //					IWD.OPC.recheckAgree();
 				}
 				IWD.OPC.removeNotAllowedPaymentMethods();
