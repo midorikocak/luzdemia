@@ -19,6 +19,19 @@
       $scope.currentorder = angular.element('#checkout-review-table-wrapper').html();
       var agreementDate = new Date();
       $scope.currentdate = agreementDate.toLocaleDateString("tr");
+      
+      /**
+      * 1. If logged address selector, then explode
+      * 2. if exixst but changed to none, go to else
+      * 3. Else: normal operation
+      * "name,b,c".split(',');
+      *  billing shipping check
+      */
+      
+      if(jQuery('#billing-address-select').length!=0)
+      {
+         console.log(jQuery('#billing-address-select option:selected').text());
+      }
     	$scope.billing = {};
     	$scope.shipping = {};
           

@@ -9,7 +9,7 @@ Cannot apply the coupon code.,Kupon eklenemiyor.
 Cannot open the overview page,Cannot open the overview page
 Card Verification Number Visual Reference,Kart Doğrulama Kodu Görsel Referans
 Checkout,Alışverişi Tamamla
-City,İlçe
+City,İl
 Close,Kapat
 Company,Firma
 Confirm Password,Parolayı tekrarla
@@ -57,7 +57,7 @@ Save in address book,Adres defterine ekle
 Select Address,Adres Seç
 Select Addresses,Adresleri Seç
 Select Shipping Method,Teslimat Yöntemini Seç
-Select State/Province...,Şehir Seçiniz...
+Select State/Province...,İlçe/Bölge Seçiniz...
 Select a billing address from your address book or enter a new address.,Adres defterinden bir fatura adresi seçin veya yeni fatura adresi girin
 Select a shipping address from your address book or enter a new address.,Adres defterinden bir teslimat adresi seçin veya yeni teslimat adresi girin
 Send To,Alıcı
@@ -77,7 +77,7 @@ Shipping information,Teslimat bilgisi
 Shipping method has not been selected yet,Teslimat yöntemi seçilmedi
 Shipping selection is not applicable.,Teslimat seçeneği geçersiz
 "Sorry, no quotes are available for this order at this time.","Bu sipariş için kota yetersiz"
-State/Province,Şehir
+State/Province,İlçe/Bölge
 Street Address,Adres ve Sokak
 Street Address %s,Adres ve Sokak %s
 Submitting order information...,Sipariş Bilgisi Gönderiliyor...
