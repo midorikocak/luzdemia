@@ -111,6 +111,7 @@ IWD.OPC = {
 			$j_opc(document).on('click', '#co-payment-form input[type="radio"]', function(event){
 				IWD.OPC.removeNotAllowedPaymentMethods();
 				console.log('met');
+            IWD.OPC.Checkout.pullReview();
 				IWD.OPC.validatePayment();
 			});
 		},
