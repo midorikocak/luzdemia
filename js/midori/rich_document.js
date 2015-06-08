@@ -93,6 +93,7 @@
       if(jQuery('#billing-address-select').length!=0)
       {
          console.log('kayıtlı adres mevcut');
+         angular.element('#billing\\:use_for_shipping_yes').prop('checked', true);
          registeredAddress = getShippingBillingTexts();
       }
       // if changed check if shipping visible
