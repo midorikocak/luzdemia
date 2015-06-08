@@ -66,7 +66,7 @@
          };
          
       }
-      var result = {shipping:shippingText,billing:billingText};
+      var result = {shipping:shipping,billing:billing};
       return result;
    }
    
