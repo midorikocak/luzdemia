@@ -728,12 +728,6 @@ IWD.OPC.Checkout = {
                   $j_opc('#comissions').appendTo('#extra-info');
                }
                
-               var appElement = document.querySelector('[ng-app=richDocument]');
-               var $scope = angular.element(appElement).scope();
-               $scope.$apply(function() {
-                   $scope.currentorder = angular.element('#checkout-review-table-wrapper').html();
-               });
-               
 //					IWD.OPC.recheckAgree();
 				}
 				IWD.OPC.removeNotAllowedPaymentMethods();
