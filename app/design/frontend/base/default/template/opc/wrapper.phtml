@@ -12,18 +12,8 @@ $is_persistent = Mage::helper('opc')->isPersistentMember();
 	    <?php echo $this->getChildHtml('paypal.button')?>
 
         <?php if (!Mage::getSingleton('customer/session')->isLoggedIn()):?>
-    		<?php echo $this->getChildHtml('login');?>
-         <?php else:?>
-            <?php
-               
-            $customer = Mage::getSingleton('customer/session')->getCustomer();
-               
-            ?>
-            <script>
-            var customer_email = '<?=$customer->getEmail();?>';
-            var customer_phone = '<?=$customer->getTelephone();?>';
-            </script>
-    	<?php endif;?>
+    		<?php echo $this->getChildHtml('login');?>	
+    	<?php endif;?>    	
     	
     	<div class="right review-menu-block">
     	  <a class="review-total">
@@ -40,6 +30,20 @@ $is_persistent = Mage::helper('opc')->isPersistentMember();
 <?php else:?>
 	<?php echo $this->getChildHtml('login');?>
 <?php endif;?>
+
+
+        <?php if (Mage::getSingleton('customer/session')->isLoggedIn()):?>
+         <?php
+            
+         $customer = Mage::getSingleton('customer/session')->getCustomer();
+            
+         ?>
+         <script>
+         var customer_email = '<?=$customer->getEmail();?>';
+         var customer_phone = '<?=$customer->getTelephone();?>';
+         </script>
+    	<?php endif;?>   
+
 	</div>
 	
 	<div class="clear"></div>
