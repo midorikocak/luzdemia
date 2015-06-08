@@ -116,12 +116,6 @@ IWD.OPC = {
             
             $j_opc('#extra-info').empty();
             
-            var appElement = document.querySelector('[ng-app=richDocument]');
-            var $scope = angular.element(appElement).scope();
-            $scope.$apply(function() {
-                $scope.currentorder = angular.element('#checkout-review-table-wrapper').html();
-            });
-            
             //update agreement
             
             
@@ -729,6 +723,12 @@ IWD.OPC.Checkout = {
                
 //					IWD.OPC.recheckAgree();
 				}
+            var appElement = document.querySelector('[ng-app=richDocument]');
+            var $scope = angular.element(appElement).scope();
+            $scope.$apply(function() {
+                $scope.currentorder = angular.element('#checkout-review-table-wrapper').html();
+            });
+            
 				IWD.OPC.removeNotAllowedPaymentMethods();
 			});
 		},
