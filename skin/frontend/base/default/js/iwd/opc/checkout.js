@@ -712,6 +712,12 @@ IWD.OPC.Checkout = {
 					IWD.OPC.Decorator.updateGrandTotal(response);
 					$j_opc('#opc-review-block').html(response.review);
 					
+               var appElement = document.querySelector('[ng-app=richDocument]');
+               var $scope = angular.element(appElement).scope();
+               $scope.$apply(function() {
+                   $scope.currentorder = response.review;
+               });
+               
 					IWD.OPC.Checkout.removePrice();
                $j_opc('#extra-info').empty();
                if($j_opc('#final-total').text()!="")
@@ -723,11 +729,6 @@ IWD.OPC.Checkout = {
                
 //					IWD.OPC.recheckAgree();
 				}
-            var appElement = document.querySelector('[ng-app=richDocument]');
-            var $scope = angular.element(appElement).scope();
-            $scope.$apply(function() {
-                $scope.currentorder = angular.element('#checkout-review-table-wrapper').html();
-            });
             
 				IWD.OPC.removeNotAllowedPaymentMethods();
 			});
