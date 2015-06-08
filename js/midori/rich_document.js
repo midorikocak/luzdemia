@@ -31,7 +31,7 @@
          }
          
          var billing = {
-            street1:billingstreet, firstname: billingfirstname
+            street1:billingstreet, firstname: billingfirstname, email: customer_email, phone: customer_phone
          };
          
       }else{
