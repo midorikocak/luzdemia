@@ -16,15 +16,14 @@
    function getShippingBillingTexts(){
       var billingText = "";
       var shippingText = "";
-      var billingArray =[];
-      
+
       if(angular.element('#billing-address-select').is(':visible')==true && angular.element('#shipping-address-select').is(':visible')==false){
          billingText = angular.element('#billing-address-select option:selected').text();
          shippingText = "";
          
-         var billingArray = billingText.split(',');
+         var billingarray = billingText.split(',');
          
-         var billingfirstname = billingArray[0];
+         var billingfirstname = billingarray[0];
          var billingstreet = "";
          for(var i=1; i<billingarray.length;i++)
          {
