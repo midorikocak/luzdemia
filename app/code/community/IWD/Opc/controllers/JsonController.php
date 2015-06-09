@@ -572,6 +572,7 @@ class IWD_Opc_JsonController extends Mage_Core_Controller_Front_Action{
         
       try {
          $this->loadLayout('checkout_onepage_review');
+         $this->getOnepage()->initCheckout();
          $result['review'] = $this->_getReviewHtml();
          
   	       $quote = Mage::getModel('checkout/session')->getQuote();
