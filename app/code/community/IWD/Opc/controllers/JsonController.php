@@ -563,6 +563,22 @@ class IWD_Opc_JsonController extends Mage_Core_Controller_Front_Action{
 		$this->getResponse()->setBody(Mage::helper('core')->jsonEncode($result));
 	}
 	
+   
+	public function resetReviewAction()
+	{
+		if ($this->_expireAjax()) {
+            return;
+        }
+        
+		try {
+			$this->loadLayout('checkout_onepage_review');
+			$result['review'] = $this->_getReviewHtml();
+			$result['grandTotal'] = Mage::helper('opc')->getGrandTotal();
+      }
+		
+		$this->getResponse()->setHeader('Content-type','application/json', true);
+		$this->getResponse()->setBody(Mage::helper('core')->jsonEncode($result));
+	}
 	
 	
 	/**
