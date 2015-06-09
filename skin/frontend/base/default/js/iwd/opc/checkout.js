@@ -703,7 +703,6 @@ IWD.OPC.Checkout = {
 		
 		/** PULL REVIEW **/
 		pullReview: function(){
-
 			IWD.OPC.Checkout.lockPlaceOrder();
 			IWD.OPC.Checkout.xhr = $j_opc.post(IWD.OPC.Checkout.config.baseUrl + 'onepage/json/review',{'payment': {'cc_installment':jQuery('#payu_installment').val()}},function(response){
 				IWD.OPC.Checkout.xhr = null;
@@ -712,10 +711,6 @@ IWD.OPC.Checkout = {
 				if (typeof(response.review)!="undefined"){
 					IWD.OPC.Decorator.updateGrandTotal(response);
 					$j_opc('#opc-review-block').html(response.review);
-					
-               angular.element(document.querySelector('[ng-app=richDocument]')).scope().$apply(function() {
-                   angular.element(document.querySelector('[ng-app=richDocument]')).scope().currentorder = response.review;
-               });
                
 					IWD.OPC.Checkout.removePrice();
                $j_opc('#extra-info').empty();
