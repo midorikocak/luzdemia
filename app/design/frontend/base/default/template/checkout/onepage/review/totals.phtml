@@ -39,7 +39,7 @@
             ?>
 
 <?php if ($totals): ?>
-
+<table align="right">
    <tfoot>
     <?php $_colspan = $this->helper('tax')->displayCartBothPrices() ? 5 : 3; ?>
     <?php echo $this->renderTotals(null, $_colspan); ?>
@@ -93,4 +93,5 @@
     </tr>
     <?php endif?>
     </tfoot>
+</table>
 <?php endif; ?>
