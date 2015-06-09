@@ -11552,6 +11552,11 @@ a.button.view-all {
    text-align:center;
 }
 
+.mini-products-list{
+    height: 300px;
+    overflow: scroll;
+}
+
 .home-banners{
    position: relative;
    width:100% !important;
