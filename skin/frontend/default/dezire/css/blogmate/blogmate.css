@@ -59,7 +59,7 @@
   text-transform: uppercase /*1.3333em*/;
   font-family: 'Lato', sans-serif;
   font-weight: normal;
-  color: #333;
+  color: #D74069;
   width:265px;
   display:inline-block;
   transition: color 300ms ease-in-out 0s, background-color 300ms ease-in-out 0s, background-position 300ms ease-in-out 0s;
