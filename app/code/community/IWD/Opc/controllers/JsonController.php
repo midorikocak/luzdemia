@@ -565,20 +565,22 @@ class IWD_Opc_JsonController extends Mage_Core_Controller_Front_Action{
 	
    
 	public function resetReviewAction()
-	{
-		if ($this->_expireAjax()) {
-            return;
-        }
-        
-		try {
-			$this->loadLayout('checkout_onepage_review');
-			$result['review'] = $this->_getReviewHtml();
-			$result['grandTotal'] = Mage::helper('opc')->getGrandTotal();
+   {
+      if ($this->_expireAjax()) {
+         return;
       }
-		
-		$this->getResponse()->setHeader('Content-type','application/json', true);
-		$this->getResponse()->setBody(Mage::helper('core')->jsonEncode($result));
-	}
+        
+      try {
+         $this->loadLayout('checkout_onepage_review');
+         $result['review'] = $this->_getReviewHtml();
+         $result['grandTotal'] = Mage::helper('opc')->getGrandTotal();
+      }
+      catch (Mage_Core_Exception $e) {
+         $result['error'] = $e->getMessage();
+      }
+   $this->getResponse()->setHeader('Content-type','application/json', true);
+   $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($result));
+}
 	
 	
 	/**
