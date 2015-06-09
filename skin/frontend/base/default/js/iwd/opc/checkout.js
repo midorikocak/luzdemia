@@ -1536,6 +1536,4 @@ $j_opc(document).ready(function(){
 	IWD.OPC.Login.init();
 	IWD.OPC.Decorator.initReviewBlock();
 	IWD.OPC.Decorator.setActivePayment();
-    $j_opc('.zopim').hide();
-    $j_opc('#billing\\:use_for_shipping_yes').prop('checked', true);
 });

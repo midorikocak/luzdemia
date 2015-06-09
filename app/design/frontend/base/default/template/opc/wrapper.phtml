@@ -145,3 +145,9 @@ $is_persistent = Mage::helper('opc')->isPersistentMember();
 		<div class="opc-messages-action"><button class="button"><span><span><?php echo $this->__('Close')?></span></span></button></div>
 	</div>
 </div>
+<script>
+$j_opc(document).ready(function(){
+    $j_opc('.zopim').hide();
+    $j_opc('#billing\\:use_for_shipping_yes').prop('checked', true);
+});
+</script>
