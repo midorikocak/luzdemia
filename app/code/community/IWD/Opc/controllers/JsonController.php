@@ -569,35 +569,41 @@ class IWD_Opc_JsonController extends Mage_Core_Controller_Front_Action{
       if ($this->_expireAjax()) {
          return;
       }
-        
-      try {
-
-         
-  	       $quote = $this->getOnepage()->getQuote();
-          
-          $this->initDefaultAddress();
-
-          Mage::app()->getCacheInstance()->cleanType('layout');
-        
-          $this->updateDefaultPayment();
- 
-          Mage::getSingleton('checkout/session')->setCartWasUpdated(false);
-          Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl('*/*/*', array('_secure' => true)));
-          
-  	       $total = $quote->getSubtotal();
-         
-         $result['grandTotal'] = Mage::helper('checkout')->formatPrice($total);
-         
-         $this->loadLayout('checkout_onepage_review');
-         $this->_initLayoutMessages('customer/session');
-         //$this->getOnepage()->initCheckout();
-         $result['review'] = $this->_getReviewHtml();
-      }
-      catch (Mage_Core_Exception $e) {
-         $result['error'] = $e->getMessage();
-      }
-   $this->getResponse()->setHeader('Content-type','application/json', true);
-   $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($result));
+		try {
+			/*if (!$this->getRequest()->isPost()) {
+				$this->_ajaxRedirectResponse();
+				return;
+			}*/
+	
+			// set payment to quote
+			$result = array();
+			$data = $this->getRequest()->getPost('payment', array());
+			$result = $this->getOnepage()->savePayment($data);
+	
+			// get section and redirect data
+			$redirectUrl = $this->getOnepage()->getQuote()->getPayment()->getCheckoutRedirectUrl();
+			if (empty($result['error'])) {
+				$this->loadLayout('checkout_onepage_review');
+				$result['review'] = $this->_getReviewHtml();
+				$result['grandTotal'] = Mage::helper('opc')->getGrandTotal();
+			}
+			if ($redirectUrl) {
+				$result['redirect'] = $redirectUrl;
+			}
+		} catch (Mage_Payment_Exception $e) {
+			if ($e->getFields()) {
+				$result['fields'] = $e->getFields();
+			}
+			$result['error'] = $e->getMessage();
+		} catch (Mage_Core_Exception $e) {
+			$result['error'] = $e->getMessage();
+		} catch (Exception $e) {
+			Mage::logException($e);
+			$result['error'] = $this->__('Unable to set Payment Method.');
+		}
+		
+		$this->getResponse()->setHeader('Content-type','application/json', true);
+		$this->getResponse()->setBody(Mage::helper('core')->jsonEncode($result));
 }
 	
 	
