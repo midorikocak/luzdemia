@@ -570,36 +570,23 @@ class IWD_Opc_JsonController extends Mage_Core_Controller_Front_Action{
          return;
       }
 		try {
-			/*if (!$this->getRequest()->isPost()) {
-				$this->_ajaxRedirectResponse();
-				return;
-			}*/
-	
-			// set payment to quote
-			$result = array();
-			$data = $this->getRequest()->getPost('payment', array());
-			$result = $this->getOnepage()->savePayment($data);
-	
-			// get section and redirect data
-			$redirectUrl = $this->getOnepage()->getQuote()->getPayment()->getCheckoutRedirectUrl();
-			if (empty($result['error'])) {
+
 				$this->loadLayout('checkout_onepage_review');
 				$result['review'] = $this->_getReviewHtml();
-				$result['grandTotal'] = Mage::helper('opc')->getGrandTotal();
-			}
-			if ($redirectUrl) {
-				$result['redirect'] = $redirectUrl;
-			}
-		} catch (Mage_Payment_Exception $e) {
-			if ($e->getFields()) {
-				$result['fields'] = $e->getFields();
-			}
-			$result['error'] = $e->getMessage();
+				$quote = Mage::getModel('checkout/session')->getQuote();
+				
+				$defaultPaymentMethod = Mage::getStoreConfig(self::XML_PATH_DEFAULT_PAYMENT);
+
+				$quote->getPayment()->setMethod($defaultPaymentMethod);
+				$quote->setTotalsCollectedFlag(false)->collectTotals();
+				$quote->save();
+				
+				$total = $quote->getGrandTotal();
+				
+				$result['grandTotal'] = Mage::helper('checkout')->formatPrice($total);
+				
 		} catch (Mage_Core_Exception $e) {
 			$result['error'] = $e->getMessage();
-		} catch (Exception $e) {
-			Mage::logException($e);
-			$result['error'] = $this->__('Unable to set Payment Method.');
 		}
 		
 		$this->getResponse()->setHeader('Content-type','application/json', true);

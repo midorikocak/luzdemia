@@ -620,7 +620,6 @@ class Mage_Checkout_Model_Type_Onepage
         if (!$quote->isVirtual() && $quote->getShippingAddress()) {
             $quote->getShippingAddress()->setCollectShippingRates(true);
         }
-
         $data['checks'] = Mage_Payment_Model_Method_Abstract::CHECK_USE_CHECKOUT
             | Mage_Payment_Model_Method_Abstract::CHECK_USE_FOR_COUNTRY
             | Mage_Payment_Model_Method_Abstract::CHECK_USE_FOR_CURRENCY
