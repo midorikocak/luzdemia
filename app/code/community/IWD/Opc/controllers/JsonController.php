@@ -571,14 +571,27 @@ class IWD_Opc_JsonController extends Mage_Core_Controller_Front_Action{
       }
         
       try {
-         $this->loadLayout('checkout_onepage_review');
-         $this->getOnepage()->initCheckout();
-         $result['review'] = $this->_getReviewHtml();
+
          
-  	       $quote = Mage::getModel('checkout/session')->getQuote();
+  	       $quote = $this->getOnepage()->getQuote();
+          
+          $this->initDefaultAddress();
+
+          Mage::app()->getCacheInstance()->cleanType('layout');
+        
+          $this->updateDefaultPayment();
+ 
+          Mage::getSingleton('checkout/session')->setCartWasUpdated(false);
+          Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl('*/*/*', array('_secure' => true)));
+          
   	       $total = $quote->getSubtotal();
          
          $result['grandTotal'] = Mage::helper('checkout')->formatPrice($total);
+         
+         $this->loadLayout('checkout_onepage_review');
+         $this->_initLayoutMessages('customer/session');
+         //$this->getOnepage()->initCheckout();
+         $result['review'] = $this->_getReviewHtml();
       }
       catch (Mage_Core_Exception $e) {
          $result['error'] = $e->getMessage();
