@@ -573,7 +573,11 @@ class IWD_Opc_JsonController extends Mage_Core_Controller_Front_Action{
       try {
          $this->loadLayout('checkout_onepage_review');
          $result['review'] = $this->_getReviewHtml();
-         $result['grandTotal'] = Mage::helper('opc')->getGrandTotal();
+         
+  	       $quote = Mage::getModel('checkout/session')->getQuote();
+  	       $total = $quote->getSubtotal();
+         
+         $result['grandTotal'] = Mage::helper('checkout')->formatPrice($total);
       }
       catch (Mage_Core_Exception $e) {
          $result['error'] = $e->getMessage();
