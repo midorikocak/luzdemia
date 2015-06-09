@@ -1529,6 +1529,7 @@ IWD.OPC.Decorator = {
 };
 
 $j_opc(document).ready(function(){
+    console.log('init');
 	IWD.OPC.Checkout.init();
 	IWD.OPC.Coupon.init();
 	IWD.OPC.Comment.init();
