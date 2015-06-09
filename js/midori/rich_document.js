@@ -29,12 +29,22 @@ function getShippingBillingTexts() {
             billingstreet += billingarray[i];
         }
 
-        var billing = {
-            street1: billingstreet,
-            firstname: billingfirstname,
-            email: customer_email,
-            phone: customer_phone
-        };
+        if(typeof customer_email != 'undefined')
+        {
+            var billing = {
+                street1: billingstreet,
+                firstname: billingfirstname,
+                email: customer_email,
+                phone: customer_phone
+            };
+        }
+        else
+        {
+            var billing = {
+                street1: billingstreet,
+                firstname: billingfirstname
+            };
+        }
 
     } else {
         billingText = angular.element('#billing-address-select option:selected').text();
