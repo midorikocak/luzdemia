@@ -112,15 +112,26 @@ IWD.OPC = {
             IWD.OPC.Checkout.removePrice();
 				IWD.OPC.removeNotAllowedPaymentMethods();
 				console.log('met');
-            IWD.OPC.Checkout.xhr = $j_opc.post(IWD.OPC.Checkout.config.baseUrl + 'onepage/json/resetReview','', IWD.OPC.preparePaymentResponse,'json');
-            IWD.OPC.Checkout.pullReview();
-            
-            $j_opc('#extra-info').empty();
-            
-            //update agreement
-            
-            
-				IWD.OPC.validatePayment();
+				$j_opc('.agree').hide();
+	            IWD.OPC.Checkout.xhr = $j_opc.post(IWD.OPC.Checkout.config.baseUrl + 'onepage/json/resetReview',function(response){
+	                //console.log('after reset');
+	            	
+					IWD.OPC.Decorator.updateGrandTotal(response);
+					$j_opc('#opc-review-block').html(response.review);
+	               
+					IWD.OPC.Checkout.removePrice();
+	            	
+	                IWD.OPC.Checkout.pullReview();
+	                
+	                $j_opc('#extra-info').empty();
+	                //update agreement
+	                
+	                
+	    				IWD.OPC.validatePayment();
+	    				
+	    				
+	            
+	            },'','json');
 			});
 		},
 		
@@ -198,7 +209,7 @@ IWD.OPC = {
 					IWD.OPC.validatePayment();
 				}, 1000);
 			});
-			$j_opc('#payu_installment').change(function(){IWD.OPC.Checkout.pullReview();});
+			$j_opc('#payu_installment').change(function(){$j_opc('.agree').hide();IWD.OPC.Checkout.pullReview();});
 			$j_opc('#co-payment-form select').change(function(event){
 				if (IWD.OPC.Checkout.ajaxProgress!=false){
 					clearTimeout(IWD.OPC.Checkout.ajaxProgress);
@@ -298,6 +309,14 @@ IWD.OPC = {
 				IWD.OPC.Decorator.updateGrandTotal(response);
 				$j_opc('#opc-review-block').html(response.review);
 				IWD.OPC.Checkout.removePrice();
+				
+                var appElement = document.querySelector('[ng-app="richDocument"]');
+                var $scope = angular.element(appElement).scope();
+
+               $scope.$apply(function() {
+                     $scope.currentorder = $j_opc('#opc-review-block').html();
+                     $j_opc('.agree').show();
+                });
 				
 				// need to recheck subscribe and agreenet checkboxes
 				IWD.OPC.recheckItems();
@@ -712,7 +731,15 @@ IWD.OPC.Checkout = {
 				if (typeof(response.review)!="undefined"){
 					IWD.OPC.Decorator.updateGrandTotal(response);
 					$j_opc('#opc-review-block').html(response.review);
-               
+					
+	                var appElement = document.querySelector('[ng-app="richDocument"]');
+	                var $scope = angular.element(appElement).scope();
+
+	               $scope.$apply(function() {
+	                     $scope.currentorder = $j_opc(response.review).html();
+	                     $j_opc('.agree').show();
+	                });
+	               
 					IWD.OPC.Checkout.removePrice();
                $j_opc('#extra-info').empty();
                if($j_opc('#final-total').text()!="")

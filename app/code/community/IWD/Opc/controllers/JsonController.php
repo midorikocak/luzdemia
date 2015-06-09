@@ -570,20 +570,21 @@ class IWD_Opc_JsonController extends Mage_Core_Controller_Front_Action{
          return;
       }
 		try {
-
-				$this->loadLayout('checkout_onepage_review');
-				$result['review'] = $this->_getReviewHtml();
-				$quote = Mage::getModel('checkout/session')->getQuote();
 				
 				$defaultPaymentMethod = Mage::getStoreConfig(self::XML_PATH_DEFAULT_PAYMENT);
-
+				
+				$quote = Mage::getModel('checkout/session')->getQuote();
+				
 				$quote->getPayment()->setMethod($defaultPaymentMethod);
 				$quote->setTotalsCollectedFlag(false)->collectTotals();
 				$quote->save();
 				
+				
 				$total = $quote->getGrandTotal();
 				
 				$result['grandTotal'] = Mage::helper('checkout')->formatPrice($total);
+				$this->loadLayout('checkout_onepage_review');
+				$result['review'] = $this->_getReviewHtml();
 				
 		} catch (Mage_Core_Exception $e) {
 			$result['error'] = $e->getMessage();
