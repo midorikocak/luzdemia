@@ -11553,7 +11553,7 @@ a.button.view-all {
 }
 
 .mini-products-list{
-    height: 300px;
+    max-height: 300px;
     overflow: scroll;
 }
 
