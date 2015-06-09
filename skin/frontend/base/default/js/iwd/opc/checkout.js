@@ -1536,4 +1536,5 @@ $j_opc(document).ready(function(){
 	IWD.OPC.Login.init();
 	IWD.OPC.Decorator.initReviewBlock();
 	IWD.OPC.Decorator.setActivePayment();
+    $j_opc('.zopim').hide();
 });
