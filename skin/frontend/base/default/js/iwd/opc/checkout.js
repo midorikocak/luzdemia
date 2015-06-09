@@ -112,6 +112,7 @@ IWD.OPC = {
             IWD.OPC.Checkout.removePrice();
 				IWD.OPC.removeNotAllowedPaymentMethods();
 				console.log('met');
+            IWD.OPC.Checkout.xhr = $j_opc.post(IWD.OPC.Checkout.config.baseUrl + 'onepage/json/resetReview','', IWD.OPC.preparePaymentResponse,'json');
             IWD.OPC.Checkout.pullReview();
             
             $j_opc('#extra-info').empty();
