@@ -872,11 +872,11 @@ IWD.OPC.Checkout = {
 		},
 		
 		checkRunReloadShippingsPayments: function(address_type){
-			var zip = $j_opc('#'+address_type+':postcode').val();
+			//var zip = $j_opc('#'+address_type+':postcode').val();
 			var country = $j_opc('#'+address_type+':country_id').val();
 			var region = $j_opc('#'+address_type+':region_id').val();
 			
-			if(zip != '' || country != '' || region != '')
+			if(/*zip != '' ||*/ country != '' || region != '')
 				IWD.OPC.Checkout.reloadShippingsPayments(address_type);
 		}
 };
@@ -962,8 +962,8 @@ IWD.OPC.Billing = {
 				
 				// check if zip
 				var el_id = $j_opc(this).attr('id');
-				if(el_id == 'billing:postcode')
-					IWD.OPC.Checkout.reloadShippingsPayments('billing');
+                // if(el_id == 'billing:postcode')
+                //     IWD.OPC.Checkout.reloadShippingsPayments('billing');
 
 				IWD.OPC.Billing.validateForm(3000);
 			});
@@ -1154,8 +1154,8 @@ IWD.OPC.Shipping = {
 
 				// check if zip
 				var el_id = $j_opc(this).attr('id');
-				if(el_id == 'shipping:postcode')
-					IWD.OPC.Checkout.reloadShippingsPayments('shipping');
+                // if(el_id == 'shipping:postcode')
+                //     IWD.OPC.Checkout.reloadShippingsPayments('shipping');
 
 				IWD.OPC.Shipping.validateForm(3000);
 				
