@@ -129,7 +129,7 @@ $image_wide = Mage::registry('image_wide');
                                        <?php
                                        if($image_wide){
                                           ?>
-                                          <img class="lazy" src="<?php $this->getSkinUrl('images/mgt_lazy_image_loader/loader.gif'); ?>" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail')->constrainOnly(true)->keepAspectRatio(true)->keepFrame(true)->resize(230, 345); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'thumbnail'), null, true) ?>" />
+                                          <img class="lazy" src="<?php $this->getSkinUrl('images/mgt_lazy_image_loader/loader.gif'); ?>" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail')->constrainOnly(true)->keepAspectRatio(true)->keepFrame(true)->trim()->resize(230, 345); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'thumbnail'), null, true) ?>" />
                                           
                                           <?php
                                           

@@ -96,6 +96,25 @@ class Varien_Image_Adapter_Imagemagic extends Varien_Image_Adapter_Abstract
         header("Content-type: " . $this->getMimeType());
         echo $this->getImageMagick();
     }
+    
+    public function trim(){
+        Varien_Profiler::start(__METHOD__);
+        $imagick = $this->getImageMagick();
+        
+        $trimmedImage = clone $imagick;
+        $trimmedImage->trimImage(0.6);
+        
+        unset($imagick);
+         $imagick = &$trimmedImage;
+        
+         $origWidth = $imagick->getImageWidth();
+         $origHeight = $imagick->getImageHeight();
+         
+        $imagick->setimageinterpolatemethod(imagick::INTERPOLATE_BICUBIC);
+        $this->refreshImageDimensions();
+
+        Varien_Profiler::stop(__METHOD__);
+    }
 
     /**
      * @param null $frameWidth
