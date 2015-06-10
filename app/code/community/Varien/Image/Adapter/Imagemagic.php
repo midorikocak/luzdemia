@@ -138,12 +138,13 @@ class Varien_Image_Adapter_Imagemagic extends Varien_Image_Adapter_Abstract
         
         $trimmedImage = clone $imagick;
         $trimmedImage->trimImage(0.6);
-        
+        var_dump($trimmedImage);
         $aspectRatioAfterTrim = $trimmedImage->getImageWidth()/$trimmedImage->getImageHeight();
         
-
+        if($aspectRatioAfterTrim<0.55){
            unset($imagick);
            $imagick = &$trimmedImage;
+        }
         
         // $draw = new ImagickDraw();
         // $draw->setFont('Arial');
