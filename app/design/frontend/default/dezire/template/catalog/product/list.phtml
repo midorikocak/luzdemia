@@ -116,7 +116,7 @@ $image_wide = Mage::registry('image_wide');
                     $product_val = Mage::getModel('catalog/product')->load($_product->getId());
                     ?>
 
-                    <li class="item <?php if($image_wide){//echo 'wide-image';}  ?> <?php
+                    <li class="item <?php if($image_wide){echo 'wide-image';}  ?> <?php
                     // Yani ancak bu kadar cahil olunabilir. Column Count datasını kullanma, direk buraya 4 yaz. Sonra da developerim diye gez etrafta.
                     // Üstelik o da css tarafında bozulmuş. Magento uzmanı cahil.
                      if (($i - 1) % $_columnCount == 0): ?> first<?php elseif ($i % $_columnCount == 0): ?> last<?php endif; ?>">
@@ -129,7 +129,8 @@ $image_wide = Mage::registry('image_wide');
                                        <?php
                                        if($image_wide){
                                           ?>
-                                        <img class="lazy" src="<?php $this->getSkinUrl('images/mgt_lazy_image_loader/loader.gif'); ?>" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(230, 230); ?>" width="230" height="230" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />                                    
+                                          <img class="lazy" src="<?php $this->getSkinUrl('images/mgt_lazy_image_loader/loader.gif'); ?>" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail')->constrainOnly(true)->keepAspectRatio(false)->keepFrame(true)->resize(230, 345); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'thumbnail'), null, true) ?>" />
+                                          
                                           <?php
                                           
                                        }else{
