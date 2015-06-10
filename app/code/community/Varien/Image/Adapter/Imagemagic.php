@@ -137,7 +137,7 @@ class Varien_Image_Adapter_Imagemagic extends Varien_Image_Adapter_Abstract
         
         
         $trimmedImage = clone $imagick;
-        $trimmedImage->trimImage(0.6);
+        $trimmedImage->trimImage(0);
         
         $aspectRatioAfterTrim = $trimmedImage->getImageWidth()/$trimmedImage->getImageHeight();
         
