@@ -93,7 +93,9 @@ class Inchoo_SocialConnect_Helper_Google extends Mage_Core_Helper_Abstract
 
         $customer->setConfirmation(null);
         $customer->save();
-
+        Mage::dispatchEvent('customer_register_success',
+            array('account_controller' => $this, 'customer' => $customer)
+        );
         $customer->sendNewAccountEmail('confirmed', '', Mage::app()->getStore()->getId());
 
         Mage::getSingleton('customer/session')->setCustomerAsLoggedIn($customer);

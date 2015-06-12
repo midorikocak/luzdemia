@@ -1,3 +1,16 @@
+
+<?php if(Mage::getModel('customer/session')->getUserRegister()):?>
+   <script>
+   <?
+   $userId = Mage::getSingleton('customer/session')->getCustomer()->getId();
+   $userEmail = Mage::getModel('customer/session')->getUserRegistered();
+   ?>
+   Conversions.userRegister('<?=$userId?>','<?=$userEmail?>');
+   </script>
+   <?php 
+   Mage::getModel('customer/session')->unsUserRegister();
+   ?>
+<?php endif; ?>
 <!-- MIDORI MMX -->
 <?php if(Mage::getModel('customer/session')->getUserLogin()):?>
    <script>
@@ -9,18 +22,6 @@
    </script>
    <?php 
    Mage::getModel('customer/session')->unsUserLogin();
-   ?>
-<?php endif; ?>
-<?php if(Mage::getModel('customer/session')->getUserRegister()):?>
-   <script>
-   <?
-   $userId = Mage::getSingleton('customer/session')->getCustomer()->getId();
-   $userEmail = Mage::getModel('customer/session')->getUserRegistered();
-   ?>
-   Conversions.userRegister('<?=$userId?>','<?=$userEmail?>');
-   </script>
-   <?php 
-   Mage::getModel('customer/session')->unsUserRegister();
    ?>
 <?php endif; ?>
 <?php if(Mage::getModel('customer/session')->getAddProduct()):?>

@@ -104,10 +104,6 @@ class Inchoo_SocialConnect_TwitterController extends Mage_Core_Controller_Front_
 
             // Connect from account dashboard - attach
             $customer = Mage::getSingleton('customer/session')->getCustomer();
-            
-            Mage::dispatchEvent('customer_register_success',
-                array('account_controller' => $this, 'customer' => $customer)
-            );
 
             Mage::helper('inchoo_socialconnect/twitter')->connectByTwitterId(
                 $customer,
