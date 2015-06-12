@@ -3,7 +3,7 @@
    <script>
    <?
    $userId = Mage::getSingleton('customer/session')->getCustomer()->getId();
-   $userEmail = Mage::getModel('customer/session')->getUserRegistered();
+   $userEmail = Mage::getModel('customer/session')->getEmail();
    ?>
    Conversions.userRegister('<?=$userId?>','<?=$userEmail?>');
    </script>
