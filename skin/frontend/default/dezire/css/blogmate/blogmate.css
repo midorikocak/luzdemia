@@ -151,9 +151,8 @@
 .blogmate-view-category .best-sales-slider { display:none; }
 .blogmate-view-category .banner-section { display:none; }
 /*============ Blog start ============*/
-.wrapper{width:1150px;}
-.site-content {float:left;width:69%;margin:24px 0 0;}
-.widget-area {float:right;width:26%;background:#ffffff;padding:10px;margin:24px 0 0;}
+.site-content {margin:24px 0 0;}
+.widget-area {background:#ffffff;padding:10px;margin:24px 0 0;}
 .entry-header .entry-title {font-size: 26px;line-height: 1.2em;text-transform: none;margin-bottom: 6px;}
 #secondary .widget{margin-bottom:10px;}
 .blogmate-index-index select{width:100px;}
