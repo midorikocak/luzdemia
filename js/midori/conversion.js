@@ -91,7 +91,7 @@ function Conversion(options){
    
    this.userRegister = function(userId,userEmail){
       var values = {'id':userId,'email':userEmail};
-      this.prototype.facebookAddData(options.fbRegisterTrackingId,values);
+      this.facebookAddData(options.fbRegisterTrackingId,values);
    };
    
    this.userLogin = function(userId,userEmail){
