@@ -139,7 +139,11 @@ class Inchoo_SocialConnect_FacebookController extends Mage_Core_Controller_Front
 
                 // Connect from account dashboard - attach
                 $customer = Mage::getSingleton('customer/session')->getCustomer();
-
+                
+                Mage::dispatchEvent('customer_register_success',
+                    array('account_controller' => $this, 'customer' => $customer)
+                );
+                
                 Mage::helper('inchoo_socialconnect/facebook')->connectByFacebookId(
                     $customer,
                     $userInfo->id,
