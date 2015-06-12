@@ -11,7 +11,7 @@
 				<use>standard</use>
 				<args>
 					<module>Magik_BlogMate</module>
-					<frontName>blog</frontName>
+					<frontName>luzdemia-blog</frontName>
 				</args>
 			</blogmate>
 		</routers>
