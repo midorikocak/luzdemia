@@ -170,7 +170,6 @@ class Phoenix_CashOnDelivery_Model_CashOnDelivery extends Mage_Payment_Model_Met
             }
             if ($this->getConfigData('disallowspecificshippingmethods', $quote->getStoreId()) == 1) {
                 $shippingMethodCode        = explode('_', $quote->getShippingAddress()->getShippingMethod());
-
                 $shippingMethodCodestr        = $shippingMethodCode[0];
                 $shippingMethodCodestr2        = $shippingMethodCode[0]."_".$shippingMethodCode[1];
                 $disallowedShippingMethods = $this->getConfigData('disallowedshippingmethods', $quote->getStoreId());

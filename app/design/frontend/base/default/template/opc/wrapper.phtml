@@ -40,7 +40,9 @@ $is_persistent = Mage::helper('opc')->isPersistentMember();
          ?>
          <script>
          var customer_email = '<?=$customer->getEmail();?>';
+         <?php if(!empty($customer->getPrimaryBillingAddress())):?>
          var customer_phone = '<?=$customer->getPrimaryBillingAddress()->getTelephone();?>';
+         <?php endif; ?>
          </script>
     	<?php endif;?>   
 

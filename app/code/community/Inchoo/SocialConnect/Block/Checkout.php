@@ -67,8 +67,7 @@ class Inchoo_SocialConnect_Block_Checkout extends Mage_Core_Block_Template
         if($this->_twitterEnabled()) {
             $this->numEnabled++;
         }
-                var_dump(Mage::registry('inchoo_socialconnect_button_text'));
-        Mage::register('inchoo_socialconnect_button_text', $this->__('Continue'));
+        //Mage::register('inchoo_socialconnect_button_text', $this->__('Continue'));
         $this->setTemplate('inchoo/socialconnect/checkout.phtml');
     }
     
