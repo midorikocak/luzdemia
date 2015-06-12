@@ -190,7 +190,7 @@ a.more-link{
 /*#primary{ width:300px; padding:0}
 #secondary{ width:280px;padding:10px}*/
 .site-content{ width:100%}
-.widget-area{ width:100%;}
+.widget-area{ width:100%;float: none;}
 .limiter{ text-align:left;}
 .entry-header .entry-title{ text-align:left;}
 .catthumb{ width:300px; margin:0;}
@@ -215,7 +215,7 @@ img.wp-post-image {
 /*#primary{ width:450px; padding:0}
 #secondary{ width:430px; padding:10px;}*/
 .site-content{ width:100%}
-.widget-area{ width:100%;}
+.widget-area{ width:100%;float: none;}
 .limiter{ text-align:left;}
 .entry-header .entry-title{ text-align:left;}
 .catthumb{margin:0 12px 0px 0;}
@@ -240,7 +240,7 @@ img.wp-post-image {
 /*#primary{ width:530px; padding:0}
 #secondary{ width:510px; padding:10px}*/
 .site-content{ width:100%}
-.widget-area{ width:100%;}
+.widget-area{ width:100%;float: none;}
 .limiter{ text-align:left;}
 .entry-header .entry-title{ text-align:left;}
 .catthumb{margin:0 12px 0px 0;}
@@ -266,7 +266,7 @@ img.wp-post-image {
 #primary{ width:520px; padding:0}
 #secondary{ width:190px; padding:10px}*/
 .site-content{ width:100%}
-.widget-area{ width:100%;}
+.widget-area{ width:100%;float: none;}
 .limiter{ text-align:left;}
 .entry-header .entry-title{ text-align:left;}
 .catthumb{margin:0 12px 0px 0;}
