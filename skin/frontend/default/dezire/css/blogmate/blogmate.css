@@ -183,10 +183,10 @@ a.more-link{
 
 @media only screen and (min-width: 170px) and (max-width: 319px) {
 /*.site-content{width:100%;}*/
-    .wrapper{width:150px};
+    .wrapper{width:150px;}
 }
 @media only screen and (min-width: 320px) and (max-width: 479px) {
-    .wrapper{width:300px};
+    .wrapper{width:300px;}
 /*#primary{ width:300px; padding:0}
 #secondary{ width:280px;padding:10px}*/
 .site-content{width:100%;}
@@ -211,7 +211,7 @@ img.wp-post-image {
 .blog-title h2:after {border-bottom:none;}
 }
 @media only screen and (min-width: 480px) and (max-width: 567px) {
-    .wrapper{width:450px};
+    .wrapper{width:450px;}
 /*#primary{ width:450px; padding:0}
 #secondary{ width:430px; padding:10px;}*/
 .site-content{width:100%;}
@@ -236,7 +236,7 @@ img.wp-post-image {
 .blog-title h2:after {border-bottom:none;}
 }
 @media only screen and (min-width:568px) and (max-width:767px) {
-    .wrapper{width:530px};
+    .wrapper{width:530px;}
 /*#primary{ width:530px; padding:0}
 #secondary{ width:510px; padding:10px}*/
 .site-content{width:100%;}
@@ -261,10 +261,11 @@ img.wp-post-image {
 .blog-title h2:after {border-bottom:none;}
 }
 @media only screen and (min-width: 768px) and (max-width:977px) {
-    .wrapper{width:740px};
+.wrapper{width:740px;}
 /*#primary header{ width:520px;}
 #primary{ width:520px; padding:0}
 #secondary{ width:190px; padding:10px}*/
+
 .site-content{width:100%;}
 .widget-area{ width:100%;float: none;}
 .limiter{ text-align:left;}
@@ -288,7 +289,7 @@ img.wp-post-image {
 .blog-title h2:after {border-bottom:none;}
 }
 @media only screen and (min-width: 978px) and (max-width:1024px) {
-    .wrapper{width:980px};
+    .wrapper{width:980px;}
 /*#primary header{ width:760px;}
 #primary{ width:760px; padding:0}
 #secondary{ width:200px; padding:10px}*/
