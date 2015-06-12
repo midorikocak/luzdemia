@@ -1,0 +1,92 @@
+<?php if(Mage::getStoreConfig("slideshow/general/enable")): ?>
+<?php
+	$bannerCollections = Mage::getModel('slideshow/slideshow')
+	->getCollection()
+	->addFieldToFilter(
+		array('stores', 'stores'),
+		array(
+			array('finset'=>Mage::app()->getStore()->getId()), 
+			array('eq'=>'0'))
+	)
+	->addFieldToFilter('filename', array('neq' => ''))
+	->addFieldToFilter('status', array('eq' => '1'))->setOrder("sort_order","ASC");	
+?>
+<?php if(count($bannerCollections) > 0): ?>
+
+<script src="<?php echo $this->getJsUrl('slideshow/jquery.min.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo $this->getJsUrl('slideshow/jquery.mobile.customized.min.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo $this->getJsUrl('slideshow/jquery.easing.1.3.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo $this->getJsUrl('slideshow/camera.min.js'); ?>" type="text/javascript"></script>
+<link href="<?php echo $this->getSkinUrl('slideshow/css/camera.css'); ?>" type="text/css" rel="stylesheet"></link>
+
+<style type="text/css">
+.fluid_container {
+	margin: 0 auto;
+	max-width: <?php echo Mage::getStoreConfig("slideshow/general/width"); ?>px;
+	width: 100%;
+}
+</style>
+<div class="fluid_container">
+<div class="camera_wrap <?php echo Mage::getStoreConfig("slideshow/general/skin"); ?>" id="camera_wrap_1">
+        
+<?php foreach ($bannerCollections as $item): ?>
+		<div data-thumb="<?php echo str_replace("/slides/","/slides/thumbs/", Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$item->getFilename() )?>" data-src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$item->getFilename() ?>" data-link="<?php echo $item->getSlideUrl() ?>" data-target="<?php echo $item->getSlideTarget() ?>">
+        	<?php if($item->getContent()): ?>
+            <div class="camera_caption fadeFromBottom">
+                <?php echo $item->getContent() ?>
+            </div>
+            <?php endif; ?>
+        </div>
+<?php endforeach;?>
+</div>
+</div>
+
+<script type="text/javascript">
+//jQuery.noConflict();
+jQuery(document).ready(function(){
+	jQuery('#camera_wrap_1').camera({
+		alignment: 'center',
+		autoAdvance: true,
+		mobileAutoAdvance: true,
+		barDirection: '<?php echo Mage::getStoreConfig("slideshow/general/bar_direction"); ?>',
+		barPosition: '<?php echo Mage::getStoreConfig("slideshow/general/bar_position"); ?>',
+		cols: <?php echo Mage::getStoreConfig("slideshow/general/cols"); ?>,
+		easing: '<?php echo Mage::getStoreConfig("slideshow/effects/easing"); ?>',
+		mobileEasing: '<?php echo Mage::getStoreConfig("slideshow/effects/mobile_easing"); ?>',
+		overlayer: <?php echo Mage::getStoreConfig("slideshow/general/overlayer"); ?>,
+		pagination: <?php echo Mage::getStoreConfig("slideshow/general/pagination"); ?>,
+		playPause: <?php echo Mage::getStoreConfig("slideshow/general/play_pause"); ?>,
+		pauseOnClick: <?php echo Mage::getStoreConfig("slideshow/general/pause_on_click"); ?>,
+		pieDiameter: <?php echo Mage::getStoreConfig("slideshow/general/pie_diameter"); ?>,
+		piePosition: '<?php echo Mage::getStoreConfig("slideshow/general/pie_position"); ?>',
+		portrait: <?php echo Mage::getStoreConfig("slideshow/general/portrait"); ?>,
+		rows: <?php echo Mage::getStoreConfig("slideshow/general/rows"); ?>,
+		slicedRows: <?php echo Mage::getStoreConfig("slideshow/general/sliced_rows"); ?>,
+		slicedCols: <?php echo Mage::getStoreConfig("slideshow/general/sliced_cols"); ?>,
+		fx: '<?php echo Mage::getStoreConfig("slideshow/effects/fx"); ?>',
+		mobileFx: '<?php echo Mage::getStoreConfig("slideshow/effects/mobile_fx"); ?>',
+		gridDifference: <?php echo Mage::getStoreConfig("slideshow/general/grid_difference"); ?>,
+		height: '<?php echo Mage::getStoreConfig("slideshow/general/height"); ?>',
+		hover: <?php echo Mage::getStoreConfig("slideshow/general/hover"); ?>,
+		slideOn: '<?php echo Mage::getStoreConfig("slideshow/general/slide_on"); ?>',
+		thumbnails: <?php echo Mage::getStoreConfig("slideshow/general/thumbnails"); ?>,
+		time: <?php echo Mage::getStoreConfig("slideshow/general/time"); ?>,
+		transPeriod: <?php echo Mage::getStoreConfig("slideshow/general/trans_period"); ?>,
+		loader: '<?php echo Mage::getStoreConfig("slideshow/effects/loader"); ?>',
+		loaderColor: '#<?php echo Mage::getStoreConfig("slideshow/effects/loader_color"); ?>',
+		loaderBgColor: '#<?php echo Mage::getStoreConfig("slideshow/effects/loader_bg_color"); ?>',
+		loaderOpacity: <?php echo Mage::getStoreConfig("slideshow/effects/loader_opacity"); ?>,
+		loaderPadding: <?php echo Mage::getStoreConfig("slideshow/effects/loader_padding"); ?>,
+		loaderStroke: <?php echo Mage::getStoreConfig("slideshow/effects/loader_stroke"); ?>,
+		minHeight: '',
+		navigation: <?php echo Mage::getStoreConfig("slideshow/effects/navigation"); ?>,
+		navigationHover: <?php echo Mage::getStoreConfig("slideshow/effects/navigation_on_hover"); ?>,
+		mobileNavHover: <?php echo Mage::getStoreConfig("slideshow/effects/mobile_nav_hover"); ?>,
+		opacityOnGrid: <?php echo Mage::getStoreConfig("slideshow/effects/opacity_on_grid"); ?>,
+
+	});
+});
+
+</script>
+<?php endif; ?>
+<?php endif; ?>

