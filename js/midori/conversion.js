@@ -87,11 +87,6 @@ function Conversion(options){
       ga('require', 'displayfeatures');
       ga('send', 'pageview');
       ga('require', 'ec');
-   }else{
-      ga('create', options.googleAnalyticsId , 'auto');
-      ga('require', 'displayfeatures');
-      ga('send', 'pageview');
-      ga('require', 'ec');
    }
    
    this.userRegister = function(userId,userEmail){
