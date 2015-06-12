@@ -131,7 +131,8 @@ class Zerobuffer_PayU_Model_PaymentMethod extends Mage_Payment_Model_Method_Cc {
 
         $result = $this->callApi($payment, $amount, 'Authorization', $installment);
         $errorMsg = "";
-
+        //$log =[$result,$payment,$amount];
+        //Mage::log(serialize($result), null, 'authorize.log');
         if ($result === false) {
             $errorCode = 'Invalid Data';
             $errorMsg = $this->_getHelper()->__('Error Processing the request');
@@ -191,7 +192,7 @@ class Zerobuffer_PayU_Model_PaymentMethod extends Mage_Payment_Model_Method_Cc {
             $billingAddress = $order->getBillingAddress();
 
             $street = $billingAddress->getStreet(1);
-            $postcode = $billingAddress->getPostcode();
+            //$postcode = $billingAddress->getPostcode();
             $cscCode = $payment->getCcCid();
 
             $shippingAddress = $order->getShippingAddress();
@@ -231,7 +232,7 @@ class Zerobuffer_PayU_Model_PaymentMethod extends Mage_Payment_Model_Method_Cc {
                 "DELIVERY_LNAME" => $shippingAddress->getLastname(),
                 "DELIVERY_PHONE" => $shippingAddress->getTelephone(),
                 "DELIVERY_ADDRESS" => $shippingAddress->getStreetFull(),
-                "DELIVERY_ZIPCODE" => $shippingAddress->getPostcode(),
+                //"DELIVERY_ZIPCODE" => $shippingAddress->getPostcode(),
                 "DELIVERY_CITY" => $shippingAddress->getStreet(1),
                 "DELIVERY_STATE" => $shippingAddress->getStreet(1),
                 "DELIVERY_COUNTRYCODE" => "TR",
