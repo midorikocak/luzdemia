@@ -150,8 +150,11 @@ $is_persistent = Mage::helper('opc')->isPersistentMember();
 <script>
 jQuery(document).ready(function(){
     jQuery('.zopim').hide();
-jQuery('#billing\\:use_for_shipping_yes').click();
-    IWD.OPC.Shipping.saveShippingMethod();
+    if(jQuery('#billing\\:use_for_shipping_yes').length>0){
+        jQuery('#billing\\:use_for_shipping_yes').click();
+    }else{
+        IWD.OPC.Shipping.saveShippingMethod();
+    }
 });
 
 jQuery(function() {
