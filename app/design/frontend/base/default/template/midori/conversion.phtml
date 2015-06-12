@@ -73,6 +73,9 @@
 <?php if(Mage::getModel('customer/session')->getPurchaseProduct()):?>
    <script>
       Conversions.purchaseProduct(<?=Mage::getModel('customer/session')->getPurchaseProduct()?>,<?=Mage::getModel('customer/session')->getPurchasedProducts()?>);
+      
+      var purchaseData = <?=Mage::getModel('customer/session')->getPurchaseProduct()?>;
+      
    </script>
    <!-- Google Code for Sat&#305;&#351; Conversion Page -->
    <script type="text/javascript">
@@ -82,7 +85,7 @@
    var google_conversion_format = "2";
    var google_conversion_color = "ffffff";
    var google_conversion_label = "JwZgCLqnmVkQoP6wuAM";
-   var google_conversion_value = 1.00;
+   var google_conversion_value = Number(purchaseData.revenue) + Number(purchaseData.shipping);
    var google_conversion_currency = "TRY";
    var google_remarketing_only = false;
    /* ]]> */
