@@ -4,6 +4,9 @@
 ?>
 
 <div id="main" class="wrapper">
+	<?php
+		echo $this->getChildHtml('blog_right');
+	?>
 	<?php //echo $this->getPagerHtml(); ?>
 	<div id="primary" class="site-content">
 		<div id="content" role="main">
@@ -72,9 +75,5 @@
 			?>
 		</div>
 	</div>
-
-	<?php
-		echo $this->getChildHtml('blog_right');
-	?>
 
 </div>
