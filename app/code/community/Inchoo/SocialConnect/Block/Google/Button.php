@@ -73,9 +73,9 @@ class Inchoo_SocialConnect_Block_Google_Button extends Mage_Core_Block_Template
     protected function _getButtonText()
     {
         if(empty($this->userInfo)) {
-            //if(!($text = Mage::registry('inchoo_socialconnect_button_text'))){
+            if(!($text = Mage::registry('inchoo_socialconnect_button_text'))){
                 $text = $this->__('Connect with Google');
-            //}
+            }
         } else {
             $text = $this->__('Disconnect');
         }

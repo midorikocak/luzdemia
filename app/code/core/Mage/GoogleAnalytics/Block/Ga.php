@@ -90,11 +90,7 @@ class Mage_GoogleAnalytics_Block_Ga extends Mage_Core_Block_Template
         if ($pageName && preg_match('/^\/.*/i', $pageName)) {
             $optPageURL = ", '{$this->jsQuoteEscape($pageName)}'";
         }
-        return "
-_gaq.push(['_setAccount', '{$this->jsQuoteEscape($accountId)}']);
-" . $this->_getAnonymizationCode() . "
-_gaq.push(['_trackPageview'{$optPageURL}]);
-";
+        return "ga('create', '$this->jsQuoteEscape($accountId)', 'auto');";
     }
 
     /**

@@ -73,9 +73,9 @@ class Inchoo_SocialConnect_Block_Facebook_Button extends Mage_Core_Block_Templat
     protected function _getButtonText()
     {
         if(empty($this->userInfo)) {
-            //if(!($text = Mage::registry('inchoo_socialconnect_button_text'))){
+            if(!($text = Mage::registry('inchoo_socialconnect_button_text'))){
                 $text = $this->__('Connect with Facebook');
-            //}
+            }
         } else {
             $text = $this->__('Disconnect');
         }
