@@ -41,15 +41,15 @@ Checkout.prototype = {
         this.currentStep = 'billing';
 
 
-     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-46592405-1', 'auto');
-  ga('require', 'displayfeatures');
-  ga('require', 'ec');
-ga('send', 'pageview', '/checkout/onepage/'+this.currentStep+'/');
+//      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+//   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+//   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+//   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+//
+//   ga('create', 'UA-46592405-1', 'auto');
+//   ga('require', 'displayfeatures');
+//   ga('require', 'ec');
+// ga('send', 'pageview', '/checkout/onepage/'+this.currentStep+'/');
 
         this.accordion.sections.each(function(section) {
             Event.observe($(section).down('.step-title'), 'click', this._onSectionClick.bindAsEventListener(this));
