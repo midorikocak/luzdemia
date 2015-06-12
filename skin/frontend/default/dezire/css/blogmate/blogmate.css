@@ -154,7 +154,7 @@
 .wrapper{width:1150px;margin: 0 auto;}
 .site-content {float:left;width:69%;margin:24px 0 0;}
 .widget-area {float:right;width:26%;background:#ffffff;padding:10px;margin:24px 0 0;}
-.entry-header .entry-title {font-size: 26px;line-height: 1.2em;text-transform: none;margin-bottom: 22px;padding-left:60px;padding-right:60px;}
+.entry-header .entry-title {font-size: 26px;line-height: 1.2em;text-transform: none;margin-bottom: 22px;}
 #secondary .widget{margin-bottom:10px;}
 .blogmate-index-index select{width:100px;}
 .blogmate-index-index .pager .limiter label, .toolbar label {display:none;}
@@ -169,7 +169,6 @@
 
 .entry-content{
     margin-bottom:30px;
-    padding-left:60px;padding-right:60px;
 }
 
 a.more-link{
