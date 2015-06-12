@@ -168,8 +168,8 @@
 .site-content{ width:100%}
 }
 @media only screen and (min-width: 320px) and (max-width: 479px) {
-#primary{ width:300px; padding:0}
-#secondary{ width:280px;padding:10px}
+/*#primary{ width:300px; padding:0}
+#secondary{ width:280px;padding:10px}*/
 .site-content{ width:100%}
 .widget-area{ width:100%; background:#ffffff;padding: 10px;}
 .limiter{ text-align:left;}
@@ -192,8 +192,8 @@ img.wp-post-image {
 .blog-title h2:after {border-bottom:none;}
 }
 @media only screen and (min-width: 480px) and (max-width: 567px) {
-#primary{ width:450px; padding:0}
-#secondary{ width:430px; padding:10px;}
+/*#primary{ width:450px; padding:0}
+#secondary{ width:430px; padding:10px;}*/
 .site-content{ width:100%}
 .widget-area{ width:100%;background:#ffffff;padding: 10px;}
 .limiter{ text-align:left;}
@@ -216,8 +216,8 @@ img.wp-post-image {
 .blog-title h2:after {border-bottom:none;}
 }
 @media only screen and (min-width:568px) and (max-width:767px) {
-#primary{ width:530px; padding:0}
-#secondary{ width:510px; padding:10px}
+/*#primary{ width:530px; padding:0}
+#secondary{ width:510px; padding:10px}*/
 .site-content{ width:100%}
 .widget-area{ width:100%;background:#ffffff;padding: 10px;}
 .limiter{ text-align:left;}
@@ -240,9 +240,9 @@ img.wp-post-image {
 .blog-title h2:after {border-bottom:none;}
 }
 @media only screen and (min-width: 768px) and (max-width:977px) {
-#primary header{ width:520px;}
+/*#primary header{ width:520px;}
 #primary{ width:520px; padding:0}
-#secondary{ width:190px; padding:10px}
+#secondary{ width:190px; padding:10px}*/
 .site-content{ width:100%}
 .widget-area{ width:100%;background:f8f8f8;padding: 10px;}
 .limiter{ text-align:left;}
@@ -266,9 +266,9 @@ img.wp-post-image {
 .blog-title h2:after {border-bottom:none;}
 }
 @media only screen and (min-width: 978px) and (max-width:1024px) {
-#primary header{ width:760px;}
+/*#primary header{ width:760px;}
 #primary{ width:760px; padding:0}
-#secondary{ width:200px; padding:10px}
+#secondary{ width:200px; padding:10px}*/
 .site-content{ width:100%}
 .widget-area{ width:100%;background:#ffffff;padding: 10px;}
 .limiter{ text-align:left;}
@@ -297,5 +297,9 @@ img.wp-post-image {
 }
 
 a.more-link{
+    color:#d74069;
+}
+
+.widget-area a{
     color:#d74069;
 }
